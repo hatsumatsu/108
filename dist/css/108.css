@@ -1,0 +1,129 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Lab Mono Web', monospace;
+  font-size: 100%;
+  color: #fff;
+  background: #062A4F;
+}
+a {
+  text-decoration: none;
+}
+h1 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 1rem 1.1rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+.timeline-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 70vh;
+  height: 70vh;
+  margin: calc(-37.5vh) 0 0 -35vh;
+  overflow: hidden;
+}
+.timeline-wrapper > svg {
+  display: block;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+}
+#placeholder {
+  display: none;
+}
+.ui--controls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1;
+  -webkit-transition: all 300ms ease;
+          transition: all 300ms ease;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+}
+.visible--ui-controls .ui--controls {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.ui-toggle--controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  margin: -2.25em 1rem 0 0;
+  text-transform: uppercase;
+  color: inherit;
+}
+.ui-toggle--controls::before {
+  content: ' ';
+  position: relative;
+  top: 0.1em;
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin: 0 0.25em 0 0;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+.visible--ui-controls .ui-toggle--controls::before {
+  background: #fff;
+}
+.ui-toggle--share {
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: block;
+  margin: 1rem 1rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: inherit;
+}
+.button-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.button {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 4rem;
+  margin: 0.5rem;
+  padding: 0.65rem 0.7rem;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid currentColor;
+  border-radius: 3px;
+}
+.button:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+.button--narrow {
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 4rem;
+}
+.button--no-feedback:active {
+  background: #ffffff;
+}

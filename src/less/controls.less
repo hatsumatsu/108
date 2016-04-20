@@ -1,0 +1,109 @@
+// controls
+.ui--controls {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	padding: 0.5rem 0.5rem;
+
+	font-size: 0.875rem;
+	line-height: 1;
+
+	transition: all 300ms ease;
+	transform: translateY( 100% );
+
+	.visible--ui-controls & {
+		transform: translateY( 0 );
+	}		
+}
+
+.ui-toggle--controls {
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	display: block;
+	margin: -2.25em 1rem 0 0;
+
+	text-transform: uppercase;
+	color: inherit;
+
+	&::before {
+		content: ' ';
+
+		position: relative;
+		top: 0.1em;
+
+		display: inline-block;
+		width: 0.9em;
+		height: 0.9em;
+		margin: 0 0.25em 0 0;
+
+		border: 2px solid currentColor;
+		border-radius: 50%;		
+	}
+
+	.visible--ui-controls & {
+
+		&::before {
+			background: @color--text;
+		}
+	}
+}
+
+
+// share
+.ui--share {
+
+}
+
+.ui-toggle--share {
+	position: fixed;
+	right: 0;
+	top: 0;
+
+	display: block;
+	margin: 1rem 1rem 0 0;
+
+	font-size: 0.875rem;
+	line-height: 1;
+	text-transform: uppercase;
+	color: inherit;
+}
+
+
+// buttons
+.button-row {
+	display: flex;
+}
+
+.button {
+	flex-grow: 1;
+	height: 4rem;
+	margin: 0.5rem;
+	padding: 0.65rem 0.7rem;
+
+	color: inherit;
+
+	background: rgba( 255,255,255,0.01 );
+	border: 1px solid currentColor;
+	border-radius: 3px;
+
+	&:hover {
+		background: rgba( 255,255,255,0.1 ) !important;		
+	}
+}
+
+.button--narrow {
+	flex-grow: 0;	
+	flex-shrink: 0;
+	width: 4rem;
+}
+
+.button--no-feedback {
+
+	&:active {
+		background: rgba( 255,255,255,1 );		
+	}
+}

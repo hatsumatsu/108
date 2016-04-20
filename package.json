@@ -1,0 +1,16 @@
+{
+	"name":			"108",
+	"version":		"0.0.1",
+	"author":		"Martin Wecke, HATSUMATSU",
+	"private":		true,
+
+	"devDependencies": {
+		"grunt":					"*",
+		"grunt-contrib-watch":		"*",
+		"grunt-contrib-less":		"*",
+		"grunt-autoprefixer":		"*",
+		"grunt-modernizr":			"*",
+		"grunt-contrib-uglify":		"*",
+		"matchdep":					"*"
+	} 
+}

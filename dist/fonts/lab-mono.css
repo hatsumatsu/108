@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Lab Mono Web';
+    src: url( 'labmono-regular-web.eot' );
+    src: url( 'labmono-regular-web.eot?#iefix' ) format( 'embedded-opentype' ),
+         url( 'labmono-regular-web.woff2' ) format( 'woff2' ),
+         url( 'labmono-regular-web.woff' ) format( 'woff' ),
+         url( 'labmono-regular-web.ttf' ) format( 'truetype' );
+    font-weight: normal;
+    font-style: normal;
+}
