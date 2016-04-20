@@ -1,17 +1,20 @@
 var Ui = ( function() {
 	var settings = {
 		selector: {
+			title:  'h1',
 			button: '.button',
 			controls: {
 				toggle: '.ui-toggle--controls',
 			},
 			shareInput: '.share-url-input'
 		},
-		isVisible: true
+		isVisible: false
 	}
 
 	var init = function() {
-		toggleControls();
+		if( Modernizr.touchevents ) {
+			toggleControls();
+		}
 
 		bindEventHandlers();
 	}
@@ -19,8 +22,6 @@ var Ui = ( function() {
 	var bindEventHandlers = function() {
 		$( document )
 			.on( 'click', settings.selector.controls.toggle, function( event ) {
-				settings.isVisible = !settings.isVisible;
-
 				toggleControls();
 			} )
 			.on( 'click', settings.selector.button, function( event ) {
@@ -49,6 +50,7 @@ var Ui = ( function() {
 			.on( 'sequencer/playSample', function( event, data ) {
 				var sample = data.sample;
 				highlightButton( sample );
+				highlightTitle();
 			} )
 			.on( 'sequencer/saveSequence', function( event, data ) {
 				setUrl( data.data );
@@ -78,6 +80,29 @@ var Ui = ( function() {
 			);						
 	}
 
+	var highlightTitle = function() {
+		console.log( 'Ui.highlightTitle()' );
+
+		var title = $( settings.selector.title );
+
+		new TimelineLite()
+			.to( 
+				title,
+				0.01, 
+				{
+					opacity: 1
+				}						
+			)
+			.to( 
+				title,
+				0.05, 
+				{
+					opacity: 0.5
+				}						
+			);								
+	}
+
+
 	var toggleControls = function() {
 		if( !settings.isVisible ) {
 			$( 'html' )
@@ -86,6 +111,8 @@ var Ui = ( function() {
 			$( 'html' )
 				.removeClass( 'visible--ui-controls' );			
 		}
+
+		settings.isVisible = !settings.isVisible;		
 	} 
 
 

@@ -10,7 +10,53 @@ body {
   font-family: 'Lab Mono Web', monospace;
   font-size: 100%;
   color: #fff;
-  background: #062A4F;
+  letter-spacing: 0.1em;
+  -webkit-font-smoothing: antialiased;
+  background: #252529;
+}
+body::after {
+  content: ' ';
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 100;
+  display: block;
+  width: 6rem;
+  height: 6rem;
+  margin: -3.75rem 0 0 -3rem;
+  border: 1px dashed #fff;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-animation: rotating 3s infinite linear;
+          animation: rotating 3s infinite linear;
+  -webkit-transition: opacity 750ms ease;
+          transition: opacity 750ms ease;
+}
+.resizing body::after {
+  opacity: 1;
+  -webkit-transition-duration: 750ms;
+          transition-duration: 750ms;
+}
+@-webkit-keyframes rotating {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 a {
   text-decoration: none;
@@ -19,19 +65,30 @@ h1 {
   position: fixed;
   left: 0;
   top: 0;
+  display: block;
   margin: 1rem 1.1rem;
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 400;
+  line-height: 1;
+  opacity: 0.5;
 }
 .timeline-wrapper {
   position: absolute;
   left: 50%;
   top: 50%;
+  z-index: 0;
   width: 70vh;
   height: 70vh;
   margin: calc(-37.5vh) 0 0 -35vh;
   overflow: hidden;
+  -webkit-transition: opacity 750ms ease;
+          transition: opacity 750ms ease;
+}
+.resizing .timeline-wrapper {
+  opacity: 0;
+  -webkit-transition-duration: 150ms;
+          transition-duration: 150ms;
 }
 .timeline-wrapper > svg {
   display: block;
@@ -66,17 +123,25 @@ h1 {
   margin: -2.25em 1rem 0 0;
   text-transform: uppercase;
   color: inherit;
+  opacity: 0.5;
 }
 .ui-toggle--controls::before {
   content: ' ';
   position: relative;
   top: 0.1em;
   display: inline-block;
-  width: 0.9em;
-  height: 0.9em;
+  width: 0.85714286em;
+  height: 0.85714286em;
   margin: 0 0.25em 0 0;
-  border: 2px solid currentColor;
+  border: 1px solid currentColor;
   border-radius: 50%;
+}
+.ui-toggle--controls:hover,
+.ui-toggle--controls:focus {
+  opacity: 1;
+}
+.visible--ui-controls .ui-toggle--controls {
+  opacity: 1;
 }
 .visible--ui-controls .ui-toggle--controls::before {
   background: #fff;
@@ -91,6 +156,30 @@ h1 {
   line-height: 1;
   text-transform: uppercase;
   color: inherit;
+  opacity: 0.5;
+}
+.ui-toggle--share:hover,
+.ui-toggle--share:focus {
+  opacity: 1;
+}
+.share-url-input {
+  position: fixed;
+  left: 0;
+  top: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: block;
+  width: 24em;
+  margin: 4rem 0 0 1rem;
+  padding: 0.5em;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  background: #313136;
+  border: none;
+  box-shadow: none !important;
 }
 .button-row {
   display: -webkit-box;

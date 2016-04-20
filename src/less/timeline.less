@@ -2,12 +2,21 @@
 	position: absolute;
 	left: 50%;
 	top: 50%;
+	z-index: 0;
 
 	width: 70vh;
 	height: 70vh;
 	margin: calc( -35vh - 2.5rem ) 0 0 -35vh;
 
 	overflow: hidden;
+
+	transition: opacity 750ms ease;
+
+	.resizing & {
+		opacity: 0;
+
+		transition-duration: 150ms;
+	}
 }
 
 .timeline-wrapper > svg {
