@@ -54,6 +54,18 @@ module.exports = function( grunt ) {
 				files: {
 					'dist/js/dependencies.min.js': ['src/js/dependencies/*.js']
 				}
+			},
+			main: {
+				files: {
+					'dist/js/main.min.js': [
+						'src/js/debug.js',
+						'src/js/viewport.js',
+						'src/js/sequencer.js',
+						'src/js/timeline.js',
+						'src/js/ui.js',
+						'src/js/url.js'
+					]
+				}
 			}
 		},
 
