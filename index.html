@@ -5,11 +5,14 @@
 
 		<title></title>
 
+    	<meta name="viewport" content="width=device-width,user-scalable=no">
+
 		<link type="text/css" rel="stylesheet" href="dist/fonts/lab-mono.css"> 
 		<link type="text/css" rel="stylesheet" href="dist/css/108.css"> 
 
 		<script type="text/javascript" src="dist/js/dependencies.min.js"></script>
 
+		<script type="text/javascript" src="src/js/debug.js"></script>
 		<script type="text/javascript" src="src/js/viewport.js"></script>
 		<script type="text/javascript" src="src/js/timeline.js"></script>
 		<script type="text/javascript" src="src/js/sequencer.js"></script>
@@ -17,59 +20,100 @@
 		<script type="text/javascript" src="src/js/url.js"></script>
 	</head>
 	<body id="body">
+		<!-- TITLE -->
 		<h1>
 			108
 		</h1>
 
-
+		<!-- TIMELINE -->
 		<div class="timeline-wrapper">
 
 		</div>
 
+		<!-- CONTROLS -->
 		<div class="ui--controls">
 			<div class="button-row">
 				<a href="#" class="ui-toggle ui-toggle--controls">
 					ctrl
 				</a>
 
-				<a href="#" class="button" data-sample="0" data-key="c">
+				<a href="#" class="control-button" data-sample="0" data-key="c">
 					C
 				</a>
-				<a href="#" class="button" data-sample="1" data-key="v">
+				<a href="#" class="control-button" data-sample="1" data-key="v">
 					V
 				</a>
-				<a href="#" class="button" data-sample="2" data-key="b">
+				<a href="#" class="control-button" data-sample="2" data-key="b">
 					B
 				</a>
-				<a href="#" class="button" data-sample="3" data-key="n">
+				<a href="#" class="control-button" data-sample="3" data-key="n">
 					N
 				</a>
-				<a href="#" class="button" data-sample="4" data-key="m">
+				<a href="#" class="control-button" data-sample="4" data-key="m">
 					M
 				</a>	
 
-				<a href="#" class="button button--narrow button--no-feedback" data-key="space" data-action="play">
+				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="space" data-action="play">
 					>
 				</a>
 
-				<a href="#" class="button button--narrow button--no-feedback" data-key="q" data-action="clear">
+				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="q" data-action="clear">
 					X
 				</a>				
 
-				<a href="#" class="button button--narrow button--no-feedback" data-key="shift" data-action="metronome">
+				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="shift" data-action="metronome">
 					/
 				</a>																
 			</div>
 		</div>
 
+		<!-- UI SHARE -->
 		<div class="ui--share">
-			<a href="#" class="ui-toggle ui-toggle--share">
+			<a href="#share" class="ui-toggle ui-toggle--share">
 				share
 			</a>			
 
-			<div class="ui-modal ui-modal--share">
-				<input type="text" class="share-url-input">
+			<div class="ui-modal ui-modal--share" id="share">
+				<div class="ui-modal-content">
+					<p>
+						This is the URL to your beat:
+					</p>
+					
+					<input type="text" class="share-url-input">
+
+					<div class="modal-actions modal-actions--share">
+						<a href="#" class="button">
+							OK
+						</a>
+					</div>
+				</div>
 			</div>
 		<div>
+
+
+		<!-- UI HELP -->
+		<div class="ui--help">
+			<a href="#help" class="ui-toggle ui-toggle--help">
+				help
+			</a>			
+
+			<div class="ui-modal ui-modal--help" id="help">
+				<div class="ui-modal-content">
+					<p>
+108 is controlled with the keyboard: use <span class="key">C</span> <span class="key">V</span> <span class="key">B</span> <span class="key">N</span> <span class="key">M</span> to play samples while the loop is running. <span class="key">x</span> deletes the beat while <span class="key">space</span> controls playback. <span class="key">Shift</span> toggles a metronome in case you need one. 
+					</p>
+
+					<p>
+Enjoy!
+					</p>
+
+					<div class="modal-actions modal-actions--help">
+						<a href="#" class="button">
+							Got it
+						</a>
+					</div>
+				</div>
+			</div>
+		<div>			
 	</body>
 </html>

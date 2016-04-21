@@ -8,9 +8,7 @@ var Ui = ( function() {
 			},
 			shareInput: '.share-url-input'
 		},
-		isVisible: {
-			controls: false
-		}
+		isVisible: false
 	}
 
 	var init = function() {
@@ -25,13 +23,11 @@ var Ui = ( function() {
 		$( document )
 			.on( 'click', settings.selector.controls.toggle, function( event ) {
 				event.preventDefault();
-
+				
 				toggleControls();
 			} )
-			.on( 'mousedown touchstart', settings.selector.button, function( event ) {
+			.on( 'click', settings.selector.button, function( event ) {
 				event.preventDefault();
-
-				Debug.log( 'mousedown / touchstart' );
 
 				var button = $( this );
 
@@ -64,7 +60,7 @@ var Ui = ( function() {
 	}	
 
 	var highlightButton = function( sample ) {
-		Debug.log( 'Ui.highlightButton()', sample );
+		console.log( 'Ui.highlightButton()', sample );
 
 		var button = $( settings.selector.button ).filter( '[data-sample="' +  sample + '"]' );
 		var color = $( 'html' ).css( 'backgroundColor' );
@@ -87,32 +83,30 @@ var Ui = ( function() {
 	}
 
 	var highlightTitle = function() {
-		Debug.log( 'Ui.highlightTitle()' );
+		console.log( 'Ui.highlightTitle()' );
 
-		if( !Modernizr.touch ) {
-			var title = $( settings.selector.title );
+		var title = $( settings.selector.title );
 
-			new TimelineLite()
-				.to( 
-					title,
-					0.01, 
-					{
-						opacity: 1
-					}						
-				)
-				.to( 
-					title,
-					0.05, 
-					{
-						opacity: 0.5
-					}						
-				);	
-		}							
+		new TimelineLite()
+			.to( 
+				title,
+				0.01, 
+				{
+					opacity: 1
+				}						
+			)
+			.to( 
+				title,
+				0.05, 
+				{
+					opacity: 0.5
+				}						
+			);								
 	}
 
 
 	var toggleControls = function() {
-		if( !settings.isVisible.controls ) {
+		if( !settings.isVisible ) {
 			$( 'html' )
 				.addClass( 'visible--ui-controls' );
 		} else {
@@ -120,12 +114,12 @@ var Ui = ( function() {
 				.removeClass( 'visible--ui-controls' );			
 		}
 
-		settings.isVisible.controls = !settings.isVisible.controls;		
+		settings.isVisible = !settings.isVisible;		
 	} 
 
 
 	var setUrl = function( hash ) {
-		Debug.log( 'Ui.setUrl()', hash );
+		console.log( 'Ui.setUrl()', hash );
 
 		var url = location.protocol + '//' + location.hostname + location.pathname;
 		url = url + '#' + hash;

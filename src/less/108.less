@@ -1,80 +1,17 @@
-// VARIABLES
+// variables
 @import 'variables';
 
+// animations
+@import 'animations';
 
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
+// document 
+@import 'document';
 
-html,
-body {
-	margin: 0;
-	min-height: 100vh;
+// links 
+@import 'links';
 
-	font-family: @font--1;
-	font-size: 100%;
-	color: @color--text;
-	letter-spacing: 0.1em;
-
-	-webkit-font-smoothing: antialiased;
-
-	background: @color--bg;
-}
-
-body {
-
-
-	&::after {
-		content: ' ';
-
-		position: fixed;
-		left: 50%;
-		top: 50%;
-		z-index: 100;
-
-		display: block;
-		width: 6rem;
-		height: 6rem;
-		margin: -3.75rem 0 0 -3rem;
-
-		border: 1px dashed @color--text;
-		border-radius: 50%;
-
-		opacity: 0;
-
-		pointer-events: none;
-
-		animation: rotating 3s infinite linear;
-
-		transition: opacity 750ms ease;
-	}
-
-	.resizing & {
-
-		&::after {
-			opacity: 1;
-
-			transition-duration: 750ms;
-		}
-	}
-}
-
-@keyframes rotating {
-	0% {
-		transform: rotate( 0deg );
-	}
-
-	100% {
-		transform: rotate( 360deg );
-	}	
-}
-
-a {
-	text-decoration: none;
-}
-
+// controls 
+@import 'buttons';
 
 // head
 @import 'head';
@@ -83,4 +20,13 @@ a {
 @import 'timeline';
 
 // controls 
-@import 'controls';
+@import 'ui--controls';
+
+// share 
+@import 'ui--share';
+
+// help 
+@import 'ui--help';
+
+// modals 
+@import 'modals';

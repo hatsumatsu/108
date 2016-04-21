@@ -5,7 +5,7 @@ var Url = ( function() {
 	}
 
 	var init = function() {
-		console.log( 'url.init()' );
+		Debug.log( 'url.init()' );
 
 		onHashchange();
 
@@ -18,7 +18,7 @@ var Url = ( function() {
 		$( window )
 			.on( 'hashchange', function() {
 				if( !settings.isChanging ) {
-					console.log( 'hashchange' );
+					Debug.log( 'hashchange' );
 					onHashchange();
 				}
 			} );

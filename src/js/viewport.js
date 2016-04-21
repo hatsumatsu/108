@@ -25,7 +25,7 @@ var Viewport = ( function() {
     };
 
     var init = function() {
-        console.log( 'viewport.init()' );
+        Debug.log( 'viewport.init()' );
         
         settings.element = $( window );
         
@@ -80,48 +80,48 @@ var Viewport = ( function() {
 
             // top
             .on( 'viewport/scroll/toTop', function() {
-                console.log( 'scrolled to top' );
+                Debug.log( 'scrolled to top' );
 
                 $( 'html' ).addClass( 'scrolled-to-top' );
             } )
             .on( 'viewport/scroll/fromTop', function() {
-                console.log( 'scrolled from top' );
+                Debug.log( 'scrolled from top' );
                 
                 $( 'html' ).removeClass( 'scrolled-to-top' );
             } )
 
             // bottom
             .on( 'viewport/scroll/toBottom', function() {
-                console.log( 'scrolled to bottom' );
+                Debug.log( 'scrolled to bottom' );
                 
                 $( 'html' ).addClass( 'scrolled-to-bottom' );                        
             } )
             .on( 'viewport/scroll/fromBottom', function() {
-                console.log( 'scrolled from bottom' );
+                Debug.log( 'scrolled from bottom' );
 
                 $( 'html' ).removeClass( 'scrolled-to-bottom' );                                                
             } )
 
             // first screen
             .on( 'viewport/scroll/toFirstScreen', function() {
-                console.log( 'scrolled to first screen' );
+                Debug.log( 'scrolled to first screen' );
 
                 $( 'html' ).addClass( 'scrolled-to-first-screen' );                                                
             } )
             .on( 'viewport/scroll/fromFirstScreen', function() {
-                console.log( 'scrolled from first screen' );
+                Debug.log( 'scrolled from first screen' );
 
                 $( 'html' ).removeClass( 'scrolled-to-first-screen' );                                                
             } )
 
             // last screen
             .on( 'viewport/scroll/toLastScreen', function() {
-                console.log( 'scrolled to last screen' );
+                Debug.log( 'scrolled to last screen' );
 
                 $( 'html' ).addClass( 'scrolled-to-last-screen' );                                                
             } )
             .on( 'viewport/scroll/fromLastScreen', function() {
-                console.log( 'scrolled from last screen' );
+                Debug.log( 'scrolled from last screen' );
 
                 $( 'html' ).removeClass( 'scrolled-to-last-screen' );                                                
             } );
@@ -155,7 +155,7 @@ var Viewport = ( function() {
     }
 
     var onResizeFinish = function() {
-        console.log( 'viewport.onResizeFinish()' );
+        Debug.log( 'viewport.onResizeFinish()' );
 
         settings.width = settings.element.width();
         settings.height = settings.element.height();
@@ -163,7 +163,7 @@ var Viewport = ( function() {
     }
 
     var onScroll = function() {
-        console.log( 'viewport.onScroll()' );
+        Debug.log( 'viewport.onScroll()' );
 
         settings.scrollFactor = settings.scrollTop / ( settings.height - settings.documentHeight ) * -1;
 
@@ -229,8 +229,8 @@ var Viewport = ( function() {
     }
 
     var scrollTo = function( target, offset, animate ) {
-        console.log( 'viewport.scrollTo()' );
-        console.log( target );
+        Debug.log( 'viewport.scrollTo()' );
+        Debug.log( target );
  
         var top = 0;
  

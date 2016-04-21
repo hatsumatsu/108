@@ -46,7 +46,7 @@ var Sequencer = ( function() {
 	}
 	
 	var init = function() {
-		console.log( 'Sequencer.init()' );
+		Debug.log( 'Sequencer.init()' );
 		
 		initSampler();
 		initSignal();
@@ -59,7 +59,7 @@ var Sequencer = ( function() {
 	}
 	
 	var bindEventHandlers = function() {
-		console.log( 'Sequencer.bindEventHandlers()' );
+		Debug.log( 'Sequencer.bindEventHandlers()' );
 		
 		// all samples are loaded
 		Tone.Buffer.on( 'load', function() {
@@ -68,7 +68,7 @@ var Sequencer = ( function() {
 		
 		$( document )
 			.on( 'sequencer/loaded', function() {
-				console.log( 'All samples are loaded' );				
+				Debug.log( 'All samples are loaded' );				
 				settings.isLoaded = true;									
 			} )	
 			.on( 'keydown', function( event ) {
@@ -159,7 +159,7 @@ var Sequencer = ( function() {
 	
 	// Samples
 	var initSampler = function() {
-		console.log( 'Sequencer.initSampler()' );
+		Debug.log( 'Sequencer.initSampler()' );
 				
 		var samples = {
 			'808': {}
@@ -176,7 +176,7 @@ var Sequencer = ( function() {
 	
  
 	var playSample = function( i, time ) {
-		console.log( 'Sequencer.playSample()', i );
+		Debug.log( 'Sequencer.playSample()', i );
 
 		if( settings.isLoaded ) {
 			var velocity = settings.samples['808'][i].velocity;
@@ -191,7 +191,7 @@ var Sequencer = ( function() {
 	
 	// Playback
 	var initPlayback = function() {
-		console.log( 'Sequencer.initPlayback()' );
+		Debug.log( 'Sequencer.initPlayback()' );
 			 
 		clearSequence();
 				 
@@ -255,7 +255,7 @@ var Sequencer = ( function() {
 	}
 	
 	var startPlayback = function() {
-		console.log( 'Sequencer.startPlayback()' );
+		Debug.log( 'Sequencer.startPlayback()' );
 		
 		settings.isPlaying = true;
 		$( document ).trigger( 'sequencer/startPlayback' );
@@ -264,7 +264,7 @@ var Sequencer = ( function() {
 	}
 	
 	var stopPlayback = function() {
-		console.log( 'Sequencer.stopPlayback()' );
+		Debug.log( 'Sequencer.stopPlayback()' );
 		
 		settings.isPlaying = false;
 		$( document ).trigger( 'sequencer/stopPlayback' ); 
@@ -281,7 +281,7 @@ var Sequencer = ( function() {
 	}
 	
 	var addSequenceItem = function( i, note ) {     
-		console.log( 'Sequencer.addSequenceItem()', i, note );
+		Debug.log( 'Sequencer.addSequenceItem()', i, note );
 
 		if( settings.isPlaying && settings.isRecording ) {
 			if( !note ) {
@@ -291,7 +291,7 @@ var Sequencer = ( function() {
 				}
 			}
 
-			console.log( 'note', note );
+			Debug.log( 'note', note );
 			 
 			var pending = ( ( settings.division * settings.loop.progress ) < note ) ? true : false;
 			
@@ -317,7 +317,7 @@ var Sequencer = ( function() {
 	 * [A-Z] are the steps of the sequence followed by [0-9] for each note
 	 */
 	var saveSequence = function() {
-		console.log( 'Sequencer.saveSequence()' );
+		Debug.log( 'Sequencer.saveSequence()' );
 
 		var data = '';
 
@@ -345,7 +345,7 @@ var Sequencer = ( function() {
 			}
 		}
 
-		console.log( string );
+		Debug.log( string );
 
 		$( document ).trigger( 'sequencer/saveSequence', [{
 			data: string
@@ -353,7 +353,7 @@ var Sequencer = ( function() {
 	}
 
 	var loadSequence = function( string ) {
-		console.log( 'Sequencer.loadSequence()', string );
+		Debug.log( 'Sequencer.loadSequence()', string );
 
 		// loop over every char of the string
 		var data = [];
@@ -377,7 +377,7 @@ var Sequencer = ( function() {
 	}
 
 	var clearSequence = function() {
-		console.log( 'Sequencer.clearSequence()' );
+		Debug.log( 'Sequencer.clearSequence()' );
 
 		// init sequence 
 		for( var i = 0; i < Object.keys( settings.samples['808'] ).length; i++ ) {
@@ -394,7 +394,7 @@ var Sequencer = ( function() {
 	}	
 
 	var buildDemoSequence = function() {
-		console.log( 'Sequencer.buildDemoSequence()' );
+		Debug.log( 'Sequencer.buildDemoSequence()' );
 		
 		settings.sequence[0][0] = 1;		
 
@@ -408,7 +408,7 @@ var Sequencer = ( function() {
 
 	// Recording
 	var startRecording = function() {
-		console.log( 'Sequencer.startRecording()' );
+		Debug.log( 'Sequencer.startRecording()' );
 		
 		settings.isRecording = true;
 		$( document ).trigger( 'sequencer/startRecording' ); 
@@ -416,7 +416,7 @@ var Sequencer = ( function() {
 	}
 	
 	var stopRecording = function() {
-		console.log( 'Sequencer.stopRecording()' );
+		Debug.log( 'Sequencer.stopRecording()' );
 		
 		settings.isRecording = false;
 		$( document ).trigger( 'sequencer/stopRecording' ); 
@@ -425,7 +425,7 @@ var Sequencer = ( function() {
 
 	// Metronome 
 	var initMetronome = function() {
-		console.log( 'Sequencer.initMetronome()' );
+		Debug.log( 'Sequencer.initMetronome()' );
 			settings.metronome = new Tone.SimpleSynth().toMaster();
 	}
 

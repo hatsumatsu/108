@@ -61,87 +61,61 @@
 }
 
 
-// share
-.ui--share {
-
-}
-
-.ui-toggle--share {
-	position: fixed;
-	right: 0;
-	top: 0;
-
-	display: block;
-	margin: 1rem 1rem 0 0;
-
-	font-size: 0.875rem;
-	line-height: 1;
-	text-transform: uppercase;
-	color: inherit;
-
-	opacity: 0.5;
-
-	&:hover,
-	&:focus {
-		opacity: 1;
-	}	
-}
-
-.share-url-input {
-	position: fixed;
-	left: 0;
-	top: 0;
-
-	appearance: none;
-	display: block;
-	width: 24em;
-
-	margin: 4rem 0 0 1rem;
-	padding: 0.5em;
-
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-	color: inherit;
-
-	background: lighten( @color--bg, 5% );
-	border: none;
-
-	box-shadow: none !important; 
-}
-
-
-// buttons
+// control buttons
 .button-row {
 	display: flex;
 }
 
-.button {
+.control-button {	
+	.button;
+
 	flex-grow: 1;
 	height: 4rem;
 	margin: 0.5rem;
-	padding: 0.65rem 0.7rem;
-
-	color: inherit;
-
-	background: rgba( 255,255,255,0.01 );
-	border: 1px solid currentColor;
-	border-radius: 3px;
+	padding: 0.65rem 0.7rem;	
 
 	&:hover {
-		background: rgba( 255,255,255,0.1 ) !important;		
+
 	}
 }
 
-.button--narrow {
+.control-button--narrow {
 	flex-grow: 0;	
 	flex-shrink: 0;
 	width: 4rem;
 }
 
-.button--no-feedback {
+.control-button--no-feedback {
 
 	&:active {
 		background: rgba( 255,255,255,1 );		
 	}
+}
+
+
+@media screen and ( max-width: 656px ) {
+	.control-button {
+
+	}
+
+	.control-button--narrow {
+		flex-grow: 1;	
+		flex-shrink: 1;
+		width: auto;
+	}	
+}
+
+
+@media screen and ( max-width: 460px ) {
+	.button-row {
+		flex-wrap: wrap;
+	}
+
+	.control-button {
+		min-width: ~'calc( 25vw - 2rem )';
+	}
+
+	.control-button--narrow {
+
+	}	
 }

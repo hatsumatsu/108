@@ -1,0 +1,50 @@
+.ui-modal {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1000;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background: fade( @color--bg, 90% );
+
+	opacity: 0;
+
+	transition: opacity 500ms ease;
+
+	&:target {
+		z-index: 800;
+
+		opacity: 1;
+	}
+}
+
+.ui-modal-content {
+	display: block;
+
+	max-width: 48rem;
+	margin: 1rem;
+
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	text-align: center;	
+	line-height: 1.75;
+	
+	& > p {
+		margin: 2rem 0;
+	}
+}
+
+.modal-actions {
+	margin: 2rem 0;
+
+	text-align: center;
+}
+
+.modal-actions > .button {
+
+}

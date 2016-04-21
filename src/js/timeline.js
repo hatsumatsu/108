@@ -26,7 +26,7 @@ var Timeline = ( function() {
 	}
 
 	var init = function() {
-		console.log( 'Timeline.init()' );
+		Debug.log( 'Timeline.init()' );
 
 		bindEventHandlers();
 
@@ -49,7 +49,7 @@ var Timeline = ( function() {
 				run();
 			} )
 			.on( 'sequencer/addSequenceItem', function( event, data ) {
-				console.log( data );
+				Debug.log( data );
 				// wait for all SVGs to load before adding notes
 				var waiter = setInterval( function() {
 					if( settings.isLoaded ) {
@@ -142,7 +142,7 @@ var Timeline = ( function() {
 	}
 
 	var resize = function() {
-		console.log( 'Timeline.resize()' );
+		Debug.log( 'Timeline.resize()' );
 		settings.size = $( settings.selector.wrapper ).width();
 		settings.scaleFactor = settings.size / 512;
 
@@ -183,7 +183,7 @@ var Timeline = ( function() {
 	}
 
 	var addNote = function( note, sample, division ) {
-		console.log( 'Timeline.addNote()', note, sample, division );
+		Debug.log( 'Timeline.addNote()', note, sample, division );
 
 		var layer = settings.svg.placeholder.select( '.' + settings.layerNotes[sample] );
 		if( layer ) {
@@ -237,7 +237,7 @@ var Timeline = ( function() {
 	}
 
 	var clearTimeline = function() {
-		console.log( 'Timeline.clearTimeline()' );
+		Debug.log( 'Timeline.clearTimeline()' );
 
 		settings.notes = [];
 		settings.svg.timeline
@@ -266,7 +266,7 @@ var Timeline = ( function() {
 	}
 
 	var playNote = function( note ) {
-		console.log( 'Sequencer.playNote()', note );
+		Debug.log( 'Sequencer.playNote()', note );
 
 		for( var i = 0; i < settings.notes.length; i++ ) {
 			if( settings.notes[i].note === note ) {

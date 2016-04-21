@@ -1,0 +1,67 @@
+// share
+.ui-toggle--share {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+
+	display: block;
+	margin:  0 0 1rem 1rem;
+
+	font-size: 0.875rem;
+	line-height: 1;
+	text-transform: uppercase;
+	color: inherit;
+
+	opacity: 0.5;
+
+	transition: all 300ms ease;	
+
+	&:hover,
+	&:focus {
+		opacity: 1;
+	}	
+
+	.visible--ui-controls & {
+		transform: translateY( -6rem );
+	}
+}
+ 
+.share-url-input {
+	appearance: none;
+	box-sizing: border-box;
+	display: block;
+	width: 100%;
+	
+	margin: 2rem 0;
+	padding: 0.5em;
+
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	color: inherit;
+
+	background: fade( @color--text, 10% );
+	border: none;
+
+  	outline: none;
+	box-shadow: none !important; 
+
+	&:focus {
+		box-shadow: none !important; 		
+	}
+}
+
+
+@media screen and ( max-width: 460px ) {
+	.ui-toggle--share {
+
+		&:hover,
+		&:focus {
+
+		}	
+
+		.visible--ui-controls & {
+			transform: translateY( -11rem );
+		}
+	}
+}
