@@ -53,8 +53,6 @@ var Sequencer = ( function() {
 		initPlayback();
 		initMetronome();
 
-		buildDemoSequence();
-
 		startPlayback();								
 
 		bindEventHandlers();
@@ -110,7 +108,6 @@ var Sequencer = ( function() {
 			
 			} )
 			.on( 'keyup', function( event ) {
-				event.preventDefault();
 				
 				settings.isKeyDown = false;
 			} )

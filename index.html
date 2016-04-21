@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 	<head>
 		<meta charset="utf-8"> 
 
 		<title></title>
+
+	    <script>
+	        document.getElementsByTagName( 'html' )[0].className += ' js';
+	        document.getElementsByTagName( 'html' )[0].className = document.getElementsByTagName( 'html' )[0].className.replace( 'no-js', '' );
+	    </script>      
 
     	<meta name="viewport" content="width=device-width,user-scalable=no">
 
@@ -18,6 +23,7 @@
 		<script type="text/javascript" src="src/js/timeline.js"></script>
 		<script type="text/javascript" src="src/js/ui.js"></script>
 		<script type="text/javascript" src="src/js/url.js"></script>
+		<script type="text/javascript" src="src/js/intro.js"></script>
 	</head>
 	<body id="body">
 		<!-- TITLE -->
@@ -79,11 +85,10 @@
 						This is the URL to your beat:
 					</p>
 					
-					<input type="text" class="share-url-input">
-
-					<div class="modal-actions modal-actions--share">
-						<a href="#" class="button">
-							OK
+					<div class="share-url">
+						<input type="text" class="share-url-input" id="share-url-input">
+						<a href="#" class="share-url-button" data-clipboard-target="#share-url-input">
+							copy
 						</a>
 					</div>
 				</div>
@@ -115,5 +120,11 @@ Enjoy!
 				</div>
 			</div>
 		<div>			
+
+		<div class="intro">
+			<span class="intro-title">
+				108
+			</span>
+		</div>
 	</body>
 </html>

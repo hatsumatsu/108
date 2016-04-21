@@ -41,22 +41,36 @@ body::after {
   position: fixed;
   left: 50%;
   top: 50%;
-  z-index: 100;
+  z-index: 1200;
   display: block;
   width: 6rem;
   height: 6rem;
   margin: -5.5rem 0 0 -3rem;
-  border: 1px dashed #fff;
+  border: 1px solid #fff;
   border-radius: 50%;
   opacity: 0;
+  -webkit-filter: blur(4px);
+          filter: blur(4px);
   pointer-events: none;
-  -webkit-animation: rotating 3s infinite linear;
-          animation: rotating 3s infinite linear;
-  -webkit-transition: opacity 750ms ease;
-          transition: opacity 750ms ease;
+  -webkit-transition-duration: 150ms;
+          transition-duration: 150ms;
+  -webkit-transition-property: opacity, -webkit-filter, opacity, filter;
+          transition-property: opacity, filter;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
+.visible--intro body::after {
+  opacity: 1;
+  -webkit-filter: blur(0);
+          filter: blur(0);
 }
 .resizing body::after {
+  border-style: dashed;
   opacity: 1;
+  -webkit-filter: blur(0);
+          filter: blur(0);
+  -webkit-animation: rotating 3s infinite linear;
+          animation: rotating 3s infinite linear;
   -webkit-transition-duration: 750ms;
           transition-duration: 750ms;
 }
@@ -262,6 +276,37 @@ h1 {
   -webkit-transform: translateY(-6rem);
           transform: translateY(-6rem);
 }
+.share-url {
+  padding: 0.35rem 0.7rem;
+  color: inherit;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  position: relative;
+  height: 1.7rem;
+  margin: 2rem 0;
+  padding: 0 4rem 0 0;
+}
+.share-url:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+.share-url::after {
+  content: ' ';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  width: 2rem;
+  margin-right: 4rem;
+  background: -webkit-linear-gradient(0deg, rgba(37, 37, 41, 0) 0%, #252529 90%);
+  background: linear-gradient(90deg, rgba(37, 37, 41, 0) 0%, #252529 90%);
+}
+.share-url:hover,
+.share-url:focus {
+  background: transparent !important;
+}
 .share-url-input {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -269,19 +314,34 @@ h1 {
   box-sizing: border-box;
   display: block;
   width: 100%;
-  margin: 2rem 0;
-  padding: 0.5em;
+  padding: 0.35rem 0 0.5rem 0.35rem;
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
   color: inherit;
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
   border: none;
   outline: none;
   box-shadow: none !important;
 }
-.share-url-input:focus {
-  box-shadow: none !important;
+.share-url-button {
+  padding: 0.35rem 0.7rem;
+  color: inherit;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4rem;
+  text-align: center;
+  border: none;
+  border-left: 1px solid currentColor;
+  border-radius: 0;
+}
+.share-url-button:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
 }
 @media screen and (max-width: 460px) {
   .visible--ui-controls .ui-toggle--share {
@@ -348,4 +408,42 @@ h1 {
 .modal-actions {
   margin: 2rem 0;
   text-align: center;
+}
+.intro {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #252529;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-filter: blur(4px);
+          filter: blur(4px);
+  -webkit-transition-duration: 750ms;
+          transition-duration: 750ms;
+  -webkit-transition-property: opacity, -webkit-filter, opacity, filter;
+          transition-property: opacity, filter;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
+.visible--intro .intro {
+  z-index: 1000;
+  opacity: 1;
+  -webkit-filter: blur(0);
+          filter: blur(0);
+  -webkit-transition: none;
+          transition: none;
+}
+.intro-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -2.5rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }

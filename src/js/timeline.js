@@ -33,6 +33,9 @@ var Timeline = ( function() {
 		build();
 
 		$( document ).trigger( 'timeline/init' );
+
+		$( 'html' )
+			.addClass( 'initiated--timeline' );
 	}
 
 	var bindEventHandlers = function() {

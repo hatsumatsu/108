@@ -6,7 +6,8 @@ var Ui = ( function() {
 			controls: {
 				toggle: '.ui-toggle--controls',
 			},
-			shareInput: '.share-url-input'
+			shareInput: '.share-url-input',
+			shareButton: '.share-url-button'
 		},
 		isVisible: {
 			controls: false
@@ -60,7 +61,12 @@ var Ui = ( function() {
 			} )
 			.on( 'sequencer/saveSequence', function( event, data ) {
 				setUrl( data.data );
+			} )
+			.on( 'focus', settings.selector.shareInput, function( event ) {
+				$( this ).select();
 			} );
+
+			new Clipboard( settings.selector.shareButton );
 	}	
 
 	var highlightButton = function( sample ) {

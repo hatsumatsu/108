@@ -25,6 +25,36 @@
 		transform: translateY( -6rem );
 	}
 }
+
+.share-url {
+	.button;
+
+	position: relative;
+
+	height: 1.7rem;
+	margin: 2rem 0;
+	padding: 0 4rem 0 0;
+
+	&::after {
+		content: ' ';
+
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+
+		display: block;
+		width: 2rem;
+		margin-right: 4rem;
+
+		background: linear-gradient( 90deg, fade( @color--bg, 0% ) 0%, fade( @color--bg, 100% ) 90% );
+	}
+
+	&:hover,
+	&:focus {
+		background: transparent !important;
+	}
+}
  
 .share-url-input {
 	appearance: none;
@@ -32,23 +62,34 @@
 	display: block;
 	width: 100%;
 	
-	margin: 2rem 0;
-	padding: 0.5em;
+	padding: 0.35rem 0 0.5rem 0.35rem;
 
 	font-family: inherit;
 	font-size: inherit;
 	font-weight: inherit;
 	color: inherit;
 
-	background: fade( @color--text, 10% );
+	background: transparent;
 	border: none;
 
   	outline: none;
 	box-shadow: none !important; 
+}
 
-	&:focus {
-		box-shadow: none !important; 		
-	}
+.share-url-button {
+	.button;
+
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	width: 4rem;
+
+	text-align: center;
+
+	border: none;
+	border-left: 1px solid currentColor;
+	border-radius: 0;
 }
 
 
