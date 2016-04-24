@@ -10,17 +10,15 @@
 	pointer-events: none;
 
 	opacity: 0;
-	filter: blur( 4px );
 
 	transition-duration: 750ms;
-	transition-property: opacity, filter;
+	transition-property: opacity, transform;
 	transition-timing-function: ease; 
 
 	.visible--intro & {
 		z-index: 1000;
 
 		opacity: 1;
-		filter: blur( 0 );		
 
 		transition: none; 
 	}

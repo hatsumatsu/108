@@ -3,17 +3,37 @@
 	<head>
 		<meta charset="utf-8"> 
 
-		<title></title>
+		<title>108 –––––––––– a minimal beat machine</title>
 
 	    <script>
 	        document.getElementsByTagName( 'html' )[0].className += ' js';
 	        document.getElementsByTagName( 'html' )[0].className = document.getElementsByTagName( 'html' )[0].className.replace( 'no-js', '' );
-	    </script>      
+	    </script>
 
     	<meta name="viewport" content="width=device-width,user-scalable=no">
 
 		<link type="text/css" rel="stylesheet" href="dist/fonts/lab-mono.css"> 
 		<link type="text/css" rel="stylesheet" href="dist/css/108.css"> 
+
+		<link rel="apple-touch-icon" sizes="57x57" href="dist/meta/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="dist/meta/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="dist/meta/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="dist/meta/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="dist/meta/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="dist/meta/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="dist/meta/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="dist/meta/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="dist/meta/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="dist/meta/android-chrome-192x192.png" sizes="192x192">
+		<link rel="manifest" href="dist/meta/manifest.json">
+		<link rel="mask-icon" href="dist/meta/safari-pinned-tab.svg" color="#252529">
+		<meta name="apple-mobile-web-app-title" content="108">
+		<meta name="application-name" content="108">
+		<meta name="msapplication-TileColor" content="#252529">
+		<meta name="msapplication-TileImage" content="dist/meta/mstile-144x144.png">
+		<meta name="theme-color" content="#252529">
+
+		<meta name="description" content="108 is a minimal beat machine played in the browser.">
 
 		<script type="text/javascript" src="dist/js/dependencies.min.js"></script>
 
@@ -33,7 +53,7 @@
 
 		<!-- TIMELINE -->
 		<div class="timeline-wrapper">
-
+			
 		</div>
 
 		<!-- CONTROLS -->
@@ -57,7 +77,7 @@
 				</a>
 				<a href="#" class="control-button" data-sample="4" data-key="m" title="Play sample">
 					M
-				</a>	
+				</a>
 
 				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="space" data-action="play" title="play / pause">
 					>
@@ -65,21 +85,24 @@
 
 				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="q" data-action="clear" title="Clear loop">
 					X
-				</a>				
+				</a>
 
 				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="shift" data-action="metronome" title="Toggle metronome">
 					/
-				</a>																
+				</a>
 			</div>
 		</div>
 
 		<!-- UI SHARE -->
-		<div class="ui--share">
-			<a href="#share" class="ui-toggle ui-toggle--share">
+		<div class="ui--share" data-modal="share">
+			<a href="#" class="ui-toggle ui-toggle--share" data-modal-action="toggle">
 				share
-			</a>			
+			</a>
 
 			<div class="ui-modal ui-modal--share" id="share">
+				<a href="#" class="ui-modal-close ui-modal-close--share" data-modal-action="toggle">
+					x
+				</a>
 				<div class="ui-modal-content">
 					<p>
 						This is the URL to your beat:
@@ -93,38 +116,50 @@
 					</div>
 				</div>
 			</div>
-		<div>
+		</div>
 
 
 		<!-- UI HELP -->
-		<div class="ui--help">
-			<a href="#help" class="ui-toggle ui-toggle--help">
-				help
-			</a>			
+		<div class="ui--help" data-modal="help">
+			<a href="#" class="ui-toggle ui-toggle--help" data-modal-action="toggle">
+				how-to
+			</a>
 
 			<div class="ui-modal ui-modal--help" id="help">
+				<a href="#" class="ui-modal-close ui-modal-close--help" data-modal-action="toggle">
+					x
+				</a>
 				<div class="ui-modal-content">
+					<h4 class="ui-modal-title">
+						how-to
+					</h4>
 					<p>
-108 is controlled with the keyboard: use <span class="key">C</span> <span class="key">V</span> <span class="key">B</span> <span class="key">N</span> <span class="key">M</span> to play samples while the loop is running. <span class="key">x</span> deletes the beat while <span class="key">space</span> controls playback. <span class="key">Shift</span> toggles a metronome in case you need one. 
-					</p>
-
-					<p>
-Enjoy!
+Use the <span class="key">C</span> <span class="key">V</span> <span class="key">B</span> <span class="key">N</span> <span class="key">M</span> keys on your keyboard to play samples. <span class="key">x</span> clears the sequence and <span class="key">space</span> starts/stops playback. <span class="key">Shift</span> toggles a metronome in case you need one. 
 					</p>
 
 					<div class="modal-actions modal-actions--help">
-						<a href="#" class="button">
-							Got it
+						<a href="#" class="button" data-modal-action="toggle">
+							Got it!
 						</a>
 					</div>
 				</div>
 			</div>
-		<div>			
+		</div>
 
+		<!-- INTRO -->
 		<div class="intro">
 			<span class="intro-title">
 				108
 			</span>
 		</div>
+
+		<!-- NO JS MESSAGE -->
+		<noscript>
+			<div class="ui-modal ui-modal--nojs visible">
+				<div class="ui-modal-content">
+					No Javascript, no music...
+				</div>
+			</div>
+		</noscript>
 	</body>
 </html>

@@ -132,7 +132,7 @@ var Viewport = ( function() {
      */
     var onLoop = function() {
         requestAnimationFrame( onLoop );
-        
+
         var now = Date.now();
         var elapsed = now - settings.nowLoop;
         
@@ -140,7 +140,7 @@ var Viewport = ( function() {
         if( elapsed > settings.fps ) {
             settings.nowLoop = now - ( elapsed % settings.fps );
             
-            $( document ).trigger( 'viewport/loop' );
+            $( document ).trigger( 'viewport/loop', [{ now: now }] );
           
             // scrollTop
             if( settings.scrollDetectionMode == 'requestAnimationFrame' ) {                  

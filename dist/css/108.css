@@ -18,6 +18,26 @@
             transform: rotate(360deg);
   }
 }
+@-webkit-keyframes blink {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.animation--blink {
+  -webkit-animation: blink 150ms steps(2) infinite;
+          animation: blink 150ms steps(2) infinite;
+}
 *,
 *::before,
 *::after {
@@ -49,8 +69,6 @@ body::after {
   border: 1px solid #fff;
   border-radius: 50%;
   opacity: 0;
-  -webkit-filter: blur(4px);
-          filter: blur(4px);
   pointer-events: none;
   -webkit-transition-duration: 150ms;
           transition-duration: 150ms;
@@ -61,14 +79,10 @@ body::after {
 }
 .visible--intro body::after {
   opacity: 1;
-  -webkit-filter: blur(0);
-          filter: blur(0);
 }
 .resizing body::after {
   border-style: dashed;
   opacity: 1;
-  -webkit-filter: blur(0);
-          filter: blur(0);
   -webkit-animation: rotating 3s infinite linear;
           animation: rotating 3s infinite linear;
   -webkit-transition-duration: 750ms;
@@ -76,6 +90,19 @@ body::after {
 }
 a {
   text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.75;
+}
+h4 {
+  text-decoration: underline;
 }
 .button {
   padding: 0.35rem 0.7rem;
@@ -86,7 +113,8 @@ a {
   border-radius: 3px;
 }
 .button:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
+  -webkit-animation: blink 150ms steps(2) infinite;
+          animation: blink 150ms steps(2) infinite;
 }
 .key {
   display: inline-block;
@@ -185,9 +213,9 @@ h1 {
   border: 1px solid currentColor;
   border-radius: 50%;
 }
-.ui-toggle--controls:hover,
-.ui-toggle--controls:focus {
-  opacity: 1;
+.ui-toggle--controls:hover {
+  -webkit-animation: blink 150ms steps(2) infinite;
+          animation: blink 150ms steps(2) infinite;
 }
 .visible--ui-controls .ui-toggle--controls {
   opacity: 1;
@@ -217,7 +245,8 @@ h1 {
   padding: 0.65rem 0.7rem;
 }
 .control-button:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
+  -webkit-animation: blink 150ms steps(2) infinite;
+          animation: blink 150ms steps(2) infinite;
 }
 .control-button--narrow {
   -webkit-box-flex: 0;
@@ -268,13 +297,21 @@ h1 {
   -webkit-transition: all 300ms ease;
           transition: all 300ms ease;
 }
-.ui-toggle--share:hover,
-.ui-toggle--share:focus {
-  opacity: 1;
+.ui-toggle--share:hover {
+  -webkit-animation: blink 150ms steps(2) infinite;
+          animation: blink 150ms steps(2) infinite;
 }
 .visible--ui-controls .ui-toggle--share {
   -webkit-transform: translateY(-6rem);
           transform: translateY(-6rem);
+}
+.visible--ui-share .ui-modal--share {
+  height: 100%;
+  opacity: 1;
+  -webkit-transition-duration: 250ms, 100ms;
+          transition-duration: 250ms, 100ms;
+  -webkit-transition-delay: 0ms, 0ms;
+          transition-delay: 0ms, 0ms;
 }
 .share-url {
   padding: 0.35rem 0.7rem;
@@ -289,7 +326,8 @@ h1 {
   padding: 0 4rem 0 0;
 }
 .share-url:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
+  -webkit-animation: blink 150ms steps(2) infinite;
+          animation: blink 150ms steps(2) infinite;
 }
 .share-url::after {
   content: ' ';
@@ -306,6 +344,8 @@ h1 {
 .share-url:hover,
 .share-url:focus {
   background: transparent !important;
+  -webkit-animation: none !important;
+          animation: none !important;
 }
 .share-url-input {
   -webkit-appearance: none;
@@ -341,7 +381,8 @@ h1 {
   border-radius: 0;
 }
 .share-url-button:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
+  -webkit-animation: blink 150ms steps(2) infinite;
+          animation: blink 150ms steps(2) infinite;
 }
 @media screen and (max-width: 460px) {
   .visible--ui-controls .ui-toggle--share {
@@ -361,17 +402,24 @@ h1 {
   color: inherit;
   opacity: 0.5;
 }
-.ui-toggle--help:hover,
-.ui-toggle--help:focus {
+.ui-toggle--help:hover {
+  -webkit-animation: blink 150ms steps(2) infinite;
+          animation: blink 150ms steps(2) infinite;
+}
+.visible--ui-help .ui-modal--help {
+  height: 100%;
   opacity: 1;
+  -webkit-transition-duration: 250ms, 100ms;
+          transition-duration: 250ms, 100ms;
+  -webkit-transition-delay: 0ms, 0ms;
+          transition-delay: 0ms, 0ms;
 }
 .ui-modal {
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
-  bottom: 0;
-  z-index: -1000;
+  z-index: 1000;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -384,14 +432,27 @@ h1 {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 0;
   background: rgba(37, 37, 41, 0.9);
+  overflow: hidden;
   opacity: 0;
-  -webkit-transition: opacity 500ms ease;
-          transition: opacity 500ms ease;
+  -webkit-transition-property: opacity, bottom;
+          transition-property: opacity, bottom;
+  -webkit-transition-duration: 250ms, 100ms;
+          transition-duration: 250ms, 100ms;
+  -webkit-transition-delay: 0ms, 250ms;
+          transition-delay: 0ms, 250ms;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
 }
-.ui-modal:target {
-  z-index: 800;
+.ui-modal:target,
+.ui-modal.visible {
+  height: 100%;
   opacity: 1;
+  -webkit-transition-duration: 250ms, 100ms;
+          transition-duration: 250ms, 100ms;
+  -webkit-transition-delay: 0ms, 0ms;
+          transition-delay: 0ms, 0ms;
 }
 .ui-modal-content {
   display: block;
@@ -402,12 +463,27 @@ h1 {
   text-align: center;
   line-height: 1.75;
 }
+.ui-modal-content > h4 {
+  margin: 2rem 0;
+}
 .ui-modal-content > p {
   margin: 2rem 0;
 }
 .modal-actions {
   margin: 2rem 0;
   text-align: center;
+}
+.ui-modal-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  margin: 1rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  color: inherit;
 }
 .intro {
   position: fixed;
@@ -418,20 +494,16 @@ h1 {
   background: #252529;
   pointer-events: none;
   opacity: 0;
-  -webkit-filter: blur(4px);
-          filter: blur(4px);
   -webkit-transition-duration: 750ms;
           transition-duration: 750ms;
-  -webkit-transition-property: opacity, -webkit-filter, opacity, filter;
-          transition-property: opacity, filter;
+  -webkit-transition-property: opacity, -webkit-transform;
+          transition-property: opacity, transform;
   -webkit-transition-timing-function: ease;
           transition-timing-function: ease;
 }
 .visible--intro .intro {
   z-index: 1000;
   opacity: 1;
-  -webkit-filter: blur(0);
-          filter: blur(0);
   -webkit-transition: none;
           transition: none;
 }

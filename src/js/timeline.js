@@ -297,8 +297,14 @@ var Timeline = ( function() {
 		}
 	}
 
+	// State
+	var isReady = function() {
+		return ( settings.isLoaded ) ? true : false;
+	}
+
 	return {
-		init: function() { init(); }
+		init: 		function() { init(); },
+		isReady: 	function() { return isReady(); }		
 	}
 } )();
 

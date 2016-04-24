@@ -8,7 +8,6 @@ var Intro = ( function() {
 		isVisible: true,
 		duration: 2000,
 		startTime: null,
-		lastTime: null,
 		time: null,
 		steps: 108,
 		current: 0
@@ -35,14 +34,25 @@ var Intro = ( function() {
 	}
 
 	var onLoop = function() {
-		count();
+
 	}
 
 	var start = function() {
 		Debug.log( 'Intro.start()' );
 
 		settings.startTime = Date.now();
-		settings.lastTime = Date.now();
+
+		settings.timer = setInterval( function() {
+			if( settings.isVisible ) {
+				if( settings.current < settings.steps ) {
+					countUp();
+				} else {
+					stop();
+				}			 
+			}
+
+		}, settings.step );
+
 
 		$( 'html' )
 			.addClass( 'visible--intro' );
@@ -53,35 +63,40 @@ var Intro = ( function() {
 	var stop = function() {
 		Debug.log( 'Intro.stop()' );
 
-		settings.isVisible = false;
+		settings.isVisible = false;	
 
-		$( document ).trigger( 'intro/stop' );			
+		clearInterval( settings.timer );
 
-		setTimeout( function() {
-			$( document )
-				.one( 'transitionend', settings.selector.intro, function() {
-					$( settings.selector.intro ).remove();
-				} );
+		waitForReady( function() {
+			$( document ).trigger( 'intro/stop' );			
 
-			$( 'html' )
-				.removeClass( 'visible--intro' );
-		}, 2000 );			
+			setTimeout( function() {
+				$( document )
+					.one( 'transitionend', settings.selector.intro, function() {
+						$( settings.selector.intro ).remove();
+					} );
+
+				$( 'html' )
+					.removeClass( 'visible--intro' );
+			}, 1000 );		
+		} );	
 	}	
 
-	var count = function() {
-		settings.time = Date.now();
+	var countUp = function() {
+		settings.current = settings.current + 1;
+		settings.element.title.text( settings.current );
+	}
 
-		if( settings.isVisible ) {
-			if( settings.time - settings.lastTime >= settings.step ) {
-				settings.lastTime = settings.time;
-				settings.current = settings.current + 1;
-
-				settings.element.title.text( settings.current );
-			} 
-
-			if( settings.current >= settings.steps ) {
-				stop();
-			}			
+	var waitForReady = function( callback ) {
+		if( Sequencer && Timeline ) {
+			settings.waiter = setInterval( function() {
+				Debug.log( 'waiting...' );
+				
+				if( Sequencer.isReady() && Timeline.isReady() ) {
+					clearInterval( settings.waiter );
+					callback();
+				}
+			}, 100 );
 		}
 	}
 

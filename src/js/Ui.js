@@ -6,28 +6,61 @@ var Ui = ( function() {
 			controls: {
 				toggle: '.ui-toggle--controls',
 			},
-			shareInput: '.share-url-input',
-			shareButton: '.share-url-button'
+			share: {
+				toggle: '.ui-toggle--share',
+				input:  '.share-url-input',
+				button: '.share-url-button',
+				close:  '.ui-modal-close--share'
+			},
+			help: {
+				toggle: '.ui-toggle--help',
+				close:  '.ui-modal-close--help'
+			},
+			modal: {
+				wrapper: '[data-modal]',
+				toggle:  '[data-modal-action="toggle"]'
+			}			
 		},
 		isVisible: {
-			controls: false
+			controls: 	false,
+			share: 		false,
+			help: 		false
 		}
 	}
 
 	var init = function() {
+		// enable controls on touch devices
 		if( Modernizr.touchevents ) {
 			toggleControls();
 		}
+
+		// show help UI on first visit
+		if( !Cookies.get( '108--visited' ) ) {
+			toggleModal( 'help' );
+		}
+		Cookies.set( '108--visited', true, { expires: 30, path: '' } );
 
 		bindEventHandlers();
 	}
 
 	var bindEventHandlers = function() {
 		$( document )
+			// toggle controls
 			.on( 'click', settings.selector.controls.toggle, function( event ) {
 				event.preventDefault();
 
 				toggleControls();
+			} )
+			// toggle modal
+			.on( 'click', settings.selector.modal.toggle, function( event ) {
+				event.preventDefault();
+
+				var id = $( this ).closest( settings.selector.modal.wrapper ).attr( 'data-modal' );
+				toggleModal( id );
+			} )								
+			// control buttons	
+			.on( 'click', settings.selector.button, function( event ) {
+				event.preventDefault();
 			} )
 			.on( 'mousedown touchstart', settings.selector.button, function( event ) {
 				event.preventDefault();
@@ -62,11 +95,11 @@ var Ui = ( function() {
 			.on( 'sequencer/saveSequence', function( event, data ) {
 				setUrl( data.data );
 			} )
-			.on( 'focus', settings.selector.shareInput, function( event ) {
+			.on( 'focus', settings.selector.share.input, function( event ) {
 				$( this ).select();
 			} );
 
-			new Clipboard( settings.selector.shareButton );
+			new Clipboard( settings.selector.share.button );
 	}	
 
 	var highlightButton = function( sample ) {
@@ -118,6 +151,8 @@ var Ui = ( function() {
 
 
 	var toggleControls = function() {
+		Debug.log( 'Ui.toggleControls()' );
+		
 		if( !settings.isVisible.controls ) {
 			$( 'html' )
 				.addClass( 'visible--ui-controls' );
@@ -129,6 +164,19 @@ var Ui = ( function() {
 		settings.isVisible.controls = !settings.isVisible.controls;		
 	} 
 
+	var toggleModal = function( id ) {
+		Debug.log( 'Ui.toggleModal()', id );
+
+		if( !settings.isVisible[id] ) {
+			$( 'html' )
+				.addClass( 'visible--ui-' + id );
+		} else {
+			$( 'html' )
+				.removeClass( 'visible--ui-' + id );			
+		}
+
+		settings.isVisible[id] = !settings.isVisible[id];		
+	}
 
 	var setUrl = function( hash ) {
 		Debug.log( 'Ui.setUrl()', hash );
@@ -136,7 +184,7 @@ var Ui = ( function() {
 		var url = location.protocol + '//' + location.hostname + location.pathname;
 		url = url + '#' + hash;
 
-		$( settings.selector.shareInput ).val( url );
+		$( settings.selector.share.input ).val( url );
 	}
 
 	return {

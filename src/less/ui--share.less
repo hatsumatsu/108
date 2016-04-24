@@ -1,4 +1,4 @@
-// share
+// toggle
 .ui-toggle--share {
 	position: fixed;
 	left: 0;
@@ -16,13 +16,20 @@
 
 	transition: all 300ms ease;	
 
-	&:hover,
-	&:focus {
-		opacity: 1;
+	&:hover {
+		.animation--blink;
 	}	
 
 	.visible--ui-controls & {
 		transform: translateY( -6rem );
+	}
+}
+
+// modal 
+.ui-modal--share {
+
+	.visible--ui-share & {
+		.ui-modal.visible;
 	}
 }
 
@@ -53,6 +60,7 @@
 	&:hover,
 	&:focus {
 		background: transparent !important;
+		animation: none !important;
 	}
 }
  

@@ -19,7 +19,7 @@ var Sequencer = ( function() {
 					velocity: 	1
 				},
 				2: {
-					src: 		'dist/samples/808/mp3/hi--hat.mp3',
+					src: 		'dist/samples/808/mp3/hi-hat--10.mp3',
 					velocity: 	0.75
 				},
 				3: 	{
@@ -27,7 +27,7 @@ var Sequencer = ( function() {
 					velocity: 	1
 				},
 				4: {
-					src: 		'dist/samples/808/mp3/tom.mp3',
+					src: 		'dist/samples/808/mp3/tom--8.mp3',
 					velocity: 	1
 				}
 			}
@@ -108,7 +108,6 @@ var Sequencer = ( function() {
 			
 			} )
 			.on( 'keyup', function( event ) {
-				
 				settings.isKeyDown = false;
 			} )
 			.on( 'ui/clickButton', function( event, data ) {
@@ -443,9 +442,13 @@ var Sequencer = ( function() {
 	var playMetronome = function( high ) {
 		var note = ( high ) ? 'C5' : 'C4';
 
-		settings.metronome.triggerAttackRelease( note, '16n', null, 0.75 );      
+		settings.metronome.triggerAttackRelease( note, '16n', null, 0.5 );      
 	}
 
+	// State
+	var isReady = function() {
+		return ( settings.isLoaded ) ? true : false;
+	}
 
 	// Getter
 	var getProgress = function() {
@@ -465,7 +468,8 @@ var Sequencer = ( function() {
 	}			
 	
 	return {
-		init: function() { init(); },
+		init: 		 function() { init(); },
+		isReady: 	 function() { return isReady(); },
 		getProgress: function() { return getProgress() },
 		getSequence: function() { return getSequence() },
 		getDivision: function() { return getDivision() }

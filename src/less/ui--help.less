@@ -1,4 +1,4 @@
-// share
+// toggle
 .ui-toggle--help {
 	position: fixed;
 	right: 0;
@@ -14,8 +14,15 @@
 
 	opacity: 0.5;
 
-	&:hover,
-	&:focus {
-		opacity: 1;
+	&:hover {
+		.animation--blink;
 	}	
+}
+
+// modal
+.ui-modal--help {
+
+	.visible--ui-help & {
+		.ui-modal.visible;
+	}
 }
