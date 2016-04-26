@@ -1,3 +1,12 @@
 a {
+	color: inherit;
 	text-decoration: none;
+
+	p > & {
+		border-bottom: 1px solid currentColor;
+
+		&:hover {
+			.animation--blink;
+		}
+	}
 }
