@@ -207,55 +207,55 @@ var Sequencer = ( function() {
 		Tone.Transport.bpm.value = settings.bpm;  
 		
 		// from http://tonejs.org/examples/stepSequencer.html
-		// calls the callback every 16th note
+		// calls the callback every 16th step
 		// sequence
 		settings.events = [];
 		for( var i = 0; i < settings.division; i++ ) {
 			settings.events.push( i );
 		}    
 		
-		settings.loop = new Tone.Sequence( function( time, note ) {
+		settings.loop = new Tone.Sequence( function( time, step ) {
 			
 			// helpers 
 			settings.timeBetweenSteps = time - settings.timeLastStep;
-			settings.lastStep = note;
+			settings.lastStep = step;
 			settings.timeLastStep = time;
 						
 			// metronome
 			if( settings.isMetronoming ) {
-				if( note === 0 ) {
+				if( step === 0 ) {
 					playMetronome( true );
 				}
 				
-				if( note === settings.division / 4 * 1 ) {
+				if( step === settings.division / 4 * 1 ) {
 					playMetronome();
 				}
 				
-				if( note === settings.division / 4 * 2 ) {
+				if( step === settings.division / 4 * 2 ) {
 					playMetronome();
 				}
 				
-				if( note === settings.division / 4 * 3 ) {
+				if( step === settings.division / 4 * 3 ) {
 					playMetronome();
 				}        
 			} 
 						
 			for( var i = 0; i < Object.keys( settings.samples['808'] ).length; i++ ) {
-				if( settings.sequence[i][note] === 1  ) {
+				if( settings.sequence[i][step] === 1  ) {
 					playSample( i );
 
 					$( document ).trigger( 'sequencer/playStep', [ {
-						note: note
+						step: step
 					} ] );					
 				}
 				
-				if( settings.sequence[i][note] === 2 ) {
-					settings.sequence[i][note] = 1;
+				if( settings.sequence[i][step] === 2 ) {
+					settings.sequence[i][step] = 1;
 				}        
 			}
 
 			$( document ).trigger( 'sequencer/step', [ {
-				note: note
+				step: step
 			} ] );
 			
 		}, settings.events, settings.division + 'n' );
@@ -289,30 +289,30 @@ var Sequencer = ( function() {
 		}		
 	}
 	
-	var addSequenceItem = function( i, note ) {     
-		Debug.log( 'Sequencer.addSequenceItem()', i, note );
+	var addSequenceItem = function( i, step ) {     
+		Debug.log( 'Sequencer.addSequenceItem()', i, step );
 
 		if( settings.isPlaying && settings.isRecording ) {
-			if( !note ) {
-				var note = Math.round( settings.division * settings.loop.progress );
-				if( note >= settings.division ) {
-					note = 0;
+			if( !step ) {
+				var step = Math.round( settings.division * settings.loop.progress );
+				if( step >= settings.division ) {
+					step = 0;
 				}
 			}
 
-			Debug.log( 'note', note );
+			Debug.log( 'step', step );
 			 
-			var pending = ( ( settings.division * settings.loop.progress ) < note ) ? true : false;
+			var pending = ( ( settings.division * settings.loop.progress ) < step ) ? true : false;
 			
-			if( !settings.sequence[i][note] ) {
-				settings.sequence[i][note] = ( pending ) ? 2 : 1;
+			if( !settings.sequence[i][step] ) {
+				settings.sequence[i][step] = ( pending ) ? 2 : 1;
 
 				$( document ).trigger( 'sequencer/changeSequence', [ {
 					sequence: settings.sequence
 				} ] );
 
 				$( document ).trigger( 'sequencer/addSequenceItem', [ {
-					note: 		note,
+					step: 		step,
 					sample: 	i,
 					division: 	settings.division
 				} ] ); 				
@@ -371,14 +371,14 @@ var Sequencer = ( function() {
 		if( matches ) {
 			for( var i = 0; i < matches.length; i++ ) {
 				var match = matches[i];
-				var note = match[0].charCodeAt( 0 ) - 65;
+				var step = match[0].charCodeAt( 0 ) - 65;
 
 				var samples = match.substr( 1, match.length );
 				if( samples.length > 0 ) {
 					samples = samples.split( '' );
 
 					for( var j = 0; j < samples.length; j++ ) {
-						addSequenceItem( samples[j], note );
+						addSequenceItem( samples[j], step );
 					}
 				}
 			}
@@ -408,7 +408,7 @@ var Sequencer = ( function() {
 		settings.sequence[0][0] = 1;		
 
 		$( document ).trigger( 'sequencer/addSequenceItem', [ {
-			note: 		0,
+			step: 		0,
 			sample: 	0,
 			division: 	settings.division
 		} ] ); 				

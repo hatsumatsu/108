@@ -57,12 +57,12 @@ var Timeline = ( function() {
 				var waiter = setInterval( function() {
 					if( settings.isLoaded ) {
 						clearInterval( waiter );
-						addNote( data.note, data.sample, data.division );
+						addNote( data.step, data.sample, data.division );
 					}
 				}, 50 ); 
 			} )
 			.on( 'sequencer/playStep', function( event, data ) {
-				playNote( data.note );
+				playNote( data.step );
 			} )
 			.on( 'sequencer/clearSequence', function( event, data ) {
 				clearTimeline();
@@ -185,22 +185,22 @@ var Timeline = ( function() {
 		);		
 	}
 
-	var addNote = function( note, sample, division ) {
-		Debug.log( 'Timeline.addNote()', note, sample, division );
+	var addNote = function( step, sample, division ) {
+		Debug.log( 'Timeline.addNote()', step, sample, division );
 
 		var layer = settings.svg.placeholder.select( '.' + settings.layerNotes[sample] );
 		if( layer ) {
 			layer = layer.clone();
 
-			var _note = {
-				note: note,
+			var note = {
+				step: step,
 				sample: sample,
 				layer: layer
 			}
 
-			settings.notes.push( _note );
+			settings.notes.push( note );
 
-			var angle = note / division * 360;
+			var angle = step / division * 360;
 
 			layer.prependTo( settings.svg.timeline );
 
@@ -268,11 +268,11 @@ var Timeline = ( function() {
 		}
 	}
 
-	var playNote = function( note ) {
-		Debug.log( 'Sequencer.playNote()', note );
+	var playNote = function( step ) {
+		Debug.log( 'Sequencer.playNote()', step );
 
 		for( var i = 0; i < settings.notes.length; i++ ) {
-			if( settings.notes[i].note === note ) {
+			if( settings.notes[i].step === step ) {
 				
 				new TimelineLite()					
 					.fromTo( 
