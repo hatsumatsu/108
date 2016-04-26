@@ -1,6 +1,9 @@
-// module viewport
+/**
+ * Viewport
+ * handy module to track viewport events and properties  
+ */
 var Viewport = ( function() {
-
+    
     var settings = {
         width: 0,
         height: 0,

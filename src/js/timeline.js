@@ -1,4 +1,9 @@
+/**
+ * Timeline
+ * the circular sequence timeline
+ */
 var Timeline = ( function() {
+
 	var settings = {
 		selector: {
 			wrapper: 		'.timeline-wrapper',
@@ -306,6 +311,7 @@ var Timeline = ( function() {
 		init: 		function() { init(); },
 		isReady: 	function() { return isReady(); }		
 	}
+	
 } )();
 
 $( document ).ready( function() {

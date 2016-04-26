@@ -1,4 +1,9 @@
+/**
+ * Debug
+ * logging and stuff
+ */
 var Debug = ( function() {
+
 	var settings = {
 		isLocal: false,
 		isActive: true,
@@ -33,6 +38,7 @@ var Debug = ( function() {
 		init: function() { init(); },
 		log:  log 
 	}
+	
 } )();
 
 Debug.init();

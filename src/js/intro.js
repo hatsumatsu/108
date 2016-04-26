@@ -1,4 +1,9 @@
+/**
+ * Intro
+ * pseudo preloader
+ */
 var Intro = ( function() {
+
 	var settings = {
 		selector: {
 			intro: '.intro',
@@ -103,8 +108,8 @@ var Intro = ( function() {
 	return {
 		init: function() { init(); }
 	}
-} )();
 
+} )();
 
 $( document ).ready( function() {
 	Intro.init();

@@ -1,4 +1,9 @@
+/**
+ * Sequencer
+ * the actual sound module
+ */
 var Sequencer = ( function() {
+
 	var settings = {
 		keyboardKeys: {
 			67: 0, // c
@@ -481,8 +486,8 @@ var Sequencer = ( function() {
 		getSequence: function() { return getSequence() },
 		getDivision: function() { return getDivision() }
 	}
-} )();
 
+} )();
 
 $( document ).ready( function() {
 	 Sequencer.init();

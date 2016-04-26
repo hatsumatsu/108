@@ -1,4 +1,9 @@
+/**
+ * URL
+ * modifies the page's hash
+ */
 var Url = ( function() {
+
 	var settings = {
 		hash: '',
 		isChanging: false
@@ -55,8 +60,8 @@ var Url = ( function() {
 	return {
 		init: function() { init(); }
 	}
-} )();
 
+} )();
 
 $( document ).ready( function() {
 	Url.init();

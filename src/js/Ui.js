@@ -1,4 +1,9 @@
+/**
+ * UI
+ * control buttons, modals, share input and title
+ */
 var Ui = ( function() {
+
 	var settings = {
 		selector: {
 			title:  'h1',
@@ -190,6 +195,7 @@ var Ui = ( function() {
 	return {
 		init: function() { init(); }
 	}
+	
 } )();
 
 $( document ).ready( function() {
