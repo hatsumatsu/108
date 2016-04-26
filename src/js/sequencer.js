@@ -59,13 +59,8 @@ var Sequencer = ( function() {
 	}
 	
 	var bindEventHandlers = function() {
-		Debug.log( 'Sequencer.bindEventHandlers()' );
-		
-		// all samples are loaded
-		Tone.Buffer.on( 'load', function() {
-			$( document ).trigger( 'sequencer/loaded' );
-		} );     
-		
+		Debug.log( 'Sequencer.bindEventHandlers()' );   
+
 		$( document )
 			.on( 'sequencer/loaded', function() {
 				Debug.log( 'All samples are loaded' );				
@@ -151,6 +146,18 @@ var Sequencer = ( function() {
 			.on( 'sequencer/changeSequence', function() {
 				saveSequence();
 			} );
+
+		// all samples are loaded
+		Tone.Buffer.on( 'load', function() {
+			$( document ).trigger( 'sequencer/loaded' );
+		} );  
+
+		// fix Safari's initially suspended audio context
+		setInterval( function() {
+			if( Tone.context.state !== 'running' ) {
+				Tone.context.resume();
+			}
+		}, 1000 );
 	}
 
 	// Signal
