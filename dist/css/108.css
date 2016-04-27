@@ -398,7 +398,7 @@ h1 {
             transform: translateY(-11rem);
   }
 }
-.ui-toggle--help {
+.ui-toggle--info {
   position: fixed;
   right: 0;
   top: 0;
@@ -410,11 +410,11 @@ h1 {
   color: inherit;
   opacity: 0.5;
 }
-.ui-toggle--help:hover {
+.ui-toggle--info:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
 }
-.visible--ui-help .ui-modal--help {
+.visible--ui-info .ui-modal--info {
   height: 100%;
   opacity: 1;
   -webkit-transition-duration: 250ms, 100ms;

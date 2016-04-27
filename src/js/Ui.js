@@ -18,9 +18,9 @@ var Ui = ( function() {
 				close:  '.ui-modal-close--share',
 				link: 	'.share-link'
 			},
-			help: {
-				toggle: '.ui-toggle--help',
-				close:  '.ui-modal-close--help'
+			info: {
+				toggle: '.ui-toggle--info',
+				close:  '.ui-modal-close--info'
 			},
 			modal: {
 				wrapper: '[data-modal]',
@@ -30,7 +30,7 @@ var Ui = ( function() {
 		isVisible: {
 			controls: 	false,
 			share: 		false,
-			help: 		false
+			info: 		false
 		},
 		shareServices: {
 			facebook: {
@@ -50,9 +50,9 @@ var Ui = ( function() {
 			toggleControls();
 		}
 
-		// show help UI on first visit
+		// show info UI on first visit
 		if( !Cookies.get( '108--visited' ) ) {
-			toggleModal( 'help' );
+			toggleModal( 'info' );
 		}
 		Cookies.set( '108--visited', true, { expires: 30, path: '' } );
 
