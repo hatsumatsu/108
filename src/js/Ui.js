@@ -15,7 +15,8 @@ var Ui = ( function() {
 				toggle: '.ui-toggle--share',
 				input:  '.share-url-input',
 				button: '.share-url-button',
-				close:  '.ui-modal-close--share'
+				close:  '.ui-modal-close--share',
+				link: 	'.share-link'
 			},
 			help: {
 				toggle: '.ui-toggle--help',
@@ -30,6 +31,16 @@ var Ui = ( function() {
 			controls: 	false,
 			share: 		false,
 			help: 		false
+		},
+		shareServices: {
+			facebook: {
+				label: 	'Facebook',
+				url: 	'https://facebook.com/sharer/sharer.php?u={url}'
+			},
+			twitter: {
+				label: 	'Twitter',
+				url: 	'http://www.twitter.com/share?url={url}'
+			}
 		}
 	}
 
@@ -92,6 +103,15 @@ var Ui = ( function() {
 					}] );
 				}
 			} )
+			// share links
+			.on( 'click', settings.selector.share.link, function( event ) {
+				event.preventDefault();
+
+				var service = $( this ).attr( 'data-service' );
+				if( service ) {
+					openShareWindow( service, settings.url );
+				}
+			} )			
 			.on( 'sequencer/playSample', function( event, data ) {
 				var sample = data.sample;
 				highlightButton( sample );
@@ -187,9 +207,16 @@ var Ui = ( function() {
 		Debug.log( 'Ui.setUrl()', hash );
 
 		var url = location.protocol + '//' + location.hostname + location.pathname;
-		url = url + '#' + hash;
+		settings.url = url + '#' + hash;
 
-		$( settings.selector.share.input ).val( url );
+		$( settings.selector.share.input ).val( settings.url );
+	}
+
+	var openShareWindow = function( service, url ) {
+		if( settings.shareServices[service] ) {
+			var url = settings.shareServices[service].url.replace( '{url}', url );
+			window.open( url, '108Share', 'width=520,height=320,menubar=no,location=yes,resizable=no,scrollbars=yes,status=no' );
+		}
 	}
 
 	return {
