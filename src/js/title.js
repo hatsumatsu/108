@@ -40,7 +40,7 @@ var Title = ( function() {
 			if( i === step ) {
 				text += settings.text.runner;
 			} else {
-				text += ' ';
+				text += '·';
 			}
 		}
 
@@ -61,5 +61,7 @@ var Title = ( function() {
 } )();
 
 $( document ).ready( function() {
-	Title.init();
+	if( Viewport.getWidth() > 768 ) {
+		Title.init();
+	}
 } );
