@@ -63,7 +63,8 @@ module.exports = function( grunt ) {
 						'src/js/sequencer.js',
 						'src/js/timeline.js',
 						'src/js/ui.js',
-						'src/js/url.js'
+						'src/js/url.js',
+						'src/js/title.js'
 					]
 				}
 			}
