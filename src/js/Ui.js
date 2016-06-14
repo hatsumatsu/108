@@ -50,8 +50,12 @@ var Ui = ( function() {
 			toggleControls();
 		}
 
+		if( location.href.indexOf( 'demo' ) > -1 && !settings.isVisible.controls ) {
+			toggleControls();			
+		}
+
 		// show info UI on first visit
-		if( !Cookies.get( '108--visited' ) ) {
+		if( !Cookies.get( '108--visited' ) && location.href.indexOf( 'demo' ) < 0 ) {
 			toggleModal( 'info' );
 		}
 		Cookies.set( '108--visited', true, { expires: 30, path: '' } );
