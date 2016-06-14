@@ -1,6 +1,7 @@
 module.exports = function( grunt ) {
 
 	require( 'matchdep' ).filterDev( 'grunt-*' ).forEach( grunt.loadNpmTasks );
+	require( './.deployment' );
 
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
@@ -70,6 +71,18 @@ module.exports = function( grunt ) {
 			}
 		},
 
+		copy: {
+			production: {
+				files: [
+					{
+						expand: true, 
+						src: ['src/**/*', 'dist/**/*', 'index.html', '!.*'], 
+						dest: dest + '/'
+					},
+		    	],
+		  	},
+		},		
+
 		watch: {
 			css: {
 				files: ['**/*.less'],
@@ -88,6 +101,8 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'buildcss',  ['less', 'autoprefixer'] );
 	grunt.registerTask( 'buildmodernizr', ['modernizr'] );
 	grunt.registerTask( 'buildjs',  ['uglify'] );
+
+	grunt.registerTask( 'deploy',  ['copy'] );
 
 	grunt.registerTask( 'build',  ['buildcss', 'buildmodernizr', 'buildjs'] );
 };
