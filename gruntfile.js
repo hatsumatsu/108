@@ -2,6 +2,7 @@ module.exports = function( grunt ) {
 
 	require( 'matchdep' ).filterDev( 'grunt-*' ).forEach( grunt.loadNpmTasks );
 	require( './.deployment' );
+	var dest = 'dist';
 
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
@@ -38,9 +39,9 @@ module.exports = function( grunt ) {
 				],
 				'files' : {
 					'src': [
-						'src/js/**/*.js', 
-						'src/less/**/*.less', 
-						'!node_modules/**/*', 
+						'src/js/**/*.js',
+						'src/less/**/*.less',
+						'!node_modules/**/*',
 						'!src/js/**/*.min.js'
 					]
 				}
@@ -75,13 +76,13 @@ module.exports = function( grunt ) {
 			production: {
 				files: [
 					{
-						expand: true, 
-						src: ['src/**/*', 'dist/**/*', 'index.html', '!.*'], 
+						expand: true,
+						src: ['src/**/*', 'dist/**/*', 'index.html', '!.*'],
 						dest: dest + '/'
 					},
 		    	],
 		  	},
-		},		
+		},
 
 		watch: {
 			css: {
