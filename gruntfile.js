@@ -2,6 +2,7 @@ module.exports = function( grunt ) {
 
 	require( 'matchdep' ).filterDev( 'grunt-*' ).forEach( grunt.loadNpmTasks );
 	require( './.deployment' );
+    var dest = 'dist';
 
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
@@ -86,13 +87,28 @@ module.exports = function( grunt ) {
 		watch: {
 			css: {
 				files: ['**/*.less'],
-				tasks: ['buildcss']
+				tasks: ['buildcss'],
+                options: {
+                    livereload: true
+                }
 			},
 			js: {
 				files: ['src/js/**/*.js','!js/**/*.min.js'],
-				tasks: ['buildjs']
+				// tasks: ['buildjs'],
+                options: {
+                    livereload: true
+                }
 			}
-		}
+		},
+
+        connect: {
+            server: {
+                options: {
+                    base: './',
+                    port: 9000
+                }
+            }
+        }
 
 	} );
 
@@ -105,4 +121,6 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'deploy',  ['copy'] );
 
 	grunt.registerTask( 'build',  ['buildcss', 'buildmodernizr', 'buildjs'] );
+
+	grunt.registerTask( 'serve',  ['connect:server', 'watch'] );
 };

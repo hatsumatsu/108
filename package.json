@@ -11,7 +11,9 @@
 		"grunt-autoprefixer":		"*",
 		"grunt-modernizr":			"*",
 		"grunt-contrib-uglify":		"*",
-		"grunt-contrib-copy": 		"*",		
+		"grunt-contrib-copy": 		"*",
+        "grunt-contrib-connect":    "*",
+        "connect-livereload":       "*",
 		"matchdep":					"*"
-	} 
+	}
 }
