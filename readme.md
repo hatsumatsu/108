@@ -2,6 +2,15 @@
 
 *108 is a minimal beat machine featuring 5 classic samples that can be arranged on a 16 step loop running 108 bpm.*
 
+#### [Demo](http://martinwecke.de/108/)
+
+#### Development
+
+Start the local development server
+```
+grunt serve
+```
+
 The app is built using some really great libraries:
 
 - [Tone.js](https://github.com/Tonejs/Tone.js)
