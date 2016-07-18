@@ -2,6 +2,7 @@ module.exports = function( grunt ) {
 
 	require( 'matchdep' ).filterDev( 'grunt-*' ).forEach( grunt.loadNpmTasks );
 	require( './.deployment' );
+    var dest = 'dist';
 
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
