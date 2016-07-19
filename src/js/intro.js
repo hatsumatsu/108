@@ -35,7 +35,7 @@ var Intro = ( function() {
 		$( document )
 			.on( 'viewport/loop', function() {
 				onLoop();
-			} );	
+			} );
 	}
 
 	var onLoop = function() {
@@ -53,7 +53,7 @@ var Intro = ( function() {
 					countUp();
 				} else {
 					stop();
-				}			 
+				}
 			}
 
 		}, settings.step );
@@ -62,18 +62,18 @@ var Intro = ( function() {
 		$( 'html' )
 			.addClass( 'visible--intro' );
 
-		$( document ).trigger( 'intro/start' );			
+		$( document ).trigger( 'intro/start' );
 	}
 
 	var stop = function() {
 		Debug.log( 'Intro.stop()' );
 
-		settings.isVisible = false;	
+		settings.isVisible = false;
 
 		clearInterval( settings.timer );
 
 		waitForReady( function() {
-			$( document ).trigger( 'intro/stop' );			
+			$( document ).trigger( 'intro/stop' );
 
 			setTimeout( function() {
 				$( document )
@@ -83,9 +83,9 @@ var Intro = ( function() {
 
 				$( 'html' )
 					.removeClass( 'visible--intro' );
-			}, 1000 );		
-		} );	
-	}	
+			}, 1000 );
+		} );
+	}
 
 	var countUp = function() {
 		settings.current = settings.current + 1;
@@ -96,7 +96,7 @@ var Intro = ( function() {
 		if( Sequencer && Timeline ) {
 			settings.waiter = setInterval( function() {
 				Debug.log( 'waiting...' );
-				
+
 				if( Sequencer.isReady() && Timeline.isReady() ) {
 					clearInterval( settings.waiter );
 					callback();

@@ -25,7 +25,7 @@ var Ui = ( function() {
 			modal: {
 				wrapper: '[data-modal]',
 				toggle:  '[data-modal-action="toggle"]'
-			}			
+			}
 		},
 		isVisible: {
 			controls: 	false,
@@ -51,7 +51,7 @@ var Ui = ( function() {
 		}
 
 		if( location.href.indexOf( 'demo' ) > -1 && !settings.isVisible.controls ) {
-			toggleControls();			
+			toggleControls();
 		}
 
 		// show info UI on first visit
@@ -77,8 +77,8 @@ var Ui = ( function() {
 
 				var id = $( this ).closest( settings.selector.modal.wrapper ).attr( 'data-modal' );
 				toggleModal( id );
-			} )								
-			// control buttons	
+			} )
+			// control buttons
 			.on( 'click', settings.selector.button, function( event ) {
 				event.preventDefault();
 			} )
@@ -115,7 +115,7 @@ var Ui = ( function() {
 				if( service ) {
 					openShareWindow( service, settings.url );
 				}
-			} )			
+			} )
 			.on( 'sequencer/playSample', function( event, data ) {
 				var sample = data.sample;
 				highlightButton( sample );
@@ -129,7 +129,7 @@ var Ui = ( function() {
 			} );
 
 			new Clipboard( settings.selector.share.button );
-	}	
+	}
 
 	var highlightButton = function( sample ) {
 		Debug.log( 'Ui.highlightButton()', sample );
@@ -138,20 +138,20 @@ var Ui = ( function() {
 		var color = $( 'html' ).css( 'backgroundColor' );
 
 		new TimelineLite()
-			.to( 
+			.to(
 				button,
-				0.05, 
+				0.05,
 				{
 					backgroundColor: '#fff'
-				}						
-			)	
-			.to( 
+				}
+			)
+			.to(
 				button,
-				0.05, 
+				0.05,
 				{
 					backgroundColor: 'rgba( 255,255,255,0.01 )'
-				}							
-			);						
+				}
+			);
 	}
 
 	var highlightTitle = function() {
@@ -161,37 +161,37 @@ var Ui = ( function() {
 			var title = $( settings.selector.title );
 
 			new TimelineLite()
-				.to( 
+				.to(
 					title,
-					0.01, 
+					0.01,
 					{
 						opacity: 1
-					}						
+					}
 				)
-				.to( 
+				.to(
 					title,
-					0.05, 
+					0.05,
 					{
 						opacity: 0.5
-					}						
-				);	
-		}							
+					}
+				);
+		}
 	}
 
 
 	var toggleControls = function() {
 		Debug.log( 'Ui.toggleControls()' );
-		
+
 		if( !settings.isVisible.controls ) {
 			$( 'html' )
 				.addClass( 'visible--ui-controls' );
 		} else {
 			$( 'html' )
-				.removeClass( 'visible--ui-controls' );			
+				.removeClass( 'visible--ui-controls' );
 		}
 
-		settings.isVisible.controls = !settings.isVisible.controls;		
-	} 
+		settings.isVisible.controls = !settings.isVisible.controls;
+	}
 
 	var toggleModal = function( id ) {
 		Debug.log( 'Ui.toggleModal()', id );
@@ -201,10 +201,10 @@ var Ui = ( function() {
 				.addClass( 'visible--ui-' + id );
 		} else {
 			$( 'html' )
-				.removeClass( 'visible--ui-' + id );			
+				.removeClass( 'visible--ui-' + id );
 		}
 
-		settings.isVisible[id] = !settings.isVisible[id];		
+		settings.isVisible[id] = !settings.isVisible[id];
 	}
 
 	var setUrl = function( hash ) {
@@ -226,7 +226,7 @@ var Ui = ( function() {
 	return {
 		init: function() { init(); }
 	}
-	
+
 } )();
 
 $( document ).ready( function() {

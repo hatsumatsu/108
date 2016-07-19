@@ -13,7 +13,7 @@ var Sequencer = ( function() {
 			77: 4  // m
 		},
 		iskeyDown: false,
-		samples: { 
+		samples: {
 			'808': {
 				0: {
 					src: 		'dist/samples/808/mp3/bass.mp3',
@@ -49,28 +49,28 @@ var Sequencer = ( function() {
 		timeBetweenSteps: 0,
 		analyserValue: 0
 	}
-	
+
 	var init = function() {
 		Debug.log( 'Sequencer.init()' );
-		
+
 		initSampler();
 		initSignal();
 		initPlayback();
 		initMetronome();
 
-		startPlayback();								
+		startPlayback();
 
 		bindEventHandlers();
 	}
-	
+
 	var bindEventHandlers = function() {
-		Debug.log( 'Sequencer.bindEventHandlers()' );   
+		Debug.log( 'Sequencer.bindEventHandlers()' );
 
 		$( document )
 			.on( 'sequencer/loaded', function() {
-				Debug.log( 'All samples are loaded' );				
-				settings.isLoaded = true;									
-			} )	
+				Debug.log( 'All samples are loaded' );
+				settings.isLoaded = true;
+			} )
 			.on( 'keydown', function( event ) {
 				event.preventDefault();
 
@@ -92,20 +92,20 @@ var Sequencer = ( function() {
 					if( key === 32 ) {
 						togglePlayback();
 					}
-					
+
 					// toggle metronome
 					// Shift
 					if( key === 16 ) {
 						toggleMetronome();
 					}
-					
+
 					// clear sequence
 					// X
 					if( key === 88 ) {
 						clearSequence();
-					}				       
-				}      
-			
+					}
+				}
+
 			} )
 			.on( 'keyup', function( event ) {
 				settings.isKeyDown = false;
@@ -127,7 +127,7 @@ var Sequencer = ( function() {
 
 					if( action === 'play' ) {
 						togglePlayback();
-					}	
+					}
 
 					if( action === 'clear' ) {
 						clearSequence();
@@ -135,8 +135,8 @@ var Sequencer = ( function() {
 
 					if( action === 'metronome' ) {
 						toggleMetronome();
-					}					
-				}				
+					}
+				}
 			} )
 			.on( 'url/init', function( event, data ) {
 				var hash = data.hash;
@@ -147,7 +147,7 @@ var Sequencer = ( function() {
 						buildDemoSequence();
 					}, 0 );
 				}
-			} )			
+			} )
 			.on( 'sequencer/changeSequence', function() {
 				saveSequence();
 			} );
@@ -155,7 +155,7 @@ var Sequencer = ( function() {
 		// all samples are loaded
 		Tone.Buffer.on( 'load', function() {
 			$( document ).trigger( 'sequencer/loaded' );
-		} );  
+		} );
 
 		// fix Safari's initially suspended audio context
 		setInterval( function() {
@@ -170,11 +170,11 @@ var Sequencer = ( function() {
 		settings.sampler
 			.toMaster();
 	}
-	
+
 	// Samples
 	var initSampler = function() {
 		Debug.log( 'Sequencer.initSampler()' );
-				
+
 		var samples = {
 			'808': {}
 		}
@@ -185,104 +185,104 @@ var Sequencer = ( function() {
 
 		settings.sampler = new Tone.Sampler(
 			samples
-		);   
+		);
 	}
-	
- 
+
+
 	var playSample = function( i, time ) {
 		Debug.log( 'Sequencer.playSample()', i );
 
 		if( settings.isLoaded ) {
 			var velocity = settings.samples['808'][i].velocity;
-			settings.sampler.triggerAttack( '808.' + i, time, velocity ); 
-			
+			settings.sampler.triggerAttack( '808.' + i, time, velocity );
+
 			$( document ).trigger( 'sequencer/playSample', [ {
-				sample: i  
+				sample: i
 			} ] );
 		}
 	}
-	
-	
+
+
 	// Playback
 	var initPlayback = function() {
 		Debug.log( 'Sequencer.initPlayback()' );
-			 
+
 		clearSequence();
-				 
-		Tone.Transport.bpm.value = settings.bpm;  
-		
+
+		Tone.Transport.bpm.value = settings.bpm;
+
 		// from http://tonejs.org/examples/stepSequencer.html
 		// calls the callback every 16th step
 		// sequence
 		settings.events = [];
 		for( var i = 0; i < settings.division; i++ ) {
 			settings.events.push( i );
-		}    
-		
+		}
+
 		settings.loop = new Tone.Sequence( function( time, step ) {
-			
-			// helpers 
+
+			// helpers
 			settings.timeBetweenSteps = time - settings.timeLastStep;
 			settings.lastStep = step;
 			settings.timeLastStep = time;
-						
+
 			// metronome
 			if( settings.isMetronoming ) {
 				if( step === 0 ) {
 					playMetronome( true );
 				}
-				
+
 				if( step === settings.division / 4 * 1 ) {
 					playMetronome();
 				}
-				
+
 				if( step === settings.division / 4 * 2 ) {
 					playMetronome();
 				}
-				
+
 				if( step === settings.division / 4 * 3 ) {
 					playMetronome();
-				}        
-			} 
-						
+				}
+			}
+
 			for( var i = 0; i < Object.keys( settings.samples['808'] ).length; i++ ) {
 				if( settings.sequence[i][step] === 1  ) {
 					playSample( i );
 
 					$( document ).trigger( 'sequencer/playStep', [ {
 						step: step
-					} ] );					
+					} ] );
 				}
-				
+
 				if( settings.sequence[i][step] === 2 ) {
 					settings.sequence[i][step] = 1;
-				}        
+				}
 			}
 
 			$( document ).trigger( 'sequencer/step', [ {
 				step: step
 			} ] );
-			
+
 		}, settings.events, settings.division + 'n' );
 
-		Tone.Transport.start();    
+		Tone.Transport.start();
 	}
-	
+
 	var startPlayback = function() {
 		Debug.log( 'Sequencer.startPlayback()' );
-		
+
 		settings.isPlaying = true;
 		$( document ).trigger( 'sequencer/startPlayback' );
-		
+
 		settings.loop.start();
 	}
-	
+
 	var stopPlayback = function() {
 		Debug.log( 'Sequencer.stopPlayback()' );
-		
+
 		settings.isPlaying = false;
-		$( document ).trigger( 'sequencer/stopPlayback' ); 
-	 
+		$( document ).trigger( 'sequencer/stopPlayback' );
+
 		settings.loop.stop();
 	}
 
@@ -291,10 +291,10 @@ var Sequencer = ( function() {
 			stopPlayback();
 		} else {
 			startPlayback();
-		}		
+		}
 	}
-	
-	var addSequenceItem = function( i, step ) {     
+
+	var addSequenceItem = function( i, step ) {
 		Debug.log( 'Sequencer.addSequenceItem()', i, step );
 
 		if( settings.isPlaying && settings.isRecording ) {
@@ -306,9 +306,9 @@ var Sequencer = ( function() {
 			}
 
 			Debug.log( 'step', step );
-			 
+
 			var pending = ( ( settings.division * settings.loop.progress ) < step ) ? true : false;
-			
+
 			if( !settings.sequence[i][step] ) {
 				settings.sequence[i][step] = ( pending ) ? 2 : 1;
 
@@ -320,7 +320,7 @@ var Sequencer = ( function() {
 					step: 		step,
 					sample: 	i,
 					division: 	settings.division
-				} ] ); 				
+				} ] );
 			}
 		}
 	}
@@ -347,7 +347,7 @@ var Sequencer = ( function() {
 				if( settings.sequence[i][j] ) {
 					data[j].push( i );
 				}
-			}			
+			}
 		}
 
 		// create notation string
@@ -393,51 +393,51 @@ var Sequencer = ( function() {
 	var clearSequence = function() {
 		Debug.log( 'Sequencer.clearSequence()' );
 
-		// init sequence 
+		// init sequence
 		for( var i = 0; i < Object.keys( settings.samples['808'] ).length; i++ ) {
 			var track = [];
 
 			for( var j = 0; j < settings.division; j++ ) {
 					track[j] = 0;
 			}
-			settings.sequence[i] = track; 
-		}    
+			settings.sequence[i] = track;
+		}
 
 		$( document ).trigger( 'sequencer/clearSequence' );
 		$( document ).trigger( 'sequencer/changeSequence' );
-	}	
+	}
 
 	var buildDemoSequence = function() {
 		Debug.log( 'Sequencer.buildDemoSequence()' );
-		
-		settings.sequence[0][0] = 1;		
+
+		settings.sequence[0][0] = 1;
 
 		$( document ).trigger( 'sequencer/addSequenceItem', [ {
 			step: 		0,
 			sample: 	0,
 			division: 	settings.division
-		} ] ); 				
-	}	
-	
+		} ] );
+	}
+
 
 	// Recording
 	var startRecording = function() {
 		Debug.log( 'Sequencer.startRecording()' );
-		
+
 		settings.isRecording = true;
-		$( document ).trigger( 'sequencer/startRecording' ); 
-		
+		$( document ).trigger( 'sequencer/startRecording' );
+
 	}
-	
+
 	var stopRecording = function() {
 		Debug.log( 'Sequencer.stopRecording()' );
-		
-		settings.isRecording = false;
-		$( document ).trigger( 'sequencer/stopRecording' ); 
-	}  
-	
 
-	// Metronome 
+		settings.isRecording = false;
+		$( document ).trigger( 'sequencer/stopRecording' );
+	}
+
+
+	// Metronome
 	var initMetronome = function() {
 		Debug.log( 'Sequencer.initMetronome()' );
 			settings.metronome = new Tone.SimpleSynth().toMaster();
@@ -448,13 +448,13 @@ var Sequencer = ( function() {
 
 		$( document ).trigger( 'sequencer/toggleMetronome', [{
 			state: settings.isMetronoming
-		}] );		
+		}] );
 	}
 
 	var playMetronome = function( high ) {
 		var note = ( high ) ? 'C5' : 'C4';
 
-		settings.metronome.triggerAttackRelease( note, '16n', null, 0.5 );      
+		settings.metronome.triggerAttackRelease( note, '16n', null, 0.5 );
 	}
 
 	// State
@@ -473,12 +473,12 @@ var Sequencer = ( function() {
 
 	var getSequence = function() {
 		return settings.sequence;
-	}	
+	}
 
 	var getDivision = function() {
 		return settings.division;
-	}			
-	
+	}
+
 	return {
 		init: 		 function() { init(); },
 		isReady: 	 function() { return isReady(); },

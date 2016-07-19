@@ -46,16 +46,16 @@ var Url = ( function() {
 			} ] );
 		}
 	}
- 
+
 	var set = function( hash ) {
 		settings.isChanging = true;
-		
+
 		location.hash = hash;
 
 		setTimeout( function() {
 			settings.isChanging = false;
 		}, 500 );
-	} 
+	}
 
 	return {
 		init: function() { init(); }

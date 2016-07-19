@@ -38,9 +38,9 @@ module.exports = function( grunt ) {
 				],
 				'files' : {
 					'src': [
-						'src/js/**/*.js', 
-						'src/less/**/*.less', 
-						'!node_modules/**/*', 
+						'src/js/**/*.js',
+						'src/less/**/*.less',
+						'!node_modules/**/*',
 						'!src/js/**/*.min.js'
 					]
 				}
@@ -72,16 +72,16 @@ module.exports = function( grunt ) {
 		},
 
 		copy: {
-			production: {
+			deployment: {
 				files: [
 					{
-						expand: true, 
-						src: ['src/**/*', 'dist/**/*', 'index.html', '!.*'], 
+						expand: true,
+						src: ['src/**/*', 'dist/**/*', 'index.html', '!.*'],
 						dest: dest + '/'
 					},
 		    	],
 		  	},
-		},		
+		},
 
 		watch: {
 			css: {

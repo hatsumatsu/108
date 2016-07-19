@@ -47,12 +47,12 @@ var Title = ( function() {
 		text += settings.text.spacer + settings.text.title;
 		set( text );
 	}
- 
+
 	var set = function( text ) {
 		Debug.log( 'title.set()', text );
 
 		settings.element.title.text( text );
-	} 
+	}
 
 	return {
 		init: function() { init(); }

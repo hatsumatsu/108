@@ -22,7 +22,7 @@ var Debug = ( function() {
 	var bindEventHandlers = function() {
 		window.addEventListener( 'keyup', function( event ) {
 			if( event.keyCode === settings.keyboardKeys.toggle || event.which === settings.keyboardKeys.toggle ) {
-				settings.isActive = !settings.isActive;	
+				settings.isActive = !settings.isActive;
 				console.log( 'Toggle debug mode', settings.isActive );
 			}
 		} );
@@ -36,9 +36,9 @@ var Debug = ( function() {
 
 	return {
 		init: function() { init(); },
-		log:  log 
+		log:  log
 	}
-	
+
 } )();
 
 Debug.init();

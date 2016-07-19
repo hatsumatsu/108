@@ -64,14 +64,14 @@ var Timeline = ( function() {
 						clearInterval( waiter );
 						addNote( data.step, data.sample, data.division );
 					}
-				}, 50 ); 
+				}, 50 );
 			} )
 			.on( 'sequencer/playStep', function( event, data ) {
 				playNote( data.step );
 			} )
 			.on( 'sequencer/clearSequence', function( event, data ) {
 				clearTimeline();
-			} );						
+			} );
 	}
 
 	var onResize = function() {
@@ -85,25 +85,25 @@ var Timeline = ( function() {
 	var build = function() {
 		// create blank SVG
 		settings.svg.timeline = Snap( 512,512 )
-			.attr( 'id', settings.selector.timeline.replace( '#', '' ) );	
+			.attr( 'id', settings.selector.timeline.replace( '#', '' ) );
 
 		// create placeholder SVG
 		settings.svg.placeholder = Snap( 512,512 )
-			.attr( 'id', settings.selector.placeholder.replace( '#', '' ) );					
+			.attr( 'id', settings.selector.placeholder.replace( '#', '' ) );
 
 		// add layers
 		for( var key in settings.layer ) {
 			if( settings.layer.hasOwnProperty( key ) ) {
-				addLayer( settings.layer[key], 'timeline' );						
+				addLayer( settings.layer[key], 'timeline' );
 			}
 		}
 
 		// add notes to placeholders
 		for( var key in settings.layerNotes ) {
 			if( settings.layerNotes.hasOwnProperty( key ) ) {
-				addLayer( settings.layerNotes[key], 'placeholder' );						
+				addLayer( settings.layerNotes[key], 'placeholder' );
 			}
-		}					
+		}
 	}
 
 	var addLayer = function( filename, target ) {
@@ -125,20 +125,20 @@ var Timeline = ( function() {
 	    	// set index
 	    	group
 				.attr( {
-					'data-index': index 
+					'data-index': index
 				} );
 
 			// append or prepend depending on index
 			if( index >= indexMax ) {
 				group
-					.appendTo( settings.svg[target] );	    	
+					.appendTo( settings.svg[target] );
 			} else {
 				group
-					.prependTo( settings.svg[target] );					
+					.prependTo( settings.svg[target] );
 			}
 
 	    	// add svg to DOM, could be run only once...
-			$( settings.selector[target] )	
+			$( settings.selector[target] )
 				.appendTo( $( settings.selector.wrapper ) );
 
 			// fire event when all SVGs are loaded
@@ -158,20 +158,20 @@ var Timeline = ( function() {
 		$( settings.selector.timeline + ', ' + settings.selector.placeholder )
 			.css( {
 				'transform': 'scale( ' + settings.scaleFactor + ', ' + settings.scaleFactor + ' )'
-			} );	
+			} );
 
 		// set stroke width
 		settings.svg.timeline
-			.selectAll( 'path' )	
+			.selectAll( 'path' )
 			.attr( {
 				strokeWidth: 1 / settings.scaleFactor
 			} );
 
 		settings.svg.placeholder
-			.selectAll( 'path' )	
+			.selectAll( 'path' )
 			.attr( {
 				strokeWidth: 1 / settings.scaleFactor
-			} );			
+			} );
 	}
 
 	var run = function() {
@@ -179,15 +179,15 @@ var Timeline = ( function() {
 		var progress = Sequencer.getProgress();
 		var angle = 360 * progress;
 
-		TweenLite.to( 
+		TweenLite.to(
 			runner,
-			0, 
+			0,
 			{
 				transformOrigin: '50% 50%',
 				rotation: angle,
 				ease: Linear.easeNone
 			}
-		);		
+		);
 	}
 
 	var addNote = function( step, sample, division ) {
@@ -209,15 +209,15 @@ var Timeline = ( function() {
 
 			layer.prependTo( settings.svg.timeline );
 
-			TweenLite.to( 
+			TweenLite.to(
 				layer.node,
-				0, 
+				0,
 				{
 					transformOrigin: '50% 50%',
 					rotation: angle,
 					ease: Linear.easeNone
 				}
-			);		
+			);
 
 			// note specific animations
 			switch( sample ) {
@@ -227,19 +227,19 @@ var Timeline = ( function() {
 
   				case 1:
   					animateLine( layer.select( '.shape' ), 0.5, -1 );
-			    break;	
+			    break;
 
   				case 2:
   					animateLine( layer.select( '.shape' ), 0.25, -1 );
-			    break;		
+			    break;
 
   				case 3:
   					animateLine( layer.select( '.shape' ), 0.5, -1 );
-			    break;	
+			    break;
 
   				case 4:
 
-			    break;				    				    	    
+			    break;
 			}
 		}
 	}
@@ -262,14 +262,14 @@ var Timeline = ( function() {
 				'strokeDashoffset': ( length * direction )
 			} );
 
-			TweenLite.to( 
+			TweenLite.to(
 				path.node,
-				duration, 
+				duration,
 				{
 					strokeDashoffset: 0,
 					ease: Power4.easeInOut
 				}
-			);				
+			);
 		}
 	}
 
@@ -278,11 +278,11 @@ var Timeline = ( function() {
 
 		for( var i = 0; i < settings.notes.length; i++ ) {
 			if( settings.notes[i].step === step ) {
-				
-				new TimelineLite()					
-					.fromTo( 
+
+				new TimelineLite()
+					.fromTo(
 						settings.notes[i].layer.select( '.shape' ).node,
-						0.5, 
+						0.5,
 						{
 							transformOrigin: '50% 50%',
 							scaleX: 1.5,
@@ -296,8 +296,8 @@ var Timeline = ( function() {
 							scaleY: 1,
 							strokeOpacity: 1,
 							ease: Elastic.easeOut.config( 1, 0.3 )
-						}						
-					);										
+						}
+					);
 			}
 		}
 	}
@@ -309,9 +309,9 @@ var Timeline = ( function() {
 
 	return {
 		init: 		function() { init(); },
-		isReady: 	function() { return isReady(); }		
+		isReady: 	function() { return isReady(); }
 	}
-	
+
 } )();
 
 $( document ).ready( function() {
