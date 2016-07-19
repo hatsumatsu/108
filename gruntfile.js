@@ -1,7 +1,13 @@
 module.exports = function( grunt ) {
 
 	require( 'matchdep' ).filterDev( 'grunt-*' ).forEach( grunt.loadNpmTasks );
-	require( './.deployment' );
+
+	// destination path for deployment
+	// overwrite in hidden .deployment file
+	var dest = 'path/for/deployment';
+	try {
+		require( './.deployment' );
+	} catch( error ) {}
 
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
