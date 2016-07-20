@@ -13,6 +13,8 @@
 + Run `npm install` and
 + `grunt` inside the project root.
 
+## 👋
+
 The app is built using some really great libraries:
 
 - [Tone.js](https://github.com/Tonejs/Tone.js)
