@@ -4,7 +4,7 @@ module.exports = function( grunt ) {
 
 	// destination path for deployment
 	// overwrite in hidden .deployment file
-	var dest = 'path/for/deployment';
+	dest = 'path/for/deployment';
 	try {
 		require( './.deployment' );
 	} catch( error ) {}
