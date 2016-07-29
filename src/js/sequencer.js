@@ -13,6 +13,7 @@ var Sequencer = ( function() {
             77: 4  // m
         },
         iskeyDown: false,
+        isShiftDown: false,
         samples: {
             '808': {
                 0: {
@@ -74,14 +75,18 @@ var Sequencer = ( function() {
                 settings.isLoaded = true;
             } )
             .on( 'keydown', function( event ) {
-                event.preventDefault();
+                if( event.which === 16 ) {
+                    settings.isShiftDown = true;
+                }
 
-                if( !settings.isKeyDown ) {
+                if( !settings.isKeyDown && !settings.isShiftDown ) {
                     settings.isKeyDown = true;
                     var key = event.which;
 
                     // samples
                     if( settings.keyboardKeys[key] !== undefined ) {
+                        event.preventDefault();
+
                         playSample( settings.keyboardKeys[key] );
 
                         if( settings.isRecording ) {
@@ -92,18 +97,24 @@ var Sequencer = ( function() {
                     // toggle playback
                     // Space
                     if( key === 32 ) {
+                        event.preventDefault();
+
                         togglePlayback();
                     }
 
                     // toggle metronome
                     // Shift
                     if( key === 16 ) {
+                        event.preventDefault();
+
                         toggleMetronome();
                     }
 
                     // clear sequence
                     // X
                     if( key === 88 ) {
+                        event.preventDefault();
+
                         clearSequence();
                     }
                 }
@@ -111,6 +122,10 @@ var Sequencer = ( function() {
             } )
             .on( 'keyup', function( event ) {
                 settings.isKeyDown = false;
+
+                if( event.which === 16 ) {
+                    settings.isShiftDown = false;
+                }
             } )
             .on( 'ui/clickButton', function( event, data ) {
 

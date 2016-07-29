@@ -40,6 +40,8 @@ var History = ( function() {
                     // undo
                     // Z
                     if( key === 90 ) {
+                        event.preventDefault();
+
                         undo();
                     }
                 }
