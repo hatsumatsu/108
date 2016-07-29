@@ -72,7 +72,8 @@ module.exports = function( grunt ) {
 						'src/js/ui.js',
 						'src/js/url.js',
 						'src/js/intro.js',
-						'src/js/title.js'
+						'src/js/title.js',
+						'src/js/history.js'
 					]
 				}
 			}
