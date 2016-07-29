@@ -50,6 +50,8 @@ var Sequencer = ( function() {
 		analyserValue: 0
 	}
 
+    var history = [];
+
 	var init = function() {
 		Debug.log( 'Sequencer.init()' );
 
@@ -150,6 +152,11 @@ var Sequencer = ( function() {
 			} )
 			.on( 'sequencer/changeSequence', function() {
 				saveSequence();
+            } )
+            .on( 'history/undo', function( event, data ) {
+                if( data.id ) {
+                    removeSequenceItem( data.step, data.sample, data.division, data.id );
+                }
 			} );
 
 		// all samples are loaded
@@ -319,11 +326,30 @@ var Sequencer = ( function() {
 				$( document ).trigger( 'sequencer/addSequenceItem', [ {
 					step: 		step,
 					sample: 	i,
-					division: 	settings.division
+                    division:   settings.division,
+                    id:         Date.now()
 				} ] );
 			}
 		}
 	}
+
+    var removeSequenceItem = function( step, sample, division, id ) {
+        Debug.log( 'Sequencer.removeSequenceItem()', step, sample, division, id );
+
+        if( settings.sequence[sample][step] ) {
+            settings.sequence[sample][step] = 0;
+
+            $( document ).trigger( 'sequencer/changeSequence', [ {
+                sequence: settings.sequence
+            } ] );
+
+            $( document ).trigger( 'sequencer/removeSequenceItem', [ {
+                step:       step,
+                sample:     sample,
+                division:   settings.division
+            } ] );
+        }
+    }
 
 	/*
 	 * Save sequence in a custom notation format:

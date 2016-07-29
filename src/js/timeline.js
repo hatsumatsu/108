@@ -62,7 +62,7 @@ var Timeline = ( function() {
 				var waiter = setInterval( function() {
 					if( settings.isLoaded ) {
 						clearInterval( waiter );
-						addNote( data.step, data.sample, data.division );
+                        addNote( data.step, data.sample, data.division, data.id );
 					}
 				}, 50 );
 			} )
@@ -71,6 +71,11 @@ var Timeline = ( function() {
 			} )
 			.on( 'sequencer/clearSequence', function( event, data ) {
 				clearTimeline();
+            } )
+            .on( 'history/undo', function( event, data ) {
+                if( data.id ) {
+                    removeNote( data.id );
+                }
 			} );
 	}
 
@@ -190,8 +195,8 @@ var Timeline = ( function() {
 		);
 	}
 
-	var addNote = function( step, sample, division ) {
-		Debug.log( 'Timeline.addNote()', step, sample, division );
+    var addNote = function( step, sample, division, id ) {
+        Debug.log( 'Timeline.addNote()', step, sample, division, id );
 
 		var layer = settings.svg.placeholder.select( '.' + settings.layerNotes[sample] );
 		if( layer ) {
@@ -200,14 +205,17 @@ var Timeline = ( function() {
 			var note = {
 				step: step,
 				sample: sample,
-				layer: layer
+                layer: layer,
+                id: id
 			}
 
 			settings.notes.push( note );
 
 			var angle = step / division * 360;
 
-			layer.prependTo( settings.svg.timeline );
+            layer
+                .attr( 'data-id', id )
+                .prependTo( settings.svg.timeline );
 
 			TweenLite.to(
 				layer.node,
@@ -243,6 +251,24 @@ var Timeline = ( function() {
 			}
 		}
 	}
+
+    var removeNote = function( id ) {
+        Debug.log( 'Timeline.removeNote()', id );
+
+        // remove layer
+        var layer = $( settings.selector.timeline ).find( '[data-id="' + id + '"]' );
+        if( layer ) {
+            layer.remove();
+        }
+
+        // remove entry in settings.notes
+        for( var i = 0; i < settings.notes.length; i++ ) {
+            if( settings.notes[i].id == id ) {
+                settings.notes.splice( i, 1 );
+            }
+        }
+    }
+
 
 	var clearTimeline = function() {
 		Debug.log( 'Timeline.clearTimeline()' );

@@ -49,8 +49,6 @@ var Title = ( function() {
 	}
 
 	var set = function( text ) {
-		Debug.log( 'title.set()', text );
-
 		settings.element.title.text( text );
 	}
 
