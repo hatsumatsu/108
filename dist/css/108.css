@@ -321,6 +321,9 @@ h1 {
   -webkit-transition-delay: 0ms, 0ms;
           transition-delay: 0ms, 0ms;
 }
+.ui-modal--share .ui-modal-content {
+  width: 32rem;
+}
 .share-url {
   padding: 0.35rem 0.7rem;
   color: inherit;

@@ -14,23 +14,27 @@
 
 	opacity: 0.5;
 
-	transition: all 300ms ease;	
+	transition: all 300ms ease;
 
 	&:hover {
 		.animation--blink;
-	}	
+	}
 
 	.visible--ui-controls & {
 		transform: translateY( -6rem );
 	}
 }
 
-// modal 
+// modal
 .ui-modal--share {
 
 	.visible--ui-share & {
 		.ui-modal.visible;
 	}
+}
+
+.ui-modal--share .ui-modal-content {
+	width: 32rem;
 }
 
 .share-url {
@@ -63,13 +67,13 @@
 		animation: none !important;
 	}
 }
- 
+
 .share-url-input {
 	appearance: none;
 	box-sizing: border-box;
 	display: block;
 	width: 100%;
-	
+
 	padding: 0.35rem 0 0.5rem 0.35rem;
 
 	font-family: inherit;
@@ -81,7 +85,7 @@
 	border: none;
 
   	outline: none;
-	box-shadow: none !important; 
+	box-shadow: none !important;
 }
 
 .share-url-button {
@@ -107,7 +111,7 @@
 		&:hover,
 		&:focus {
 
-		}	
+		}
 
 		.visible--ui-controls & {
 			transform: translateY( -11rem );

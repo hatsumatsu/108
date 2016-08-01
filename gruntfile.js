@@ -4,7 +4,7 @@ module.exports = function( grunt ) {
 
 	// destination path for deployment
 	// overwrite in hidden .deployment file
-	var dest = 'path/for/deployment';
+	dest = 'path/for/deployment';
 	try {
 		require( './.deployment' );
 	} catch( error ) {}
@@ -72,7 +72,8 @@ module.exports = function( grunt ) {
 						'src/js/ui.js',
 						'src/js/url.js',
 						'src/js/intro.js',
-						'src/js/title.js'
+						'src/js/title.js',
+						'src/js/history.js'
 					]
 				}
 			}
