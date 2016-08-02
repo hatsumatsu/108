@@ -51,8 +51,6 @@ var Sequencer = ( function() {
         analyserValue: 0
     }
 
-    var history = [];
-
     var init = function() {
         Debug.log( 'Sequencer.init()' );
 
