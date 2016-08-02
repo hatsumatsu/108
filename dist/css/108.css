@@ -266,8 +266,12 @@ h1 {
           flex-shrink: 0;
   width: 4rem;
 }
-.control-button--no-feedback:active {
+.control-button--no-feedback:active,
+.control-button--no-feedback.active {
   background: #ffffff;
+}
+.control-button--no-feedback.active {
+  color: #252529;
 }
 @media screen and (max-width: 656px) {
   .control-button--narrow {

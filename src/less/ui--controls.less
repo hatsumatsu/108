@@ -86,8 +86,13 @@
 
 .control-button--no-feedback {
 
-	&:active {
+	&:active,
+	&.active {
 		background: rgba( 255,255,255,1 );
+	}
+
+	&.active {
+		color: @color--bg;
 	}
 }
 
