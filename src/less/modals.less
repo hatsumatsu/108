@@ -28,7 +28,7 @@
 		opacity: 1;
 
 		transition-duration: 250ms, 100ms;
-		transition-delay: 0ms, 0ms;	
+		transition-delay: 0ms, 0ms;
 	}
 }
 
@@ -40,13 +40,13 @@
 
 	font-size: 0.875rem;
 	text-transform: uppercase;
-	text-align: center;	
+	text-align: center;
 	line-height: 1.75;
 
 	& > h4 {
 		margin: 2rem 0;
 	}
-	
+
 	& > p {
 		margin: 2rem 0;
 	}
@@ -72,11 +72,18 @@
 
 	font-size: 0.875rem;
 	text-transform: uppercase;
-	text-align: center;	
+	text-align: center;
 	line-height: 1;
 	color: inherit;
 
 	&:hover {
 		.animation--blink;
-	}	
+	}
+}
+
+
+@media screen and ( max-height: 480px ) {
+	.ui-modal-content {
+		font-size: 0.75rem;
+	}
 }

@@ -523,6 +523,11 @@ h1 {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
 }
+@media screen and (max-height: 480px) {
+  .ui-modal-content {
+    font-size: 0.75rem;
+  }
+}
 .intro {
   position: fixed;
   left: 0;
