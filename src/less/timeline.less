@@ -16,7 +16,7 @@
 		opacity: 0;
 
 		transition-duration: 150ms;
-	}	
+	}
 }
 
 .timeline-wrapper > svg {
@@ -31,7 +31,7 @@
 
 
 @media screen and ( orientation: portrait ) {
-	.timeline-wrapper {	
+	.timeline-wrapper {
 		width: 80vw;
 		height: 80vw;
 		margin: ~'calc( -40vw - 2.5rem )' 0 0 -40vw;
@@ -40,7 +40,14 @@
 
 
 @media screen and ( orientation: portrait ) and ( max-width: 460px ) {
-	.timeline-wrapper {	
+	.timeline-wrapper {
 		margin-top: ~'calc( -40vw - 6rem )';
+	}
+}
+
+
+@media screen and ( max-height: 480px ) {
+	.timeline-wrapper {
+		margin-top: ~'calc( -40vw - 5rem )';
 	}
 }

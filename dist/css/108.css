@@ -183,6 +183,11 @@ h1 {
     margin-top: calc( -40vw - 6rem );
   }
 }
+@media screen and (max-height: 480px) {
+  .timeline-wrapper {
+    margin-top: calc( -40vw - 5rem );
+  }
+}
 .ui--controls {
   position: fixed;
   left: 0;
@@ -298,6 +303,11 @@ h1 {
     min-width: calc( 25vw - 2rem );
   }
 }
+@media screen and (max-height: 480px) {
+  .control-button {
+    height: 3rem;
+  }
+}
 .ui-toggle--share {
   position: fixed;
   left: 0;
@@ -406,6 +416,12 @@ h1 {
   .visible--ui-controls .ui-toggle--share {
     -webkit-transform: translateY(-11rem);
             transform: translateY(-11rem);
+  }
+}
+@media screen and (max-height: 480px) {
+  .visible--ui-controls .ui-toggle--share {
+    -webkit-transform: translateY(-9rem);
+            transform: translateY(-9rem);
   }
 }
 .ui-toggle--info {
