@@ -51,8 +51,6 @@ var Sequencer = ( function() {
         analyserValue: 0
     }
 
-    var history = [];
-
     var init = function() {
         Debug.log( 'Sequencer.init()' );
 
@@ -75,13 +73,20 @@ var Sequencer = ( function() {
                 settings.isLoaded = true;
             } )
             .on( 'keydown', function( event ) {
+                var key = event.which;
+
+                // toggle metronome / handle Shift
+                // Shift
                 if( event.which === 16 ) {
                     settings.isShiftDown = true;
+
+                    event.preventDefault();
+
+                    toggleMetronome();
                 }
 
                 if( !settings.isKeyDown && !settings.isShiftDown ) {
                     settings.isKeyDown = true;
-                    var key = event.which;
 
                     // samples
                     if( settings.keyboardKeys[key] !== undefined ) {
@@ -100,14 +105,6 @@ var Sequencer = ( function() {
                         event.preventDefault();
 
                         togglePlayback();
-                    }
-
-                    // toggle metronome
-                    // Shift
-                    if( key === 16 ) {
-                        event.preventDefault();
-
-                        toggleMetronome();
                     }
 
                     // clear sequence

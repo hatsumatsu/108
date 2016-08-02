@@ -124,6 +124,9 @@ var Ui = ( function() {
             .on( 'sequencer/saveSequence', function( event, data ) {
                 setUrl( data.data );
             } )
+            .on( 'sequencer/toggleMetronome', function( event, data ) {
+                setButton( 'shift', data.state );
+            } )
             .on( 'focus', settings.selector.share.input, function( event ) {
                 $( this ).select();
             } );
@@ -191,6 +194,21 @@ var Ui = ( function() {
         }
 
         settings.isVisible.controls = !settings.isVisible.controls;
+    }
+
+
+    var setButton = function( key, state ) {
+        Debug.log( 'Ui.setButton()', key, state );
+
+        var button = $( settings.selector.button ).filter( '[data-key="' + key + '"]' );
+
+        if( button.length > 0 ) {
+            if( state ) {
+                button.addClass( 'active' );
+            } else {
+                button.removeClass( 'active' );
+            }
+        }
     }
 
     var toggleModal = function( id ) {

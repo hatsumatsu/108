@@ -15,7 +15,7 @@
 
 	.visible--ui-controls & {
 		transform: translateY( 0 );
-	}		
+	}
 }
 
 .ui-toggle--controls {
@@ -43,7 +43,7 @@
 		margin: 0 0.25em 0 0;
 
 		border: 1px solid currentColor;
-		border-radius: 50%;		
+		border-radius: 50%;
 	}
 
 	&:hover {
@@ -52,7 +52,7 @@
 
 	.visible--ui-controls & {
 		opacity: 1;
-		
+
 		&::before {
 			background: @color--text;
 		}
@@ -65,13 +65,13 @@
 	display: flex;
 }
 
-.control-button {	
+.control-button {
 	.button;
 
 	flex-grow: 1;
 	height: 4rem;
 	margin: 0.5rem;
-	padding: 0.65rem 0.7rem;	
+	padding: 0.65rem 0.7rem;
 
 	&:hover {
 
@@ -79,15 +79,20 @@
 }
 
 .control-button--narrow {
-	flex-grow: 0;	
+	flex-grow: 0;
 	flex-shrink: 0;
 	width: 4rem;
 }
 
 .control-button--no-feedback {
 
-	&:active {
-		background: rgba( 255,255,255,1 );		
+	&:active,
+	&.active {
+		background: rgba( 255,255,255,1 );
+	}
+
+	&.active {
+		color: @color--bg;
 	}
 }
 
@@ -98,10 +103,10 @@
 	}
 
 	.control-button--narrow {
-		flex-grow: 1;	
+		flex-grow: 1;
 		flex-shrink: 1;
 		width: auto;
-	}	
+	}
 }
 
 
@@ -111,10 +116,10 @@
 	}
 
 	.control-button {
-		min-width: ~'calc( 25vw - 2rem )';
+		min-width: ~'calc( 20vw - 2rem )';
 	}
 
 	.control-button--narrow {
-
-	}	
+		min-width: ~'calc( 25vw - 2rem )';
+	}
 }
