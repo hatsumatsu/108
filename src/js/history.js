@@ -56,7 +56,7 @@ var History = ( function() {
         Debug.log( 'History.init()', id );
 
         if( id ) {
-            if( Object.keys( history ).length > settings.maxLength - 1 ) {
+            if( history.length > 0 && Object.keys( history ).length > settings.maxLength - 1 ) {
                 history.shift();
             }
 
