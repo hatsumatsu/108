@@ -288,6 +288,9 @@ h1 {
             flex-wrap: wrap;
   }
   .control-button {
+    min-width: calc( 20vw - 2rem );
+  }
+  .control-button--narrow {
     min-width: calc( 25vw - 2rem );
   }
 }
