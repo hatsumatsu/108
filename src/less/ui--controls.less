@@ -97,15 +97,26 @@
 }
 
 
-@media screen and ( max-width: 656px ) {
+@media screen and ( max-width: 764px ) {
 	.control-button {
 
 	}
 
 	.control-button--narrow {
-		flex-grow: 1;
-		flex-shrink: 1;
 		width: auto;
+	}
+}
+
+
+@media screen and ( max-width: 656px ) {
+	.control-button {
+		flex-shrink: 1;
+		flex-grow: 1;
+	}
+
+	.control-button--narrow {
+		flex-shrink: 1;
+		flex-grow: 1;
 	}
 }
 
@@ -116,11 +127,11 @@
 	}
 
 	.control-button {
-		min-width: ~'calc( 20vw - 2rem )';
+		min-width: ~'calc( 20vw - 1.5rem )';
 	}
 
 	.control-button--narrow {
-		min-width: ~'calc( 25vw - 2rem )';
+		min-width: ~'calc( 20vw - 1.5rem )';
 	}
 }
 

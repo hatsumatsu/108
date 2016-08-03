@@ -51,8 +51,8 @@ var Recorder = ( function() {
                     var key = event.which;
 
                     // record
-                    // .
-                    if( key === 190 ) {
+                    // R
+                    if( key === 82 ) {
                         event.preventDefault();
 
                         if( !state.recording ) {
@@ -76,10 +76,14 @@ var Recorder = ( function() {
     var onComplete = function( blob ) {
         Debug.log( 'Recorder.onComplete()' );
 
-        saveAs( blob, '108-beat--' + Date.now() + '.wav' );
+        setTimeout( function() {
+            saveAs( blob, '108-beat--' + Date.now() + '.wav' );
 
-        state.processing = false;
-        state.busy = false;
+            state.processing = false;
+            state.busy = false;
+
+            $( document ).trigger( 'recorder/finish' );
+        }, 1000 );
     }
 
     var buildRecorder = function() {
@@ -101,6 +105,8 @@ var Recorder = ( function() {
 
         state.recording = true;
         state.busy = true;
+
+        $( document ).trigger( 'recorder/start' );
     }
 
     var stopRecording = function() {
@@ -110,6 +116,8 @@ var Recorder = ( function() {
 
         state.recording = false;
         state.processing = true;
+
+        $( document ).trigger( 'recorder/stop' );
     }
 
     return {
