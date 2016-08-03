@@ -1,6 +1,6 @@
 /**
  * Recorder
- *
+ * Uses https://github.com/higuma/web-audio-recorder-js
  */
 var Recorder = ( function() {
 
@@ -10,25 +10,16 @@ var Recorder = ( function() {
 
     var state = {
         keyDown: false,
-        recording: false
+        recording: false,
+        processing: false,
+        busy: false
     }
 
 
     var init = function() {
         Debug.log( 'Recorder.init()' );
 
-        Debug.log( Tone.Master );
-
-        settings.recorder = new WebAudioRecorder( Tone.Master.output, {
-            workerDir: 'src/js/workers/'
-        } );
-
-        settings.recorder.startRecording();
-        setTimeout( function() {
-            settings.recorder.finishRecording()
-        }, 20000 );
-
-        Debug.log( settings.recorder );
+        buildRecorder();
 
         bindEventHandlers();
 
@@ -37,16 +28,20 @@ var Recorder = ( function() {
 
     var bindEventHandlers = function() {
         settings.recorder.onComplete = function( recorder, blob ) {
-            saveAs( blob, '001.wav' );
+            onComplete( blob );
         }
 
         $( document )
             .on( 'ui/clickButton', function( event, data ) {
                 if( data.action === 'record' ) {
                     if( !state.recording ) {
-                        startRecording();
+                        if( !state.busy ) {
+                            startRecording();
+                        }
                     } else {
-                        stopRecording();
+                        if( !state.processing ) {
+                            stopRecording();
+                        }
                     }
                 }
             } )
@@ -61,9 +56,13 @@ var Recorder = ( function() {
                         event.preventDefault();
 
                         if( !state.recording ) {
-                            startRecording();
+                            if( !state.busy ) {
+                                startRecording();
+                            }
                         } else {
-                            stopRecording();
+                            if( !state.processing ) {
+                                stopRecording();
+                            }
                         }
                     }
                 }
@@ -74,16 +73,43 @@ var Recorder = ( function() {
             } )
     }
 
+    var onComplete = function( blob ) {
+        Debug.log( 'Recorder.onComplete()' );
+
+        saveAs( blob, '108-beat--' + Date.now() + '.wav' );
+
+        state.processing = false;
+        state.busy = false;
+    }
+
+    var buildRecorder = function() {
+        Debug.log( 'Recorder.buildRecorder()' );
+
+        if( Tone.Master ) {
+            settings.recorder = new WebAudioRecorder( Tone.Master.output, {
+                workerDir: 'src/js/workers/'
+            } );
+        } else {
+            Debug.log( 'Tone.Master was not found' );
+        }
+    }
+
     var startRecording = function() {
         Debug.log( 'Recorder.startRecording()' );
 
+        settings.recorder.startRecording();
+
         state.recording = true;
+        state.busy = true;
     }
 
     var stopRecording = function() {
         Debug.log( 'Recorder.stopRecording()' );
 
+        settings.recorder.finishRecording();
+
         state.recording = false;
+        state.processing = true;
     }
 
     return {

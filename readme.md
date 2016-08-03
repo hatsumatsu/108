@@ -20,3 +20,4 @@ The app is built using some really great libraries:
 - [Tone.js](https://github.com/Tonejs/Tone.js)
 - [Snap.svg](https://github.com/adobe-webplatform/Snap.svg)
 - [GreenSock Animation Platform](https://github.com/greensock/GreenSock-JS)
+- [WebAudioRecorder.js](https://github.com/higuma/web-audio-recorder-js)
