@@ -48,12 +48,8 @@ var Timeline = ( function() {
             .on( 'viewport/loop', function() {
                 onLoop();
             } )
-            .on( 'viewport/resize/finish', function() {
-                onResize();
-            } )
             .on( 'timeline/loaded', function() {
                 settings.isLoaded = true;
-                resize();
                 run();
             } )
             .on( 'sequencer/addSequenceItem', function( event, data ) {
@@ -79,22 +75,24 @@ var Timeline = ( function() {
             } );
     }
 
-    var onResize = function() {
-        resize();
-    }
-
     var onLoop = function() {
         run();
     }
 
     var build = function() {
         // create blank SVG
-        settings.svg.timeline = Snap( 512,512 )
-            .attr( 'id', settings.selector.timeline.replace( '#', '' ) );
+        settings.svg.timeline = Snap()
+            .attr( 'id', settings.selector.timeline.replace( '#', '' ) )
+            .attr( {
+              viewBox: '0 0 512 512'
+            } );
 
         // create placeholder SVG
-        settings.svg.placeholder = Snap( 512,512 )
-            .attr( 'id', settings.selector.placeholder.replace( '#', '' ) );
+        settings.svg.placeholder = Snap()
+            .attr( 'id', settings.selector.placeholder.replace( '#', '' ) )
+            .attr( {
+              viewBox: '0 0 512 512'
+            } );
 
         // add layers
         for( var key in settings.layer ) {
@@ -152,31 +150,6 @@ var Timeline = ( function() {
                 $( document ).trigger( 'timeline/loaded' );
             }
         } );
-    }
-
-    var resize = function() {
-        Debug.log( 'Timeline.resize()' );
-        settings.size = $( settings.selector.wrapper ).width();
-        settings.scaleFactor = settings.size / 512;
-
-        // set size
-        $( settings.selector.timeline + ', ' + settings.selector.placeholder )
-            .css( {
-                'transform': 'scale( ' + settings.scaleFactor + ', ' + settings.scaleFactor + ' )'
-            } );
-
-        // set stroke width
-        settings.svg.timeline
-            .selectAll( 'path' )
-            .attr( {
-                strokeWidth: 1 / settings.scaleFactor
-            } );
-
-        settings.svg.placeholder
-            .selectAll( 'path' )
-            .attr( {
-                strokeWidth: 1 / settings.scaleFactor
-            } );
     }
 
     var run = function() {

@@ -16,7 +16,7 @@ html {
 	font-family: @font--1;
 	font-size: 100%;
 	color: @color--text;
-	letter-spacing: 0.1em;	
+	letter-spacing: 0.1em;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -52,19 +52,6 @@ body {
 
 		&::after {
 			opacity: 1;
-		}
-	}
-
-	.resizing & {
-
-		&::after {
-			border-style: dashed;
-
-			opacity: 1;
-
-			animation: rotating 3s infinite linear;
-
-			transition-duration: 750ms;
 		}
 	}
 }
