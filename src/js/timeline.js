@@ -154,15 +154,13 @@ var Timeline = ( function() {
 
     var run = function() {
         var runner = $( '#' + settings.layer.runner );
-        var progress = Sequencer.getProgress();
-        var angle = 360 * progress;
+        var progress = Sequencer.getProgress() * 100;
 
         TweenLite.to(
             runner,
             0,
             {
-                transformOrigin: '50% 50%',
-                rotation: angle,
+                x: progress + "%",
                 ease: Linear.easeNone
             }
         );
