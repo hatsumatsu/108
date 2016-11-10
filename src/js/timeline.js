@@ -20,7 +20,8 @@ var Timeline = ( function() {
             1: 'timeline--note-1',
             2: 'timeline--note-2',
             3: 'timeline--note-3',
-            4: 'timeline--note-4'
+            4: 'timeline--note-4',
+            5: 'timeline--note-5'
         },
         notes: [],
         svg: {},
@@ -170,10 +171,10 @@ var Timeline = ( function() {
         Debug.log( 'Timeline.addNote()', step, sample, division, id );
         var layer = settings.svg.placeholder.select( '.' + settings.layerNotes[sample] );
         var layer2 = $('.timeline-wrapper .sample[data-sample="' + sample + '"] .step[data-step="' + step + '"] .content');
-        $(layer2).prepend(sample + '/' + step);
 
         if( layer ) {
             layer = layer.clone();
+            $(layer2).prepend(sample + '/' + step);
 
             var note = {
                 step: step,
@@ -185,15 +186,15 @@ var Timeline = ( function() {
             settings.notes.push( note );
 
             layer2
-              .attr( 'data-id', id )
-              .prependTo( settings.svg.timeline );
+              .attr( 'data-id', id );
+              //.prependTo( settings.svg.timeline );
 
             TweenLite.to(
-                layer2.node,
+                layer2,
                 0,
                 {
                     transformOrigin: '50% 50%',
-                    rotation: angle,
+                    color: "#FFFFF",
                     ease: Linear.easeNone
                 }
             );

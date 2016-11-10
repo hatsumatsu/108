@@ -6,11 +6,12 @@ var Sequencer = ( function() {
 
     var settings = {
         keyboardKeys: {
-            67: 0, // c
-            86: 1, // v
-            66: 2, // b
-            78: 3, // n
-            77: 4  // m
+            65: 0, // a
+            83: 1, // s
+            68: 2, // d
+            70: 3, // f
+            71: 4, // g
+            72: 5  // h
         },
         iskeyDown: false,
         isShiftDown: false,
@@ -34,6 +35,10 @@ var Sequencer = ( function() {
                 },
                 4: {
                     src:        'dist/samples/808/mp3/tom--8.mp3',
+                    velocity:   1
+                },
+                5: {
+                    src:        'dist/samples/808/mp3/cymbal--1.mp3',
                     velocity:   1
                 }
             }
