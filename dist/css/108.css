@@ -143,18 +143,21 @@ h1 {
   left: 0;
   top: 0;
   z-index: 0;
-  width: 90vw;
-  height: 90vh;
-  margin: 5vh 5vw;
+  width: calc(100% - 2rem);
+  height: 88vh;
+  margin: 6vh 1rem;
   overflow: hidden;
-  -webkit-transition: opacity 750ms ease;
-          transition: opacity 750ms ease;
+  -webkit-transition: opacity 750ms ease, height 300ms ease;
+          transition: opacity 750ms ease, height 300ms ease;
   outline: 1px solid white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-flow: row wrap;
       flex-flow: row wrap;
+}
+.visible--ui-controls .timeline-wrapper {
+  height: calc(88% - 96px);
 }
 .timeline-wrapper svg {
   display: none;
@@ -286,7 +289,7 @@ h1 {
     width: auto;
   }
 }
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 530px) {
   .button-row {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
@@ -407,7 +410,7 @@ h1 {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
 }
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 530px) {
   .visible--ui-controls .ui-toggle--share {
     -webkit-transform: translateY(-11rem);
             transform: translateY(-11rem);

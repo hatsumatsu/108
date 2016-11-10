@@ -4,17 +4,21 @@
 	top: 0;
 	z-index: 0;
 
-	width: 90vw;
-	height: 90vh;
-	margin: 5vh 5vw;
+	width: ~"calc(100% - 2rem)";
+	height: 88vh;
+	margin: 6vh 1rem;
 
 	overflow: hidden;
 
-	transition: opacity 750ms ease;
+	transition: opacity 750ms ease, height 300ms ease;
 	outline: 1px solid white;
 
 	display:flex;
 	flex-flow: row wrap;
+
+	.visible--ui-controls & {
+		height: ~"calc(88% - 96px)";
+	}
 
 	svg {
 		display: none;
