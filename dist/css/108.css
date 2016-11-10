@@ -91,6 +91,18 @@ p > a:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
 }
+button {
+  background: transparent;
+  border: none;
+  font-family: 'Lab Mono Web', monospace;
+  line-height: 1.8;
+  cursor: pointer;
+  padding: inherit;
+  color: inherit;
+  text-decoration: none;
+  text-transform: inherit;
+  font-size: inherit;
+}
 h1,
 h2,
 h3,

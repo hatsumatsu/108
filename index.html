@@ -117,79 +117,79 @@ _paq.push(['enableLinkTracking']);
 		<!-- CONTROLS -->
 		<div class="ui--controls">
 			<div class="button-row">
-				<a href="#" class="ui-toggle ui-toggle--controls" title="Toggle controls">
+				<button type="button" class="ui-toggle ui-toggle--controls" title="Toggle controls">
 					ctrl
-				</a>
+				</button>
 
-				<a href="#" class="control-button" data-sample="0" data-key="a" title="Play sample">
+				<button type="button" class="control-button" data-sample="0" data-key="a" title="Play sample">
 					A
-				</a>
-				<a href="#" class="control-button" data-sample="1" data-key="s" title="Play sample">
+				</button>
+				<button type="button" class="control-button" data-sample="1" data-key="s" title="Play sample">
 					S
-				</a>
-				<a href="#" class="control-button" data-sample="2" data-key="d" title="Play sample">
+				</button>
+				<button type="button" class="control-button" data-sample="2" data-key="d" title="Play sample">
 					D
-				</a>
-				<a href="#" class="control-button" data-sample="3" data-key="f" title="Play sample">
+				</button>
+				<button type="button" class="control-button" data-sample="3" data-key="f" title="Play sample">
 					F
-				</a>
-				<a href="#" class="control-button" data-sample="4" data-key="g" title="Play sample">
+				</button>
+				<button type="button" class="control-button" data-sample="4" data-key="g" title="Play sample">
 					G
-				</a>
-				<a href="#" class="control-button" data-sample="5" data-key="h" title="Play sample">
+				</button>
+				<button type="button" class="control-button" data-sample="5" data-key="h" title="Play sample">
 					H
-				</a>
+				</button>
 
-				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="z" data-action="undo" title="undo">
+				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="z" data-action="undo" title="undo">
 					Z
-				</a>
+				</button>
 
-				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="space" data-action="play" title="play / pause">
+				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="space" data-action="play" title="play / pause">
 					_
-				</a>
+				</button>
 
-				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="q" data-action="clear" title="Clear loop">
+				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="q" data-action="clear" title="Clear loop">
 					X
-				</a>
+				</button>
 
-				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="shift" data-action="metronome" title="Toggle metronome">
+				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="shift" data-action="metronome" title="Toggle metronome">
 					/
-				</a>
+				</button>
 			</div>
 		</div>
 
 		<!-- UI SHARE -->
 		<div class="ui--share" data-modal="share">
-			<a href="#" class="ui-toggle ui-toggle--share" data-modal-action="toggle">
+			<button type="button" class="ui-toggle ui-toggle--share" data-modal-action="toggle">
 				share
-			</a>
+			</button>
 
 			<div class="ui-modal ui-modal--share" id="share">
-				<a href="#" class="ui-modal-close ui-modal-close--share" data-modal-action="toggle">
+				<button type="button" class="ui-modal-close ui-modal-close--share" data-modal-action="toggle">
 					x
-				</a>
+				</button>
 				<div class="ui-modal-content">
 					<p>
 						Share your beat:
 					</p>
 
 					<p>
-						<a href="#" class="share-link" data-service="facebook">
+						<button type="button" class="share-link" data-service="facebook">
 							@Facebook
-						</a>
+						</button>
 					</p>
 
 					<p>
-						<a href="#" class="share-link" data-service="twitter">
+						<button type="button" class="share-link" data-service="twitter">
 							@Twitter
-						</a>
+						</button>
 					</p>
 
 					<div class="share-url">
 						<input type="text" class="share-url-input" id="share-url-input">
-						<a href="#" class="share-url-button" data-clipboard-target="#share-url-input">
+						<button type="button" class="share-url-button" data-clipboard-target="#share-url-input">
 							copy
-						</a>
+						</button>
 					</div>
 				</div>
 			</div>
@@ -197,17 +197,17 @@ _paq.push(['enableLinkTracking']);
 
 		<!-- UI INFO -->
 		<div class="ui--info" data-modal="info">
-			<a href="#" class="ui-toggle ui-toggle--info" data-modal-action="toggle">
+			<button type="button" class="ui-toggle ui-toggle--info" data-modal-action="toggle">
 				info
-			</a>
+			</button>
 
 			<div class="ui-modal ui-modal--info" id="info">
-				<a href="#" class="ui-modal-close ui-modal-close--info" data-modal-action="toggle">
+				<button type="button" class="ui-modal-close ui-modal-close--info" data-modal-action="toggle">
 					x
-				</a>
+				</button>
 				<div class="ui-modal-content">
 					<p>
-<a href="http://martinwecke.de/108">108</a> is a minimal beat machine in the browser.
+<a href="http://martinwecke.de/108" target="_blank">108</a> is a minimal beat machine in the browser.
 					</p>
 					<p>
 Use the <span class="key">C</span> <span class="key">V</span> <span class="key">B</span> <span class="key">N</span> <span class="key">M</span> keys on your keyboard to play samples. <span class="key">Z</span>&nbsp;removes the previously added note, <span class="key">x</span>&nbsp;clears the sequence and <span class="key">space</span>&nbsp;starts/stops playback. <span class="key">Shift</span>&nbsp;toggles a metronome in case you need one.
@@ -218,9 +218,9 @@ Use the <span class="key">C</span> <span class="key">V</span> <span class="key">
 					</p>
 
 					<div class="modal-actions modal-actions--info">
-						<a href="#" class="button" data-modal-action="toggle">
+						<button type="button" class="button" data-modal-action="toggle">
 							Got it!
-						</a>
+						<button type="button"
 					</div>
 				</div>
 			</div>
