@@ -18,27 +18,27 @@ var Sequencer = ( function() {
 		samples: {
 			'808': {
 				0: {
-					src:        'dist/samples/808/wav/01.wav',
+					src:        'dist/samples/808/wav/00.wav',
 					velocity:   1
 				},
 				1: {
-					src:        'dist/samples/808/wav/02.wav',
+					src:        'dist/samples/808/wav/01.wav',
 					velocity:   1
 				},
 				2: {
-					src:        'dist/samples/808/wav/03.wav',
+					src:        'dist/samples/808/wav/02.wav',
 					velocity:   0.75
 				},
 				3:  {
-					src:        'dist/samples/808/wav/04.wav',
+					src:        'dist/samples/808/wav/03.wav',
 					velocity:   1
 				},
 				4: {
-					src:        'dist/samples/808/wav/05.wav',
+					src:        'dist/samples/808/wav/04.wav',
 					velocity:   1
 				},
 				5: {
-					src:        'dist/samples/808/wav/06.wav',
+					src:        'dist/samples/808/wav/05.wav',
 					velocity:   1
 				}
 			}
