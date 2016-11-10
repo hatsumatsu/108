@@ -160,7 +160,7 @@ var Ui = ( function() {
     var highlightTitle = function() {
         Debug.log( 'Ui.highlightTitle()' );
 
-        if( !Modernizr.touchevents && Viewport.getWidth() > 768 ) {
+        if( !Modernizr.touchevents ) {
             var title = $( settings.selector.title );
 
             new TimelineLite()

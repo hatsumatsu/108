@@ -59,7 +59,5 @@ var Title = ( function() {
 } )();
 
 $( document ).ready( function() {
-    if( Viewport.getWidth() > 768 ) {
-        Title.init();
-    }
+    Title.init();
 } );
