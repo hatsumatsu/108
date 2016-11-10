@@ -168,8 +168,10 @@ var Timeline = ( function() {
 
     var addNote = function( step, sample, division, id ) {
         Debug.log( 'Timeline.addNote()', step, sample, division, id );
-
         var layer = settings.svg.placeholder.select( '.' + settings.layerNotes[sample] );
+        var layer2 = $('.timeline-wrapper .sample[data-sample="' + sample + '"] .step[data-step="' + step + '"] .content');
+        $(layer2).prepend(sample + '/' + step);
+
         if( layer ) {
             layer = layer.clone();
 
@@ -182,14 +184,12 @@ var Timeline = ( function() {
 
             settings.notes.push( note );
 
-            var angle = step / division * 360;
-
-            layer
-                .attr( 'data-id', id )
-                .prependTo( settings.svg.timeline );
+            layer2
+              .attr( 'data-id', id )
+              .prependTo( settings.svg.timeline );
 
             TweenLite.to(
-                layer.node,
+                layer2.node,
                 0,
                 {
                     transformOrigin: '50% 50%',
@@ -228,8 +228,10 @@ var Timeline = ( function() {
 
         // remove layer
         var layer = $( settings.selector.timeline ).find( '[data-id="' + id + '"]' );
-        if( layer ) {
-            layer.remove();
+        var layer2 = $('.timeline-wrapper .content[data-id="' + id + '"]');
+
+        if( layer2 ) {
+            layer2.remove();
         }
 
         // remove entry in settings.notes
@@ -248,6 +250,8 @@ var Timeline = ( function() {
         settings.svg.timeline
             .selectAll( '.timeline--note' )
             .remove();
+
+        $('.timeline-wrapper .content').empty()
     }
 
     var animateLine = function( path, duration, direction ) {

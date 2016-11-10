@@ -175,11 +175,20 @@ h1 {
   outline: 1px solid blue;
   width: 100%;
 }
-.timeline-wrapper .sample .division {
+.timeline-wrapper .sample .step {
   outline: 1px solid green;
   -webkit-box-flex: 1;
       -ms-flex: 1 auto;
           flex: 1 auto;
+  position: relative;
+}
+.timeline-wrapper .sample .step .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
 }
 .ui--controls {
   position: fixed;

@@ -33,9 +33,19 @@
 		outline: 1px solid blue;
 		width: 100%;
 
-		.division {
+		.step {
 			outline: 1px solid green;
 			flex: 1 auto;
+			position: relative;
+
+			.content {
+					position: absolute;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					right: 0;
+					text-align: center;
+			}
 		}
 	}
 }
