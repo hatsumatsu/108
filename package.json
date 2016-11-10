@@ -1,17 +1,17 @@
 {
-	"name":			"108",
-	"version":		"0.0.1",
-	"author":		"Martin Wecke, HATSUMATSU",
-	"private":		true,
-
-	"devDependencies": {
-		"grunt":					"*",
-		"grunt-contrib-watch":		"*",
-		"grunt-contrib-less":		"*",
-		"grunt-autoprefixer":		"*",
-		"grunt-modernizr":			"*",
-		"grunt-contrib-uglify":		"*",
-		"grunt-contrib-copy": 		"*",		
-		"matchdep":					"*"
-	} 
+  "name": "108",
+  "version": "0.0.1",
+  "author": "Martin Wecke, HATSUMATSU",
+  "private": true,
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-autoprefixer": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-fixindent": "^0.1.3",
+    "grunt-modernizr": "*",
+    "matchdep": "*"
+  }
 }

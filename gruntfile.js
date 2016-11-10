@@ -9,6 +9,8 @@ module.exports = function( grunt ) {
 		require( './.deployment' );
 	} catch( error ) {}
 
+	grunt.loadNpmTasks('grunt-fixindent');
+
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
 
@@ -99,6 +101,19 @@ module.exports = function( grunt ) {
 			js: {
 				files: ['src/js/**/*.js','!js/**/*.min.js'],
 				tasks: ['buildjs']
+			}
+		},
+
+		fixindent: {
+			scripts: {
+				src: [
+					'src/js/*.js'
+				],
+				dest: 'src/js/',
+				options: {
+					style: 'tab',
+					size: 1
+				}
 			}
 		}
 
