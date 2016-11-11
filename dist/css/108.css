@@ -161,7 +161,7 @@ h1 {
   overflow: hidden;
   -webkit-transition: opacity 750ms ease, height 300ms ease;
           transition: opacity 750ms ease, height 300ms ease;
-  outline: 1px solid white;
+  border: 1px solid yellow;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -187,11 +187,11 @@ h1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  outline: 1px solid blue;
+  border: 1px solid blue;
   width: 100%;
 }
 .timeline-wrapper .sample .step {
-  outline: 1px solid green;
+  border: 1px solid green;
   -webkit-box-flex: 1;
       -ms-flex: 1 auto;
           flex: 1 auto;
@@ -203,7 +203,15 @@ h1 {
   left: 0;
   bottom: 0;
   right: 0;
-  text-align: center;
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 .ui--controls {
   position: fixed;

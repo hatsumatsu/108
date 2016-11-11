@@ -16,31 +16,29 @@ var Sequencer = ( function() {
 		iskeyDown: false,
 		isShiftDown: false,
 		samples: {
-			'808': {
-				0: {
-					src:        'dist/samples/808/wav/00.wav',
-					velocity:   1
-				},
-				1: {
-					src:        'dist/samples/808/wav/01.wav',
-					velocity:   1
-				},
-				2: {
-					src:        'dist/samples/808/wav/02.wav',
-					velocity:   0.75
-				},
-				3:  {
-					src:        'dist/samples/808/wav/03.wav',
-					velocity:   1
-				},
-				4: {
-					src:        'dist/samples/808/wav/04.wav',
-					velocity:   1
-				},
-				5: {
-					src:        'dist/samples/808/wav/05.wav',
-					velocity:   1
-				}
+			0: {
+				src:        'dist/samples/808/wav/00.wav',
+				velocity:   1
+			},
+			1: {
+				src:        'dist/samples/808/wav/01.wav',
+				velocity:   1
+			},
+			2: {
+				src:        'dist/samples/808/wav/02.wav',
+				velocity:   0.75
+			},
+			3:  {
+				src:        'dist/samples/808/wav/03.wav',
+				velocity:   1
+			},
+			4: {
+				src:        'dist/samples/808/wav/04.wav',
+				velocity:   1
+			},
+			5: {
+				src:        'dist/samples/808/wav/05.wav',
+				velocity:   1
 			}
 		},
 		bpm:           108,
@@ -199,12 +197,10 @@ var Sequencer = ( function() {
 	var initSampler = function() {
 		Debug.log( 'Sequencer.initSampler()' );
 
-		var samples = {
-			'808': {}
-		}
+		var samples = {}
 
-		for( var i = 0; i < Object.keys( settings.samples['808'] ).length; i++ ) {
-			samples['808'][i] = settings.samples['808'][i].src;
+		for( var i = 0; i < Object.keys( settings.samples ).length; i++ ) {
+			samples[i] = settings.samples[i].src;
 		}
 
 		settings.sampler = new Tone.Sampler(
@@ -217,8 +213,8 @@ var Sequencer = ( function() {
 		Debug.log( 'Sequencer.playSample()', i );
 
 		if( settings.isLoaded ) {
-			var velocity = settings.samples['808'][i].velocity;
-			settings.sampler.triggerAttack( '808.' + i, time, velocity );
+			var velocity = settings.samples[i].velocity;
+			settings.sampler.triggerAttack( '' + i, time, velocity );
 
 			$( document ).trigger( 'sequencer/playSample', [ {
 				sample: i
@@ -269,7 +265,7 @@ var Sequencer = ( function() {
 				}
 			}
 
-			for( var i = 0; i < Object.keys( settings.samples['808'] ).length; i++ ) {
+			for( var i = 0; i < Object.keys( settings.samples ).length; i++ ) {
 				if( settings.sequence[i][step] === 1  ) {
 					playSample( i );
 
@@ -437,7 +433,7 @@ var Sequencer = ( function() {
 		Debug.log( 'Sequencer.clearSequence()' );
 
 		// init sequence
-		for( var i = 0; i < Object.keys( settings.samples['808'] ).length; i++ ) {
+		for( var i = 0; i < Object.keys( settings.samples ).length; i++ ) {
 			var track = [];
 
 			for( var j = 0; j < settings.division; j++ ) {
@@ -518,6 +514,10 @@ var Sequencer = ( function() {
 		return settings.sequence;
 	}
 
+	var getSamples = function() {
+		return settings.samples;
+	}
+
 	var getDivision = function() {
 		return settings.division;
 	}
@@ -527,6 +527,7 @@ var Sequencer = ( function() {
 		isReady:     function() { return isReady(); },
 		getProgress: function() { return getProgress() },
 		getSequence: function() { return getSequence() },
+		getSamples:  function() { return getSamples()  },
 		getDivision: function() { return getDivision() }
 	}
 
