@@ -156,7 +156,7 @@ var Sequencer = ( function() {
 				}
 			} )
 			.on( 'timeline/clickAdd', function( event, data ) {
-				addSequenceItem( data.sample, data.step );
+				addSequenceItem( data.sample, data.step, true );
 			} )
 			.on( 'url/init', function( event, data ) {
 				var hash = data.hash;
@@ -317,11 +317,11 @@ var Sequencer = ( function() {
 		}
 	}
 
-	var addSequenceItem = function( i, step ) {
-		//Debug.log( 'Sequencer.addSequenceItem()', i, step );
+	var addSequenceItem = function( i, step, timelineClick ) {
+		Debug.log( 'Sequencer.addSequenceItem()', i, step );
 
-		if( settings.isPlaying && settings.isRecording ) {
-			if( !step && step !== 0) {
+		if( settings.isPlaying && settings.isRecording || timelineClick) {
+			if( !step && step !== 0 ) {
 				var step = Math.round( settings.division * settings.loop.progress );
 				if( step >= settings.division ) {
 					step = 0;
@@ -351,7 +351,7 @@ var Sequencer = ( function() {
 
 	var removeSequenceItem = function( step, sample, division, id ) {
 		//Debug.log( 'Sequencer.removeSequenceItem()', step, sample, division, id );
-		console.log('entrou')
+
 		if( settings.sequence[sample][step] ) {
 			settings.sequence[sample][step] = 0;
 
