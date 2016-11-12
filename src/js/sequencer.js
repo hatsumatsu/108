@@ -321,7 +321,7 @@ var Sequencer = ( function() {
 		//Debug.log( 'Sequencer.addSequenceItem()', i, step );
 
 		if( settings.isPlaying && settings.isRecording ) {
-			if( !step ) {
+			if( !step && step !== 0) {
 				var step = Math.round( settings.division * settings.loop.progress );
 				if( step >= settings.division ) {
 					step = 0;
@@ -452,13 +452,7 @@ var Sequencer = ( function() {
 	var buildDemoSequence = function() {
 		//Debug.log( 'Sequencer.buildDemoSequence()' );
 
-		settings.sequence[0][0] = 1;
-
-		$( document ).trigger( 'sequencer/addSequenceItem', [ {
-			step:       0,
-			sample:     0,
-			division:   settings.division
-		} ] );
+		addSequenceItem(0, 0);
 	}
 
 
