@@ -52,7 +52,7 @@ var Sequencer = ( function() {
 		timeLastStep:  0,
 		timeBetweenSteps: 0,
 		analyserValue: 0,
-		appendId: 0
+		sampleId: 0
 	}
 
 	var init = function() {
@@ -319,7 +319,7 @@ var Sequencer = ( function() {
 	}
 
 	var addSequenceItem = function( i, step, timelineClick ) {
-		Debug.log( 'Sequencer.addSequenceItem()', i, step );
+		//Debug.log( 'Sequencer.addSequenceItem()', i, step );
 
 		if( settings.isPlaying && settings.isRecording || timelineClick) {
 			if( !step && step !== 0 ) {
@@ -335,7 +335,7 @@ var Sequencer = ( function() {
 
 			if( !settings.sequence[i][step] ) {
 				settings.sequence[i][step] = ( pending ) ? 2 : 1;
-				settings.appendId += 1;
+				settings.sampleId += 1;
 
 				$( document ).trigger( 'sequencer/changeSequence', [ {
 					sequence: settings.sequence
@@ -345,7 +345,7 @@ var Sequencer = ( function() {
 					step:       step,
 					sample:     i,
 					division:   settings.division,
-					id:         settings.appendId
+					id:         settings.sampleId
 				} ] );
 			}
 		}
