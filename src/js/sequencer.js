@@ -55,7 +55,7 @@ var Sequencer = ( function() {
 	}
 
 	var init = function() {
-		Debug.log( 'Sequencer.init()' );
+		//Debug.log( 'Sequencer.init()' );
 
 		initSampler();
 		initSignal();
@@ -68,11 +68,11 @@ var Sequencer = ( function() {
 	}
 
 	var bindEventHandlers = function() {
-		Debug.log( 'Sequencer.bindEventHandlers()' );
+		//Debug.log( 'Sequencer.bindEventHandlers()' );
 
 		$( document )
 			.on( 'sequencer/loaded', function() {
-				Debug.log( 'All samples are loaded' );
+				//Debug.log( 'All samples are loaded' );
 				settings.isLoaded = true;
 			} )
 			.on( 'keydown', function( event ) {
@@ -155,6 +155,9 @@ var Sequencer = ( function() {
 					}
 				}
 			} )
+			.on( 'timeline/clickAdd', function( event, data ) {
+				addSequenceItem( data.sample, data.step );
+			} )
 			.on( 'url/init', function( event, data ) {
 				var hash = data.hash;
 				if( hash ) {
@@ -195,7 +198,7 @@ var Sequencer = ( function() {
 
 	// Samples
 	var initSampler = function() {
-		Debug.log( 'Sequencer.initSampler()' );
+		//Debug.log( 'Sequencer.initSampler()' );
 
 		var samples = {}
 
@@ -210,7 +213,7 @@ var Sequencer = ( function() {
 
 
 	var playSample = function( i, time ) {
-		Debug.log( 'Sequencer.playSample()', i );
+		//Debug.log( 'Sequencer.playSample()', i );
 
 		if( settings.isLoaded ) {
 			var velocity = settings.samples[i].velocity;
@@ -225,7 +228,7 @@ var Sequencer = ( function() {
 
 	// Playback
 	var initPlayback = function() {
-		Debug.log( 'Sequencer.initPlayback()' );
+		//Debug.log( 'Sequencer.initPlayback()' );
 
 		clearSequence();
 
@@ -289,7 +292,7 @@ var Sequencer = ( function() {
 	}
 
 	var startPlayback = function() {
-		Debug.log( 'Sequencer.startPlayback()' );
+		//Debug.log( 'Sequencer.startPlayback()' );
 
 		settings.isPlaying = true;
 		$( document ).trigger( 'sequencer/startPlayback' );
@@ -298,7 +301,7 @@ var Sequencer = ( function() {
 	}
 
 	var stopPlayback = function() {
-		Debug.log( 'Sequencer.stopPlayback()' );
+		//Debug.log( 'Sequencer.stopPlayback()' );
 
 		settings.isPlaying = false;
 		$( document ).trigger( 'sequencer/stopPlayback' );
@@ -315,7 +318,7 @@ var Sequencer = ( function() {
 	}
 
 	var addSequenceItem = function( i, step ) {
-		Debug.log( 'Sequencer.addSequenceItem()', i, step );
+		//Debug.log( 'Sequencer.addSequenceItem()', i, step );
 
 		if( settings.isPlaying && settings.isRecording ) {
 			if( !step ) {
@@ -325,7 +328,7 @@ var Sequencer = ( function() {
 				}
 			}
 
-			Debug.log( 'step', step );
+			//Debug.log( 'step', step );
 
 			var pending = ( ( settings.division * settings.loop.progress ) < step ) ? true : false;
 
@@ -347,8 +350,8 @@ var Sequencer = ( function() {
 	}
 
 	var removeSequenceItem = function( step, sample, division, id ) {
-		Debug.log( 'Sequencer.removeSequenceItem()', step, sample, division, id );
-
+		//Debug.log( 'Sequencer.removeSequenceItem()', step, sample, division, id );
+		console.log('entrou')
 		if( settings.sequence[sample][step] ) {
 			settings.sequence[sample][step] = 0;
 
@@ -370,7 +373,7 @@ var Sequencer = ( function() {
 	* [A-Z] are the steps of the sequence followed by [0-9] for each note
 	*/
 	var saveSequence = function() {
-		Debug.log( 'Sequencer.saveSequence()' );
+		//Debug.log( 'Sequencer.saveSequence()' );
 
 		var data = '';
 
@@ -398,7 +401,7 @@ var Sequencer = ( function() {
 			}
 		}
 
-		Debug.log( string );
+		//Debug.log( string );
 
 		$( document ).trigger( 'sequencer/saveSequence', [{
 			data: string
@@ -406,7 +409,7 @@ var Sequencer = ( function() {
 	}
 
 	var loadSequence = function( string ) {
-		Debug.log( 'Sequencer.loadSequence()', string );
+		//Debug.log( 'Sequencer.loadSequence()', string );
 
 		// loop over every char of the string
 		var data = [];
@@ -430,7 +433,7 @@ var Sequencer = ( function() {
 	}
 
 	var clearSequence = function() {
-		Debug.log( 'Sequencer.clearSequence()' );
+		//Debug.log( 'Sequencer.clearSequence()' );
 
 		// init sequence
 		for( var i = 0; i < Object.keys( settings.samples ).length; i++ ) {
@@ -447,7 +450,7 @@ var Sequencer = ( function() {
 	}
 
 	var buildDemoSequence = function() {
-		Debug.log( 'Sequencer.buildDemoSequence()' );
+		//Debug.log( 'Sequencer.buildDemoSequence()' );
 
 		settings.sequence[0][0] = 1;
 
@@ -461,7 +464,7 @@ var Sequencer = ( function() {
 
 	// Recording
 	var startRecording = function() {
-		Debug.log( 'Sequencer.startRecording()' );
+		//Debug.log( 'Sequencer.startRecording()' );
 
 		settings.isRecording = true;
 		$( document ).trigger( 'sequencer/startRecording' );
@@ -469,7 +472,7 @@ var Sequencer = ( function() {
 	}
 
 	var stopRecording = function() {
-		Debug.log( 'Sequencer.stopRecording()' );
+		//Debug.log( 'Sequencer.stopRecording()' );
 
 		settings.isRecording = false;
 		$( document ).trigger( 'sequencer/stopRecording' );
@@ -478,7 +481,7 @@ var Sequencer = ( function() {
 
 	// Metronome
 	var initMetronome = function() {
-		Debug.log( 'Sequencer.initMetronome()' );
+		//Debug.log( 'Sequencer.initMetronome()' );
 			settings.metronome = new Tone.SimpleSynth().toMaster();
 	}
 

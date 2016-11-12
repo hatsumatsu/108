@@ -161,7 +161,7 @@ h1 {
   overflow: hidden;
   -webkit-transition: opacity 750ms ease, height 300ms ease;
           transition: opacity 750ms ease, height 300ms ease;
-  border: 1px solid yellow;
+  border: 1px solid green;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -170,9 +170,6 @@ h1 {
 }
 .visible--ui-controls .timeline-wrapper {
   height: calc(88% - 96px);
-}
-.timeline-wrapper svg {
-  display: none;
 }
 .timeline-wrapper .runner {
   border-left: 2px solid red;
@@ -187,11 +184,11 @@ h1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: 1px solid blue;
   width: 100%;
 }
 .timeline-wrapper .sample .step {
   border: 1px solid green;
+  cursor: pointer;
   -webkit-box-flex: 1;
       -ms-flex: 1 auto;
           flex: 1 auto;
@@ -212,6 +209,11 @@ h1 {
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+.timeline-wrapper .sample .step:hover {
+  border: 1px solid blue;
+  outline: 1px solid blue;
+  z-index: 2;
 }
 .ui--controls {
   position: fixed;

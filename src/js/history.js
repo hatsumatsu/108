@@ -47,6 +47,9 @@ var History = ( function() {
 				}
 
 			} )
+			.on( 'timeline/clickRemove', function( event, data ) {
+				undo( data.id );
+			} )
 			.on( 'keyup', function( event ) {
 				state.keyDown = false;
 			} )
@@ -70,10 +73,19 @@ var History = ( function() {
 		Debug.log( history );
 	}
 
-	var undo = function() {
+	var undo = function( specificId ) {
 		Debug.log( 'History.undo()' );
 
-		if( Object.keys( history ).length > 0 ) {
+
+		if ( specificId ) {
+			var item = history[specificId];
+
+			$( document ).trigger( 'history/undo', [{ step: item.step, sample: item.sample, division: item.division, id: specificId }] );
+
+			delete history[specificId];
+
+			Debug.log( history );
+		} else if( Object.keys( history ).length > 0 ) {
 			var id = Object.keys( history )[ ( Object.keys( history ).length - 1 ) ];
 			var item = history[id];
 

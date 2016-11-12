@@ -6,18 +6,7 @@ var Timeline = ( function() {
 
 	var settings = {
 		selector: {
-			wrapper:        '.timeline-wrapper',
-			timeline:       '#timeline',
-			placeholder:    '#placeholder',
-			note:           '.timeline-note'
-		},
-		layerNotes: {
-			0: 'timeline--note-0',
-			1: 'timeline--note-1',
-			2: 'timeline--note-2',
-			3: 'timeline--note-3',
-			4: 'timeline--note-4',
-			5: 'timeline--note-5'
+			wrapper: '.timeline-wrapper'
 		},
 		notes: [],
 		svg: {},
@@ -59,6 +48,31 @@ var Timeline = ( function() {
 					}
 				}, 50 );
 			} )
+			.on( 'mousedown touchstart', settings.selector.wrapper + ' .step' , function( event ) {
+				event.preventDefault();
+
+				var sample = $( this );
+				// crete note in step click
+				// exclude if exist
+				if( sample.attr('data-id') >= 0) {
+					var id = parseInt($(this).attr('data-id'));
+					removeNote(id);
+
+					$( document ).trigger( 'timeline/clickRemove', [{
+						id : id
+					}] );
+				}
+				// add if don't exist
+				else {
+					var sample = parseInt( $( this ).attr( 'data-sample' ) );
+					var step = parseInt( $( this ).attr( 'data-step' ) );
+					console.log(sample + ' - ' + step);
+					$( document ).trigger( 'timeline/clickAdd', [{
+						sample: sample,
+						step: step
+					}] );
+				}
+			} )
 			.on( 'sequencer/playStep', function( event, data ) {
 				playNote( data.step );
 			} )
@@ -78,22 +92,22 @@ var Timeline = ( function() {
 
 	var build = function() {
 		var sequencer = Sequencer.getDivision();
-		var samples = Sequencer.getSamples();
+		var samples = Object.keys(Sequencer.getSamples()).length;
 
 		// create runner
-		$(settings.selector.wrapper).append('<span class="runner"></span>');
+		$(settings.selector.wrapper).append('<div class="runner"></div>');
 
 		// create sample rows
-		for( var key in samples ) {
-			var sample = '<span class="sample" data-sample="' + key + '">';
+		for( var key = 0; key < samples; key++ ) {
+			var sample = '<div class="sample" data-sample="' + key + '">';
 
 			$(settings.selector.wrapper).append(sample);
 
 			// create step columns
 			for ( var i = 0; i < sequencer; i++ ) {
-				var step = '<span class="step" data-step="' + i + '"><span class="content">';
+				var step = '<div class="step" data-sample="' + key + '" data-step="' + i + '"><div class="content">';
 
-				$('.sample[data-sample='+key+']').append(step);
+				$('.sample[data-sample=' + key + ']').append(step);
 			}
 		}
 
@@ -118,9 +132,10 @@ var Timeline = ( function() {
 	var addNote = function( step, sample, division, id ) {
 		Debug.log( 'Timeline.addNote()', step, sample, division, id );
 
-		var layer = $('.timeline-wrapper .sample[data-sample="' + sample + '"] .step[data-step="' + step + '"] .content');
+		var layer = $('.timeline-wrapper .sample[data-sample="' + sample + '"] .step[data-step="' + step + '"]');
+		var layerContent = $(layer).find('.content');
 
-		$(layer).prepend(sample + '/' + step);
+		$(layerContent).prepend(sample + '/' + step);
 
 		var note = {
 			step: step,
@@ -134,7 +149,7 @@ var Timeline = ( function() {
 		layer.attr( 'data-id', id );
 
 		TweenLite.fromTo(
-			layer,
+			layerContent,
 			0.5,
 			{
 				transformOrigin: '50% 50%',
@@ -157,11 +172,14 @@ var Timeline = ( function() {
 	var removeNote = function( id ) {
 		Debug.log( 'Timeline.removeNote()', id );
 
-		var layer = $('.timeline-wrapper .content[data-id="' + id + '"]');
+		var layer = $('.timeline-wrapper .step[data-id="' + id + '"]');
 
 		// remove feedback
 		if( layer ) {
-			layer.remove();
+
+			layer
+				.removeAttr('data-id')
+				.find('.content').empty();
 		}
 
 		// remove entry in settings.notes
@@ -177,6 +195,7 @@ var Timeline = ( function() {
 
 		settings.notes = [];
 
+		$('.timeline-wrapper .step').removeAttr('data-id');
 		$('.timeline-wrapper .step .content').empty()
 	}
 

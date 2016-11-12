@@ -11,7 +11,7 @@
 	overflow: hidden;
 
 	transition: opacity 750ms ease, height 300ms ease;
-	border: 1px solid yellow;
+	border: 1px solid green;
 
 	display:flex;
 	flex-flow: row wrap;
@@ -20,9 +20,6 @@
 		height: ~"calc(88% - 96px)";
 	}
 
-	svg {
-		display: none;
-	}
 	.runner {
 		border-left: 2px solid red;
 		position: absolute;
@@ -34,11 +31,11 @@
 	}
 	.sample {
 		display: flex;
-		border: 1px solid blue;
 		width: 100%;
 
 		.step {
 			border: 1px solid green;
+			cursor: pointer;
 			flex: 1 auto;
 			position: relative;
 
@@ -52,6 +49,11 @@
 					display: flex;
 					align-items: center;
 					justify-content: space-around;
+			}
+			&:hover {
+				border: 1px solid blue;
+				outline: 1px solid blue;
+				z-index: 2;
 			}
 		}
 	}
