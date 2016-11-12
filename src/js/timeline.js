@@ -66,7 +66,7 @@ var Timeline = ( function() {
 				else {
 					var sample = parseInt( $( this ).attr( 'data-sample' ) );
 					var step = parseInt( $( this ).attr( 'data-step' ) );
-					console.log(sample + ' - ' + step);
+					
 					$( document ).trigger( 'timeline/clickAdd', [{
 						sample: sample,
 						step: step
@@ -135,7 +135,8 @@ var Timeline = ( function() {
 		var layer = $('.timeline-wrapper .sample[data-sample="' + sample + '"] .step[data-step="' + step + '"]');
 		var layerContent = $(layer).find('.content');
 
-		$(layerContent).prepend(sample + '/' + step);
+		// feedback
+		//$(layerContent).prepend(sample + '/' + step);
 
 		var note = {
 			step: step,
@@ -153,15 +154,13 @@ var Timeline = ( function() {
 			0.5,
 			{
 				transformOrigin: '50% 50%',
-				y: 25,
-				scaleY: 0,
+				scale: 0.9,
 				strokeOpacity: 0.75,
 				ease: Elastic.easeOut.config( 1, 0.3 )
 			},
 			{
 				transformOrigin: '50% 50%',
-				y: 0,
-				scaleY: 1,
+				scale: 1,
 				strokeOpacity: 1,
 				ease: Elastic.easeOut.config( 1, 0.3 )
 			}
@@ -211,15 +210,13 @@ var Timeline = ( function() {
 						0.5,
 						{
 							transformOrigin: '50% 50%',
-							y: 25,
-							scaleY: 0,
+							scale: 0.9,
 							strokeOpacity: 0.75,
 							ease: Elastic.easeOut.config( 1, 0.3 )
 						},
 						{
 							transformOrigin: '50% 50%',
-							y: 0,
-							scaleY: 1,
+							scale: 1,
 							strokeOpacity: 1,
 							ease: Elastic.easeOut.config( 1, 0.3 )
 						}

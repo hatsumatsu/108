@@ -155,9 +155,9 @@ h1 {
   left: 0;
   top: 0;
   z-index: 0;
-  width: calc(100% - 2rem);
+  width: 100%;
   height: 88vh;
-  margin: 6vh 1rem;
+  margin: 6vh 0;
   overflow: hidden;
   -webkit-transition: opacity 750ms ease, height 300ms ease;
           transition: opacity 750ms ease, height 300ms ease;
@@ -209,6 +209,30 @@ h1 {
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+.timeline-wrapper .sample .step[data-id] .content {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.timeline-wrapper .sample .step[data-id][data-sample="0"] .content {
+  background-image: url('../img/1.png');
+}
+.timeline-wrapper .sample .step[data-id][data-sample="1"] .content {
+  background-image: url('../img/2.png');
+}
+.timeline-wrapper .sample .step[data-id][data-sample="2"] .content {
+  background-image: url('../img/3.png');
+}
+.timeline-wrapper .sample .step[data-id][data-sample="3"] .content {
+  background-image: url('../img/4.png');
+}
+.timeline-wrapper .sample .step[data-id][data-sample="4"] .content {
+  background-image: url('../img/5.png');
+}
+.timeline-wrapper .sample .step[data-id][data-sample="5"] .content {
+  background-image: url('../img/6.png');
 }
 .timeline-wrapper .sample .step:hover {
   border: 1px solid blue;
