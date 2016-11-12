@@ -51,7 +51,8 @@ var Sequencer = ( function() {
 		lastStep:      0,
 		timeLastStep:  0,
 		timeBetweenSteps: 0,
-		analyserValue: 0
+		analyserValue: 0,
+		appendId: 0
 	}
 
 	var init = function() {
@@ -334,6 +335,7 @@ var Sequencer = ( function() {
 
 			if( !settings.sequence[i][step] ) {
 				settings.sequence[i][step] = ( pending ) ? 2 : 1;
+				settings.appendId += 1;
 
 				$( document ).trigger( 'sequencer/changeSequence', [ {
 					sequence: settings.sequence
@@ -343,7 +345,7 @@ var Sequencer = ( function() {
 					step:       step,
 					sample:     i,
 					division:   settings.division,
-					id:         Date.now()
+					id:         settings.appendId
 				} ] );
 			}
 		}
