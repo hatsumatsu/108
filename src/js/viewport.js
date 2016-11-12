@@ -14,7 +14,7 @@ var Viewport = ( function() {
 	};
 
 	var init = function() {
-		Debug.log( 'viewport.init()' );
+		//Debug.log( 'viewport.init()' );
 
 		onLoop();
 	}

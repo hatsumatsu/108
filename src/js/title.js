@@ -17,7 +17,7 @@ var Title = ( function() {
 	}
 
 	var init = function() {
-		Debug.log( 'title.init()' );
+		//Debug.log( 'title.init()' );
 
 		settings.element.title = $( settings.selector.title );
 		settings.text.title = settings.element.title.text();
@@ -33,7 +33,7 @@ var Title = ( function() {
 	}
 
 	var onStep = function( step ) {
-		Debug.log( 'title.onStep()' );
+		//Debug.log( 'title.onStep()' );
 
 		var text = '';
 		for( var i = 0; i < Sequencer.getDivision(); i++ ) {

@@ -19,7 +19,7 @@ var Intro = ( function() {
 	}
 
 	var init = function() {
-		Debug.log( 'Intro.init()' );
+		//Debug.log( 'Intro.init()' );
 
 		settings.element.title = $( settings.selector.title );
 		settings.step = settings.duration / settings.steps;
@@ -43,7 +43,7 @@ var Intro = ( function() {
 	}
 
 	var start = function() {
-		Debug.log( 'Intro.start()' );
+		//Debug.log( 'Intro.start()' );
 
 		settings.startTime = Date.now();
 
@@ -66,7 +66,7 @@ var Intro = ( function() {
 	}
 
 	var stop = function() {
-		Debug.log( 'Intro.stop()' );
+		//Debug.log( 'Intro.stop()' );
 
 		settings.isVisible = false;
 
@@ -95,7 +95,7 @@ var Intro = ( function() {
 	var waitForReady = function( callback ) {
 		if( Sequencer && Timeline ) {
 			settings.waiter = setInterval( function() {
-				Debug.log( 'waiting...' );
+				//Debug.log( 'waiting...' );
 
 				if( Sequencer.isReady() && Timeline.isReady() ) {
 					clearInterval( settings.waiter );

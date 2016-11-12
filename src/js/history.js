@@ -15,7 +15,7 @@ var History = ( function() {
 	var history = {};
 
 	var init = function() {
-		Debug.log( 'History.init()' );
+		//Debug.log( 'History.init()' );
 
 		bindEventHandlers();
 
@@ -56,7 +56,7 @@ var History = ( function() {
 	}
 
 	var addItem = function( step, sample, division, id ) {
-		Debug.log( 'History.init()', id );
+		//Debug.log( 'History.init()', id );
 
 		if( id ) {
 			if( history.length > 0 && Object.keys( history ).length > settings.maxLength - 1 ) {
@@ -70,11 +70,11 @@ var History = ( function() {
 			};
 		}
 
-		Debug.log( history );
+		//Debug.log( history );
 	}
 
 	var undo = function( specificId ) {
-		Debug.log( 'History.undo()' );
+		//Debug.log( 'History.undo()' );
 
 
 		if ( specificId ) {
@@ -84,7 +84,7 @@ var History = ( function() {
 
 			delete history[specificId];
 
-			Debug.log( history );
+			//Debug.log( history );
 		} else if( Object.keys( history ).length > 0 ) {
 			var id = Object.keys( history )[ ( Object.keys( history ).length - 1 ) ];
 			var item = history[id];
@@ -93,7 +93,7 @@ var History = ( function() {
 
 			delete history[id];
 
-			Debug.log( history );
+			//Debug.log( history );
 		}
 	}
 

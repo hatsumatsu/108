@@ -10,7 +10,7 @@ var Url = ( function() {
 	}
 
 	var init = function() {
-		Debug.log( 'url.init()' );
+		//Debug.log( 'url.init()' );
 
 		onHashchange();
 
@@ -23,7 +23,7 @@ var Url = ( function() {
 		$( window )
 			.on( 'hashchange', function() {
 				if( !settings.isChanging ) {
-					Debug.log( 'hashchange' );
+					//Debug.log( 'hashchange' );
 					onHashchange();
 				}
 			} );

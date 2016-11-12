@@ -85,7 +85,7 @@ var Ui = ( function() {
 			.on( 'mousedown touchstart', settings.selector.button, function( event ) {
 				event.preventDefault();
 
-				Debug.log( 'mousedown / touchstart' );
+				//Debug.log( 'mousedown / touchstart' );
 
 				var button = $( this );
 
@@ -135,7 +135,7 @@ var Ui = ( function() {
 	}
 
 	var highlightButton = function( sample ) {
-		Debug.log( 'Ui.highlightButton()', sample );
+		//Debug.log( 'Ui.highlightButton()', sample );
 
 		var button = $( settings.selector.button ).filter( '[data-sample="' +  sample + '"]' );
 		var color = $( 'html' ).css( 'backgroundColor' );
@@ -158,7 +158,7 @@ var Ui = ( function() {
 	}
 
 	var highlightTitle = function() {
-		Debug.log( 'Ui.highlightTitle()' );
+		//Debug.log( 'Ui.highlightTitle()' );
 
 		if( !Modernizr.touchevents ) {
 			var title = $( settings.selector.title );
@@ -183,7 +183,7 @@ var Ui = ( function() {
 
 
 	var toggleControls = function() {
-		Debug.log( 'Ui.toggleControls()' );
+		//Debug.log( 'Ui.toggleControls()' );
 
 		if( !settings.isVisible.controls ) {
 			$( 'html' )
@@ -198,7 +198,7 @@ var Ui = ( function() {
 
 
 	var setButton = function( key, state ) {
-		Debug.log( 'Ui.setButton()', key, state );
+		//Debug.log( 'Ui.setButton()', key, state );
 
 		var button = $( settings.selector.button ).filter( '[data-key="' + key + '"]' );
 
@@ -212,7 +212,7 @@ var Ui = ( function() {
 	}
 
 	var toggleModal = function( id ) {
-		Debug.log( 'Ui.toggleModal()', id );
+		//Debug.log( 'Ui.toggleModal()', id );
 
 		if( !settings.isVisible[id] ) {
 			$( 'html' )
@@ -226,7 +226,7 @@ var Ui = ( function() {
 	}
 
 	var setUrl = function( hash ) {
-		Debug.log( 'Ui.setUrl()', hash );
+		//Debug.log( 'Ui.setUrl()', hash );
 
 		var url = location.protocol + '//' + location.hostname + location.pathname;
 		settings.url = url + '#' + hash;

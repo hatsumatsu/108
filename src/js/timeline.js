@@ -17,7 +17,7 @@ var Timeline = ( function() {
 	}
 
 	var init = function() {
-		Debug.log( 'Timeline.init()' );
+		//Debug.log( 'Timeline.init()' );
 
 		bindEventHandlers();
 
@@ -39,7 +39,7 @@ var Timeline = ( function() {
 				run();
 			} )
 			.on( 'sequencer/addSequenceItem', function( event, data ) {
-				Debug.log( data );
+				//Debug.log( data );
 				// wait for all SVGs to load before adding notes
 				var waiter = setInterval( function() {
 					if( settings.isLoaded ) {
@@ -66,7 +66,7 @@ var Timeline = ( function() {
 				else {
 					var sample = parseInt( $( this ).attr( 'data-sample' ) );
 					var step = parseInt( $( this ).attr( 'data-step' ) );
-					
+
 					$( document ).trigger( 'timeline/clickAdd', [{
 						sample: sample,
 						step: step
@@ -130,7 +130,7 @@ var Timeline = ( function() {
 	}
 
 	var addNote = function( step, sample, division, id ) {
-		Debug.log( 'Timeline.addNote()', step, sample, division, id );
+		//Debug.log( 'Timeline.addNote()', step, sample, division, id );
 
 		var layer = $('.timeline-wrapper .sample[data-sample="' + sample + '"] .step[data-step="' + step + '"]');
 		var layerContent = $(layer).find('.content');
@@ -169,7 +169,7 @@ var Timeline = ( function() {
 	}
 
 	var removeNote = function( id ) {
-		Debug.log( 'Timeline.removeNote()', id );
+		//Debug.log( 'Timeline.removeNote()', id );
 
 		var layer = $('.timeline-wrapper .step[data-id="' + id + '"]');
 
@@ -190,7 +190,7 @@ var Timeline = ( function() {
 	}
 
 	var clearTimeline = function() {
-		Debug.log( 'Timeline.clearTimeline()' );
+		//Debug.log( 'Timeline.clearTimeline()' );
 
 		settings.notes = [];
 
@@ -199,7 +199,7 @@ var Timeline = ( function() {
 	}
 
 	var playNote = function( step ) {
-		Debug.log( 'Sequencer.playNote()', step );
+		//Debug.log( 'Sequencer.playNote()', step );
 
 		for( var i = 0; i < settings.notes.length; i++ ) {
 			if( settings.notes[i].step === step ) {
