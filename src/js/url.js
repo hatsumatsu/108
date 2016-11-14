@@ -6,55 +6,37 @@ var Url = ( function() {
 
 	var settings = {
 		hash: '',
-		isChanging: false
+		name: ''
 	}
 
 	var init = function() {
 		//Debug.log( 'url.init()' );
 
-		onHashchange();
+		getName();
 
-		bindEventHandlers();
+		getHash();
 
-		$( document ).trigger( 'url/init', [{ hash: settings.hash }] );
+		$( document ).trigger( 'url/init', [{ 
+			hash: settings.hash,
+			name: settings.name
+		}] );
 	}
 
-	var bindEventHandlers = function() {
-		$( window )
-			.on( 'hashchange', function() {
-				if( !settings.isChanging ) {
-					//Debug.log( 'hashchange' );
-					onHashchange();
-				}
-			} );
-
-		$( document )
-			.on( 'sequencer/clearSequence', function( event, data ) {
-				set( '' );
-			} );
+	var getName = function() {
+		var name = location.search;
+		if( name.substr( 0,1 ) === '?' ) {
+			settings.name = name.substr( 1, name.length );
+			var name = decodeURI(settings.name);
+			var name = name.replace(/\+/g, ' ');
+			settings.name = name;
+		}
 	}
 
-	var onHashchange = function() {
+	var getHash = function() {
 		var hash = location.hash;
 		if( hash.substr( 0,1 ) === '#' ) {
 			settings.hash = hash.substr( 1, hash.length );
 		}
-
-		if( settings.hash ) {
-			$( document ).trigger( 'url/change', [ {
-				hash: settings.hash
-			} ] );
-		}
-	}
-
-	var set = function( hash ) {
-		settings.isChanging = true;
-
-		location.hash = hash;
-
-		setTimeout( function() {
-			settings.isChanging = false;
-		}, 500 );
 	}
 
 	return {

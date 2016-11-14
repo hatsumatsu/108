@@ -77,49 +77,52 @@ var Sequencer = ( function() {
 				settings.isLoaded = true;
 			} )
 			.on( 'keydown', function( event ) {
-				var key = event.which;
+				var checkOverlay = $('html').is('.visible--ui-share, .visible--intro, .visible--ui-info');
 
-				// toggle metronome / handle Shift
-				// Shift
-				if( event.which === 16 ) {
-					settings.isShiftDown = true;
+				if( checkOverlay === false ) {
+					var key = event.which;
 
-					event.preventDefault();
+					// toggle metronome / handle Shift
+					// Shift
+					if( event.which === 16 ) {
+						settings.isShiftDown = true;
 
-					toggleMetronome();
-				}
-
-				if( !settings.isKeyDown && !settings.isShiftDown ) {
-					settings.isKeyDown = true;
-
-					// samples
-					if( settings.keyboardKeys[key] !== undefined ) {
 						event.preventDefault();
 
-						playSample( settings.keyboardKeys[key] );
+						toggleMetronome();
+					}
 
-						if( settings.isRecording ) {
-							addSequenceItem( settings.keyboardKeys[key] );
+					if( !settings.isKeyDown && !settings.isShiftDown ) {
+						settings.isKeyDown = true;
+
+						// samples
+						if( settings.keyboardKeys[key] !== undefined ) {
+							event.preventDefault();
+
+							playSample( settings.keyboardKeys[key] );
+
+							if( settings.isRecording ) {
+								addSequenceItem( settings.keyboardKeys[key] );
+							}
+						}
+
+						// toggle playback
+						// Space
+						if( key === 32 ) {
+							event.preventDefault();
+
+							togglePlayback();
+						}
+
+						// clear sequence
+						// X
+						if( key === 88 ) {
+							event.preventDefault();
+
+							clearSequence();
 						}
 					}
-
-					// toggle playback
-					// Space
-					if( key === 32 ) {
-						event.preventDefault();
-
-						togglePlayback();
-					}
-
-					// clear sequence
-					// X
-					if( key === 88 ) {
-						event.preventDefault();
-
-						clearSequence();
-					}
 				}
-
 			} )
 			.on( 'keyup', function( event ) {
 				settings.isKeyDown = false;
@@ -161,6 +164,7 @@ var Sequencer = ( function() {
 			} )
 			.on( 'url/init', function( event, data ) {
 				var hash = data.hash;
+				
 				if( hash ) {
 					loadSequence( hash );
 				} else {
@@ -416,7 +420,6 @@ var Sequencer = ( function() {
 		// loop over every char of the string
 		var data = [];
 		var matches = string.match( /[A-Za-z][0-9]+/g );
-
 		if( matches ) {
 			for( var i = 0; i < matches.length; i++ ) {
 				var match = matches[i];
@@ -478,7 +481,7 @@ var Sequencer = ( function() {
 	// Metronome
 	var initMetronome = function() {
 		//Debug.log( 'Sequencer.initMetronome()' );
-			settings.metronome = new Tone.SimpleSynth().toMaster();
+		settings.metronome = new Tone.SimpleSynth().toMaster();
 	}
 
 	var toggleMetronome = function() {

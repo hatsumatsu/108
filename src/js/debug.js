@@ -23,7 +23,7 @@ var Debug = ( function() {
 		window.addEventListener( 'keyup', function( event ) {
 			if( event.keyCode === settings.keyboardKeys.toggle || event.which === settings.keyboardKeys.toggle ) {
 				settings.isActive = !settings.isActive;
-				console.log( 'Toggle debug mode', settings.isActive );
+				//console.log( 'Toggle debug mode', settings.isActive );
 			}
 		} );
 	}

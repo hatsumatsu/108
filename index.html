@@ -61,7 +61,7 @@
 		<script type="text/javascript" src="src/js/sequencer.js"></script>
 		<script type="text/javascript" src="src/js/history.js"></script>
 		<script type="text/javascript" src="src/js/timeline.js"></script>
-		<script type="text/javascript" src="src/js/ui.js"></script>
+		<script type="text/javascript" src="src/js/Ui.js"></script>
 		<script type="text/javascript" src="src/js/url.js"></script>
 		<script type="text/javascript" src="src/js/intro.js"></script>
 		<script type="text/javascript" src="src/js/title.js"></script>
@@ -89,7 +89,7 @@
 	<body id="body">
 		<!-- TITLE -->
 		<h1>
-			YASUKE
+			YASUKE <span class="username"></span>
 		</h1>
 
 		<!-- TIMELINE -->
@@ -150,9 +150,9 @@
 					x
 				</button>
 				<div class="ui-modal-content">
-					<p>
-						Share your beat:
-					</p>
+					<p>Share your beat:</p>
+
+					<input type="text" class="share-name-input" placeholder="What's your name?" maxlength="12">
 
 					<p>
 						<button type="button" class="share-link" data-service="facebook">
@@ -167,7 +167,7 @@
 					</p>
 
 					<div class="share-url">
-						<input type="text" class="share-url-input" id="share-url-input">
+						<input type="text" class="share-url-input" id="share-url-input" readonly>
 						<button type="button" class="share-url-button" data-clipboard-target="#share-url-input">
 							copy
 						</button>

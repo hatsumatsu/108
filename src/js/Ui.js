@@ -12,8 +12,10 @@ var Ui = ( function() {
 				toggle: '.ui-toggle--controls',
 			},
 			share: {
+				setname:'.share-name-input',
+				getname:'.username',
 				toggle: '.ui-toggle--share',
-				input:  '.share-url-input',
+				url:    '.share-url-input',
 				button: '.share-url-button',
 				close:  '.ui-modal-close--share',
 				link:   '.share-link'
@@ -41,6 +43,13 @@ var Ui = ( function() {
 				label:  'Twitter',
 				url:    'http://www.twitter.com/share?url={url}'
 			}
+		},
+		url: {
+			protocol : location.protocol + '//',
+			hostname : location.hostname,
+			pathname : location.pathname,
+			name     : '',
+			hash     : ''
 		}
 	}
 
@@ -61,6 +70,8 @@ var Ui = ( function() {
 		Cookies.set( '108--visited', true, { expires: 30, path: '' } );
 
 		bindEventHandlers();
+
+		setName();
 	}
 
 	var bindEventHandlers = function() {
@@ -77,6 +88,7 @@ var Ui = ( function() {
 
 				var id = $( this ).closest( settings.selector.modal.wrapper ).attr( 'data-modal' );
 				toggleModal( id );
+
 			} )
 			// control buttons
 			.on( 'click', settings.selector.button, function( event ) {
@@ -122,14 +134,17 @@ var Ui = ( function() {
 				highlightTitle();
 			} )
 			.on( 'sequencer/saveSequence', function( event, data ) {
-				setUrl( data.data );
+				setHash( data.data );
 			} )
 			.on( 'sequencer/toggleMetronome', function( event, data ) {
 				setButton( 'shift', data.state );
 			} )
-			.on( 'focus', settings.selector.share.input, function( event ) {
+			.on( 'focus', settings.selector.share.url, function( event ) {
 				$( this ).select();
-			} );
+			} )
+			.on( 'url/init', function( event, data) {
+				$(settings.selector.share.getname).text( ' / ' + data.name );
+			});
 
 			new Clipboard( settings.selector.share.button );
 	}
@@ -225,13 +240,49 @@ var Ui = ( function() {
 		settings.isVisible[id] = !settings.isVisible[id];
 	}
 
+	var setName = function() {
+		//Debug.log( 'Ui.setName()', id );
+
+		$(settings.selector.share.setname)[0].oninput = function() {
+			var name = $(this).val();
+
+			if ( name.length > 0 ) {
+				$(settings.selector.share.getname).text( ' / ' + name );
+				name = name.replace(/ /g, '+');
+
+				settings.url.name = '?' + name;
+			} else {
+				$(settings.selector.share.getname).text( '' );
+				settings.url.name = '';
+			}
+
+			setUrl();
+		};
+	}
+
+	var setHash = function ( hash ) {
+		//Debug.log( 'Ui.setHas()', id );
+
+		if ( hash.length > 0 ) {
+			settings.url.hash = '#' + hash;
+		} else {
+			settings.url.hash = '';
+		}
+
+		setUrl();
+	}
+
 	var setUrl = function( hash ) {
 		//Debug.log( 'Ui.setUrl()', hash );
 
-		var url = location.protocol + '//' + location.hostname + location.pathname;
-		settings.url = url + '#' + hash;
+		var url =
+			settings.url.protocol +
+			settings.url.hostname +
+			settings.url.pathname +
+			settings.url.name +
+			settings.url.hash;
 
-		$( settings.selector.share.input ).val( settings.url );
+		$( settings.selector.share.url ).val( url );
 	}
 
 	var openShareWindow = function( service, url ) {

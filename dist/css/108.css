@@ -419,6 +419,20 @@ h1 {
   -webkit-animation: none !important;
           animation: none !important;
 }
+.share-name-input {
+  color: inherit;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  position: relative;
+  height: 1.7rem;
+  margin: 2rem 0;
+  padding: 10px;
+  width: 100%;
+  text-transform: uppercase;
+  font-sise: 14px;
+}
 .share-url-input {
   -webkit-appearance: none;
      -moz-appearance: none;
