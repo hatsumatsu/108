@@ -88,6 +88,12 @@ var Ui = ( function() {
 
 				var id = $( this ).closest( settings.selector.modal.wrapper ).attr( 'data-modal' );
 				toggleModal( id );
+				
+				if( $( this ).is( settings.selector.share.toggle ) ) {
+					$( document ).trigger( 'ui/changeOnload', [{ 
+						hash: Ui.getHash()
+					}] );
+				}
 
 			} )
 			// control buttons
@@ -122,9 +128,9 @@ var Ui = ( function() {
 			// share links
 			.on( 'click', settings.selector.share.link, function( event ) {
 				event.preventDefault();
-
 				var service = $( this ).attr( 'data-service' );
 				if( service ) {
+
 					openShareWindow( service, settings.url );
 				}
 			} )
@@ -241,10 +247,10 @@ var Ui = ( function() {
 	}
 
 	var setName = function() {
-		//Debug.log( 'Ui.setName()', id );
-
 		$(settings.selector.share.setname)[0].oninput = function() {
 			var name = $(this).val();
+
+			//Debug.log( 'Ui.setName()', name );
 
 			if ( name.length > 0 ) {
 				$(settings.selector.share.getname).text( ' / ' + name );
@@ -261,7 +267,7 @@ var Ui = ( function() {
 	}
 
 	var setHash = function ( hash ) {
-		//Debug.log( 'Ui.setHas()', id );
+		//Debug.log( 'Ui.setHas()', hash );
 
 		if ( hash.length > 0 ) {
 			settings.url.hash = '#' + hash;
@@ -285,6 +291,10 @@ var Ui = ( function() {
 		$( settings.selector.share.url ).val( url );
 	}
 
+	var getHash = function() {
+		return settings.url.hash;
+	}
+
 	var openShareWindow = function( service, url ) {
 		if( settings.shareServices[service] ) {
 			var url = settings.shareServices[service].url.replace( '{url}', url );
@@ -293,7 +303,8 @@ var Ui = ( function() {
 	}
 
 	return {
-		init: function() { init(); }
+		init:    function() { init(); },
+		getHash: function() { return getHash() }
 	}
 
 } )();

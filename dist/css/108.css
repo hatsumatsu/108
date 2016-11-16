@@ -217,22 +217,22 @@ h1 {
   background-position: center;
 }
 .timeline-wrapper .sample .step[data-id][data-sample="0"] .content {
-  background-image: url('../img/1.png');
+  background-image: url('../img/0.png');
 }
 .timeline-wrapper .sample .step[data-id][data-sample="1"] .content {
-  background-image: url('../img/2.png');
+  background-image: url('../img/1.png');
 }
 .timeline-wrapper .sample .step[data-id][data-sample="2"] .content {
-  background-image: url('../img/3.png');
+  background-image: url('../img/2.png');
 }
 .timeline-wrapper .sample .step[data-id][data-sample="3"] .content {
-  background-image: url('../img/4.png');
+  background-image: url('../img/3.png');
 }
 .timeline-wrapper .sample .step[data-id][data-sample="4"] .content {
-  background-image: url('../img/5.png');
+  background-image: url('../img/4.png');
 }
 .timeline-wrapper .sample .step[data-id][data-sample="5"] .content {
-  background-image: url('../img/6.png');
+  background-image: url('../img/5.png');
 }
 .timeline-wrapper .sample .step:hover {
   border: 1px solid blue;

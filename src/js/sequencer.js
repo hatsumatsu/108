@@ -164,7 +164,7 @@ var Sequencer = ( function() {
 			} )
 			.on( 'url/init', function( event, data ) {
 				var hash = data.hash;
-				
+
 				if( hash ) {
 					loadSequence( hash );
 				} else {
@@ -418,7 +418,6 @@ var Sequencer = ( function() {
 		//Debug.log( 'Sequencer.loadSequence()', string );
 
 		// loop over every char of the string
-		var data = [];
 		var matches = string.match( /[A-Za-z][0-9]+/g );
 		if( matches ) {
 			for( var i = 0; i < matches.length; i++ ) {
