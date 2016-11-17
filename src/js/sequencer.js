@@ -278,6 +278,7 @@ var Sequencer = ( function() {
 					playSample( i );
 
 					$( document ).trigger( 'sequencer/playStep', [ {
+						sample: i,
 						step: step
 					} ] );
 				}

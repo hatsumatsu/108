@@ -74,7 +74,7 @@ var Timeline = ( function() {
 				}
 			} )
 			.on( 'sequencer/playStep', function( event, data ) {
-				playNote( data.step );
+				playNote( data.sample, data.step );
 			} )
 			.on( 'sequencer/clearSequence', function( event, data ) {
 				clearTimeline();
@@ -151,18 +151,12 @@ var Timeline = ( function() {
 
 		TweenLite.fromTo(
 			layerContent,
-			0.5,
+			0.8,
 			{
-				transformOrigin: '50% 50%',
-				scale: 0.9,
-				strokeOpacity: 0.75,
-				ease: Elastic.easeOut.config( 1, 0.3 )
+				backgroundColor: 'blue'
 			},
 			{
-				transformOrigin: '50% 50%',
-				scale: 1,
-				strokeOpacity: 1,
-				ease: Elastic.easeOut.config( 1, 0.3 )
+				backgroundColor: 'transparent'
 			}
 		);
 
@@ -198,7 +192,7 @@ var Timeline = ( function() {
 		$('.timeline-wrapper .step .content').empty()
 	}
 
-	var playNote = function( step ) {
+	var playNote = function( sample, step ) {
 		//Debug.log( 'Sequencer.playNote()', step );
 
 		for( var i = 0; i < settings.notes.length; i++ ) {
@@ -206,19 +200,13 @@ var Timeline = ( function() {
 
 				new TimelineLite()
 					.fromTo(
-						$( settings.selector.wrapper + ' .step[data-step="' + step + '"] .content' ),
-						0.5,
+						$( settings.selector.wrapper + ' .step[data-sample="' + sample + '"][data-step="' + step + '"] .content' ),
+						0.8,
 						{
-							transformOrigin: '50% 50%',
-							scale: 0.9,
-							strokeOpacity: 0.75,
-							ease: Elastic.easeOut.config( 1, 0.3 )
+							backgroundColor: 'red'
 						},
 						{
-							transformOrigin: '50% 50%',
-							scale: 1,
-							strokeOpacity: 1,
-							ease: Elastic.easeOut.config( 1, 0.3 )
+							backgroundColor: 'transparent'
 						}
 					);
 			}
