@@ -114,10 +114,10 @@ var Banner = ( function() {
 
 						// real values
 						var image = settings.tl.images[samples[j]];
-						var width = Math.round((canvas.width - right - left) / settings.tl.division);
-						var height = Math.round(width * 1.4); // aspect ratio
-						var left = Math.round(width * step + left);
-						var top = Math.round(height * samples[j] + top);						
+						var width = (canvas.width - right - left) / settings.tl.division;
+						var height = width * 1.4; // aspect ratio
+						var left = width * step + left;
+						var top = height * samples[j] + top;
 
 						ctx.drawImage(image, left, top, width, height);
 
