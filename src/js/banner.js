@@ -20,8 +20,11 @@ var Banner = ( function() {
 			left: 5,
 			right: 5,
 
-			images: []
-		}
+			images: [],
+			
+		},
+		init: false
+
 	}
 
 	var init = function() {
@@ -35,13 +38,15 @@ var Banner = ( function() {
 			.on( 'click', settings.selector.download, function ( event ) {
 				download();
 			})
-			.on( 'url/init', function( event, data ) {
-				initBanner( data.hash );
-			} )
 			.on( 'ui/changeOnload', function( event, data ) {
 				var hash = data.hash.replace(/#/g, '');
 
-				drawTimeLine(hash);
+				if( settings.init === false ){
+					initBanner( hash );
+					settings.init = true;
+				} else {
+					drawTimeLine(hash);
+				}
 			} );
 
 	}
