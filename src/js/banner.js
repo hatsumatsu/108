@@ -5,7 +5,10 @@
 var Banner = ( function() {
 
 	var settings = {
-
+		selector: {
+			download: '.download-banner',
+			downloadhide: '.download-banner-hide'
+		},
 		// timeline
 		tl: { 
 			division: 16,
@@ -28,6 +31,9 @@ var Banner = ( function() {
 
 	var bindEventHandlers = function() {
 		$( document )
+			.on( 'click', settings.selector.download, function ( event ) {
+				download();
+			})
 			.on( 'url/init', function( event, data ) {
 				initBanner( data.hash );
 			} )
@@ -35,7 +41,7 @@ var Banner = ( function() {
 				var hash = data.hash.replace(/#/g, '');
 
 				drawTimeLine(hash);
-			} )
+			} );
 
 	}
 
@@ -111,6 +117,18 @@ var Banner = ( function() {
 				}
 			}
 		}
+	}
+
+	var download = function() {
+		var canvas = document.querySelector('canvas'),
+			ctx = canvas.getContext('2d');
+
+		var base64 = canvas.toDataURL('image/jpeg');
+
+		var a = $(settings.selector.download).next(settings.selector.downloadhide);
+		a.attr('href', base64);
+		a[0].click();
+
 	}
 
 	return {
