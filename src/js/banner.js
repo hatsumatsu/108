@@ -3,28 +3,42 @@
  * Create dynamic banner for users
  */
 var Banner = ( function() {
-
 	var settings = {
+		// canvas
+		cv: document.querySelector('canvas'),
+		ctx: document.querySelector('canvas').getContext('2d'),
+		hash: '',
+		init: false,
+
 		selector: {
 			download: '.download-banner',
 			downloadhide: '.download-banner-hide'
 		},
 
 		// timeline
-		tl: { 
+		tl: {
 			division: 16,
 			samples: 6,
 
 			// position	in percentage (0/100%)
 			top: 10,
 			left: 5,
-			right: 5,
-
-			images: [],
-			
+			right: 5
 		},
-		init: false
 
+		//assets
+		assets: {
+			// background
+			background: 'dist/img/background2.jpg',
+
+			// personages
+			0: 'dist/img/0.png',
+			1: 'dist/img/1.png',
+			2: 'dist/img/2.png',
+			3: 'dist/img/3.png',
+			4: 'dist/img/4.png',
+			5: 'dist/img/5.png'
+		}
 	}
 
 	var init = function() {
@@ -39,68 +53,55 @@ var Banner = ( function() {
 				download();
 			})
 			.on( 'ui/changeOnload', function( event, data ) {
-				var hash = data.hash.replace(/#/g, '');
+				settings.hash = data.hash.replace(/#/g, '');
 
 				if( settings.init === false ){
-					initBanner( hash );
+					preLoad();
 					settings.init = true;
 				} else {
-					drawTimeLine(hash);
+					drawAll();
 				}
 			} );
 
 	}
 
-	var initBanner = function(hash) {
-		var canvas = document.querySelector('canvas'),
-			ctx = canvas.getContext('2d');
-
-		// Images Array
-		for (var i = 0; i < settings.tl.samples; i++) {
-			settings.tl.images[i] = 'dist/img/' + i + '.png'
-		}
-
-		// Draw background
-		ctx.fillStyle = '#080808';
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
+	var preLoad = function() {
 
 		// Pre load images
 		$(function loadImages() {
 			//Debug.log( 'Banner.loadImages()', settings.tl.images );
-			
-			var loadedImages = 0;
-			var numImages = settings.tl.images.length;
-			
-			for(var i = 0; i < settings.tl.samples; i++) {
-				var imageSource = settings.tl.images[i];
 
-				settings.tl.images[i] = new Image();
-				settings.tl.images[i].onload = function() {
+			var loadedImages = 0;
+			var numImages = Object.keys(settings.assets).length;
+
+			for(var src in settings.assets) {
+				var imageSource = settings.assets[src];
+
+				settings.assets[src] = new Image();
+				settings.assets[src].onload = function() {
 					if(++loadedImages >= numImages) {
-						//Draw Timeline on images loaded
-						drawTimeLine(hash);
+						drawAll();
 					}
 				};
-				settings.tl.images[i].src = imageSource;
+				settings.assets[src].src = imageSource;
 			}
 		});
 	}
-		
-	
-	// Draw timeline
-	var drawTimeLine = function( hash ) {
-		//Debug.log( 'Banner.drawBannerTimeline()', hash );
-		
-		var canvas = document.querySelector('canvas'),
-			ctx = canvas.getContext('2d');
 
-		//ctx.clearRect(0, 0, canvas.width, canvas.height);
-		ctx.fillStyle = '#080808';
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
+	// Draw background
+	var drawBackground = function() {
+
+		settings.ctx.drawImage(settings.assets.background, 0, 0, settings.cv.width, settings.cv.height);
+
+	}
+
+	// Draw timeline
+	var drawTimeLine = function( ) {
+		//Debug.log( 'Banner.drawBannerTimeline()', hash );
 
 		// loop over every char of the hash
-		var matches = hash.match( /[A-Za-z][0-9]+/g );
-		
+		var matches = settings.hash.match( /[A-Za-z][0-9]+/g );
+
 		if( matches ) {
 			for( var i = 0; i < matches.length; i++ ) {
 				var match = matches[i];
@@ -113,18 +114,18 @@ var Banner = ( function() {
 					for( var j = 0; j < samples.length; j++ ) {
 
 						// values in percentage
-						var top = settings.tl.top / 10 * canvas.height / 10;
-						var left = settings.tl.left / 10 * canvas.width / 10;
-						var right = settings.tl.right / 10 * canvas.width / 10;
+						var top = settings.tl.top / 10 * settings.cv.height / 10;
+						var left = settings.tl.left / 10 * settings.cv.width / 10;
+						var right = settings.tl.right / 10 * settings.cv.width / 10;
 
 						// real values
-						var image = settings.tl.images[samples[j]];
-						var width = (canvas.width - right - left) / settings.tl.division;
+						var image = settings.assets[samples[j]];
+						var width = (settings.cv.width - right - left) / settings.tl.division;
 						var height = width * 1.4; // aspect ratio
 						var left = width * step + left;
 						var top = height * samples[j] + top;
 
-						ctx.drawImage(image, left, top, width, height);
+						settings.ctx.drawImage(image, left, top, width, height);
 
 					}
 				}
@@ -132,16 +133,19 @@ var Banner = ( function() {
 		}
 	}
 
+	// Draw / Redraw
+	var drawAll = function() {
+		drawBackground();
+		drawTimeLine();
+	}
+
 	var download = function() {
-		var canvas = document.querySelector('canvas'),
-			ctx = canvas.getContext('2d');
-		
-		var base64 = canvas.toDataURL('image/jpeg', 1);
+
+		var base64 = settings.cv.toDataURL('image/jpeg', 1);
 
 		var a = $(settings.selector.download).next(settings.selector.downloadhide);
 		a.attr('href', base64);
 		a[0].click();
-
 	}
 
 	return {
