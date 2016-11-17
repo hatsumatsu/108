@@ -9,15 +9,16 @@ var Banner = ( function() {
 			download: '.download-banner',
 			downloadhide: '.download-banner-hide'
 		},
+
 		// timeline
 		tl: { 
 			division: 16,
 			samples: 6,
 
-			// position	
-			top: 100,
-			left: 10,
-			right: 10,
+			// position	in percentage (0/100%)
+			top: 10,
+			left: 5,
+			right: 5,
 
 			images: []
 		}
@@ -83,12 +84,14 @@ var Banner = ( function() {
 	
 	// Draw timeline
 	var drawTimeLine = function( hash ) {
-		Debug.log( 'Banner.drawBannerTimeline()', hash );
+		//Debug.log( 'Banner.drawBannerTimeline()', hash );
 		
 		var canvas = document.querySelector('canvas'),
 			ctx = canvas.getContext('2d');
 
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		//ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = '#080808';
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 		// loop over every char of the hash
 		var matches = hash.match( /[A-Za-z][0-9]+/g );
@@ -103,16 +106,21 @@ var Banner = ( function() {
 					samples = samples.split( '' );
 
 					for( var j = 0; j < samples.length; j++ ) {
-						var width = (canvas.width - settings.tl.right - settings.tl.left) / settings.tl.division;
-						var height = width * 1.8;
-						var left = width * step + settings.tl.left;
-						var top = height * samples[j] + settings.tl.top;
-						var image = settings.tl.images[samples[j]];
 
-						ctx.beginPath();
-						ctx.strokeStyle = 'white';
-						ctx.stroke();
+						// values in percentage
+						var top = settings.tl.top / 10 * canvas.height / 10;
+						var left = settings.tl.left / 10 * canvas.width / 10;
+						var right = settings.tl.right / 10 * canvas.width / 10;
+
+						// real values
+						var image = settings.tl.images[samples[j]];
+						var width = Math.round((canvas.width - right - left) / settings.tl.division);
+						var height = Math.round(width * 1.4); // aspect ratio
+						var left = Math.round(width * step + left);
+						var top = Math.round(height * samples[j] + top);						
+
 						ctx.drawImage(image, left, top, width, height);
+
 					}
 				}
 			}
@@ -122,8 +130,8 @@ var Banner = ( function() {
 	var download = function() {
 		var canvas = document.querySelector('canvas'),
 			ctx = canvas.getContext('2d');
-
-		var base64 = canvas.toDataURL('image/jpeg');
+		
+		var base64 = canvas.toDataURL('image/jpeg', 1);
 
 		var a = $(settings.selector.download).next(settings.selector.downloadhide);
 		a.attr('href', base64);
