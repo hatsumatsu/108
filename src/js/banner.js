@@ -4,33 +4,28 @@
  */
 var Banner = ( function() {
 	var settings = {
-		// canvas
-		cv: document.querySelector('canvas'),
-		ctx: document.querySelector('canvas').getContext('2d'),
-		hash: '',
 		init: false,
-
+		hash: '',
+		width: '',
+		height: '',
 		selector: {
+			banner: '.banner-container .banner',
 			download: '.download-banner',
 			downloadhide: '.download-banner-hide'
 		},
-
-		// timeline
-		tl: {
+		layers: {
+			background: '',
+			timeline: ''
+		},
+		timeline: {
 			division: 16,
 			samples: 6,
-
-			// position	in percentage (0/100%)
 			top: 10,
 			left: 5,
 			right: 5
 		},
-
-		//assets
 		assets: {
-			// background
 			background: 'dist/img/background2.jpg',
-
 			// personages
 			0: 'dist/img/0.png',
 			1: 'dist/img/1.png',
@@ -52,25 +47,42 @@ var Banner = ( function() {
 			.on( 'click', settings.selector.download, function ( event ) {
 				download();
 			})
-			.on( 'ui/changeOnload', function( event, data ) {
+			.on( 'ui/openShare', function( event, data ) {
 				settings.hash = data.hash.replace(/#/g, '');
 
 				if( settings.init === false ){
-					preLoad();
+					initBanner();
 					settings.init = true;
 				} else {
-					drawAll();
+					drawTimeLine();
 				}
 			} );
 
 	}
 
-	var preLoad = function() {
+	var initBanner = function() {
+		//Debug.log( 'Banner.initBanner()' );
+
+		// Get banner dimentions
+		settings.width = $(settings.selector.banner).attr('width');
+		settings.height = $(settings.selector.banner).attr('height');
+
+		// Create background canvas
+		var background = document.createElement('canvas');
+			background.setAttribute('width', settings.width);
+	        background.setAttribute('height', settings.height);
+
+	    settings.layers.background = background;
+
+	    // Create timeline canvas
+		var timeline = document.createElement('canvas');
+			timeline.setAttribute('width', settings.width);
+	        timeline.setAttribute('height', settings.height);
+
+	    settings.layers.timeline = timeline;
 
 		// Pre load images
 		$(function loadImages() {
-			//Debug.log( 'Banner.loadImages()', settings.tl.images );
-
 			var loadedImages = 0;
 			var numImages = Object.keys(settings.assets).length;
 
@@ -80,7 +92,8 @@ var Banner = ( function() {
 				settings.assets[src] = new Image();
 				settings.assets[src].onload = function() {
 					if(++loadedImages >= numImages) {
-						drawAll();
+						drawBackground();
+						drawTimeLine();
 					}
 				};
 				settings.assets[src].src = imageSource;
@@ -88,16 +101,24 @@ var Banner = ( function() {
 		});
 	}
 
-	// Draw background
+	// Draw background layer
 	var drawBackground = function() {
+		//Debug.log( 'Banner.drawBackground()' );
 
-		settings.ctx.drawImage(settings.assets.background, 0, 0, settings.cv.width, settings.cv.height);
+		var background = settings.layers.background.getContext('2d');
+			background.clearRect(0, 0, settings.width, settings.height);
+		
+		background.drawImage(settings.assets.background, 0, 0, settings.width, settings.height);
 
+		drawBanner();
 	}
 
-	// Draw timeline
+	// Draw timeline layer
 	var drawTimeLine = function( ) {
-		//Debug.log( 'Banner.drawBannerTimeline()', hash );
+		//Debug.log( 'Banner.drawTimeline()' );
+
+		var timeline = settings.layers.timeline.getContext('2d');
+			timeline.clearRect(0, 0, settings.width, settings.height);
 
 		// loop over every char of the hash
 		var matches = settings.hash.match( /[A-Za-z][0-9]+/g );
@@ -114,38 +135,55 @@ var Banner = ( function() {
 					for( var j = 0; j < samples.length; j++ ) {
 
 						// values in percentage
-						var top = settings.tl.top / 10 * settings.cv.height / 10;
-						var left = settings.tl.left / 10 * settings.cv.width / 10;
-						var right = settings.tl.right / 10 * settings.cv.width / 10;
+						var top = settings.timeline.top / 10 * settings.height / 10;
+						var left = settings.timeline.left / 10 * settings.width / 10;
+						var right = settings.timeline.right / 10 * settings.width / 10;
 
 						// real values
 						var image = settings.assets[samples[j]];
-						var width = (settings.cv.width - right - left) / settings.tl.division;
+						var width = (settings.width - right - left) / settings.timeline.division;
 						var height = width * 1.4; // aspect ratio
 						var left = width * step + left;
 						var top = height * samples[j] + top;
 
-						settings.ctx.drawImage(image, left, top, width, height);
-
+						timeline.drawImage(image, left, top, width, height);
 					}
 				}
 			}
 		}
+
+		drawBanner();
 	}
 
-	// Draw / Redraw
-	var drawAll = function() {
-		drawBackground();
-		drawTimeLine();
+	// Get Layers and draw banner
+	var drawBanner = function() {
+		//Debug.log( 'Banner.drawBanner()' );
+
+		var canvas = document.querySelector(settings.selector.banner);
+
+		var banner = canvas.getContext('2d');
+			banner.clearRect(0, 0, settings.width, settings.height);
+		
+		banner.drawImage(settings.layers.background, 0, 0, settings.width, settings.height);
+		banner.drawImage(settings.layers.timeline, 0, 0, settings.width, settings.height);
 	}
 
+	// Download
 	var download = function() {
+		//Debug.log( 'Banner.download()' );
 
-		var base64 = settings.cv.toDataURL('image/jpeg', 1);
+		var canvas = document.querySelector(settings.selector.banner);
+		var a = document.createElement('a');
+		
+		$('body').append(a);
 
-		var a = $(settings.selector.download).next(settings.selector.downloadhide);
-		a.attr('href', base64);
-		a[0].click();
+		a.setAttribute('href', canvas.toDataURL('image/jpeg', 1));
+		a.setAttribute('download', 'banner.jpg');
+		a.setAttribute('target', '_blank');
+		a.click();
+
+		$(a).remove();
+
 	}
 
 	return {

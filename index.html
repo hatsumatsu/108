@@ -53,24 +53,6 @@
 		<meta name="twitter:image" content="http://martinwecke.de/108/dist/meta/facebook.png">
 		<meta name="twitter:creator" content="@martinwecke">
 
-		<!-- PIWIK -->
-		<!--<script type="text/javascript">
-		var _paq = _paq || [];
-		_paq.push(['setDomains', ['*.martinwecke.de','*.2016.martinwecke.de']]);
-		_paq.push(['trackPageView']);
-		_paq.push(['enableLinkTracking']);
-		( function() {
-			var u='//stats.hatsumatsu.de/';
-			_paq.push(['setTrackerUrl', u+'piwik.php']);
-			_paq.push(['setSiteId', 7]);
-			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-			g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-		} )();
-		</script>
-		<noscript>
-			<img src="//stats.hatsumatsu.de/piwik.php?idsite=7" style="border:0;" alt="">
-		</noscript>-->
-		<!-- / PIWIK -->
 	</head>
 	<body id="body">
 		<!-- TITLE -->
@@ -137,16 +119,14 @@
 				</button>
 				<div class="ui-modal-content">
 					<p>Share your beat:</p>
-
-					<input type="text" class="share-name-input" placeholder="What's your name?" maxlength="12">
-
-					<canvas width="1000" height="1000" style="width:100%; height: auto; background: #080808"></canvas>
-
+					<div class="banner-container">
+						<canvas class="banner" width="1000" height="1000"></canvas>
+						<input type="text" class="share-name-input" placeholder="What's your name?" maxlength="12">
+					</div>
 					<p>
 						<button type="button" class="download-banner">
 							Download banner
 						</button>
-						<a href="" class="download-banner-hide hide" download="banner.jpg"></a>
 					</p>
 					<!--
 					<p>

@@ -419,19 +419,26 @@ h1 {
   -webkit-animation: none !important;
           animation: none !important;
 }
-.share-name-input {
-  color: inherit;
-  line-height: 1;
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid currentColor;
-  border-radius: 3px;
+.banner-container {
   position: relative;
-  height: 1.7rem;
-  margin: 2rem 0;
-  padding: 10px;
+}
+.banner-container input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   width: 100%;
-  text-transform: uppercase;
-  font-sise: 14px;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  z-index: 2;
+}
+.banner-container .banner {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 .share-url-input {
   -webkit-appearance: none;

@@ -69,21 +69,27 @@ input {
 		animation: none !important;
 	}
 }
+.banner-container {
+	position: relative;
 
-.share-name-input {
-	border: 1px solid currentColor;
-	color: inherit;
-  line-height: 1;
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid currentColor;
-  border-radius: 3px;
-  position: relative;
-  height: 1.7rem;
-  margin: 2rem 0;
-  padding: 10px;
-	width: 100%;
-	text-transform: uppercase;
-	font-sise: 14px;
+	input {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+		opacity: 0;
+		z-index: 2;
+	}
+	.banner {
+		position: relative;	
+		width: 100%;
+		height: auto;
+		display: block;
+	}
 }
 
 .share-url-input {

@@ -90,7 +90,7 @@ var Ui = ( function() {
 				toggleModal( id );
 				
 				if( $( this ).is( settings.selector.share.toggle ) ) {
-					$( document ).trigger( 'ui/changeOnload', [{ 
+					$( document ).trigger( 'ui/openShare', [{ 
 						hash: Ui.getHash()
 					}] );
 				}
