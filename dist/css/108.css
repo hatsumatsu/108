@@ -421,6 +421,7 @@ h1 {
 }
 .banner-container {
   position: relative;
+  overflow: hidden;
 }
 .banner-container input {
   position: absolute;
@@ -439,6 +440,26 @@ h1 {
   width: 100%;
   height: auto;
   display: block;
+}
+.banner-container:after {
+  content: "loading...";
+  background: black;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 100%;
+  right: 0;
+  opacity: 0;
+  padding-top: 10px;
+  -webkit-transition: 0.2s 0s opacity, 0s 0.2s top;
+          transition: 0.2s 0s opacity, 0s 0.2s top;
+  z-index: 3;
+}
+.banner-container.loading:after {
+  top: 0;
+  opacity: 1;
+  -webkit-transition: 0.2s 0s opacity, 0s 0s top;
+          transition: 0.2s 0s opacity, 0s 0s top;
 }
 .share-url-input {
   -webkit-appearance: none;

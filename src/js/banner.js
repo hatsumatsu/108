@@ -9,6 +9,7 @@ var Banner = ( function() {
 		width: '',
 		height: '',
 		selector: {
+			container: '.banner-container',
 			banner: '.banner-container .banner',
 			download: '.download-banner'
 		},
@@ -65,6 +66,8 @@ var Banner = ( function() {
 
 	var initBanner = function() {
 		//Debug.log( 'Banner.initBanner()' );
+		// Add loading feedback
+		$(settings.selector.container).addClass('loading');
 
 		// Get banner dimentions
 		settings.width = $(settings.selector.banner).attr('width');
@@ -92,6 +95,9 @@ var Banner = ( function() {
 					if(++loadedImages >= numImages) {
 						drawBackground();
 						drawTimeLine();
+
+						// Remove loading feedback
+						$(settings.selector.container).removeClass('loading');
 					}
 				};
 				settings.assets[src].src = imageSource;
