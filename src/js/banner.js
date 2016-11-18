@@ -10,12 +10,12 @@ var Banner = ( function() {
 		height: '',
 		selector: {
 			banner: '.banner-container .banner',
-			download: '.download-banner',
-			downloadhide: '.download-banner-hide'
+			download: '.download-banner'
 		},
 		layers: {
 			background: '',
-			timeline: ''
+			timeline: '',
+			name: '',
 		},
 		timeline: {
 			division: 16,
@@ -44,7 +44,7 @@ var Banner = ( function() {
 
 	var bindEventHandlers = function() {
 		$( document )
-			.on( 'click', settings.selector.download, function ( event ) {
+			.on( 'click', settings.selector.download, function () {
 				download();
 			})
 			.on( 'ui/openShare', function( event, data ) {
@@ -56,6 +56,9 @@ var Banner = ( function() {
 				} else {
 					drawTimeLine();
 				}
+			} )
+			.on( 'Ui/changeName', function( event, data ) {
+				drawName(data.name);
 			} );
 
 	}
@@ -67,19 +70,14 @@ var Banner = ( function() {
 		settings.width = $(settings.selector.banner).attr('width');
 		settings.height = $(settings.selector.banner).attr('height');
 
-		// Create background canvas
-		var background = document.createElement('canvas');
-			background.setAttribute('width', settings.width);
-	        background.setAttribute('height', settings.height);
+		// Create canvas layers
+		for (var key in settings.layers ){
+			var layer = document.createElement('canvas')
+				layer.setAttribute('width', settings.width);
+		        layer.setAttribute('height', settings.height);
 
-	    settings.layers.background = background;
-
-	    // Create timeline canvas
-		var timeline = document.createElement('canvas');
-			timeline.setAttribute('width', settings.width);
-	        timeline.setAttribute('height', settings.height);
-
-	    settings.layers.timeline = timeline;
+		    settings.layers[key] = layer;
+		}
 
 		// Pre load images
 		$(function loadImages() {
@@ -155,6 +153,22 @@ var Banner = ( function() {
 		drawBanner();
 	}
 
+	// Draw Name
+	var drawName = function( inputname ) {
+		//Debug.log( 'Banner.drawName()' );		
+		var name = settings.layers.name.getContext('2d');
+			name.clearRect(0, 0, settings.width, settings.height);
+		
+		name.textAlign = 'center';
+
+		name.fillStyle = 'white';
+		name.font = '200px sans-serif';
+		name.fillText( inputname.toUpperCase(), settings.width / 2, 800 , settings.width - 200);
+		name.fill();
+
+		drawBanner();
+	}
+
 	// Get Layers and draw banner
 	var drawBanner = function() {
 		//Debug.log( 'Banner.drawBanner()' );
@@ -166,6 +180,7 @@ var Banner = ( function() {
 		
 		banner.drawImage(settings.layers.background, 0, 0, settings.width, settings.height);
 		banner.drawImage(settings.layers.timeline, 0, 0, settings.width, settings.height);
+		banner.drawImage(settings.layers.name, 0, 0, settings.width, settings.height);
 	}
 
 	// Download

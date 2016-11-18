@@ -254,6 +254,11 @@ var Ui = ( function() {
 
 			if ( name.length > 0 ) {
 				$(settings.selector.share.getname).text( ' / ' + name );
+
+				$( document ).trigger( 'Ui/changeName', [ {
+					name: name
+				} ] );
+				
 				name = name.replace(/ /g, '+');
 
 				settings.url.name = '?' + name;
