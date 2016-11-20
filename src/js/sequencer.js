@@ -26,7 +26,7 @@ var Sequencer = ( function() {
 			},
 			2: {
 				src:        'dist/samples/808/wav/02.wav',
-				velocity:   0.75
+				velocity:   1
 			},
 			3:  {
 				src:        'dist/samples/808/wav/03.wav',
@@ -70,7 +70,6 @@ var Sequencer = ( function() {
 
 	var bindEventHandlers = function() {
 		//Debug.log( 'Sequencer.bindEventHandlers()' );
-
 		$( document )
 			.on( 'sequencer/loaded', function() {
 				//Debug.log( 'All samples are loaded' );
@@ -210,10 +209,10 @@ var Sequencer = ( function() {
 		for( var i = 0; i < Object.keys( settings.samples ).length; i++ ) {
 			samples[i] = settings.samples[i].src;
 		}
-
-		settings.sampler = new Tone.Sampler(
-			samples
-		);
+		
+		settings.sampler = new Tone.MultiPlayer({
+			urls : samples
+		});
 	}
 
 
@@ -222,7 +221,8 @@ var Sequencer = ( function() {
 
 		if( settings.isLoaded ) {
 			var velocity = settings.samples[i].velocity;
-			settings.sampler.triggerAttack( '' + i, time, velocity );
+			
+			settings.sampler.start( i, time, 0, velocity);
 
 			$( document ).trigger( 'sequencer/playSample', [ {
 				sample: i
@@ -481,7 +481,7 @@ var Sequencer = ( function() {
 	// Metronome
 	var initMetronome = function() {
 		//Debug.log( 'Sequencer.initMetronome()' );
-		settings.metronome = new Tone.SimpleSynth().toMaster();
+		settings.metronome = new Tone.Synth().toMaster();
 	}
 
 	var toggleMetronome = function() {
@@ -495,7 +495,7 @@ var Sequencer = ( function() {
 	var playMetronome = function( high ) {
 		var note = ( high ) ? 'C5' : 'C4';
 
-		settings.metronome.triggerAttackRelease( note, '16n', null, 0.5 );
+		settings.metronome.triggerAttackRelease( note, '16n' );
 	}
 
 	// State
