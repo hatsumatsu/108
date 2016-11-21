@@ -123,7 +123,7 @@ var Timeline = ( function() {
 			runner,
 			0,
 			{
-				x: progress + "%",
+				x: progress * 10 + "%",
 				ease: Linear.easeNone
 			}
 		);
@@ -149,16 +149,11 @@ var Timeline = ( function() {
 
 		layer.attr( 'data-id', id );
 
-		TweenLite.fromTo(
-			layerContent,
-			0.8,
-			{
-				backgroundColor: 'blue'
-			},
-			{
-				backgroundColor: 'transparent'
-			}
-		);
+		$(layerContent).addClass('added');
+
+		setTimeout( function() {
+			$(layerContent).removeClass('added');
+		}, 138)
 
 	}
 
@@ -198,17 +193,14 @@ var Timeline = ( function() {
 		for( var i = 0; i < settings.notes.length; i++ ) {
 			if( settings.notes[i].step === step ) {
 
-				new TimelineLite()
-					.fromTo(
-						$( settings.selector.wrapper + ' .step[data-sample="' + sample + '"][data-step="' + step + '"] .content' ),
-						0.8,
-						{
-							backgroundColor: 'red'
-						},
-						{
-							backgroundColor: 'transparent'
-						}
-					);
+				var selector = settings.selector.wrapper + ' .step[data-sample="' + sample + '"][data-step="' + step + '"] .content';
+				
+				$(selector).addClass('active');
+
+				setTimeout( function() {
+					$(selector).removeClass('active');
+				}, 138)
+				
 			}
 		}
 	}

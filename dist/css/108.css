@@ -175,9 +175,8 @@ h1 {
   border-left: 2px solid red;
   position: absolute;
   top: 0;
-  width: 1px;
+  width: 10%;
   left: 0;
-  width: 100%;
   height: 100%;
 }
 .timeline-wrapper .sample {
@@ -209,30 +208,44 @@ h1 {
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-}
-.timeline-wrapper .sample .step[data-id] .content {
+  -webkit-transition: 0.5s background-color;
+          transition: 0.5s background-color;
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  opacity: 0;
 }
-.timeline-wrapper .sample .step[data-id][data-sample="0"] .content {
+.timeline-wrapper .sample .step .content.added {
+  -webkit-transition: 0s background-color;
+          transition: 0s background-color;
+  background-color: blue;
+}
+.timeline-wrapper .sample .step .content.active {
+  -webkit-transition: 0s background-color;
+          transition: 0s background-color;
+  background-color: red;
+}
+.timeline-wrapper .sample .step[data-sample="0"] .content {
   background-image: url('../img/0.png');
 }
-.timeline-wrapper .sample .step[data-id][data-sample="1"] .content {
+.timeline-wrapper .sample .step[data-sample="1"] .content {
   background-image: url('../img/1.png');
 }
-.timeline-wrapper .sample .step[data-id][data-sample="2"] .content {
+.timeline-wrapper .sample .step[data-sample="2"] .content {
   background-image: url('../img/2.png');
 }
-.timeline-wrapper .sample .step[data-id][data-sample="3"] .content {
+.timeline-wrapper .sample .step[data-sample="3"] .content {
   background-image: url('../img/3.png');
 }
-.timeline-wrapper .sample .step[data-id][data-sample="4"] .content {
+.timeline-wrapper .sample .step[data-sample="4"] .content {
   background-image: url('../img/4.png');
 }
-.timeline-wrapper .sample .step[data-id][data-sample="5"] .content {
+.timeline-wrapper .sample .step[data-sample="5"] .content {
   background-image: url('../img/5.png');
+}
+.timeline-wrapper .sample .step[data-id] .content {
+  opacity: 1;
 }
 .timeline-wrapper .sample .step:hover {
   border: 1px solid blue;
