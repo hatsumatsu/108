@@ -145,12 +145,7 @@ var Sequencer = ( function() {
 				}
 			} )
 			.on( 'timeline/clickAdd', function( event, data ) {
-				addSequenceItem( data.sample, data.step, true );
-
-				if( settings.isPlaying === false ) {
-					startPlayback();
-				}
-
+				addSequenceItem( data.sample, data.step );
 			} )
 			.on( 'url/init', function( event, data ) {
 				var hash = data.hash;
@@ -290,7 +285,7 @@ var Sequencer = ( function() {
 
 	var startPlayback = function() {
 		//Debug.log( 'Sequencer.startPlayback()' );
-
+		
 		settings.isPlaying = true;
 		$( document ).trigger( 'sequencer/startPlayback' );
 
@@ -314,35 +309,37 @@ var Sequencer = ( function() {
 		}
 	}
 
-	var addSequenceItem = function( i, step, timelineClick ) {
+	var addSequenceItem = function( i, step, DemoSequence ) {
 		//Debug.log( 'Sequencer.addSequenceItem()', i, step );
 
-		if( settings.isPlaying && settings.isRecording || timelineClick) {
-			if( !step && step !== 0 ) {
-				var step = Math.round( settings.division * settings.loop.progress );
-				if( step >= settings.division ) {
-					step = 0;
-				}
+		if( !step && step !== 0 ) {
+			var step = Math.round( settings.division * settings.loop.progress );
+			if( step >= settings.division ) {
+				step = 0;
 			}
+		}
 
-			//Debug.log( 'step', step );
+		//Debug.log( 'step', step );
 
-			var pending = ( ( settings.division * settings.loop.progress ) < step ) ? true : false;
+		var pending = ( ( settings.division * settings.loop.progress ) < step ) ? true : false;
 
-			if( !settings.sequence[i][step] ) {
-				settings.sequence[i][step] = ( pending ) ? 2 : 1;
-				settings.sampleId += 1;
+		if( !settings.sequence[i][step] ) {
+			settings.sequence[i][step] = ( pending ) ? 2 : 1;
+			settings.sampleId += 1;
 
-				$( document ).trigger( 'sequencer/changeSequence', [ {
-					sequence: settings.sequence
-				} ] );
+			$( document ).trigger( 'sequencer/changeSequence', [ {
+				sequence: settings.sequence
+			} ] );
 
-				$( document ).trigger( 'sequencer/addSequenceItem', [ {
-					step:       step,
-					sample:     i,
-					division:   settings.division,
-					id:         settings.sampleId
-				} ] );
+			$( document ).trigger( 'sequencer/addSequenceItem', [ {
+				step:       step,
+				sample:     i,
+				division:   settings.division,
+				id:         settings.sampleId
+			} ] );
+			
+			if( !settings.isPlaying && !DemoSequence) {
+				startPlayback();
 			}
 		}
 	}
@@ -448,7 +445,7 @@ var Sequencer = ( function() {
 	var buildDemoSequence = function() {
 		//Debug.log( 'Sequencer.buildDemoSequence()' );
 
-		addSequenceItem(0, 0);
+		addSequenceItem(0, 0, true);
 	}
 
 
