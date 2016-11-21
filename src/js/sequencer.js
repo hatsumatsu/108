@@ -61,7 +61,7 @@ var Sequencer = ( function() {
 		initPlayback();
 		initMetronome();
 
-		startPlayback();
+		//startPlayback();
 
 		bindEventHandlers();
 	}
@@ -290,6 +290,8 @@ var Sequencer = ( function() {
 		$( document ).trigger( 'sequencer/startPlayback' );
 
 		settings.loop.start();
+
+		StartAudioContext(Tone.context);
 	}
 
 	var stopPlayback = function() {
