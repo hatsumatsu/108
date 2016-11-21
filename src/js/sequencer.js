@@ -160,6 +160,11 @@ var Sequencer = ( function() {
 			} )
 			.on( 'timeline/clickAdd', function( event, data ) {
 				addSequenceItem( data.sample, data.step, true );
+
+				if( settings.isPlaying === false ) {
+					startPlayback();
+				}
+
 			} )
 			.on( 'url/init', function( event, data ) {
 				var hash = data.hash;
