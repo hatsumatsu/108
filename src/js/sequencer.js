@@ -13,8 +13,6 @@ var Sequencer = ( function() {
 			71: 4, // g
 			72: 5  // h
 		},
-		iskeyDown: false,
-		isShiftDown: false,
 		samples: {
 			0: {
 				src:        'dist/samples/808/wav/00.wav',
@@ -84,50 +82,38 @@ var Sequencer = ( function() {
 					// toggle metronome / handle Shift
 					// Shift
 					if( event.which === 16 ) {
-						settings.isShiftDown = true;
 
 						event.preventDefault();
 
 						toggleMetronome();
 					}
 
-					if( !settings.isKeyDown && !settings.isShiftDown ) {
-						settings.isKeyDown = true;
+					// samples
+					if( settings.keyboardKeys[key] !== undefined ) {
+						event.preventDefault();
+						
+						playSample( settings.keyboardKeys[key] );
 
-						// samples
-						if( settings.keyboardKeys[key] !== undefined ) {
-							event.preventDefault();
-
-							playSample( settings.keyboardKeys[key] );
-
-							if( settings.isRecording ) {
-								addSequenceItem( settings.keyboardKeys[key] );
-							}
-						}
-
-						// toggle playback
-						// Space
-						if( key === 32 ) {
-							event.preventDefault();
-
-							togglePlayback();
-						}
-
-						// clear sequence
-						// X
-						if( key === 88 ) {
-							event.preventDefault();
-
-							clearSequence();
+						if( settings.isRecording ) {
+							addSequenceItem( settings.keyboardKeys[key] );
 						}
 					}
-				}
-			} )
-			.on( 'keyup', function( event ) {
-				settings.isKeyDown = false;
 
-				if( event.which === 16 ) {
-					settings.isShiftDown = false;
+					// toggle playback
+					// Space
+					if( key === 32 ) {
+						event.preventDefault();
+
+						togglePlayback();
+					}
+
+					// clear sequence
+					// X
+					if( key === 88 ) {
+						event.preventDefault();
+
+						clearSequence();
+					}
 				}
 			} )
 			.on( 'ui/clickButton', function( event, data ) {
