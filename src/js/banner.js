@@ -26,7 +26,7 @@ var Banner = ( function() {
 			right: 5
 		},
 		assets: {
-			background: 'dist/img/background2.jpg',
+			background: 'dist/img/background3.jpg',
 			// personages
 			0: 'dist/img/0.png',
 			1: 'dist/img/1.png',
@@ -95,6 +95,7 @@ var Banner = ( function() {
 					if(++loadedImages >= numImages) {
 						drawBackground();
 						drawTimeLine();
+						drawName();
 
 						// Remove loading feedback
 						$(settings.selector.container).removeClass('loading');
@@ -166,10 +167,18 @@ var Banner = ( function() {
 			name.clearRect(0, 0, settings.width, settings.height);
 		
 		name.textAlign = 'center';
-
+		console.log(inputname)
 		name.fillStyle = 'white';
 		name.font = '200px sans-serif';
+
+		if( inputname ) {
+			inputname = inputname
+		} else {
+			inputname = 'digite seu nome';
+		}
+
 		name.fillText( inputname.toUpperCase(), settings.width / 2, 800 , settings.width - 200);
+
 		name.fill();
 
 		drawBanner();

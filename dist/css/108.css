@@ -56,18 +56,18 @@
 }
 @-webkit-keyframes blink {
   0% {
-    opacity: 0.5;
+    color: gray;
   }
   100% {
-    opacity: 1;
+    color: white;
   }
 }
 @keyframes blink {
   0% {
-    opacity: 0.5;
+    color: gray;
   }
   100% {
-    opacity: 1;
+    color: white;
   }
 }
 .animation--blink {
@@ -201,12 +201,17 @@ h1 {
   padding: 5px 10px;
 }
 .timeline {
+  -webkit-transition: 0.3s bottom;
+          transition: 0.3s bottom;
   position: absolute;
   top: 40px;
   left: 40px;
-  bottom: 142px;
+  bottom: 40px;
   right: 40px;
   overflow: hidden;
+}
+.visible--ui-controls .timeline {
+  bottom: 142px;
 }
 .timeline .timeline-wrapper {
   background: black;
@@ -225,7 +230,7 @@ h1 {
       flex-flow: row wrap;
 }
 .timeline .timeline-wrapper .runner {
-  border-left: 2px solid red;
+  border-left: 1px solid red;
   position: absolute;
   top: 0;
   width: 10%;
@@ -336,6 +341,7 @@ h1 {
   font-size: 21px;
   padding: 5px 10px;
   line-height: inherit;
+  outline: none;
 }
 .ui-toggle--controls::before {
   content: '•';
@@ -579,17 +585,43 @@ h1 {
   top: 0;
   display: block;
   margin: 5px 40px;
-  font-size: 0.875rem;
+  font-size: 70px;
   line-height: 1;
   text-transform: uppercase;
   color: inherit;
   background: black;
   font-size: 21px;
   padding: 5px 10px;
+  outline: none;
 }
 .ui-toggle--info:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
+}
+.ui-modal--info .ui-modal-content {
+  font-family: 'New Rail Alphabet White', monospace;
+  display: block;
+  margin: 1rem 5rem;
+  font-size: 48px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.05;
+  max-width: none;
+}
+.ui-modal--info .ui-modal-content .yasuke-title {
+  font-family: 'Eurostile', monospace;
+}
+.ui-modal--info .ui-modal-content .key {
+  display: inline-block;
+  padding: 7px 10px 2px;
+  font-size: 39px;
+  line-height: 1;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  VERTICAL-ALIGN: text-top;
+  margin: 3px;
 }
 .visible--ui-info .ui-modal--info {
   height: 100%;

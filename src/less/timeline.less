@@ -1,10 +1,15 @@
 .timeline {
+	transition: 0.3s bottom;
 	position: absolute;
 	top: 40px;
 	left: 40px;
-	bottom: 142px;
+	bottom: 40px;
 	right: 40px;
 	overflow: hidden;
+
+	.visible--ui-controls & {
+		bottom: 142px;
+	}
 
 	.timeline-wrapper {
 		background: black;
@@ -22,7 +27,7 @@
 
 
 		.runner {
-			border-left: 2px solid red;
+			border-left: 1px solid red;
 			position: absolute;
 			top: 0;
 			width: 10%;

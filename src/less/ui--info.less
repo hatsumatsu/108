@@ -7,7 +7,7 @@
 	display: block;
 	margin: 5px 40px;
 
-	font-size: 0.875rem;
+	font-size: 70px;
 	line-height: 1;
 	text-transform: uppercase;
 	color: inherit;
@@ -15,6 +15,7 @@
 	background: black;
 	font-size: 21px;
 	padding: 5px 10px;
+	outline: none;
 
 	&:hover {
 		.animation--blink;
@@ -22,7 +23,38 @@
 }
 
 // modal
+.ui-modal {
+	
+}
 .ui-modal--info {
+
+	.ui-modal-content {
+		font-family: @font--2;
+		display: block;
+	    margin: 1rem 5rem;
+	    font-size: 48px;
+	    text-transform: uppercase;
+	    text-align: center;
+	    line-height: 1.05;
+	    max-width: none;
+
+
+	    .yasuke-title {
+	    	font-family: @font--1;
+	    }
+	    .key {
+	    	display: inline-block;
+		    padding: 7px 10px 2px;
+		    font-size: 39px;
+		    line-height: 1;
+		    color: inherit;
+		    background: rgba(255, 255, 255, 0.01);
+		    border: 1px solid currentColor;
+		    border-radius: 3px;
+		    VERTICAL-ALIGN: text-top;
+		    margin: 3px;
+	    }
+	}
 
 	.visible--ui-info & {
 		.ui-modal.visible;

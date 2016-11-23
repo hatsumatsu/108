@@ -30,7 +30,7 @@ var Ui = ( function() {
 			}
 		},
 		isVisible: {
-			controls:   false,
+			controls:   true,
 			share:      false,
 			info:       false
 		},
@@ -187,16 +187,16 @@ var Ui = ( function() {
 			new TimelineLite()
 				.to(
 					title,
-					0.01,
+					0.02,
 					{
-						color: 'black'
+						color: 'gray'
 					}
 				)
 				.to(
 					title,
 					0.05,
 					{
-						color: 'gray'
+						color: 'white'
 					}
 				);
 		}
@@ -252,7 +252,7 @@ var Ui = ( function() {
 
 			//Debug.log( 'Ui.setName()', name );
 
-			if ( name.length > 0 ) {
+			if ( name.length >= 0 ) {
 				$(settings.selector.share.getname).text( ' / ' + name );
 
 				$( document ).trigger( 'Ui/changeName', [ {
