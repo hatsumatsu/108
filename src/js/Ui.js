@@ -189,14 +189,14 @@ var Ui = ( function() {
 					title,
 					0.01,
 					{
-						opacity: 1
+						color: 'black'
 					}
 				)
 				.to(
 					title,
 					0.05,
 					{
-						opacity: 0.5
+						color: 'gray'
 					}
 				);
 		}

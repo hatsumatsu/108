@@ -104,19 +104,6 @@ module.exports = function( grunt ) {
 				files: ['src/js/**/*.js','!js/**/*.min.js'],
 				tasks: ['buildjs']
 			}
-		},
-
-		fixindent: {
-			scripts: {
-				src: [
-					'src/js/*.js'
-				],
-				dest: 'src/js/',
-				options: {
-					style: 'tab',
-					size: 1
-				}
-			}
 		}
 
 	} );

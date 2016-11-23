@@ -9,7 +9,12 @@ body {
 	min-height: 100vh;
 	margin: 0;
 
-	background: @color--bg;
+	background-color: @color--bg;
+}
+
+body {
+	background-image: url(../img/background1.jpg);
+    background-size: 110px;
 }
 
 html {
@@ -17,11 +22,20 @@ html {
 	font-size: 100%;
 	color: @color--text;
 	letter-spacing: 0.1em;
-	-webkit-font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;	
 }
 
 body {
 
+	&::before {
+		background-image: url(../img/background2.jpg);
+    	background-size: 230px;
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 50vw;
+	}
 	// resize activity indicator
 	&::after {
 		content: ' ';
