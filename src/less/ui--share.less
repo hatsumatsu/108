@@ -36,7 +36,7 @@
 	.ui-modal-close--share {
 	    top: 0;
 	    margin: 0;
-	    bottom: 96px;
+	    bottom: 150px;
 	    right: 0;
 	    left: 0;
 	    width: 100%;
@@ -63,7 +63,7 @@
 			top: 0;
 		}
 		.footer-bar {
-			background: black;
+			background: white;
 			position: absolute;
 			bottom: 0;
 			left: 0;
@@ -80,8 +80,8 @@
 					margin: 0 5px;
 
 					.share-link {
-						background: white;
-						color: black;
+						background: black;
+						color: white;
 						padding: 0 9px;
 						display: inline-block;
 
@@ -98,7 +98,7 @@
 
 	.button;
 
-	border-color: white;
+	border-color: black;
 	position: relative;
 
 	height: 1.7rem;
@@ -118,7 +118,7 @@
 		width: 2rem;
 		margin-right: 80px;
 
-		background: linear-gradient( 90deg, fade( @color--bg, 0% ) 0%, fade( @color--bg, 100% ) 90% );
+		background: linear-gradient( 90deg, transparent 0%, white 90% );
 	}
 
 	&:hover,
@@ -139,7 +139,7 @@
 	font-family: inherit;
 	font-size: inherit;
 	font-weight: inherit;
-	color: inherit;
+	color: black;
 
 	background: transparent;
 	border: none;
@@ -151,7 +151,8 @@
 .share-url-button {
 	.button;
 
-	background-color: black;
+	background-color: white;
+	color: black;
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -162,7 +163,7 @@
 
 	border: none;
 	border-left: 1px solid currentColor;
-	border-radius: 0;
+	border-radius: 0 5px 5px 0;
 }
 
 @media screen and ( max-width: 656px ) {
@@ -174,10 +175,10 @@
 	.ui-modal--share .ui-modal-content {
 
 		.banner {
-			bottom: 116px;
+			
 		}
 		.footer-bar {
-			height: 116px;
+			
 
 			ul {
 				margin: 20px 0;

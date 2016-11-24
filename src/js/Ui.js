@@ -30,7 +30,7 @@ var Ui = ( function() {
 			}
 		},
 		isVisible: {
-			controls:   true,
+			controls:   false,
 			share:      false,
 			info:       false
 		},
@@ -55,13 +55,7 @@ var Ui = ( function() {
 
 	var init = function() {
 		// enable controls on touch devices
-		if( Modernizr.touchevents ) {
-			toggleControls();
-		}
-
-		if( location.href.indexOf( 'demo' ) > -1 && !settings.isVisible.controls ) {
-			toggleControls();
-		}
+		toggleControls();
 
 		// show info UI on first visit
 		if( !Cookies.get( '108--visited' ) && location.href.indexOf( 'demo' ) < 0 ) {

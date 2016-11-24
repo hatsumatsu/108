@@ -12,7 +12,7 @@ var Intro = ( function() {
 		},
 		element: {},
 		isVisible: true,
-		duration: 3000,
+		duration: 4000,
 		startTime: null,
 		time: null,
 		steps: 100,

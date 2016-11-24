@@ -38,15 +38,34 @@
 	height: 5px;
 }
 .intro-top {
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	right: 40px;
 	font-family: @font--1;
 	font-size: 11px;
 	display: flex;
     list-style: none;
     padding: 0;
     justify-content: space-between;
-    margin: 40px;
     letter-spacing: 0px;
 
+    .yasuke {
+    	
+    }
+    .japan {
+
+    	span {
+		    color: red;
+		    display: inline-block;
+		    margin: 0 -4px 0 0px;
+		    font-size: 310%;
+		    line-height: 0;
+		    position: relative;
+		    vertical-align: middle;
+		    top: 3px;
+    	}
+    }
     span {
     	font-family: @font--2;
     	margin: 5px 20px;
@@ -55,6 +74,9 @@
 
     	b {
     		float: right;
+    	}
+    	span {
+
     	}
     }
 }
@@ -94,20 +116,44 @@
 	.intro {
 
 		&:after {
-			top: 70px;
+			top: 25vh;
 		}
 	}
 	.intro-top {
-		margin: 20px;
+		top: 20px;
+		left: 20px;
+		right: 20px;
 		display: block;
 
+		.yasuke {
+			font-size: 6vw;
+			text-align: center;	
+			margin-bottom: 1vh;
+			margin-left: -20px;
+		    margin-right: -20px;
+		    width: auto;
+		}
+		.japan {
+			font-size: 6vw;
+			text-align: center;
+			margin-bottom: 3vh;
+			margin-left: -20px;
+		    margin-right: -20px;
+		    width: auto;
+
+		    span {
+		    	margin: 0 -1.7vw 0 -0.6vw;
+    			top: 1.4vw;
+		    }
+		}
 		li {
+			margin-bottom: 2vh;
 			width: 100%;
 		}
 	}
 	.intro-title {
-		font-size: 80px;
-		margin-top: 30px;
+		font-size: 70px;
+		margin-top: 12vh;
 	}
 	.intro-emicida-logo {
 		bottom: 20px;

@@ -443,7 +443,7 @@ h1 {
 .ui-modal--share .ui-modal-close--share {
   top: 0;
   margin: 0;
-  bottom: 96px;
+  bottom: 150px;
   right: 0;
   left: 0;
   width: 100%;
@@ -469,7 +469,7 @@ h1 {
   top: 0;
 }
 .ui-modal--share .ui-modal-content .footer-bar {
-  background: black;
+  background: white;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -486,8 +486,8 @@ h1 {
   margin: 0 5px;
 }
 .ui-modal--share .ui-modal-content .footer-bar ul li .share-link {
-  background: white;
-  color: black;
+  background: black;
+  color: white;
   padding: 0 9px;
   display: inline-block;
 }
@@ -502,7 +502,7 @@ h1 {
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid #3d2e24;
   border-radius: 3px;
-  border-color: white;
+  border-color: black;
   position: relative;
   height: 1.7rem;
   padding: 0 4rem 0 0;
@@ -522,8 +522,8 @@ h1 {
   display: block;
   width: 2rem;
   margin-right: 80px;
-  background: -webkit-linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, #000000 90%);
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000000 90%);
+  background: -webkit-linear-gradient(0deg, transparent 0%, white 90%);
+  background: linear-gradient(90deg, transparent 0%, white 90%);
 }
 .share-url:hover,
 .share-url:focus {
@@ -542,7 +542,7 @@ h1 {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
-  color: inherit;
+  color: black;
   background: transparent;
   border: none;
   outline: none;
@@ -555,7 +555,8 @@ h1 {
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid #3d2e24;
   border-radius: 3px;
-  background-color: black;
+  background-color: white;
+  color: black;
   position: absolute;
   right: 0;
   top: 0;
@@ -563,7 +564,7 @@ h1 {
   text-align: center;
   border: none;
   border-left: 1px solid currentColor;
-  border-radius: 0;
+  border-radius: 0 5px 5px 0;
 }
 .share-url-button:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
@@ -573,12 +574,6 @@ h1 {
   .ui-toggle--share {
     font-size: 12px;
     margin-left: 20px;
-  }
-  .ui-modal--share .ui-modal-content .banner {
-    bottom: 116px;
-  }
-  .ui-modal--share .ui-modal-content .footer-bar {
-    height: 116px;
   }
   .ui-modal--share .ui-modal-content .footer-bar ul {
     margin: 20px 0;
@@ -608,6 +603,15 @@ h1 {
 }
 .ui-modal--info {
   background: white;
+}
+.ui-modal--info .intro-top {
+  color: black;
+}
+.ui-modal--info .intro-emicida-logo {
+  background-image: url('../img/emicida-logo-black.png');
+}
+.ui-modal--info .intro-yasuke-logo {
+  background-image: url('../img/yasuke-logo-black.png');
 }
 .ui-modal--info .ui-modal-content {
   font-family: 'New Rail Alphabet White', monospace;
@@ -782,6 +786,10 @@ h1 {
   height: 5px;
 }
 .intro-top {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
   font-family: 'Eurostile', monospace;
   font-size: 11px;
   display: -webkit-box;
@@ -792,8 +800,17 @@ h1 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin: 40px;
   letter-spacing: 0px;
+}
+.intro-top .japan span {
+  color: red;
+  display: inline-block;
+  margin: 0 -4px 0 0px;
+  font-size: 310%;
+  line-height: 0;
+  position: relative;
+  vertical-align: middle;
+  top: 3px;
 }
 .intro-top span {
   font-family: 'New Rail Alphabet White', monospace;
@@ -838,18 +855,41 @@ h1 {
 }
 @media screen and (max-width: 656px) {
   .intro:after {
-    top: 70px;
+    top: 25vh;
   }
   .intro-top {
-    margin: 20px;
+    top: 20px;
+    left: 20px;
+    right: 20px;
     display: block;
   }
+  .intro-top .yasuke {
+    font-size: 6vw;
+    text-align: center;
+    margin-bottom: 1vh;
+    margin-left: -20px;
+    margin-right: -20px;
+    width: auto;
+  }
+  .intro-top .japan {
+    font-size: 6vw;
+    text-align: center;
+    margin-bottom: 3vh;
+    margin-left: -20px;
+    margin-right: -20px;
+    width: auto;
+  }
+  .intro-top .japan span {
+    margin: 0 -1.7vw 0 -0.6vw;
+    top: 1.4vw;
+  }
   .intro-top li {
+    margin-bottom: 2vh;
     width: 100%;
   }
   .intro-title {
-    font-size: 80px;
-    margin-top: 30px;
+    font-size: 70px;
+    margin-top: 12vh;
   }
   .intro-emicida-logo {
     bottom: 20px;
