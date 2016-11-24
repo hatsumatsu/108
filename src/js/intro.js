@@ -7,11 +7,12 @@ var Intro = ( function() {
 	var settings = {
 		selector: {
 			intro: '.intro',
-			title: '.intro-title'
+			title: '.intro-title',
+			loading: '.intro-loading-bar'
 		},
 		element: {},
 		isVisible: true,
-		duration: 2000,
+		duration: 3000,
 		startTime: null,
 		time: null,
 		steps: 100,
@@ -90,6 +91,8 @@ var Intro = ( function() {
 	var countUp = function() {
 		settings.current = settings.current + 1;
 		settings.element.title.text( settings.current );
+
+		$(settings.selector.loading).attr('style', 'width:' + settings.current + '%')
 	}
 
 	var waitForReady = function( callback ) {

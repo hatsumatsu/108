@@ -5,9 +5,8 @@
 	top: 0;
 	bottom: 0;
 
-	background: @color--bg;
-
-	pointer-events: none;
+	background: @color--bg url('../img/intro.png') no-repeat center;
+	background-size: contain;
 
 	opacity: 0;
 
@@ -24,17 +23,67 @@
 	}
 }
 
-.intro-title {
+.intro-loading-bar {
+	background: red;
+	top: 0;
 	position: absolute;
-	left: 50%;
-	top: 50%;
+	left: 0;
+	height: 5px;
+}
+.intro-top {
+	font-family: @font--1;
+	font-size: 11px;
+	display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: space-between;
+    margin: 40px;
+    letter-spacing: 0px;
 
-	margin-top: -2.5rem;
+    span {
+    	font-family: @font--2;
+    	margin: 5px 20px;
+    	display: block;
+    	font-weight: bold;
 
-	font-family: inherit;
-	font-size: 0.875rem;
-	font-weight: 400;
-	line-height: 1;	
+    	b {
+    		float: right;
+    	}
+    }
 
-	transform: translate( -50%, -50% );
+	li {
+		
+	}
+}
+
+.intro-title {
+	pointer-events: none;
+	position: absolute;
+    font-size: 115px;
+    top: 50%;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    display: inline-block;
+    transform: translateY(-50%);
+}
+.intro-emicida-logo {
+	background: url('../img/emicida-logo.png');
+	background-repeat: no-repeat;
+	background-size: 35px;
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	bottom: 40px;
+	left: 40px;
+}
+.intro-yasuke-logo {
+	background: url('../img/yasuke-logo.png');
+	background-repeat: no-repeat;
+	background-size: 18px;
+	width: 18px;
+	height: 108px;
+	position: absolute;
+	bottom: 40px;
+	right: 40px;
 }

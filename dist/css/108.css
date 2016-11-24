@@ -105,30 +105,6 @@ body::before {
   bottom: 0;
   width: 50vw;
 }
-body::after {
-  content: ' ';
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  z-index: 1200;
-  display: block;
-  width: 6rem;
-  height: 6rem;
-  margin: -5.5rem 0 0 -3rem;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-  -webkit-transition-duration: 150ms;
-          transition-duration: 150ms;
-  -webkit-transition-property: opacity, -webkit-filter, opacity, filter;
-          transition-property: opacity, filter;
-  -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
-}
-.visible--intro body::after {
-  opacity: 1;
-}
 a {
   color: inherit;
   text-decoration: none;
@@ -730,8 +706,8 @@ h1 {
   right: 0;
   top: 0;
   bottom: 0;
-  background: black;
-  pointer-events: none;
+  background: black url('../img/intro.png') no-repeat center;
+  background-size: contain;
   opacity: 0;
   -webkit-transition-duration: 750ms;
           transition-duration: 750ms;
@@ -746,15 +722,65 @@ h1 {
   -webkit-transition: none;
           transition: none;
 }
-.intro-title {
+.intro-loading-bar {
+  background: red;
+  top: 0;
   position: absolute;
-  left: 50%;
+  left: 0;
+  height: 5px;
+}
+.intro-top {
+  font-family: 'Eurostile', monospace;
+  font-size: 11px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 40px;
+  letter-spacing: 0px;
+}
+.intro-top span {
+  font-family: 'New Rail Alphabet White', monospace;
+  margin: 5px 20px;
+  display: block;
+  font-weight: bold;
+}
+.intro-top span b {
+  float: right;
+}
+.intro-title {
+  pointer-events: none;
+  position: absolute;
+  font-size: 115px;
   top: 50%;
-  margin-top: -2.5rem;
-  font-family: inherit;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  left: 0;
+  display: inline-block;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.intro-emicida-logo {
+  background: url('../img/emicida-logo.png');
+  background-repeat: no-repeat;
+  background-size: 35px;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+}
+.intro-yasuke-logo {
+  background: url('../img/yasuke-logo.png');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 108px;
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
 }
