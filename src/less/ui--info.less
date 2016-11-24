@@ -49,10 +49,13 @@
 	 	color: black;
 
 	 	p {
+	 		margin: 0;
 	 		text-transform: none;
 	 	}
 	    .yasuke-title {
 	    	font-family: @font--1;
+	    	font-size: 21px;
+	    	margin-bottom: 70px;
 	    }
 	    .key {
 	    	font-family: 'Eurostile', monospace;
@@ -69,7 +72,8 @@
 	    button {
 	    	background: black;
 	    	color: white;
-	    	font-size: 30px;
+	    	font-size: 21px;
+	    	margin-top: 70px;
 	    }
 	}
 
@@ -86,16 +90,36 @@
 		margin-right: 20px;
 	}
 	.ui-modal--info {
-
 		.ui-modal-content {
 			font-size: 30px;
-			margin: 1rem 1rem;
+			margin: 20px 55px;
 			font-size: 20px;
 			line-height: 1.4;
 
-			.key {
-				padding: 5px 5px 0 6px;
+			.yasuke-title {
+				margin: 20px -40px 20px;
 			}
+			.key {
+				padding: 5px 5px 4px 6px;
+			}
+			button {
+			    margin-top: 20px;
+    			margin-bottom: 0;
+    			padding: 6px 15px 8px;
+			}
+			.intro-emicida-logo {
+				background-size: 30px;
+				width: 30px;
+				height: 30px;
+			}
+			.intro-yasuke-logo {
+				background-size: 15px;
+				width: 15px;
+				height: 87px;
+			}
+		}
+		.visible--ui-info & {
+			overflow: auto;
 		}
 	}
 }
