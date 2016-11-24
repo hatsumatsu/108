@@ -463,7 +463,7 @@ h1 {
   background-size: cover;
   background-position: center bottom;
   position: absolute;
-  bottom: 96px;
+  bottom: 150px;
   left: 0;
   right: 0;
   top: 0;
@@ -474,7 +474,7 @@ h1 {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 96px;
+  height: 150px;
 }
 .ui-modal--share .ui-modal-content .footer-bar ul {
   display: inline-block;
@@ -489,6 +489,7 @@ h1 {
   background: white;
   color: black;
   padding: 0 9px;
+  display: inline-block;
 }
 .ui-modal--share .ui-modal-content .footer-bar ul li .share-link:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
@@ -606,18 +607,20 @@ h1 {
           animation: blink 150ms steps(2) infinite;
 }
 .ui-modal--info {
-  background: black;
-  color: white;
+  background: white;
 }
 .ui-modal--info .ui-modal-content {
   font-family: 'New Rail Alphabet White', monospace;
   display: block;
   margin: 1rem 5rem;
   font-size: 48px;
-  text-transform: uppercase;
   text-align: center;
   line-height: 1.05;
   max-width: none;
+  color: black;
+}
+.ui-modal--info .ui-modal-content p {
+  text-transform: none;
 }
 .ui-modal--info .ui-modal-content .yasuke-title {
   font-family: 'Eurostile', monospace;
@@ -625,12 +628,19 @@ h1 {
 .ui-modal--info .ui-modal-content .key {
   font-family: 'Eurostile', monospace;
   display: inline-block;
-  font-size: 70%;
+  font-size: 40%;
   border: 1px solid currentColor;
-  border-radius: 3px;
-  padding: 5px 10px 0;
-  vertical-align: top;
+  border-radius: 4px;
+  padding: 7px 9px 7px 9px;
+  text-transform: uppercase;
+  vertical-align: middle;
   margin: 0 5px;
+  border-width: 2px;
+}
+.ui-modal--info .ui-modal-content button {
+  background: black;
+  color: white;
+  font-size: 30px;
 }
 .visible--ui-info .ui-modal--info {
   height: 100%;
@@ -639,6 +649,9 @@ h1 {
           transition-duration: 250ms, 100ms;
   -webkit-transition-delay: 0ms, 0ms;
           transition-delay: 0ms, 0ms;
+}
+.ui-modal--info .ui-modal-close--info {
+  color: black;
 }
 @media screen and (max-width: 656px) {
   .ui-toggle--info {
@@ -671,7 +684,6 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
   height: 0;
-  background: rgba(0, 0, 0, 0.9);
   overflow: hidden;
   opacity: 0;
   -webkit-transition-property: opacity, bottom;

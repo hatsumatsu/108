@@ -23,41 +23,51 @@
 }
 
 // modal
-.ui-modal {
-	
-}
-.ui-modal--info {
-	background: black;
-	color: white;
 
+.ui-modal--info {
+	background: white;
+	
 	.ui-modal-content {
 		font-family: @font--2;
 		display: block;
 	    margin: 1rem 5rem;
 	    font-size: 48px;
-	    text-transform: uppercase;
+	    
 	    text-align: center;
 	    line-height: 1.05;
 	    max-width: none;
+	 	color: black;
 
-
+	 	p {
+	 		text-transform: none;
+	 	}
 	    .yasuke-title {
 	    	font-family: @font--1;
 	    }
 	    .key {
-	    	font-family: @font--1;
-	    	display: inline-block;
-		    font-size: 70%;
+	    	font-family: 'Eurostile', monospace;
+		    display: inline-block;
+		    font-size: 40%;
 		    border: 1px solid currentColor;
-		    border-radius: 3px;
-		    padding: 5px 10px 0;
-		    vertical-align: top;
+		    border-radius: 4px;
+		    padding: 7px 9px 7px 9px;
+		    text-transform: uppercase;
+		    vertical-align: middle;
 		    margin: 0 5px;
+		    border-width: 2px;
+	    }
+	    button {
+	    	background: black;
+	    	color: white;
+	    	font-size: 30px;
 	    }
 	}
 
 	.visible--ui-info & {
 		.ui-modal.visible;
+	}
+	.ui-modal-close--info{
+		color: black;
 	}
 }
 @media screen and ( max-width: 656px ) {

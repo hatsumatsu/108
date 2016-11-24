@@ -302,6 +302,11 @@ var Ui = ( function() {
 			settings.url.hash;
 
 		$( settings.selector.share.url ).val( url );
+
+		if( /Android/i.test(navigator.userAgent) ) {
+			$('.share-whatsapp').attr('style', '');
+			$('.share-whatsapp a').attr('href', 'whatsapp://send?text=Aumente o volume e escute o meu som criado no #YasukeBeatMachine. Chega no site e faça o seu beat também. ' + url + '' );
+		}
 	}
 
 	var getHash = function() {
