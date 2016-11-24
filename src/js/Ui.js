@@ -208,9 +208,18 @@ var Ui = ( function() {
 		if( !settings.isVisible.controls ) {
 			$( 'html' )
 				.addClass( 'visible--ui-controls' );
+
+			var height = $('.ui--controls').outerHeight();
+
+			$('.timeline').attr('style', 'bottom:' + (height + 40) + 'px');
+			$('.ui-toggle--share').attr('style', 'bottom:' + height + 'px');
+
 		} else {
 			$( 'html' )
 				.removeClass( 'visible--ui-controls' );
+
+			$('.timeline').attr('style', '');
+			$('.ui-toggle--share').attr('style', '');
 		}
 
 		settings.isVisible.controls = !settings.isVisible.controls;

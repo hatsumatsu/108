@@ -22,10 +22,6 @@
 	&:hover {
 		.animation--blink;
 	}
-
-	.visible--ui-controls & {
-		transform: translateY( -6rem );
-	}
 }
 
 // modal
@@ -67,6 +63,7 @@
 			top: 0;
 		}
 		.footer-bar {
+			background: black;
 			position: absolute;
 			bottom: 0;
 			left: 0;
@@ -105,8 +102,8 @@
 
 	height: 1.7rem;
 	padding: 0 4rem 0 0;
-	width: 440px;
-	max-width: 100%;
+	max-width: 440px;
+	width: 100%;
 
 	&::after {
 		content: ' ';
@@ -167,35 +164,27 @@
 	border-radius: 0;
 }
 
-
-@media screen and ( max-width: 530px ) {
+@media screen and ( max-width: 656px ) {
 	.ui-toggle--share {
+		font-size: 12px;
+		margin-left: 20px;
+	}
 
-		&:hover,
-		&:focus {
+	.ui-modal--share .ui-modal-content {
 
+		.banner {
+			bottom: 116px;
 		}
+		.footer-bar {
+			height: 116px;
 
-		.visible--ui-controls & {
-			transform: translateY( -11rem );
+			ul {
+				margin: 20px 0;
+
+				li {
+					margin: 6px 5px;
+				}
+			}
 		}
 	}
 }
-
-
-@media screen and ( max-height: 480px ) {
-	.ui-toggle--share {
-
-		&:hover,
-		&:focus {
-
-		}
-
-		.visible--ui-controls & {
-			transform: translateY( -9rem );
-		}
-	}
-}
-
-
-

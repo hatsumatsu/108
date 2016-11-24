@@ -5,11 +5,8 @@
 	top: 0;
 	bottom: 0;
 
-	background: @color--bg url('../img/intro.png') no-repeat center;
-	background-size: contain;
-
 	opacity: 0;
-
+	background-color: @color--bg;
 	transition-duration: 750ms;
 	transition-property: opacity, transform;
 	transition-timing-function: ease; 
@@ -20,6 +17,16 @@
 		opacity: 1;
 
 		transition: none; 
+	}
+	&:after {
+		background: url('../img/intro.png') no-repeat center;
+		background-size: contain;
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	}
 }
 
@@ -50,10 +57,6 @@
     		float: right;
     	}
     }
-
-	li {
-		
-	}
 }
 
 .intro-title {
@@ -86,4 +89,32 @@
 	position: absolute;
 	bottom: 40px;
 	right: 40px;
+}
+@media screen and ( max-width: 656px ) {
+	.intro {
+
+		&:after {
+			top: 70px;
+		}
+	}
+	.intro-top {
+		margin: 20px;
+		display: block;
+
+		li {
+			width: 100%;
+		}
+	}
+	.intro-title {
+		font-size: 80px;
+		margin-top: 30px;
+	}
+	.intro-emicida-logo {
+		bottom: 20px;
+		left: 20px;
+	}
+	.intro-yasuke-logo {
+		bottom: 20px;
+		right: 20px;
+	}
 }

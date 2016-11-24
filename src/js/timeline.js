@@ -27,6 +27,8 @@ var Timeline = ( function() {
 
 		$( 'html' )
 			.addClass( 'initiated--timeline' );
+
+		height();
 	}
 
 	var bindEventHandlers = function() {
@@ -223,6 +225,25 @@ var Timeline = ( function() {
 				
 			}
 		}
+	}
+
+	var height = function() {
+
+		var setHeight = function() {
+			if ( $('html').hasClass('visible--ui-controls') ) {
+				var height = $('.ui--controls').outerHeight();
+
+				$('.timeline').attr('style', 'bottom:' + (height + 40) + 'px');
+				$('.ui-toggle--share').attr('style', 'bottom:' + height + 'px');
+			}
+		}
+
+		setHeight();
+
+		$( window ).resize(function() {
+			setHeight();
+		});
+
 	}
 
 	// State

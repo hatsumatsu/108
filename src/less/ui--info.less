@@ -27,6 +27,8 @@
 	
 }
 .ui-modal--info {
+	background: black;
+	color: white;
 
 	.ui-modal-content {
 		font-family: @font--2;
@@ -43,20 +45,37 @@
 	    	font-family: @font--1;
 	    }
 	    .key {
+	    	font-family: @font--1;
 	    	display: inline-block;
-		    padding: 7px 10px 2px;
-		    font-size: 39px;
-		    line-height: 1;
-		    color: inherit;
-		    background: rgba(255, 255, 255, 0.01);
+		    font-size: 70%;
 		    border: 1px solid currentColor;
 		    border-radius: 3px;
-		    VERTICAL-ALIGN: text-top;
-		    margin: 3px;
+		    padding: 5px 10px 0;
+		    vertical-align: top;
+		    margin: 0 5px;
 	    }
 	}
 
 	.visible--ui-info & {
 		.ui-modal.visible;
+	}
+}
+@media screen and ( max-width: 656px ) {
+	.ui-toggle--info {
+		font-size: 12px;
+		margin-right: 20px;
+	}
+	.ui-modal--info {
+
+		.ui-modal-content {
+			font-size: 30px;
+			margin: 1rem 1rem;
+			font-size: 20px;
+			line-height: 1.4;
+
+			.key {
+				padding: 5px 5px 0 6px;
+			}
+		}
 	}
 }

@@ -175,6 +175,13 @@ h1 {
   background: black;
   font-size: 21px;
   padding: 5px 10px;
+  text-align: left;
+}
+@media screen and (max-width: 656px) {
+  h1 {
+    font-size: 12px;
+    margin-left: 20px;
+  }
 }
 .timeline {
   -webkit-transition: 0.3s bottom;
@@ -375,6 +382,10 @@ h1 {
   color: black;
 }
 @media screen and (max-width: 656px) {
+  .ui-toggle--controls {
+    margin-right: 20px;
+    font-size: 12px;
+  }
   .control-button--narrow {
     -webkit-box-flex: 1;
         -ms-flex-positive: 1;
@@ -421,10 +432,6 @@ h1 {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
 }
-.visible--ui-controls .ui-toggle--share {
-  -webkit-transform: translateY(-6rem);
-          transform: translateY(-6rem);
-}
 .visible--ui-share .ui-modal--share {
   height: 100%;
   opacity: 1;
@@ -462,6 +469,7 @@ h1 {
   top: 0;
 }
 .ui-modal--share .ui-modal-content .footer-bar {
+  background: black;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -497,8 +505,8 @@ h1 {
   position: relative;
   height: 1.7rem;
   padding: 0 4rem 0 0;
-  width: 440px;
-  max-width: 100%;
+  max-width: 440px;
+  width: 100%;
 }
 .share-url:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
@@ -560,16 +568,22 @@ h1 {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
 }
-@media screen and (max-width: 530px) {
-  .visible--ui-controls .ui-toggle--share {
-    -webkit-transform: translateY(-11rem);
-            transform: translateY(-11rem);
+@media screen and (max-width: 656px) {
+  .ui-toggle--share {
+    font-size: 12px;
+    margin-left: 20px;
   }
-}
-@media screen and (max-height: 480px) {
-  .visible--ui-controls .ui-toggle--share {
-    -webkit-transform: translateY(-9rem);
-            transform: translateY(-9rem);
+  .ui-modal--share .ui-modal-content .banner {
+    bottom: 116px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar {
+    height: 116px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul {
+    margin: 20px 0;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li {
+    margin: 6px 5px;
   }
 }
 .ui-toggle--info {
@@ -591,6 +605,10 @@ h1 {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
 }
+.ui-modal--info {
+  background: black;
+  color: white;
+}
 .ui-modal--info .ui-modal-content {
   font-family: 'New Rail Alphabet White', monospace;
   display: block;
@@ -605,16 +623,14 @@ h1 {
   font-family: 'Eurostile', monospace;
 }
 .ui-modal--info .ui-modal-content .key {
+  font-family: 'Eurostile', monospace;
   display: inline-block;
-  padding: 7px 10px 2px;
-  font-size: 39px;
-  line-height: 1;
-  color: inherit;
-  background: rgba(255, 255, 255, 0.01);
+  font-size: 70%;
   border: 1px solid currentColor;
   border-radius: 3px;
-  VERTICAL-ALIGN: text-top;
-  margin: 3px;
+  padding: 5px 10px 0;
+  vertical-align: top;
+  margin: 0 5px;
 }
 .visible--ui-info .ui-modal--info {
   height: 100%;
@@ -623,6 +639,21 @@ h1 {
           transition-duration: 250ms, 100ms;
   -webkit-transition-delay: 0ms, 0ms;
           transition-delay: 0ms, 0ms;
+}
+@media screen and (max-width: 656px) {
+  .ui-toggle--info {
+    font-size: 12px;
+    margin-right: 20px;
+  }
+  .ui-modal--info .ui-modal-content {
+    font-size: 30px;
+    margin: 1rem 1rem;
+    font-size: 20px;
+    line-height: 1.4;
+  }
+  .ui-modal--info .ui-modal-content .key {
+    padding: 5px 5px 0 6px;
+  }
 }
 .ui-modal {
   position: fixed;
@@ -706,9 +737,8 @@ h1 {
   right: 0;
   top: 0;
   bottom: 0;
-  background: black url('../img/intro.png') no-repeat center;
-  background-size: contain;
   opacity: 0;
+  background-color: black;
   -webkit-transition-duration: 750ms;
           transition-duration: 750ms;
   -webkit-transition-property: opacity, -webkit-transform;
@@ -721,6 +751,16 @@ h1 {
   opacity: 1;
   -webkit-transition: none;
           transition: none;
+}
+.intro:after {
+  background: url('../img/intro.png') no-repeat center;
+  background-size: contain;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .intro-loading-bar {
   background: red;
@@ -783,4 +823,28 @@ h1 {
   position: absolute;
   bottom: 40px;
   right: 40px;
+}
+@media screen and (max-width: 656px) {
+  .intro:after {
+    top: 70px;
+  }
+  .intro-top {
+    margin: 20px;
+    display: block;
+  }
+  .intro-top li {
+    width: 100%;
+  }
+  .intro-title {
+    font-size: 80px;
+    margin-top: 30px;
+  }
+  .intro-emicida-logo {
+    bottom: 20px;
+    left: 20px;
+  }
+  .intro-yasuke-logo {
+    bottom: 20px;
+    right: 20px;
+  }
 }
