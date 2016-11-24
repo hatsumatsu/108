@@ -15,7 +15,6 @@
 		<meta name="description" content="A minimal beat machine played in the browser.">
 
 		<!-- CSS -->
-		<link type="text/css" rel="stylesheet" href="dist/fonts/lab-mono.css">
 		<link type="text/css" rel="stylesheet" href="dist/css/108.css">
 
 		<!-- FAVICON madness -->
@@ -116,38 +115,45 @@
 			</button>
 
 			<div class="ui-modal ui-modal--share" id="share">
-				<button type="button" class="ui-modal-close ui-modal-close--share" data-modal-action="toggle">
-					x
+				<button type="button" title="fechar" class="ui-modal-close ui-modal-close--share" data-modal-action="toggle">
+					fechar
 				</button>
 				<div class="ui-modal-content">
-					<p>Share your beat:</p>
-					<div class="banner-container">
-						<canvas class="banner" width="1000" height="1000"></canvas>
-						<input type="text" class="share-name-input" placeholder="What's your name?" maxlength="12">
+					<div class="banner">
 					</div>
-					<p>
-						<button type="button" class="download-banner">
-							Download banner
-						</button>
-					</p>
-					<!--
-					<p>
-						<button type="button" class="share-link" data-service="facebook">
-							@Facebook
-						</button>
-					</p>
-
-					<p>
-						<button type="button" class="share-link" data-service="twitter">
-							@Twitter
-						</button>
-					</p>
-					-->
-					<div class="share-url">
-						<input type="text" class="share-url-input" id="share-url-input" readonly>
-						<button type="button" class="share-url-button" data-clipboard-target="#share-url-input">
-							copy
-						</button>
+					<div class="footer-bar">
+						<ul>
+							<li>
+								<div class="share-url">
+									<input type="text" class="share-url-input" id="share-url-input" readonly>
+									<button type="button" class="share-url-button" data-clipboard-target="#share-url-input">
+										copy
+									</button>
+								</div>
+							</li>
+							<li>
+								<button type="button" class="share-link" data-service="facebook">
+									@Facebook
+								</button>
+							</li>
+							<li>
+								<button type="button" class="share-link" data-service="twitter">
+									@Twitter
+								</button>
+							</li>
+							<!--
+							<li>
+								<button type="button" class="download-banner">
+									Download banner
+								</button>
+							</li>
+						    -->
+							<!-- 
+							<li>
+								<a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>
+							</li>
+							 -->
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -192,7 +198,6 @@
 		<script type="text/javascript" src="src/js/history.js"></script>
 		<script type="text/javascript" src="src/js/timeline.js"></script>
 		<script type="text/javascript" src="src/js/Ui.js"></script>
-		<script type="text/javascript" src="src/js/banner.js"></script>
 		<script type="text/javascript" src="src/js/url.js"></script>
 		<script type="text/javascript" src="src/js/intro.js"></script>
 		<script type="text/javascript" src="src/js/title.js"></script>

@@ -71,7 +71,6 @@ var Ui = ( function() {
 
 		bindEventHandlers();
 
-		setName();
 	}
 
 	var bindEventHandlers = function() {

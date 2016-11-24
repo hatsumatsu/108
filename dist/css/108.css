@@ -86,8 +86,8 @@ body {
   background-color: black;
 }
 body {
-  background-image: url(../img/background1.jpg);
-  background-size: 110px;
+  background-image: url(../img/patter1.gif);
+  background-size: 260px;
 }
 html {
   font-family: 'Eurostile', monospace;
@@ -97,7 +97,7 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 body::before {
-  background-image: url(../img/background2.jpg);
+  background-image: url(../img/patter2.gif);
   background-size: 230px;
   content: "";
   position: absolute;
@@ -211,7 +211,7 @@ h1 {
   overflow: hidden;
 }
 .visible--ui-controls .timeline {
-  bottom: 142px;
+  bottom: 137px;
 }
 .timeline .timeline-wrapper {
   background: black;
@@ -310,6 +310,12 @@ h1 {
 .timeline .timeline-wrapper .sample .step:hover {
   border: 1px solid red;
   z-index: 2;
+}
+@media screen and (max-width: 656px) {
+  .timeline {
+    left: 0;
+    right: 0;
+  }
 }
 .ui--controls {
   background: black;
@@ -451,8 +457,58 @@ h1 {
   -webkit-transition-delay: 0ms, 0ms;
           transition-delay: 0ms, 0ms;
 }
+.ui-modal--share .ui-modal-close--share {
+  top: 0;
+  margin: 0;
+  bottom: 96px;
+  right: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  z-index: 2;
+}
 .ui-modal--share .ui-modal-content {
-  width: 32rem;
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.ui-modal--share .ui-modal-content .banner {
+  background: url('../img/banner3.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  position: absolute;
+  bottom: 96px;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.ui-modal--share .ui-modal-content .footer-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 96px;
+}
+.ui-modal--share .ui-modal-content .footer-bar ul {
+  display: inline-block;
+  padding: 0;
+  margin: 35px 0;
+}
+.ui-modal--share .ui-modal-content .footer-bar ul li {
+  display: inline-block;
+  margin: 0 5px;
+}
+.ui-modal--share .ui-modal-content .footer-bar ul li .share-link {
+  background: white;
+  color: black;
+  padding: 0 9px;
+}
+.ui-modal--share .ui-modal-content .footer-bar ul li .share-link:hover {
+  -webkit-animation: blink 150ms steps(2) infinite;
+          animation: blink 150ms steps(2) infinite;
 }
 .share-url {
   padding: 0.35rem 0.7rem;
@@ -461,10 +517,12 @@ h1 {
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid #3d2e24;
   border-radius: 3px;
+  border-color: white;
   position: relative;
   height: 1.7rem;
-  margin: 2rem 0;
   padding: 0 4rem 0 0;
+  width: 440px;
+  max-width: 100%;
 }
 .share-url:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
@@ -478,7 +536,7 @@ h1 {
   bottom: 0;
   display: block;
   width: 2rem;
-  margin-right: 4rem;
+  margin-right: 80px;
   background: -webkit-linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, #000000 90%);
   background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000000 90%);
 }
@@ -488,48 +546,6 @@ h1 {
   -webkit-animation: none !important;
           animation: none !important;
 }
-.banner-container {
-  position: relative;
-  overflow: hidden;
-}
-.banner-container input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  opacity: 0;
-  z-index: 2;
-}
-.banner-container .banner {
-  position: relative;
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.banner-container:after {
-  content: "loading...";
-  background: black;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  height: 100%;
-  right: 0;
-  opacity: 0;
-  padding-top: 10px;
-  -webkit-transition: 0.2s 0s opacity, 0s 0.2s top;
-          transition: 0.2s 0s opacity, 0s 0.2s top;
-  z-index: 3;
-}
-.banner-container.loading:after {
-  top: 0;
-  opacity: 1;
-  -webkit-transition: 0.2s 0s opacity, 0s 0s top;
-          transition: 0.2s 0s opacity, 0s 0s top;
-}
 .share-url-input {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -537,7 +553,7 @@ h1 {
   box-sizing: border-box;
   display: block;
   width: 100%;
-  padding: 0.35rem 0 0.5rem 0.35rem;
+  padding: 4px 7px;
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
@@ -554,10 +570,11 @@ h1 {
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid #3d2e24;
   border-radius: 3px;
+  background-color: black;
   position: absolute;
   right: 0;
   top: 0;
-  width: 4rem;
+  width: 80px;
   text-align: center;
   border: none;
   border-left: 1px solid currentColor;
@@ -670,8 +687,7 @@ h1 {
 }
 .ui-modal-content {
   display: block;
-  max-width: 48rem;
-  margin: 1rem;
+  margin: 0;
   font-size: 0.875rem;
   text-transform: uppercase;
   text-align: center;
