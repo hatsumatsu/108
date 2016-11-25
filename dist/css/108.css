@@ -620,6 +620,7 @@ h1 {
 }
 .ui-modal--info .ui-modal-content {
   font-family: 'New Rail Alphabet', monospace;
+  font-weight: 100;
   display: block;
   margin: 1rem 5rem;
   font-size: 48px;
