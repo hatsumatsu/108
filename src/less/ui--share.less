@@ -73,17 +73,22 @@
 			ul {
 				display: inline-block;
 				padding: 0;
-				margin: 35px 0;
+				margin: 46px 0;
 
 				li {
 					display: inline-block;
 					margin: 0 5px;
+					font-size: 21px;
+					vertical-align: top;
 
 					.share-link {
+						border: 1px solid black;
 						background: black;
 						color: white;
-						padding: 0 9px;
+						padding: 11px 47px 9px;
 						display: inline-block;
+						border-radius: 3px;
+						vertical-align: middle;
 
 						&:hover {
 							.animation--blink;
@@ -101,8 +106,8 @@
 	border-color: black;
 	position: relative;
 
-	height: 1.7rem;
-	padding: 0 4rem 0 0;
+	height: 59px;
+	padding: 0 137px 0 0;
 	max-width: 440px;
 	width: 100%;
 
@@ -116,7 +121,7 @@
 
 		display: block;
 		width: 2rem;
-		margin-right: 80px;
+		margin-right: 144px;
 
 		background: linear-gradient( 90deg, transparent 0%, white 90% );
 	}
@@ -134,11 +139,11 @@
 	display: block;
 	width: 100%;
 
-	padding: 4px 7px;
+	padding: 18px 16px 14px;
 
-	font-family: inherit;
+	font-family: @font--2;
 	font-size: inherit;
-	font-weight: inherit;
+	font-weight: bold;
 	color: black;
 
 	background: transparent;
@@ -151,13 +156,14 @@
 .share-url-button {
 	.button;
 
+	padding: 18px 12px;
 	background-color: white;
 	color: black;
 	position: absolute;
 	right: 0;
 	top: 0;
 
-	width: 80px;
+	width: 142px;
 
 	text-align: center;
 

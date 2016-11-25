@@ -61,7 +61,7 @@ var Sequencer = ( function() {
 		initPlayback();
 		initMetronome();
 
-		//startPlayback();
+		startPlayback();
 
 		bindEventHandlers();
 	}

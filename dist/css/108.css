@@ -28,7 +28,7 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'New Rail Alphabet White';
+  font-family: 'New Rail Alphabet';
   src: url('../fonts/NewRailAlphabet-White.eot');
   src: url('../fonts/NewRailAlphabet-White.eot?#iefix') format('embedded-opentype'), url('../fonts/NewRailAlphabet-White.woff') format('woff'), url('../fonts/NewRailAlphabet-White.ttf') format('truetype'), url('../fonts/NewRailAlphabet-White.svg#NewRailAlphabet-White') format('svg');
   font-weight: 300;
@@ -478,17 +478,22 @@ h1 {
 .ui-modal--share .ui-modal-content .footer-bar ul {
   display: inline-block;
   padding: 0;
-  margin: 35px 0;
+  margin: 46px 0;
 }
 .ui-modal--share .ui-modal-content .footer-bar ul li {
   display: inline-block;
   margin: 0 5px;
+  font-size: 21px;
+  vertical-align: top;
 }
 .ui-modal--share .ui-modal-content .footer-bar ul li .share-link {
+  border: 1px solid black;
   background: black;
   color: white;
-  padding: 0 9px;
+  padding: 11px 47px 9px;
   display: inline-block;
+  border-radius: 3px;
+  vertical-align: middle;
 }
 .ui-modal--share .ui-modal-content .footer-bar ul li .share-link:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
@@ -503,8 +508,8 @@ h1 {
   border-radius: 3px;
   border-color: black;
   position: relative;
-  height: 1.7rem;
-  padding: 0 4rem 0 0;
+  height: 59px;
+  padding: 0 137px 0 0;
   max-width: 440px;
   width: 100%;
 }
@@ -520,7 +525,7 @@ h1 {
   bottom: 0;
   display: block;
   width: 2rem;
-  margin-right: 80px;
+  margin-right: 144px;
   background: -webkit-linear-gradient(0deg, transparent 0%, white 90%);
   background: linear-gradient(90deg, transparent 0%, white 90%);
 }
@@ -537,10 +542,10 @@ h1 {
   box-sizing: border-box;
   display: block;
   width: 100%;
-  padding: 4px 7px;
-  font-family: inherit;
+  padding: 18px 16px 14px;
+  font-family: 'New Rail Alphabet', monospace;
   font-size: inherit;
-  font-weight: inherit;
+  font-weight: bold;
   color: black;
   background: transparent;
   border: none;
@@ -554,12 +559,13 @@ h1 {
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid #3d2e24;
   border-radius: 3px;
+  padding: 18px 12px;
   background-color: white;
   color: black;
   position: absolute;
   right: 0;
   top: 0;
-  width: 80px;
+  width: 142px;
   text-align: center;
   border: none;
   border-left: 1px solid currentColor;
@@ -613,7 +619,7 @@ h1 {
   background-image: url('../img/yasuke-logo-black.png');
 }
 .ui-modal--info .ui-modal-content {
-  font-family: 'New Rail Alphabet White', monospace;
+  font-family: 'New Rail Alphabet', monospace;
   display: block;
   margin: 1rem 5rem;
   font-size: 48px;
@@ -830,8 +836,11 @@ h1 {
   vertical-align: middle;
   top: 3px;
 }
+.intro-top .show div {
+  display: inline-block;
+}
 .intro-top span {
-  font-family: 'New Rail Alphabet White', monospace;
+  font-family: 'New Rail Alphabet', monospace;
   margin: 5px 0 0 53px;
   display: block;
   font-weight: bold;
