@@ -38,7 +38,7 @@
 	height: 5px;
 }
 .intro-top {
-	margin: 40px;
+	margin: 40px 40px 0;
 	font-family: @font--1;
 	font-size: 11px;
 	display: flex;
@@ -49,6 +49,9 @@
 
     .logo {
     	display: none;
+    }
+    .yasuke div {
+    	display: inline-block;
     }
     .japan {
     	div {
@@ -115,6 +118,22 @@
 	position: fixed;
 	bottom: 40px;
 	right: 40px;
+}
+@media screen and ( max-width: 730px ) {
+	.intro-top {
+		.yasuke,
+		.japan,
+		.show {
+			div {
+				display: block;
+			}
+		}
+		.show {
+			span {
+				margin-left: 0;
+			}
+		}
+	}
 }
 @media screen and ( max-width: 530px ) {
 	.intro-top {

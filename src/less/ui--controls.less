@@ -53,6 +53,7 @@
 // control buttons
 .button-row {
 	display: flex;
+	justify-content: center;
 }
 
 .control-button {
@@ -73,7 +74,7 @@
 .control-button--narrow {
 	flex-grow: 0;
 	flex-shrink: 0;
-	width: 4rem;
+	min-width: 4rem;
 }
 
 .control-button--no-feedback {
@@ -88,6 +89,14 @@
 	}
 }
 
+@media screen and ( max-width: 720px ) {
+	.button-row {
+		flex-wrap: wrap;
+	}
+	.control-button--narrow {
+		min-width: 30vw;
+	}
+}
 
 @media screen and ( max-width: 656px ) {
 	.ui-toggle--controls {
@@ -100,23 +109,10 @@
 		flex-shrink: 1;
 		width: auto;
 	}
-}
-
-
-@media screen and ( max-width: 530px ) {
-	.button-row {
-		flex-wrap: wrap;
-	}
-
-	.control-button {
-		min-width: ~'calc( 20vw - 2rem )';
-	}
-
 	.control-button--narrow {
-		min-width: ~'calc( 25vw - 2rem )';
+		min-width: 20vw;
 	}
 }
-
 
 @media screen and ( max-height: 480px ) {
 	.button-row {

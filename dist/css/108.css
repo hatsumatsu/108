@@ -293,7 +293,7 @@ h1 {
   border: 1px solid red;
   z-index: 2;
 }
-@media screen and (max-width: 656px) {
+@media screen and (max-width: 720px) {
   .timeline {
     left: 0;
     right: 0;
@@ -345,6 +345,9 @@ h1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .control-button {
   padding: 0.35rem 0.7rem;
@@ -371,7 +374,7 @@ h1 {
           flex-grow: 0;
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  width: 4rem;
+  min-width: 4rem;
 }
 .control-button--no-feedback:active,
 .control-button--no-feedback.active {
@@ -379,6 +382,15 @@ h1 {
 }
 .control-button--no-feedback.active {
   color: black;
+}
+@media screen and (max-width: 720px) {
+  .button-row {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .control-button--narrow {
+    min-width: 30vw;
+  }
 }
 @media screen and (max-width: 656px) {
   .ui-toggle--controls {
@@ -393,17 +405,8 @@ h1 {
         flex-shrink: 1;
     width: auto;
   }
-}
-@media screen and (max-width: 530px) {
-  .button-row {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .control-button {
-    min-width: calc( 20vw - 2rem );
-  }
   .control-button--narrow {
-    min-width: calc( 25vw - 2rem );
+    min-width: 20vw;
   }
 }
 @media screen and (max-height: 480px) {
@@ -808,7 +811,7 @@ h1 {
   height: 5px;
 }
 .intro-top {
-  margin: 40px;
+  margin: 40px 40px 0;
   font-family: 'Eurostile', monospace;
   font-size: 11px;
   display: -webkit-box;
@@ -823,6 +826,9 @@ h1 {
 }
 .intro-top .logo {
   display: none;
+}
+.intro-top .yasuke div {
+  display: inline-block;
 }
 .intro-top .japan div {
   display: inline-block;
@@ -880,6 +886,16 @@ h1 {
   position: fixed;
   bottom: 40px;
   right: 40px;
+}
+@media screen and (max-width: 730px) {
+  .intro-top .yasuke div,
+  .intro-top .japan div,
+  .intro-top .show div {
+    display: block;
+  }
+  .intro-top .show span {
+    margin-left: 0;
+  }
 }
 @media screen and (max-width: 530px) {
   .intro-top {
