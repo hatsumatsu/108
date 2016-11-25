@@ -39,7 +39,7 @@ var History = ( function() {
 
 					// undo
 					// Z
-					if( key === 90 ) {
+					if( key === 8 ) {
 						event.preventDefault();
 
 						undo();

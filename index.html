@@ -82,11 +82,11 @@
 				</button>
 
 				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="q" data-action="clear" title="Clear loop">
-					X
+					DEL
 				</button>
 
 				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="shift" data-action="metronome" title="Toggle metronome">
-					/
+					SHIFT
 				</button>
 			</div>
 		</div>
@@ -129,13 +129,6 @@
 									@Whatsapp
 								</a>
 							</li>
-							<!--
-							<li>
-								<button type="button" class="download-banner">
-									Download banner
-								</button>
-							</li>
-						    -->
 						</ul>
 					</div>
 				</div>
@@ -149,11 +142,13 @@
 				info
 			</button>
 
-			<div class="ui-modal ui-modal--info" data-modal-action="toggle" id="info">
+			<div class="ui-modal ui-modal--info" id="info">
 				<ul class="intro-top">
+					<button type="button" class="ui-modal-close ui-modal-close--info" data-modal-action="toggle">x</button>
+					<img class="logo" src="dist/img/logo.svg">
 					<li class="yasuke">EMICIDA / YASUKE</li>
-					<li class="japan">JAPAN TOUR 2<span>•</span>16</li>
-					<li>
+					<li class="japan">JAPAN <div>TOUR 2<span>•</span>16</div></li>
+					<li class="show first-show">
 						29/11 LIQUIDROOM<br>
 						<span>
 							Ebsu, Tokyo<br>
@@ -161,7 +156,7 @@
 							Start		<b>7:00PM</b><br>
 						</span>
 					</li>
-					<li>
+					<li class="show second-show">
 						30/11 CLUBE EX<br>
 						<span>
 							Shinagawa, Tokyo<br>
@@ -172,7 +167,16 @@
 				</ul>
 				<div class="ui-modal-content">
 					<p class="yasuke-title">BEAT MACHINE</p>
-					<p>Use the <span class="key">A</span> <span class="key">S</span> <span class="key">D</span> <span class="key">F</span> <span class="key">G</span> <span class="key">H</span> keys on your keyboard to play samples. <span class="key">Z</span>&nbsp;removes the previously added note, <span class="key">x</span>&nbsp;clears the sequence and <span class="key">space</span>&nbsp;starts/stops playback. <span class="key">Shift</span>&nbsp;toggles a metronome in case you need one.</p>
+					<p>As teclas utilizadas para criar a sua música, serão</p>
+					<div class="keys">
+						<span class="key">A</span>
+						<span class="key">S</span>
+						<span class="key">D</span>
+						<span class="key">F</span>
+						<span class="key">G</span>
+						<span class="key">H</span>
+					</div>
+					<p>Para voltar a ação, utilize a tecla <span class="key">Z</span>. <span class="key">DELETE</span>   Elimina a sequência inteira. Deixando a timeline vazia. <span class="key">SPACE BAR</span>   Começe / Pare a reprodução da música. <span class="key">SHIFT</span> Aciona o metrônomo caso você necessite. <span class="key">CONTROL</span>   Esconde os botões, deixando apenas a música na tela.</p>
 					<button type="button" class="button">
 						NOIZ!
 					</button>
@@ -186,9 +190,10 @@
 		<div class="intro">
 			<div class="intro-loading-bar"></div>
 			<ul class="intro-top">
+				<img class="logo" src="dist/img/logo-white.svg">
 				<li class="yasuke">EMICIDA / YASUKE</li>
-				<li class="japan">JAPAN TOUR 2<span>•</span>16</li>
-				<li>
+				<li class="japan">JAPAN <div>TOUR 2<span>•</span>16</div></li>
+				<li class="show first-show">
 					29/11 LIQUIDROOM<br>
 					<span>
 						Ebsu, Tokyo<br>
@@ -196,7 +201,7 @@
 						Start		<b>7:00PM</b><br>
 					</span>
 				</li>
-				<li>
+				<li class="show second-show">
 					30/11 CLUBE EX<br>
 					<span>
 						Shinagawa, Tokyo<br>

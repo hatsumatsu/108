@@ -47,11 +47,13 @@
     justify-content: space-between;
     letter-spacing: 0px;
 
-    .yasuke {
-    	
+    .logo {
+    	display: none;
     }
     .japan {
-
+    	div {
+    		display: inline-block;
+    	}
     	span {
 		    color: red;
 		    display: inline-block;
@@ -109,7 +111,21 @@
 	bottom: 40px;
 	right: 40px;
 }
-@media screen and ( max-width: 656px ) {
+@media screen and ( max-width: 530px ) {
+	.intro-top {
+		margin-left: 20px;
+		margin-right: 20px;
+
+		span {
+			margin: 5px 0 0;
+
+			b {
+				float: none;
+			}
+		}
+	}	
+}
+@media screen and ( max-width: 480px ) {
 	.intro {
 
 		&:after {
@@ -120,10 +136,18 @@
 		margin: 20px;
 		display: block;
 
-		.yasuke {
+		.logo {
+			display: block;
+			margin-bottom: 2vh;
+		}
+		.yasuke,
+		.japan {
+			display: none;
+		}
+		/*.yasuke {
 			font-size: 6vw;
 			text-align: center;	
-			margin-bottom: 1vh;
+			margin-bottom: 0vh;
 			margin-left: -20px;
 		    margin-right: -20px;
 		    width: auto;
@@ -140,10 +164,16 @@
 		    	margin: 0 -1.7vw 0 -0.6vw;
     			top: 1.4vw;
 		    }
-		}
+		}*/
 		li {
 			margin-bottom: 2vh;
-			width: 100%;
+			float: left;
+
+			&.show {
+				&.second-show {
+					float: right;
+				}
+			}
 		}
 	}
 	.intro-title {

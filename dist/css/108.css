@@ -87,7 +87,7 @@ body {
 }
 body {
   background-image: url(../img/patter1.gif);
-  background-size: 260px;
+  background-size: 170px;
 }
 html {
   font-family: 'Eurostile', monospace;
@@ -97,7 +97,7 @@ html {
 }
 body::before {
   background-image: url(../img/patter2.gif);
-  background-size: 230px;
+  background-size: 140px;
   content: "";
   position: absolute;
   top: 0;
@@ -657,6 +657,9 @@ h1 {
   -webkit-transition-delay: 0ms, 0ms;
           transition-delay: 0ms, 0ms;
 }
+.visible--ui-info .ui-modal--info .ui-modal-content {
+  overflow: auto;
+}
 .ui-modal--info .ui-modal-close--info {
   color: black;
 }
@@ -665,35 +668,41 @@ h1 {
     font-size: 12px;
     margin-right: 20px;
   }
+}
+@media screen and (max-width: 480px) {
   .ui-modal--info .ui-modal-content {
+    clear: both;
     font-size: 30px;
-    margin: 20px 55px;
+    margin: 20px 50px;
     font-size: 20px;
     line-height: 1.4;
   }
   .ui-modal--info .ui-modal-content .yasuke-title {
     margin: 20px -40px 20px;
   }
+  .ui-modal--info .ui-modal-content .keys .key {
+    margin: 0;
+  }
   .ui-modal--info .ui-modal-content .key {
     padding: 5px 5px 4px 6px;
   }
   .ui-modal--info .ui-modal-content button {
     margin-top: 20px;
-    margin-bottom: 3px;
+    margin-bottom: 0;
     padding: 6px 15px 8px;
   }
-  .ui-modal--info .ui-modal-content .intro-emicida-logo {
+  .ui-modal--info .intro-emicida-logo {
     background-size: 30px;
     width: 30px;
     height: 30px;
   }
-  .ui-modal--info .ui-modal-content .intro-yasuke-logo {
+  .ui-modal--info .intro-yasuke-logo {
     background-size: 15px;
     width: 15px;
     height: 87px;
   }
   .visible--ui-info .ui-modal--info {
-    overflow: auto;
+    padding-top: 20px;
   }
 }
 .ui-modal {
@@ -807,6 +816,12 @@ h1 {
           justify-content: space-between;
   letter-spacing: 0px;
 }
+.intro-top .logo {
+  display: none;
+}
+.intro-top .japan div {
+  display: inline-block;
+}
 .intro-top .japan span {
   color: red;
   display: inline-block;
@@ -858,37 +873,61 @@ h1 {
   bottom: 40px;
   right: 40px;
 }
-@media screen and (max-width: 656px) {
+@media screen and (max-width: 530px) {
+  .intro-top {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .intro-top span {
+    margin: 5px 0 0;
+  }
+  .intro-top span b {
+    float: none;
+  }
+}
+@media screen and (max-width: 480px) {
   .intro:after {
     top: 25vh;
   }
   .intro-top {
     margin: 20px;
     display: block;
+    /*.yasuke {
+			font-size: 6vw;
+			text-align: center;	
+			margin-bottom: 0vh;
+			margin-left: -20px;
+		    margin-right: -20px;
+		    width: auto;
+		}
+		.japan {
+			font-size: 6vw;
+			text-align: center;
+			margin-bottom: 3vh;
+			margin-left: -20px;
+		    margin-right: -20px;
+		    width: auto;
+
+		    span {
+		    	margin: 0 -1.7vw 0 -0.6vw;
+    			top: 1.4vw;
+		    }
+		}*/
   }
-  .intro-top .yasuke {
-    font-size: 6vw;
-    text-align: center;
-    margin-bottom: 1vh;
-    margin-left: -20px;
-    margin-right: -20px;
-    width: auto;
+  .intro-top .logo {
+    display: block;
+    margin-bottom: 2vh;
   }
+  .intro-top .yasuke,
   .intro-top .japan {
-    font-size: 6vw;
-    text-align: center;
-    margin-bottom: 3vh;
-    margin-left: -20px;
-    margin-right: -20px;
-    width: auto;
-  }
-  .intro-top .japan span {
-    margin: 0 -1.7vw 0 -0.6vw;
-    top: 1.4vw;
+    display: none;
   }
   .intro-top li {
     margin-bottom: 2vh;
-    width: 100%;
+    float: left;
+  }
+  .intro-top li.show.second-show {
+    float: right;
   }
   .intro-title {
     font-size: 70px;
