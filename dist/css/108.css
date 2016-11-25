@@ -656,8 +656,6 @@ h1 {
           transition-duration: 250ms, 100ms;
   -webkit-transition-delay: 0ms, 0ms;
           transition-delay: 0ms, 0ms;
-}
-.visible--ui-info .ui-modal--info .ui-modal-content {
   overflow: auto;
 }
 .ui-modal--info .ui-modal-close--info {
