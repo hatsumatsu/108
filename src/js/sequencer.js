@@ -19,7 +19,7 @@ var Sequencer = ( function() {
 				velocity:   4
 			},
 			1: {
-				src:        'dist/samples/emicida/cora.wav',
+				src:        'dist/samples/emicida/palmas.wav',
 				velocity:   4
 			},
 			2: {
@@ -34,10 +34,11 @@ var Sequencer = ( function() {
 				src:        'dist/samples/emicida/kick2.wav',
 				velocity:   4
 			},
+			
 			5: {
-				src:        'dist/samples/emicida/palmas.wav',
+				src:        'dist/samples/emicida/cora.wav',
 				velocity:   4
-			}
+			},
 		},
 		bpm:           108,
 		division:      16,
