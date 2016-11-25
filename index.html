@@ -98,15 +98,16 @@
 			</button>
 
 			<div class="ui-modal ui-modal--share" id="share">
-				<button type="button" title="fechar" class="ui-modal-close ui-modal-close--share" data-modal-action="toggle">
-					fechar
-				</button>
+				
 				<div class="ui-modal-content">
 					<div class="banner">
+						<button type="button" title="fechar" class="ui-modal-close ui-modal-close--share" data-modal-action="toggle">
+							fechar
+						</button>
 					</div>
 					<div class="footer-bar">
 						<ul>
-							<li>
+							<li class="share-url-container">
 								<div class="share-url">
 									<input type="text" class="share-url-input" id="share-url-input" readonly>
 									<button type="button" class="share-url-button" data-clipboard-target="#share-url-input">
@@ -118,16 +119,16 @@
 								<button type="button" class="share-link" data-service="facebook">
 									@Facebook
 								</button>
-							</li>
-							<li>
+							
 								<button type="button" class="share-link" data-service="twitter">
 									@Twitter
 								</button>
-							</li>
-							<li class="share-whatsapp" style="display: none">
-								<a class="share-link" data-action="share/whatsapp/share">
-									@Whatsapp
-								</a>
+							
+								<div class="share-whatsapp" style="display: none">
+									<a class="share-link" data-action="share/whatsapp/share">
+										@Whatsapp
+									</a>
+								</div>
 							</li>
 						</ul>
 					</div>

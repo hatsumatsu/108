@@ -442,16 +442,6 @@ h1 {
   -webkit-transition-delay: 0ms, 0ms;
           transition-delay: 0ms, 0ms;
 }
-.ui-modal--share .ui-modal-close--share {
-  top: 0;
-  margin: 0;
-  bottom: 150px;
-  right: 0;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  z-index: 2;
-}
 .ui-modal--share .ui-modal-content {
   background: black;
   position: absolute;
@@ -459,50 +449,51 @@ h1 {
   left: 0;
   right: 0;
   bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 .ui-modal--share .ui-modal-content .banner {
-  background: url('../img/banner3.jpg');
+  background: url('../img/banner4.jpg');
   background-size: cover;
   background-position: center bottom;
-  position: absolute;
-  bottom: 150px;
-  left: 0;
-  right: 0;
+  height: 100%;
+  position: relative;
+}
+.ui-modal--share .ui-modal-content .banner .ui-modal-close--share {
   top: 0;
+  margin: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  z-index: 2;
 }
 .ui-modal--share .ui-modal-content .footer-bar {
   background: white;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 150px;
 }
 .ui-modal--share .ui-modal-content .footer-bar ul {
   display: inline-block;
   padding: 0;
   margin: 46px 0;
+  width: 100%;
 }
 .ui-modal--share .ui-modal-content .footer-bar ul li {
   display: inline-block;
-  margin: 0 5px;
+  padding: 5px;
   font-size: 21px;
   vertical-align: top;
 }
-.ui-modal--share .ui-modal-content .footer-bar ul li .share-link {
-  border: 1px solid black;
-  background: black;
-  color: white;
-  padding: 11px 47px 9px;
-  display: inline-block;
-  border-radius: 3px;
-  vertical-align: middle;
+.ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container {
+  max-width: 518px;
+  width: 100%;
 }
-.ui-modal--share .ui-modal-content .footer-bar ul li .share-link:hover {
-  -webkit-animation: blink 150ms steps(2) infinite;
-          animation: blink 150ms steps(2) infinite;
-}
-.share-url {
+.ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url {
   padding: 0.35rem 0.7rem;
   color: inherit;
   line-height: 1;
@@ -512,40 +503,27 @@ h1 {
   border-color: black;
   position: relative;
   height: 59px;
-  padding: 0 137px 0 0;
-  max-width: 440px;
   width: 100%;
+  padding: 0;
 }
-.share-url:hover {
+.ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
 }
-.share-url::after {
-  content: ' ';
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  display: block;
-  width: 2rem;
-  margin-right: 144px;
-  background: -webkit-linear-gradient(0deg, transparent 0%, white 90%);
-  background: linear-gradient(90deg, transparent 0%, white 90%);
-}
-.share-url:hover,
-.share-url:focus {
+.ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url:hover,
+.ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url:focus {
   background: transparent !important;
   -webkit-animation: none !important;
           animation: none !important;
 }
-.share-url-input {
+.ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url-input {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
   box-sizing: border-box;
   display: block;
   width: 100%;
-  padding: 18px 16px 14px;
+  padding: 18px 0 14px 15px;
   font-family: 'New Rail Alphabet', monospace;
   font-size: inherit;
   font-weight: bold;
@@ -555,14 +533,8 @@ h1 {
   outline: none;
   box-shadow: none !important;
 }
-.share-url-button {
-  padding: 0.35rem 0.7rem;
-  color: inherit;
-  line-height: 1;
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid #3d2e24;
-  border-radius: 3px;
-  padding: 18px 12px;
+.ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url-button {
+  height: 100%;
   background-color: white;
   color: black;
   position: absolute;
@@ -573,21 +545,76 @@ h1 {
   border: none;
   border-left: 1px solid currentColor;
   border-radius: 0 5px 5px 0;
+  padding: 0;
 }
-.share-url-button:hover {
+.ui-modal--share .ui-modal-content .footer-bar ul li .share-link {
+  border: 1px solid black;
+  background: black;
+  color: white;
+  padding: 11px 38px 9px;
+  display: inline-block;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+.ui-modal--share .ui-modal-content .footer-bar ul li .share-link:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
 }
+/*@media screen and ( max-width: 980px ) {
+	.ui-modal--share { 
+		.ui-modal-content {
+			.footer-bar {
+				ul {
+					li {
+						.share-url {
+							height: 46px;
+
+							.share-url-input {
+								padding: 10px 13px;
+							}
+							.share-url-button {
+								font-size: 18px;
+								padding: 11px 0;
+							}
+						}
+						.share-link{
+							font-size: 18px;
+							padding: 6px 20px;
+						}
+					}
+				}
+			}
+		}
+	}
+}*/
 @media screen and (max-width: 656px) {
   .ui-toggle--share {
     font-size: 12px;
     margin-left: 20px;
   }
+}
+@media screen and (max-width: 520px) {
   .ui-modal--share .ui-modal-content .footer-bar ul {
-    margin: 20px 0;
+    margin: 20px 0 10px;
   }
   .ui-modal--share .ui-modal-content .footer-bar ul li {
-    margin: 6px 5px;
+    padding: 0px 20px 10px;
+    width: 100%;
+    font-size: 18px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url {
+    height: 47px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url .share-url-button {
+    width: 100px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url .share-url-input {
+    padding: 13px 15px 9px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li .share-link {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 8px 35px 5px 36px;
   }
 }
 .ui-toggle--info {
@@ -625,7 +652,7 @@ h1 {
   font-family: 'New Rail Alphabet', monospace;
   font-weight: 100;
   display: block;
-  margin: 1rem 5rem;
+  margin: 20px 80px 40px;
   font-size: 48px;
   text-align: center;
   line-height: 1.05;
@@ -811,7 +838,7 @@ h1 {
   height: 5px;
 }
 .intro-top {
-  margin: 40px 40px 0;
+  margin: 40px;
   font-family: 'Eurostile', monospace;
   font-size: 11px;
   display: -webkit-box;
@@ -911,32 +938,12 @@ h1 {
 }
 @media screen and (max-width: 480px) {
   .intro:after {
-    top: 25vh;
+    top: 20vh;
   }
   .intro-top {
     margin: 20px;
     display: block;
-    /*.yasuke {
-			font-size: 6vw;
-			text-align: center;	
-			margin-bottom: 0vh;
-			margin-left: -20px;
-		    margin-right: -20px;
-		    width: auto;
-		}
-		.japan {
-			font-size: 6vw;
-			text-align: center;
-			margin-bottom: 3vh;
-			margin-left: -20px;
-		    margin-right: -20px;
-		    width: auto;
-
-		    span {
-		    	margin: 0 -1.7vw 0 -0.6vw;
-    			top: 1.4vw;
-		    }
-		}*/
+    overflow: hidden;
   }
   .intro-top .logo {
     display: block;
@@ -955,7 +962,7 @@ h1 {
   }
   .intro-title {
     font-size: 70px;
-    margin-top: 12vh;
+    margin-top: 9vh;
   }
   .intro-emicida-logo {
     bottom: 20px;

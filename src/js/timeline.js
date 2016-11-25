@@ -238,7 +238,10 @@ var Timeline = ( function() {
 			}
 		}
 
-		setHeight();
+		setTimeout ( function () {
+			setHeight();	
+		}, 50);
+		
 
 		$( window ).resize(function() {
 			setHeight();
