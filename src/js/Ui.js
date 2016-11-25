@@ -297,12 +297,13 @@ var Ui = ( function() {
 
 		$( settings.selector.share.url ).val( settings.url.all );
 
-		if( /Android/i.test(navigator.userAgent) ) {
+
+		/*if( /Android/i.test(navigator.userAgent) ) {
 			$('.share-whatsapp').attr('style', '');
 			$('.share-whatsapp a').attr('href', 'whatsapp://send?text=Aumente o volume e escute o meu som criado no #YasukeBeatMachine. Chega no site e faça o seu beat também. ' + settings.url.all + '' );
 			console.log('whatstapp')
 			console.log('whatsapp://send?text=Aumente o volume e escute o meu som criado no #YasukeBeatMachine. Chega no site e faça o seu beat também. ' + settings.url.all + '');
-		}
+		}*/
 	}
 
 	var getHash = function() {
