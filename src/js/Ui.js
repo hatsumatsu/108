@@ -49,7 +49,8 @@ var Ui = ( function() {
 			hostname : location.hostname,
 			pathname : location.pathname,
 			name     : '',
-			hash     : ''
+			hash     : '',
+			all      : ''
 		}
 	}
 
@@ -123,8 +124,7 @@ var Ui = ( function() {
 				event.preventDefault();
 				var service = $( this ).attr( 'data-service' );
 				if( service ) {
-
-					openShareWindow( service, settings.url );
+					openShareWindow( service, settings.url.all );
 				}
 			} )
 			.on( 'sequencer/playSample', function( event, data ) {
@@ -288,18 +288,20 @@ var Ui = ( function() {
 	var setUrl = function( hash ) {
 		//Debug.log( 'Ui.setUrl()', hash );
 
-		var url =
+		settings.url.all =
 			settings.url.protocol +
 			settings.url.hostname +
 			settings.url.pathname +
 			settings.url.name +
 			settings.url.hash;
 
-		$( settings.selector.share.url ).val( url );
+		$( settings.selector.share.url ).val( settings.url.all );
 
 		if( /Android/i.test(navigator.userAgent) ) {
 			$('.share-whatsapp').attr('style', '');
-			$('.share-whatsapp a').attr('href', 'whatsapp://send?text=Aumente o volume e escute o meu som criado no #YasukeBeatMachine. Chega no site e faça o seu beat também. ' + url + '' );
+			$('.share-whatsapp a').attr('href', 'whatsapp://send?text=Aumente o volume e escute o meu som criado no #YasukeBeatMachine. Chega no site e faça o seu beat também. ' + settings.url.all + '' );
+			console.log('whatstapp')
+			console.log('whatsapp://send?text=Aumente o volume e escute o meu som criado no #YasukeBeatMachine. Chega no site e faça o seu beat também. ' + settings.url.all + '');
 		}
 	}
 
@@ -310,6 +312,7 @@ var Ui = ( function() {
 	var openShareWindow = function( service, url ) {
 		if( settings.shareServices[service] ) {
 			var url = settings.shareServices[service].url.replace( '{url}', url );
+
 			window.open( url, '108Share', 'width=520,height=320,menubar=no,location=yes,resizable=no,scrollbars=yes,status=no' );
 		}
 	}
