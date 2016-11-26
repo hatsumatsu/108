@@ -5,37 +5,62 @@
 var Url = ( function() {
 
 	var settings = {
-		hash: '',
+		sequencerID: '',
 		name: ''
 	}
 
 	var init = function() {
 		//Debug.log( 'url.init()' );
 
-		getName();
-
-		getHash();
+		getParameters();
 
 		$( document ).trigger( 'url/init', [{ 
-			hash: settings.hash,
+			sequencerID: settings.sequencerID,
 			name: settings.name
 		}] );
 	}
 
-	var getName = function() {
-		var name = location.search;
-		if( name.substr( 0,1 ) === '?' ) {
-			settings.name = name.substr( 1, name.length );
-			var name = decodeURI(settings.name);
-			var name = name.replace(/\+/g, ' ');
-			settings.name = name;
-		}
-	}
+	var getParameters = function() {
+		var delimiter = '@';
+		var delimiterEncoded = encodeURIComponent( delimiter );
 
-	var getHash = function() {
-		var hash = location.hash;
-		if( hash.substr( 0,1 ) === '#' ) {
-			settings.hash = hash.substr( 1, hash.length );
+		if ( location.search ) {
+			var parameters = location.search.substr( 1 );
+			var listParameters = [];
+
+			// put parameters in array
+			if ( parameters.indexOf( delimiter ) > 0 ) {
+
+				listParameters = parameters.split( delimiter );
+
+			} else if ( parameters.indexOf( delimiterEncoded ) > 0 ) {
+
+				listParameters = parameters.split( delimiterEncoded );
+
+			} else {
+
+				listParameters.push( parameters );
+			}
+
+			// set parameters
+			for ( i = 0; i < listParameters.length; i++ ) {
+				
+				if ( listParameters[i].substr( 0,1 ) == 'n' ) {
+
+					// decode
+					var decode = decodeURI(listParameters[i]);
+
+					// change + by space
+					var decode = decode.replace(/\+/g, ' ');
+
+					settings.name = decode.substr(1,13);
+
+				} else if ( listParameters[i].substr( 0,1 ) === 's' ) {
+
+					settings.sequencerID = listParameters[i].substr(1);
+
+				}
+			}
 		}
 	}
 

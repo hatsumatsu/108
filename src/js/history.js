@@ -37,9 +37,11 @@ var History = ( function() {
 					state.keyDown = true;
 					var key = event.which;
 
+					var checkOverlay = $('html').is('.visible--ui-share, .visible--intro, .visible--ui-info');
+
 					// undo
 					// Z
-					if( key === 8 ) {
+					if( key === 8 && checkOverlay === false ) {	
 						event.preventDefault();
 
 						undo();

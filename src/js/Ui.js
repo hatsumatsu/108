@@ -45,12 +45,12 @@ var Ui = ( function() {
 			}
 		},
 		url: {
-			protocol : location.protocol + '//',
-			hostname : location.hostname,
-			pathname : location.pathname,
-			name     : '',
-			hash     : '',
-			all      : ''
+			protocol:    location.protocol + '//',
+			hostname:    location.hostname,
+			pathname:    location.pathname,
+			name:        '',
+			sequencerID: '',
+			all:         ''
 		}
 	}
 
@@ -66,10 +66,18 @@ var Ui = ( function() {
 
 		bindEventHandlers();
 
+		setName();
 	}
 
 	var bindEventHandlers = function() {
 		$( document )
+			// set url name
+			.on( 'url/init', function( event, data ) {
+				if ( data.name ) {
+					$(settings.selector.share.getname).text( ' / ' + data.name );
+					getName( data.name );
+				}
+			})
 			// toggle controls
 			.on( 'click', settings.selector.controls.toggle, function( event ) {
 				event.preventDefault();
@@ -133,17 +141,14 @@ var Ui = ( function() {
 				highlightTitle();
 			} )
 			.on( 'sequencer/saveSequence', function( event, data ) {
-				setHash( data.data );
+				setSequencerID( data.data );
 			} )
 			.on( 'sequencer/toggleMetronome', function( event, data ) {
 				setButton( 'shift', data.state );
 			} )
 			.on( 'focus', settings.selector.share.url, function( event ) {
 				$( this ).select();
-			} )
-			.on( 'url/init', function( event, data) {
-				$(settings.selector.share.getname).text( ' / ' + data.name );
-			});
+			} );
 
 			new Clipboard( settings.selector.share.button );
 	}
@@ -248,11 +253,32 @@ var Ui = ( function() {
 		settings.isVisible[id] = !settings.isVisible[id];
 	}
 
-	var setName = function() {
+	var getName = function( name ) {
+
+		setName( name );
+
+	}
+	var setName = function( initName ) {
+
+		if ( initName ) {
+
+			$(settings.selector.getname).text( initName );
+
+		}
+
 		$(settings.selector.share.setname)[0].oninput = function() {
+			
 			var name = $(this).val();
 
-			//Debug.log( 'Ui.setName()', name );
+			// check and delete character '@'
+			// because '@' is the delimiter of parameters
+			if ( name.slice(-1) === '@' ) {
+				
+				$(this).val( name.slice(0, -1) );
+
+				var name = $(this).val();
+
+			}
 
 			if ( name.length >= 0 ) {
 				$(settings.selector.share.getname).text( ' / ' + name );
@@ -260,10 +286,9 @@ var Ui = ( function() {
 				$( document ).trigger( 'Ui/changeName', [ {
 					name: name
 				} ] );
-				
-				name = name.replace(/ /g, '+');
 
-				settings.url.name = '?' + name;
+				settings.url.name = encodeURI(name)//.replace(/ /g, '+');
+
 			} else {
 				$(settings.selector.share.getname).text( '' );
 				settings.url.name = '';
@@ -271,29 +296,42 @@ var Ui = ( function() {
 
 			setUrl();
 		};
+
 	}
 
-	var setHash = function ( hash ) {
-		//Debug.log( 'Ui.setHas()', hash );
+	var setSequencerID = function ( id ) {
+		//Debug.log( 'Ui.setHas()', id );
 
-		if ( hash.length > 0 ) {
-			settings.url.hash = '#' + hash;
+		if ( id.length > 0 ) {
+			settings.url.sequencerID = id;
+			
 		} else {
-			settings.url.hash = '';
+			settings.url.sequencerID = '';
+
 		}
 
 		setUrl();
 	}
 
 	var setUrl = function( hash ) {
-		//Debug.log( 'Ui.setUrl()', hash );
 
-		settings.url.all =
-			settings.url.protocol +
-			settings.url.hostname +
-			settings.url.pathname +
-			settings.url.name +
-			settings.url.hash;
+		var url = settings.url.protocol + settings.url.hostname + settings.url.pathname;
+		var parameters = '';
+
+		if ( settings.url.name || settings.url.sequencerID) {
+			parameters = '?';
+
+			if ( settings.url.name ) {
+				parameters += 'n' + settings.url.name + '@';
+			}
+			if ( settings.url.sequencerID ) {
+				parameters += 's' + settings.url.sequencerID;	
+			}
+		}
+
+		settings.url.all = url + parameters;
+		
+		window.history.pushState('', '', parameters);
 
 		$( settings.selector.share.url ).val( settings.url.all );
 
@@ -312,8 +350,9 @@ var Ui = ( function() {
 
 	var openShareWindow = function( service, url ) {
 		if( settings.shareServices[service] ) {
+			console.log(settings.url.all)
 			var url = settings.shareServices[service].url.replace( '{url}', url );
-
+			console.log(url)
 			window.open( url, '108Share', 'width=520,height=320,menubar=no,location=yes,resizable=no,scrollbars=yes,status=no' );
 		}
 	}

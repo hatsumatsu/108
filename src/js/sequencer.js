@@ -149,10 +149,10 @@ var Sequencer = ( function() {
 				addSequenceItem( data.sample, data.step );
 			} )
 			.on( 'url/init', function( event, data ) {
-				var hash = data.hash;
+				var sequencerID = data.sequencerID;
 
-				if( hash ) {
-					loadSequence( hash );
+				if( sequencerID ) {
+					loadSequence( sequencerID );
 				} else {
 					setTimeout( function() {
 						buildDemoSequence();
@@ -281,7 +281,7 @@ var Sequencer = ( function() {
 
 		}, settings.events, settings.division + 'n' );
 
-		Tone.Transport.start();
+		//Tone.Transport.start();
 	}
 
 	var startPlayback = function() {
