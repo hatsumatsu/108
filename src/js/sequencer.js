@@ -15,28 +15,28 @@ var Sequencer = ( function() {
 		},
 		samples: {
 			0: {
-				src:        'dist/samples/emicida/conga.wav',
+				src:        'dist/samples/conga.mp3',
 				velocity:   4
 			},
 			1: {
-				src:        'dist/samples/emicida/palmas.wav',
+				src:        'dist/samples/palmas.mp3',
 				velocity:   4
 			},
 			2: {
-				src:        'dist/samples/emicida/hihat.wav',
+				src:        'dist/samples/hihat.mp3',
 				velocity:   4
 			},
 			3:  {
-				src:        'dist/samples/emicida/kick1.wav',
+				src:        'dist/samples/kick1.mp3',
 				velocity:   4
 			},
 			4: {
-				src:        'dist/samples/emicida/kick2.wav',
+				src:        'dist/samples/kick2.mp3',
 				velocity:   4
 			},
 			
 			5: {
-				src:        'dist/samples/emicida/cora.wav',
+				src:        'dist/samples/cora.mp3',
 				velocity:   4
 			},
 		},

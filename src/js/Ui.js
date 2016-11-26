@@ -132,7 +132,7 @@ var Ui = ( function() {
 				event.preventDefault();
 				var service = $( this ).attr( 'data-service' );
 				if( service ) {
-					openShareWindow( service, settings.url.all );
+					openShareWindow( service, 'https://goo.gl/6jrrsB' );
 				}
 			} )
 			.on( 'sequencer/playSample', function( event, data ) {

@@ -458,7 +458,7 @@ h1 {
           flex-direction: column;
 }
 .ui-modal--share .ui-modal-content .banner {
-  background: url('../img/banner4.jpg');
+  background: url('../img/banner.jpg');
   background-size: cover;
   background-position: center bottom;
   height: 100%;
