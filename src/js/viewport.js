@@ -14,9 +14,20 @@ var Viewport = ( function() {
 	};
 
 	var init = function() {
-		//Debug.log( 'viewport.init()' );
+		//Debug.log( 'Viewport.init()' );
+
+		settings.element = $( window );
+
+		onResizeFinish();
 
 		onLoop();
+	}
+
+	var bindEventHandlers = function() {
+		$( document )
+			.on( 'viewport/resize/finish', function() {
+                onResizeFinish();
+            } )
 	}
 
 	/**
@@ -46,8 +57,27 @@ var Viewport = ( function() {
 		}
 	}
 
+	var onResizeFinish = function() {
+        //Debug.log( 'viewport.onResizeFinish()' );
+
+        settings.width = settings.element.width();
+        settings.height = settings.element.height();
+        settings.documentHeight = $( 'html' ).outerHeight();
+
+    }
+
+    var getWidth = function() {
+        return settings.width;
+    }
+
+    var getHeight = function() {
+        return settings.height;
+    }
+
 	return {
-		init: function() { init(); },
+		init: 		function() { init(); },
+		getWidth:   function() { return getWidth() },
+		getHeight:  function() { return getHeight() },
 	}
 
 } )();

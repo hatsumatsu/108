@@ -166,7 +166,10 @@ var Sequencer = ( function() {
 				if( data.id ) {
 					removeSequenceItem( data.step, data.sample, data.division, data.id );
 				}
-			} );
+			} )
+			.on( 'intro/stop' , function() {
+				Tone.Transport.start();
+			});
 
 		// all samples are loaded
 		Tone.Buffer.on( 'load', function() {
@@ -280,8 +283,6 @@ var Sequencer = ( function() {
 			} ] );
 
 		}, settings.events, settings.division + 'n' );
-
-		//Tone.Transport.start();
 	}
 
 	var startPlayback = function() {

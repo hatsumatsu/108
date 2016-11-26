@@ -82,8 +82,9 @@ var Intro = ( function() {
 						$( settings.selector.intro ).remove();
 					} );
 
-				$( 'html' )
-					.removeClass( 'visible--intro' );
+				$( 'html' ).removeClass( 'visible--intro' );
+
+				
 			}, 1000 );
 		} );
 	}
