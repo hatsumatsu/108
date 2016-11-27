@@ -17,15 +17,15 @@ module.exports = function( grunt ) {
 		less: {
 			development: {
 				files: {
-					'dist/css/108.css': 'src/less/108.less'
+					'dist/css/style.css': 'src/less/style.less'
 				}
 			}
 		},
 
 		autoprefixer: {
 			style: {
-				src: 'dist/css/108.css',
-				dest: 'dist/css/108.css'
+				src: 'dist/css/style.css',
+				dest: 'dist/css/style.css'
 			}
 		},
 

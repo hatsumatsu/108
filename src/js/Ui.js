@@ -59,10 +59,10 @@ var Ui = ( function() {
 		toggleControls();
 
 		// show info UI on first visit
-		if( !Cookies.get( '108--visited' ) && location.href.indexOf( 'demo' ) < 0 ) {
+		if( !Cookies.get( 'yasuke--visited' ) && location.href.indexOf( 'demo' ) < 0 ) {
 			toggleModal( 'info' );
 		}
-		Cookies.set( '108--visited', true, { expires: 30, path: '' } );
+		Cookies.set( 'yasuke--visited', true, { expires: 30, path: '' } );
 
 		bindEventHandlers();
 
