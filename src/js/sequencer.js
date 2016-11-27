@@ -146,7 +146,7 @@ var Sequencer = ( function() {
 				}
 			} )
 			.on( 'timeline/clickAdd', function( event, data ) {
-				addSequenceItem( data.sample, data.step );
+				addSequenceItem( data.sample, data.step, true );
 			} )
 			.on( 'url/init', function( event, data ) {
 				var sequencerID = data.sequencerID;
@@ -217,6 +217,10 @@ var Sequencer = ( function() {
 			$( document ).trigger( 'sequencer/playSample', [ {
 				sample: i
 			} ] );
+		}
+
+		if( !settings.isPlaying) {
+			startPlayback();
 		}
 	}
 
@@ -313,7 +317,7 @@ var Sequencer = ( function() {
 		}
 	}
 
-	var addSequenceItem = function( i, step, DemoSequence ) {
+	var addSequenceItem = function( i, step, byTimeline ) {
 		//Debug.log( 'Sequencer.addSequenceItem()', i, step );
 
 		if( !step && step !== 0 ) {
@@ -324,11 +328,16 @@ var Sequencer = ( function() {
 		}
 
 		//Debug.log( 'step', step );
-
-		var pending = ( ( settings.division * settings.loop.progress ) < step ) ? true : false;
-
+		var pending = 1
+		
+		if ( !byTimeline ) {
+			pending = ( ( settings.division * settings.loop.progress ) < step ) ? 2 : 1;
+		}
+		
 		if( !settings.sequence[i][step] ) {
-			settings.sequence[i][step] = ( pending ) ? 2 : 1;
+			
+			settings.sequence[i][step] = pending;
+
 			settings.sampleId += 1;
 
 			$( document ).trigger( 'sequencer/changeSequence', [ {
@@ -341,10 +350,9 @@ var Sequencer = ( function() {
 				division:   settings.division,
 				id:         settings.sampleId
 			} ] );
-			
-			if( !settings.isPlaying && !DemoSequence) {
-				startPlayback();
-			}
+		}
+		if( !settings.isPlaying) {
+			startPlayback();
 		}
 	}
 
@@ -449,9 +457,8 @@ var Sequencer = ( function() {
 	var buildDemoSequence = function() {
 		//Debug.log( 'Sequencer.buildDemoSequence()' );
 
-		addSequenceItem(0, 0, true);
+		addSequenceItem(0, 0);
 	}
-
 
 	// Recording
 	var startRecording = function() {
@@ -468,7 +475,6 @@ var Sequencer = ( function() {
 		settings.isRecording = false;
 		$( document ).trigger( 'sequencer/stopRecording' );
 	}
-
 
 	// Metronome
 	var initMetronome = function() {
