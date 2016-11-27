@@ -250,23 +250,15 @@ h1 {
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-transition: 0.5s background-color;
-          transition: 0.5s background-color;
+  -webkit-transition: 0.5s background-color, 0.3s opacity, 0.3s -webkit-transform;
+          transition: 0.5s background-color, 0.3s opacity, 0.3s transform;
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   opacity: 0;
-}
-.timeline .timeline-wrapper .sample .step .content.added {
-  -webkit-transition: 0s background-color;
-          transition: 0s background-color;
-  background-color: #CB9877;
-}
-.timeline .timeline-wrapper .sample .step .content.active {
-  -webkit-transition: 0s background-color;
-          transition: 0s background-color;
-  background-color: red;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
 }
 .timeline .timeline-wrapper .sample .step[data-sample="0"] .content {
   background-image: url('../img/0.png');
@@ -288,6 +280,20 @@ h1 {
 }
 .timeline .timeline-wrapper .sample .step[data-id] .content {
   opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.timeline .timeline-wrapper .sample .step[data-id] .content.added {
+  -webkit-transition: 0s background-color, 0.1s opacity, 0.1s -webkit-transform cubic-bezier(0.07, 1.91, 0.1, 2.18);
+          transition: 0s background-color, 0.1s opacity, 0.1s transform cubic-bezier(0.07, 1.91, 0.1, 2.18);
+  background-color: #CB9877;
+}
+.timeline .timeline-wrapper .sample .step[data-id] .content.active {
+  -webkit-transition: 0s background-color, 0.01s opacity, 0.01s -webkit-transform;
+          transition: 0s background-color, 0.01s opacity, 0.01s transform;
+  background-color: red;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
 }
 .timeline .timeline-wrapper .sample .step:hover {
   border: 1px solid red;

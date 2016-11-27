@@ -56,22 +56,13 @@
 					display: flex;
 					align-items: center;
 					justify-content: space-around;
-
-					transition: 0.5s background-color;
+					transition: 0.5s background-color, 0.3s opacity, 0.3s transform;
 					background-color: transparent;
 					background-repeat: no-repeat;
 					background-size: contain;
 					background-position: center;
 					opacity: 0;
-
-					&.added {
-						transition: 0s background-color;
-						background-color: #CB9877;
-					}
-					&.active {
-						transition: 0s background-color;
-						background-color: red;
-					}
+					transform: scale(0.8);
 				}
 				&[data-sample="0"]{
 					.content {
@@ -106,6 +97,17 @@
 				&[data-id] {
 					.content {
 						opacity: 1;
+						transform: scale(1);
+
+						&.added {
+							transition: 0s background-color, 0.1s opacity, 0.1s transform cubic-bezier(0.07, 1.91, 0.1, 2.18);
+							background-color: #CB9877;
+						}
+						&.active {
+							transition: 0s background-color, 0.01s opacity, 0.01s transform;
+							background-color: red;
+							transform: scale(0.9);
+						}
 					}
 				}
 				&:hover {
