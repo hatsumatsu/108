@@ -9,6 +9,7 @@ var Viewport = ( function() {
 		height: 0,
 		documentHeight: 0,
 		nowLoop: Date.now(),
+		visibility: true,
 		fps: ( 1000 / 60 ),
 
 	};
@@ -19,6 +20,8 @@ var Viewport = ( function() {
 		settings.element = $( window );
 
 		onResizeFinish();
+
+		pageVisibility();
 
 		onLoop();
 	}
@@ -66,6 +69,45 @@ var Viewport = ( function() {
 
     }
 
+    var pageVisibility = function() {
+    	// Set the name of the hidden property and the change event for visibility
+		var hidden, visibilityChange;
+
+		if ( typeof document.hidden !== "undefined" ) { // Opera 12.10 and Firefox 18 and later support 
+			hidden = "hidden";
+			visibilityChange = "visibilitychange";
+		} else if ( typeof document.msHidden !== "undefined" ) {
+			hidden = "msHidden";
+			visibilityChange = "msvisibilitychange";
+		} else if ( typeof document.webkitHidden !== "undefined" ) {
+			hidden = "webkitHidden";
+			visibilityChange = "webkitvisibilitychange";
+		}
+
+		function handleVisibilityChange() {
+			if ( document[hidden] ) {
+
+				$( document ).trigger( 'viewport/visibility', [{
+					visibility : false
+				}] );
+
+				settings.visibility = false;
+				
+			} else {
+
+				$( document ).trigger( 'viewport/visibility', [{
+					visibility : true
+				}] );
+
+				settings.visibility = true;
+				
+			}
+		}
+
+		 // Handle page visibility change   
+		 document.addEventListener(visibilityChange, handleVisibilityChange, false);
+    }
+
     var getWidth = function() {
         return settings.width;
     }
@@ -75,9 +117,9 @@ var Viewport = ( function() {
     }
 
 	return {
-		init: 		function() { init(); },
-		getWidth:   function() { return getWidth() },
-		getHeight:  function() { return getHeight() },
+		init: 		   function() { init(); },
+		getWidth:      function() { return getWidth() },
+		getHeight:     function() { return getHeight() }
 	}
 
 } )();

@@ -43,6 +43,7 @@ var Sequencer = ( function() {
 		bpm:           108,
 		division:      16,
 		isPlaying:     false,
+		backPlaying:   false,
 		isRecording:   true,
 		isLoaded:      false,
 		isMetronoming: false,
@@ -167,9 +168,26 @@ var Sequencer = ( function() {
 					removeSequenceItem( data.step, data.sample, data.division, data.id );
 				}
 			} )
-			.on( 'intro/stop' , function() {
+			.on( 'intro/stop', function() {
 				Tone.Transport.start();
-			});
+			} )
+			.on( 'viewport/visibility', function( event, data ) {
+				// pause sequencer in background
+				// comeback playing if leave playing
+				if ( data.visibility && settings.backPlaying ) {
+					startPlayback();
+
+				} else {
+
+					if ( settings.isPlaying === true ) {
+						settings.backPlaying = true;
+					} else {
+						settings.backPlaying = false;
+					}
+
+					stopPlayback();
+				}
+			} );
 
 		// all samples are loaded
 		Tone.Buffer.on( 'load', function() {
@@ -307,6 +325,8 @@ var Sequencer = ( function() {
 		$( document ).trigger( 'sequencer/stopPlayback' );
 
 		settings.loop.stop();
+
+
 	}
 
 	var togglePlayback = function() {
