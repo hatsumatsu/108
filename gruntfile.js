@@ -69,15 +69,14 @@ module.exports = function( grunt ) {
 					'dist/js/main.min.js': [
 						'src/js/debug.js',
 						'src/js/viewport.js',
+						'src/js/ui.js',
 						'src/js/sequencer.js',
 						'src/js/history.js',
 						'src/js/timeline.js',
-						'src/js/ui.js',
-						'src/js/banner.js',
+						//'src/js/banner.js',
 						'src/js/url.js',
 						'src/js/intro.js',
-						'src/js/title.js',
-						
+						'src/js/title.js'
 					]
 				}
 			}

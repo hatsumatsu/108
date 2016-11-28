@@ -40,7 +40,7 @@ var History = ( function() {
 					var checkOverlay = $('html').is('.visible--ui-share, .visible--intro, .visible--ui-info');
 
 					// undo
-					// Z
+					// DELETE
 					if( key === 8 && checkOverlay === false ) {	
 						event.preventDefault();
 

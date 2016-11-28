@@ -837,6 +837,8 @@ h1 {
   bottom: 0;
 }
 .intro-loading-bar {
+  -webkit-transition: 0.4s width;
+          transition: 0.4s width;
   background: red;
   top: 0;
   position: absolute;

@@ -203,6 +203,7 @@ var Timeline = ( function() {
 					$(selector).removeClass('active');
 				}, 138)
 
+				/*
 				if ( Viewport.getWidth() > 768) {
 				
 					new TimelineLite()
@@ -224,7 +225,7 @@ var Timeline = ( function() {
 	                            ease: Elastic.easeOut.config( 1, 0.3 )
 	                        }
 	                    );
-                 }
+                 }*/
 			}
 		}
 	}

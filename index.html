@@ -18,7 +18,7 @@
 		<meta name="description" content="Yasuke Beat Machine">
 
 		<!-- CSS -->
-		<link type="text/css" rel="stylesheet" href="dist/css/style.css">
+		<link type="text/css" rel="stylesheet" href="dist/css/style.css?">
 
 		<!-- FAVICON madness -->
 		<meta name="msapplication-TileColor" content="#000000">
@@ -28,14 +28,14 @@
 		<meta property="og:site_name" content="Yasuke Beat Machine">
 		<meta property="og:description" content="Aumente o volume e escute o meu som criado no #YasukeBeatMachine. Chega no site e faça o seu beat também. https://emicida.com.br/yasuke">
 		<meta property="og:type" content="website">
-		<meta property="og:image" content="dist/meta/facebook.png">
+		<meta property="og:image" content="http://www.alucas.com.br/emicida/dist/meta/facebook2.png">
 
 		<!-- TWITTER meta -->
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:url" content="http://emicida.com.br/yasuke">
 		<meta name="twitter:title" content="Yasuke Beat Machine">
-		<meta name="twitter:description" content="A minimal beat machine played in the browser.">
-		<meta name="twitter:image" content="http://www.alucas.com.br/emicida/dist/meta/facebook.png">
+		<meta name="twitter:description" content="Aumente o volume e escute o meu som criado no #YasukeBeatMachine. Chega no site e faça o seu beat também. https://emicida.com.br/yasuke">
+		<meta name="twitter:image" content="http://www.alucas.com.br/emicida/dist/meta/facebook2.png">
 
 
 	</head>
@@ -121,11 +121,11 @@
 								</div>
 							</li>
 							<li>
-								<button type="button" class="share-link" data-service="facebook">
+								<button type="button" class="share-link" data-service="facebook" onclick="ga('send', 'event', 'link','click', 'Share Facebook');">
 									@Facebook
 								</button>
 							
-								<button type="button" class="share-link" data-service="twitter">
+								<button type="button" class="share-link" data-service="twitter" onclick="ga('send', 'event', 'link','click', 'Share Twitter');">
 									@Twitter
 								</button>
 							
@@ -225,7 +225,7 @@
 
 		<!-- JS -->
 		<script type="text/javascript" src="dist/js/dependencies.min.js"></script>
-
+		<!--<script type="text/javascript" src="dist/js/main.min.js"></script>-->
 		<script type="text/javascript" src="src/js/debug.js?"></script>
 		<script type="text/javascript" src="src/js/viewport.js?"></script>
 		<script type="text/javascript" src="src/js/Ui.js?"></script>
