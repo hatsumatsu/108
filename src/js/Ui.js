@@ -132,7 +132,7 @@ var Ui = ( function() {
 				event.preventDefault();
 				var service = $( this ).attr( 'data-service' );
 				if( service ) {
-					openShareWindow( service, 'https://goo.gl/6jrrsB' );
+					openShareWindow( service, settings.url.all );
 				}
 			} )
 			.on( 'sequencer/playSample', function( event, data ) {
@@ -331,7 +331,8 @@ var Ui = ( function() {
 
 		settings.url.all = url + parameters;
 		
-		window.history.pushState('', '', parameters);
+		window.history.pushState('', '', '?');
+		console.log('test')
 
 		$( settings.selector.share.url ).val( settings.url.all );
 
@@ -349,10 +350,12 @@ var Ui = ( function() {
 	}
 
 	var openShareWindow = function( service, url ) {
+		//var urltest = 'http://alucas.com.br/emicida/b2/?nangelo@sA2B2C2D2E2F2G2H2I2J2K2L2M2N2O2P2';
+
 		if( settings.shareServices[service] ) {
-			console.log(settings.url.all)
+			
 			var url = settings.shareServices[service].url.replace( '{url}', url );
-			console.log(url)
+			
 			window.open( url, '108Share', 'width=520,height=320,menubar=no,location=yes,resizable=no,scrollbars=yes,status=no' );
 		}
 	}
