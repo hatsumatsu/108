@@ -752,6 +752,34 @@ h4 > span {
   font-size: 21px;
   margin-top: 70px;
 }
+.ui-modal--info .ui-modal-content .credits-container {
+  margin-top: 70px;
+  text-transform: none;
+}
+.ui-modal--info .ui-modal-content .credits-container .title {
+  border-bottom: 1px solid #d8d8d8;
+  display: inline-block;
+  min-width: 200px;
+  text-transform: none;
+}
+.ui-modal--info .ui-modal-content .credits-container ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ui-modal--info .ui-modal-content .credits-container ul li {
+  font-size: 14px;
+}
+.ui-modal--info .ui-modal-content .credits-container ul li a {
+  padding: 10px;
+  display: inline-block;
+}
+.ui-modal--info .ui-modal-content .credits-container ul li a:hover {
+  color: gray;
+}
+.ui-modal--info .ui-modal-content .credits-container ul li:last-child a {
+  padding-bottom: 0;
+}
 .visible--ui-info .ui-modal--info {
   height: 100%;
   opacity: 1;
@@ -791,6 +819,9 @@ h4 > span {
     margin-top: 20px;
     margin-bottom: 0;
     padding: 6px 15px 8px;
+  }
+  .ui-modal--info .ui-modal-content .credits-container {
+    margin-top: 30px;
   }
   .ui-modal--info .intro-emicida-logo {
     background-size: 30px;

@@ -76,6 +76,39 @@
 	    	font-size: 21px;
 	    	margin-top: 70px;
 	    }
+	    .credits-container {
+	    	margin-top: 70px;
+	    	text-transform: none;
+
+	    	.title {
+	    		border-bottom: 1px solid #d8d8d8;
+			    display: inline-block;
+			    min-width: 200px;
+			    text-transform: none;
+	    	}
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+
+				li {
+					font-size: 14px;
+
+					a {
+						padding: 10px;
+						display: inline-block;
+					}
+					a:hover {
+						color: gray;
+					}
+					&:last-child {
+						a {
+							padding-bottom: 0;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	.visible--ui-info & {
@@ -119,6 +152,9 @@
 			    margin-top: 20px;
     			margin-bottom: 0;
     			padding: 6px 15px 8px;
+			}
+			.credits-container {
+				margin-top: 30px;
 			}
 		}
 		.intro-emicida-logo {
