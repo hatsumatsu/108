@@ -280,17 +280,18 @@ var Ui = ( function() {
 
 			}
 
-			if ( name.length >= 0 ) {
-				$(settings.selector.share.getname).text( ' / ' + name );
+			if ( name.length > 0 ) {
+				$(settings.selector.share.getname).addClass('active').text( name );
 
 				$( document ).trigger( 'Ui/changeName', [ {
 					name: name
 				} ] );
 
-				settings.url.name = encodeURI(name)//.replace(/ /g, '+');
+				//settings.url.name = encodeURI(name);
+				settings.url.name = name.replace(/ /g, '-');
 
 			} else {
-				$(settings.selector.share.getname).text( '' );
+				$(settings.selector.share.getname).removeClass('active').text( '' );
 				settings.url.name = '';
 			}
 
@@ -332,7 +333,6 @@ var Ui = ( function() {
 		settings.url.all = url + parameters;
 		
 		window.history.pushState('', '', '?');
-		console.log('test')
 
 		$( settings.selector.share.url ).val( settings.url.all );
 

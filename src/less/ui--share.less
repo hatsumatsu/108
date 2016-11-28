@@ -76,8 +76,34 @@
 					font-size: 21px;
 					vertical-align: top;
 
+					&.share-name-input-container {
+						padding-left: 0;
+						padding-right: 0;
+					    max-width: 200px;
+    					width: 100%;
+
+						.share-name-input {
+							-webkit-appearance: none;
+						    -moz-appearance: none;
+						    appearance: none;
+						    box-sizing: border-box;
+						    display: block;
+						    width: 100%;
+						    padding: 18px 15px 14px;
+						    font-family: 'New Rail Alphabet', monospace;
+						    font-size: inherit;
+						    color: black;
+						    font-weight: bold;
+						    outline: none;
+						    background: transparent;
+						    border-radius: 3px;
+						    box-shadow: none !important;
+						    border: 1px solid black;
+						}
+					}
 					&.share-url-container {
-						max-width: 518px;
+						padding-right: 0;
+						max-width: 390px;
 						width: 100%;
 
 						.share-url {
@@ -139,7 +165,7 @@
 						border: 1px solid black;
 						background: black;
 						color: white;
-						padding: 11px 38px 9px;
+						padding: 11px 60px 9px;
 						display: inline-block;
 						border-radius: 3px;
 						vertical-align: middle;
@@ -153,69 +179,88 @@
 		}
 	}
 }
-
-/*@media screen and ( max-width: 980px ) {
-	.ui-modal--share { 
-		.ui-modal-content {
-			.footer-bar {
-				ul {
-					li {
-						.share-url {
-							height: 46px;
-
-							.share-url-input {
-								padding: 10px 13px;
-							}
-							.share-url-button {
-								font-size: 18px;
-								padding: 11px 0;
-							}
-						}
-						.share-link{
-							font-size: 18px;
-							padding: 6px 20px;
-						}
-					}
-				}
-			}
-		}
-	}
-}*/
 @media screen and ( max-width: 656px ) {
 	.ui-toggle--share {
 		font-size: 12px;
 		margin-left: 20px;
+	}
+	.ui-modal--share .ui-modal-content {
+		.footer-bar {
+
+			ul {
+
+				li {
+
+					&.share-name-input-container {
+						max-width: 140px;
+						
+						.share-name-input {
+							font-size: 12px;
+							padding: 16px 0 11px 15px;
+						}
+					}
+					&.share-url-container {
+						max-width: 303px;
+
+						.share-url {
+							height: 43px;
+						}
+
+						.share-url-input {
+							font-size: 12px;
+							padding: 16px 0 11px 15px;
+						}
+
+						.share-url-button {
+							font-size: 12px;
+							width: 100px;
+						}
+					}
+					.share-link {
+						font-size: 12px;
+					}
+				}
+			}
+		}
 	}
 }
 @media screen and ( max-width: 520px ) {
 	.ui-modal--share .ui-modal-content {
 
 		.footer-bar {
-			
-
 			ul {
 				margin: 20px 0 10px;
 
 				li {
 					padding: 0px 20px 10px;
 					width: 100%;
-					font-size: 18px;
+					
+					//font-size: 18px;
+					&.share-name-input-container { 
+						max-width: 100%;
+						padding-left: 20px;
+						padding-right: 20px;
+					}
 
+					&.share-url-container {
+						padding-right: 20px;
+						max-width: 100%;
 
-					&.share-url-container .share-url {
-						height: 47px;
-
-						.share-url-button {
-							width: 100px;
-						}
-						.share-url-input {
-							padding: 13px 15px 9px;
+						.share-url {
+							//height: 47px;
+	
+							.share-url-button {
+								//width: 100px;
+							}
+							.share-url-input {
+								//padding: 13px 15px 9px;
+							}
 						}
 					}
 					.share-link{
 						margin-bottom: 10px;
 						width: 100%;
-						padding: 8px 35px 5px 36px;
+						//padding: 8px 35px 5px 36px;
 					}
 				}
 			}

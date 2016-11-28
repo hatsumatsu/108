@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js visible--intro">
+<html class="no-js visible--intro" lang="pt">
 	<head>
 		<meta charset="utf-8">
 		<!-- 
@@ -13,7 +13,7 @@
 			document.getElementsByTagName( 'html' )[0].className = document.getElementsByTagName( 'html' )[0].className.replace( 'no-js', '' );
 		</script>
 
-		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 		<meta name="description" content="Yasuke Beat Machine">
 
@@ -42,7 +42,11 @@
 	<body id="body">
 
 		<!-- TITLE -->
-		<h1>EMICIDA / YASUKE <span class="username"></span></h1>
+		<div class="title-container">
+			<h1>
+				<span class="emicida">EMICIDA / YASUKE</span><span class="username"></span>
+			</h1>
+		</div>
 
 		<!-- TIMELINE -->
 		<div class="timeline">
@@ -109,8 +113,8 @@
 					</div>
 					<div class="footer-bar">
 						<ul>
-							<li>
-								<input type="text" class="share-name-input" maxlength="12">
+							<li class="share-name-input-container">
+								<input type="text" class="share-name-input" placeholder="Digite seu nome" maxlength="12">
 							</li>
 							<li class="share-url-container">
 								<div class="share-url">
@@ -149,28 +153,30 @@
 			</button>
 
 			<div class="ui-modal ui-modal--info" id="info">
-				<ul class="intro-top">
+				<div class="intro-top">
+					<ul>
+						<li class="logo"><img src="dist/img/logo.svg" alt="Emicida / Yasuke Japan Tour 2016"></li>
+						<li class="yasuke"><div>EMICIDA /</div> YASUKE</li>
+						<li class="japan">JAPAN <div>TOUR 2<span>•</span>16</div></li>
+						<li class="show first-show">
+							<div>29/11</div> LIQUIDROOM<br>
+							<span>
+								Ebsu, Tokyo<br>
+								Door Open: 	<b>6:30PM</b><br>
+								Start		<b>7:00PM</b><br>
+							</span>
+						</li>
+						<li class="show second-show">
+							<div>30/11</div> CLUBE EX<br>
+							<span>
+								Shinagawa, Tokyo<br>
+								Door Open: 	<b>6:00PM</b><br>
+								Start		<b>7:00PM</b><br>
+							</span>
+						</li>
+					</ul>
 					<button type="button" class="ui-modal-close ui-modal-close--info" data-modal-action="toggle">x</button>
-					<img class="logo" src="dist/img/logo.svg">
-					<li class="yasuke"><div>EMICIDA /</div> YASUKE</li>
-					<li class="japan">JAPAN <div>TOUR 2<span>•</span>16</div></li>
-					<li class="show first-show">
-						<div>29/11</div> LIQUIDROOM<br>
-						<span>
-							Ebsu, Tokyo<br>
-							Door Open: 	<b>6:30PM</b><br>
-							Start		<b>7:00PM</b><br>
-						</span>
-					</li>
-					<li class="show second-show">
-						<div>30/11</div> CLUBE EX<br>
-						<span>
-							Shinagawa, Tokyo<br>
-							Door Open: 	<b>6:00PM</b><br>
-							Start		<b>7:00PM</b><br>
-						</span>
-					</li>
-				</ul>
+				</div>
 				<div class="ui-modal-content">
 					<p class="yasuke-title">BEAT MACHINE</p>
 					<p>As teclas utilizadas para criar a sua música, serão</p>
@@ -195,27 +201,29 @@
 		<!-- INTRO -->
 		<div class="intro">
 			<div class="intro-loading-bar"></div>
-			<ul class="intro-top">
-				<img class="logo" src="dist/img/logo-white.svg">
-				<li class="yasuke"><div>EMICIDA /</div> YASUKE</li>
-				<li class="japan">JAPAN <div>TOUR 2<span>•</span>16</div></li>
-				<li class="show first-show">
-					<div>29/11</div> LIQUIDROOM<br>
-					<span>
-						Ebsu, Tokyo<br>
-						Door Open: 	<b>6:30PM</b><br>
-						Start		<b>7:00PM</b><br>
-					</span>
-				</li>
-				<li class="show second-show">
-					<div>30/11</div> CLUBE EX<br>
-					<span>
-						Shinagawa, Tokyo<br>
-						Door Open: 	<b>6:00PM</b><br>
-						Start		<b>7:00PM</b><br>
-					</span>
-				</li>
-			</ul>
+			<div class="intro-top">
+				<ul>
+					<li class="logo"><img src="dist/img/logo-white.svg" alt="Emicida / Yasuke Japan Tour 2016"></li>
+					<li class="yasuke"><div>EMICIDA /</div> YASUKE</li>
+					<li class="japan">JAPAN <div>TOUR 2<span>•</span>16</div></li>
+					<li class="show first-show">
+						<div>29/11</div> LIQUIDROOM<br>
+						<span>
+							Ebsu, Tokyo<br>
+							Door Open: 	<b>6:30PM</b><br>
+							Start		<b>7:00PM</b><br>
+						</span>
+					</li>
+					<li class="show second-show">
+						<div>30/11</div> CLUBE EX<br>
+						<span>
+							Shinagawa, Tokyo<br>
+							Door Open: 	<b>6:00PM</b><br>
+							Start		<b>7:00PM</b><br>
+						</span>
+					</li>
+				</ul>
+			</div>
 			<span class="intro-title">
 				0
 			</span>
@@ -226,6 +234,7 @@
 		<!-- JS -->
 		<script type="text/javascript" src="dist/js/dependencies.min.js"></script>
 		<!--<script type="text/javascript" src="dist/js/main.min.js"></script>-->
+		
 		<script type="text/javascript" src="src/js/debug.js?"></script>
 		<script type="text/javascript" src="src/js/viewport.js?"></script>
 		<script type="text/javascript" src="src/js/Ui.js?"></script>

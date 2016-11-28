@@ -51,7 +51,7 @@ var Url = ( function() {
 					var decode = decodeURI(listParameters[i]);
 
 					// change + by space
-					var decode = decode.replace(/\+/g, ' ');
+					var decode = decode.replace(/\-/g, ' ');
 
 					settings.name = decode.substr(1,13);
 

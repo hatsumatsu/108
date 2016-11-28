@@ -81,7 +81,7 @@
 }
 html,
 body {
-  min-height: 100vh;
+  height: 100vh;
   margin: 0;
   background-color: black;
 }
@@ -162,24 +162,59 @@ h4 > span {
   border: 1px solid currentColor;
   border-radius: 3px;
 }
-h1 {
+.title-container {
   position: fixed;
   left: 0;
-  top: 0;
-  display: block;
   margin: 5px 40px;
+  top: 0;
+  right: 110px;
+}
+.title-container h1 {
+  display: inline-block;
+  margin: 0;
   font-family: inherit;
   font-weight: 400;
   line-height: 1;
-  background: black;
   font-size: 21px;
-  padding: 5px 10px;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  width: auto;
+}
+.title-container h1 span {
+  background: black;
+  padding: 5px 10px;
+  line-height: 1.5;
+}
+.title-container h1 span.username {
+  display: none;
+}
+.title-container h1 span.username.active {
+  padding-left: 0;
+  display: inline;
+}
+.title-container h1 span.username.active:before {
+  content: "/ ";
 }
 @media screen and (max-width: 656px) {
-  h1 {
-    font-size: 12px;
+  .title-container {
     margin-left: 20px;
+    right: 60px;
+  }
+  .title-container h1 {
+    display: inline;
+    font-size: 12px;
+    white-space: normal;
+  }
+  .title-container h1 span.emicida {
+    display: inline-block;
+    margin-bottom: -8px;
+  }
+  .title-container h1 span.username.active {
+    display: inline-block;
+    margin-top: -3px;
   }
 }
 .timeline {
@@ -303,6 +338,11 @@ h1 {
   .timeline {
     left: 0;
     right: 0;
+  }
+}
+@media screen and (max-width: 656px) {
+  .timeline {
+    top: 57px;
   }
 }
 .ui--controls {
@@ -495,8 +535,33 @@ h1 {
   font-size: 21px;
   vertical-align: top;
 }
+.ui-modal--share .ui-modal-content .footer-bar ul li.share-name-input-container {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 200px;
+  width: 100%;
+}
+.ui-modal--share .ui-modal-content .footer-bar ul li.share-name-input-container .share-name-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 18px 15px 14px;
+  font-family: 'New Rail Alphabet', monospace;
+  font-size: inherit;
+  color: black;
+  font-weight: bold;
+  outline: none;
+  background: transparent;
+  border-radius: 3px;
+  box-shadow: none !important;
+  border: 1px solid black;
+}
 .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container {
-  max-width: 518px;
+  padding-right: 0;
+  max-width: 390px;
   width: 100%;
 }
 .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url {
@@ -557,7 +622,7 @@ h1 {
   border: 1px solid black;
   background: black;
   color: white;
-  padding: 11px 38px 9px;
+  padding: 11px 60px 9px;
   display: inline-block;
   border-radius: 3px;
   vertical-align: middle;
@@ -566,37 +631,34 @@ h1 {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
 }
-/*@media screen and ( max-width: 980px ) {
-	.ui-modal--share { 
-		.ui-modal-content {
-			.footer-bar {
-				ul {
-					li {
-						.share-url {
-							height: 46px;
-
-							.share-url-input {
-								padding: 10px 13px;
-							}
-							.share-url-button {
-								font-size: 18px;
-								padding: 11px 0;
-							}
-						}
-						.share-link{
-							font-size: 18px;
-							padding: 6px 20px;
-						}
-					}
-				}
-			}
-		}
-	}
-}*/
 @media screen and (max-width: 656px) {
   .ui-toggle--share {
     font-size: 12px;
     margin-left: 20px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li.share-name-input-container {
+    max-width: 140px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li.share-name-input-container .share-name-input {
+    font-size: 12px;
+    padding: 16px 0 11px 15px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container {
+    max-width: 303px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url {
+    height: 43px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url-input {
+    font-size: 12px;
+    padding: 16px 0 11px 15px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url-button {
+    font-size: 12px;
+    width: 100px;
+  }
+  .ui-modal--share .ui-modal-content .footer-bar ul li .share-link {
+    font-size: 12px;
   }
 }
 @media screen and (max-width: 520px) {
@@ -606,21 +668,19 @@ h1 {
   .ui-modal--share .ui-modal-content .footer-bar ul li {
     padding: 0px 20px 10px;
     width: 100%;
-    font-size: 18px;
   }
-  .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url {
-    height: 47px;
+  .ui-modal--share .ui-modal-content .footer-bar ul li.share-name-input-container {
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
   }
-  .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url .share-url-button {
-    width: 100px;
-  }
-  .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container .share-url .share-url-input {
-    padding: 13px 15px 9px;
+  .ui-modal--share .ui-modal-content .footer-bar ul li.share-url-container {
+    padding-right: 20px;
+    max-width: 100%;
   }
   .ui-modal--share .ui-modal-content .footer-bar ul li .share-link {
     margin-bottom: 10px;
     width: 100%;
-    padding: 8px 35px 5px 36px;
   }
 }
 .ui-toggle--info {
@@ -845,7 +905,7 @@ h1 {
   left: 0;
   height: 5px;
 }
-.intro-top {
+.intro-top ul {
   margin: 40px;
   font-family: 'Eurostile', monospace;
   font-size: 11px;
@@ -859,16 +919,18 @@ h1 {
           justify-content: space-between;
   letter-spacing: 0px;
 }
-.intro-top .logo {
+.intro-top ul li.logo {
   display: none;
+  width: 100%;
+  height: auto;
 }
-.intro-top .yasuke div {
+.intro-top ul li.yasuke div {
   display: inline-block;
 }
-.intro-top .japan div {
+.intro-top ul li.japan div {
   display: inline-block;
 }
-.intro-top .japan span {
+.intro-top ul li.japan span {
   color: red;
   display: inline-block;
   margin: 0 -4px 0 0px;
@@ -878,16 +940,16 @@ h1 {
   vertical-align: middle;
   top: 3px;
 }
-.intro-top .show div {
+.intro-top ul li.show div {
   display: inline-block;
 }
-.intro-top span {
+.intro-top ul li span {
   font-family: 'New Rail Alphabet', monospace;
   margin: 5px 0 0 53px;
   display: block;
   font-weight: bold;
 }
-.intro-top span b {
+.intro-top ul li span b {
   float: right;
 }
 .intro-title {
@@ -923,24 +985,24 @@ h1 {
   right: 40px;
 }
 @media screen and (max-width: 730px) {
-  .intro-top .yasuke div,
-  .intro-top .japan div,
-  .intro-top .show div {
+  .intro-top ul li.yasuke div,
+  .intro-top ul li.japan div,
+  .intro-top ul li.show div {
     display: block;
   }
-  .intro-top .show span {
+  .intro-top ul li.show span {
     margin-left: 0;
   }
 }
 @media screen and (max-width: 530px) {
-  .intro-top {
+  .intro-top ul {
     margin-left: 20px;
     margin-right: 20px;
   }
-  .intro-top span {
+  .intro-top ul span {
     margin: 5px 0 0;
   }
-  .intro-top span b {
+  .intro-top ul span b {
     float: none;
   }
 }
@@ -948,24 +1010,24 @@ h1 {
   .intro:after {
     top: 20vh;
   }
-  .intro-top {
+  .intro-top ul {
     margin: 20px;
     display: block;
     overflow: hidden;
   }
-  .intro-top .logo {
-    display: block;
-    margin-bottom: 2vh;
-  }
-  .intro-top .yasuke,
-  .intro-top .japan {
-    display: none;
-  }
-  .intro-top li {
+  .intro-top ul li {
     margin-bottom: 2vh;
     float: left;
   }
-  .intro-top li.show.second-show {
+  .intro-top ul li.logo {
+    display: block;
+    margin-bottom: 2vh;
+  }
+  .intro-top ul li.yasuke,
+  .intro-top ul li.japan {
+    display: none;
+  }
+  .intro-top ul li.show.second-show {
     float: right;
   }
   .intro-title {
