@@ -6,15 +6,10 @@
 
 html,
 body {
-	height: 100vh;
-	margin: 0;
-
 	background-color: @color--bg;
-}
-
-body {
-	background-image: url(../img/patter1.gif);
-    background-size: 170px;
+	height: 100%;
+	margin: 0;
+	
 }
 
 html {
@@ -24,7 +19,14 @@ html {
 	-webkit-font-smoothing: antialiased;	
 }
 
-body {
+.general {
+	background-image: url(../img/patter1.gif);
+    background-size: 170px;
+
+	min-width: 320px;
+	width: 100%;
+	height: 100%;
+	position: relative;
 
 	&::before {
 		background-image: url(../img/patter2.gif);
@@ -33,6 +35,8 @@ body {
 		position: absolute;
 		top: 0;
 		bottom: 0;
-		width: 50vw;
+		width: 50%;
 	}
 }
+
+

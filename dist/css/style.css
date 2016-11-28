@@ -81,13 +81,9 @@
 }
 html,
 body {
-  height: 100vh;
-  margin: 0;
   background-color: black;
-}
-body {
-  background-image: url(../img/patter1.gif);
-  background-size: 170px;
+  height: 100%;
+  margin: 0;
 }
 html {
   font-family: 'Eurostile', monospace;
@@ -95,17 +91,25 @@ html {
   color: #fff;
   -webkit-font-smoothing: antialiased;
 }
-body::before {
+.general {
+  background-image: url(../img/patter1.gif);
+  background-size: 170px;
+  min-width: 320px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.general::before {
   background-image: url(../img/patter2.gif);
   background-size: 140px;
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 50vw;
+  width: 50%;
 }
 .intro {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
@@ -209,7 +213,7 @@ body::before {
   background-size: 35px;
   width: 35px;
   height: 35px;
-  position: fixed;
+  position: absolute;
   bottom: 40px;
   left: 40px;
 }
@@ -219,7 +223,7 @@ body::before {
   background-size: 18px;
   width: 18px;
   height: 108px;
-  position: fixed;
+  position: absolute;
   bottom: 40px;
   right: 40px;
 }
@@ -341,7 +345,7 @@ h4 > span {
   border-radius: 3px;
 }
 .title-container {
-  position: fixed;
+  position: absolute;
   left: 0;
   margin: 5px 40px;
   top: 0;
@@ -385,6 +389,9 @@ h4 > span {
     display: inline;
     font-size: 12px;
     white-space: normal;
+  }
+  .title-container h1 span {
+    padding: 2px 10px;
   }
   .title-container h1 span.emicida {
     display: inline-block;
@@ -520,12 +527,12 @@ h4 > span {
 }
 @media screen and (max-width: 656px) {
   .timeline {
-    top: 57px;
+    top: 51px;
   }
 }
 .ui--controls {
   background: black;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
@@ -645,7 +652,7 @@ h4 > span {
   }
 }
 .ui-toggle--share {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   display: block;
@@ -882,7 +889,7 @@ h4 > span {
   }
 }
 .ui-toggle--info {
-  position: fixed;
+  position: absolute;
   right: 0;
   top: 0;
   display: block;
@@ -908,9 +915,11 @@ h4 > span {
 }
 .ui-modal--info .intro-emicida-logo {
   background-image: url('../img/emicida-logo-black.png');
+  position: fixed;
 }
 .ui-modal--info .intro-yasuke-logo {
   background-image: url('../img/yasuke-logo-black.png');
+  position: fixed;
 }
 .ui-modal--info .ui-modal-content {
   font-family: 'New Rail Alphabet', monospace;
@@ -1036,7 +1045,7 @@ h4 > span {
   }
 }
 .ui-modal {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;

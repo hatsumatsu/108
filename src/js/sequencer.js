@@ -47,6 +47,7 @@ var Sequencer = ( function() {
 		isRecording:   true,
 		isLoaded:      false,
 		isMetronoming: false,
+		introStop:     false,
 		sequence:      [],
 		lastStep:      0,
 		timeLastStep:  0,
@@ -62,9 +63,6 @@ var Sequencer = ( function() {
 		initSignal();
 		initPlayback();
 		initMetronome();
-
-		startPlayback();
-
 		bindEventHandlers();
 	}
 
@@ -169,7 +167,13 @@ var Sequencer = ( function() {
 				}
 			} )
 			.on( 'intro/stop', function() {
+				settings.introStop = true;
+
 				Tone.Transport.start();
+				
+				if( /iPhone|iPad/i.test(navigator.userAgent) === false ) {
+					startPlayback();
+				}
 			} )
 			.on( 'viewport/visibility', function( event, data ) {
 				// pause sequencer in background
@@ -371,7 +375,8 @@ var Sequencer = ( function() {
 				id:         settings.sampleId
 			} ] );
 		}
-		if( !settings.isPlaying) {
+
+		if( !settings.isPlaying && settings.introStop) {
 			startPlayback();
 		}
 	}
