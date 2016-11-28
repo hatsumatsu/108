@@ -104,6 +104,184 @@ body::before {
   bottom: 0;
   width: 50vw;
 }
+.intro {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  background-color: black;
+  -webkit-transition-duration: 750ms;
+          transition-duration: 750ms;
+  -webkit-transition-property: opacity, -webkit-transform;
+          transition-property: opacity, transform;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
+.visible--intro .intro {
+  z-index: 1000;
+  opacity: 1;
+  -webkit-transition: none;
+          transition: none;
+}
+.intro:after {
+  background: url('../img/intro.png') no-repeat center;
+  background-size: contain;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.intro-loading-bar {
+  -webkit-transition: 0.4s width;
+          transition: 0.4s width;
+  background: red;
+  top: 0;
+  position: absolute;
+  left: 0;
+  height: 5px;
+}
+.intro-top ul {
+  margin: 40px;
+  font-family: 'Eurostile', monospace;
+  font-size: 11px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  letter-spacing: 0px;
+}
+.intro-top ul li.logo {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+.intro-top ul li.yasuke div {
+  display: inline-block;
+}
+.intro-top ul li.japan div {
+  display: inline-block;
+}
+.intro-top ul li.japan span {
+  color: red;
+  display: inline-block;
+  margin: 0 -4px 0 0px;
+  font-size: 310%;
+  line-height: 0;
+  position: relative;
+  vertical-align: middle;
+  top: 3px;
+}
+.intro-top ul li.show div {
+  display: inline-block;
+}
+.intro-top ul li span {
+  font-family: 'New Rail Alphabet', monospace;
+  margin: 5px 0 0 53px;
+  display: block;
+  font-weight: bold;
+}
+.intro-top ul li span b {
+  float: right;
+}
+.intro-title {
+  pointer-events: none;
+  position: absolute;
+  font-size: 115px;
+  top: 50%;
+  text-align: center;
+  width: 100%;
+  left: 0;
+  display: inline-block;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.intro-emicida-logo {
+  background: url('../img/emicida-logo.png');
+  background-repeat: no-repeat;
+  background-size: 35px;
+  width: 35px;
+  height: 35px;
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+}
+.intro-yasuke-logo {
+  background: url('../img/yasuke-logo.png');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 108px;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+}
+@media screen and (max-width: 730px) {
+  .intro-top ul li.yasuke div,
+  .intro-top ul li.japan div,
+  .intro-top ul li.show div {
+    display: block;
+  }
+  .intro-top ul li.show span {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 530px) {
+  .intro-top ul {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .intro-top ul span {
+    margin: 5px 0 0;
+  }
+  .intro-top ul span b {
+    float: none;
+  }
+}
+@media screen and (max-width: 480px) {
+  .intro:after {
+    top: 20vh;
+  }
+  .intro-top ul {
+    margin: 20px;
+    display: block;
+    overflow: hidden;
+  }
+  .intro-top ul li {
+    margin-bottom: 2vh;
+    float: left;
+  }
+  .intro-top ul li.logo {
+    display: block;
+    margin-bottom: 2vh;
+  }
+  .intro-top ul li.yasuke,
+  .intro-top ul li.japan {
+    display: none;
+  }
+  .intro-top ul li.show.second-show {
+    float: right;
+  }
+  .intro-title {
+    font-size: 70px;
+    margin-top: 9vh;
+  }
+  .intro-emicida-logo {
+    bottom: 20px;
+    left: 20px;
+  }
+  .intro-yasuke-logo {
+    bottom: 20px;
+    right: 20px;
+  }
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -914,183 +1092,5 @@ h4 > span {
 @media screen and (max-height: 480px) {
   .ui-modal-content {
     font-size: 0.75rem;
-  }
-}
-.intro {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  opacity: 0;
-  background-color: black;
-  -webkit-transition-duration: 750ms;
-          transition-duration: 750ms;
-  -webkit-transition-property: opacity, -webkit-transform;
-          transition-property: opacity, transform;
-  -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
-}
-.visible--intro .intro {
-  z-index: 1000;
-  opacity: 1;
-  -webkit-transition: none;
-          transition: none;
-}
-.intro:after {
-  background: url('../img/intro.png') no-repeat center;
-  background-size: contain;
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.intro-loading-bar {
-  -webkit-transition: 0.4s width;
-          transition: 0.4s width;
-  background: red;
-  top: 0;
-  position: absolute;
-  left: 0;
-  height: 5px;
-}
-.intro-top ul {
-  margin: 40px;
-  font-family: 'Eurostile', monospace;
-  font-size: 11px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  list-style: none;
-  padding: 0;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  letter-spacing: 0px;
-}
-.intro-top ul li.logo {
-  display: none;
-  width: 100%;
-  height: auto;
-}
-.intro-top ul li.yasuke div {
-  display: inline-block;
-}
-.intro-top ul li.japan div {
-  display: inline-block;
-}
-.intro-top ul li.japan span {
-  color: red;
-  display: inline-block;
-  margin: 0 -4px 0 0px;
-  font-size: 310%;
-  line-height: 0;
-  position: relative;
-  vertical-align: middle;
-  top: 3px;
-}
-.intro-top ul li.show div {
-  display: inline-block;
-}
-.intro-top ul li span {
-  font-family: 'New Rail Alphabet', monospace;
-  margin: 5px 0 0 53px;
-  display: block;
-  font-weight: bold;
-}
-.intro-top ul li span b {
-  float: right;
-}
-.intro-title {
-  pointer-events: none;
-  position: absolute;
-  font-size: 115px;
-  top: 50%;
-  text-align: center;
-  width: 100%;
-  left: 0;
-  display: inline-block;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-}
-.intro-emicida-logo {
-  background: url('../img/emicida-logo.png');
-  background-repeat: no-repeat;
-  background-size: 35px;
-  width: 35px;
-  height: 35px;
-  position: fixed;
-  bottom: 40px;
-  left: 40px;
-}
-.intro-yasuke-logo {
-  background: url('../img/yasuke-logo.png');
-  background-repeat: no-repeat;
-  background-size: 18px;
-  width: 18px;
-  height: 108px;
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-}
-@media screen and (max-width: 730px) {
-  .intro-top ul li.yasuke div,
-  .intro-top ul li.japan div,
-  .intro-top ul li.show div {
-    display: block;
-  }
-  .intro-top ul li.show span {
-    margin-left: 0;
-  }
-}
-@media screen and (max-width: 530px) {
-  .intro-top ul {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  .intro-top ul span {
-    margin: 5px 0 0;
-  }
-  .intro-top ul span b {
-    float: none;
-  }
-}
-@media screen and (max-width: 480px) {
-  .intro:after {
-    top: 20vh;
-  }
-  .intro-top ul {
-    margin: 20px;
-    display: block;
-    overflow: hidden;
-  }
-  .intro-top ul li {
-    margin-bottom: 2vh;
-    float: left;
-  }
-  .intro-top ul li.logo {
-    display: block;
-    margin-bottom: 2vh;
-  }
-  .intro-top ul li.yasuke,
-  .intro-top ul li.japan {
-    display: none;
-  }
-  .intro-top ul li.show.second-show {
-    float: right;
-  }
-  .intro-title {
-    font-size: 70px;
-    margin-top: 9vh;
-  }
-  .intro-emicida-logo {
-    bottom: 20px;
-    left: 20px;
-  }
-  .intro-yasuke-logo {
-    bottom: 20px;
-    right: 20px;
   }
 }

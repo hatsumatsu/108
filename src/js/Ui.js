@@ -74,7 +74,7 @@ var Ui = ( function() {
 			// set url name
 			.on( 'url/init', function( event, data ) {
 				if ( data.name ) {
-					$(settings.selector.share.getname).text( ' / ' + data.name );
+					$(settings.selector.share.getname).addClass('active').text( data.name );
 					getName( data.name );
 				}
 			})
@@ -342,6 +342,8 @@ var Ui = ( function() {
 		
 		window.history.pushState('', '', '?');
 
+		//console.log(settings.url);
+
 		$( settings.selector.share.url ).val( settings.url.all );
 
 		/*if( /Android/i.test(navigator.userAgent) ) {
@@ -357,8 +359,6 @@ var Ui = ( function() {
 	}
 
 	var openShareWindow = function( service, url ) {
-		//var urltest = 'http://alucas.com.br/emicida/b2/?nangelo@sA2B2C2D2E2F2G2H2I2J2K2L2M2N2O2P2';
-
 		if( settings.shareServices[service] ) {
 			var url = settings.shareServices[service].url.replace( '{url}', url );
 			
