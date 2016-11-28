@@ -378,7 +378,13 @@ h4 > span {
   outline: none;
 }
 .ui-toggle--controls::before {
-  content: '•';
+  content: '';
+  background: white;
+  width: 7px;
+  height: 7px;
+  display: inline-block;
+  vertical-align: super;
+  border-radius: 50%;
 }
 .ui-toggle--controls:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
@@ -509,6 +515,20 @@ h4 > span {
   background-position: center bottom;
   height: 100%;
   position: relative;
+}
+.ui-modal--share .ui-modal-content .banner .close-interface {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: inline-block;
+  margin: 1rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  background: white;
+  color: black;
+  padding: 10px;
 }
 .ui-modal--share .ui-modal-content .banner .ui-modal-close--share {
   top: 0;
