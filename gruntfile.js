@@ -9,21 +9,23 @@ module.exports = function( grunt ) {
 		require( './.deployment' );
 	} catch( error ) {}
 
+	grunt.loadNpmTasks('grunt-fixindent');
+
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
 
 		less: {
 			development: {
 				files: {
-					'dist/css/108.css': 'src/less/108.less'
+					'dist/css/style.css': 'src/less/style.less'
 				}
 			}
 		},
 
 		autoprefixer: {
 			style: {
-				src: 'dist/css/108.css',
-				dest: 'dist/css/108.css'
+				src: 'dist/css/style.css',
+				dest: 'dist/css/style.css'
 			}
 		},
 
@@ -67,13 +69,14 @@ module.exports = function( grunt ) {
 					'dist/js/main.min.js': [
 						'src/js/debug.js',
 						'src/js/viewport.js',
-						'src/js/sequencer.js',
-						'src/js/timeline.js',
 						'src/js/ui.js',
+						'src/js/sequencer.js',
+						'src/js/history.js',
+						'src/js/timeline.js',
+						//'src/js/banner.js',
 						'src/js/url.js',
 						'src/js/intro.js',
-						'src/js/title.js',
-						'src/js/history.js'
+						'src/js/title.js'
 					]
 				}
 			}

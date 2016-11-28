@@ -1,27 +1,26 @@
 // toggle
 .ui-toggle--share {
-	position: fixed;
+	position: absolute;
 	left: 0;
 	bottom: 0;
 
 	display: block;
-	margin:  0 0 1rem 1rem;
+	
+	margin: 5px 40px;
 
 	font-size: 0.875rem;
 	line-height: 1;
 	text-transform: uppercase;
 	color: inherit;
 
-	opacity: 0.5;
+	background: black;
+	font-size: 21px;
+	padding: 5px 10px;
 
 	transition: all 300ms ease;
 
 	&:hover {
 		.animation--blink;
-	}
-
-	.visible--ui-controls & {
-		transform: translateY( -6rem );
 	}
 }
 
@@ -33,103 +32,252 @@
 	}
 }
 
-.ui-modal--share .ui-modal-content {
-	width: 32rem;
-}
-
-.share-url {
-	.button;
-
-	position: relative;
-
-	height: 1.7rem;
-	margin: 2rem 0;
-	padding: 0 4rem 0 0;
-
-	&::after {
-		content: ' ';
-
+.ui-modal--share {
+	.ui-modal-content {
+		background: black;
 		position: absolute;
-		right: 0;
 		top: 0;
+		left: 0;
+		right: 0;
 		bottom: 0;
+		display: flex;
+		flex-direction: column;
 
-		display: block;
-		width: 2rem;
-		margin-right: 4rem;
+		.banner {
+			background: url('../img/banner.jpg');
+			background-size: cover;
+			background-position: center bottom;
+			height: 100%;
+			position: relative;
 
-		background: linear-gradient( 90deg, fade( @color--bg, 0% ) 0%, fade( @color--bg, 100% ) 90% );
+			.close-interface {
+				position: absolute;
+			    right: 0;
+			    top: 0;
+			    display: inline-block;
+			    margin: 1rem;
+			    font-size: 0.875rem;
+			    text-transform: uppercase;
+			    text-align: center;
+			    line-height: 1;
+			    background: white;
+			    color: black;
+			    padding: 10px;
+			}
+			.ui-modal-close--share {
+			    top: 0;
+			    margin: 0;
+			    bottom: 0;
+			    right: 0;
+			    left: 0;
+			    width: 100%;
+			    opacity: 0;
+			    z-index: 2;
+			}
+		}
+		.footer-bar {
+			background: white;
+
+			ul {
+				display: inline-block;
+				padding: 0;
+				margin: 46px 0;
+				width: 100%;
+
+				li {
+					display: inline-block;
+					padding: 5px;
+					font-size: 21px;
+					vertical-align: top;
+
+					&.share-name-input-container {
+						padding-left: 0;
+						padding-right: 0;
+					    max-width: 200px;
+    					width: 100%;
+
+						.share-name-input {
+							-webkit-appearance: none;
+						    -moz-appearance: none;
+						    appearance: none;
+						    box-sizing: border-box;
+						    display: block;
+						    width: 100%;
+						    padding: 18px 15px 14px;
+						    font-family: 'New Rail Alphabet', monospace;
+						    font-size: inherit;
+						    color: black;
+						    font-weight: bold;
+						    outline: none;
+						    background: transparent;
+						    border-radius: 3px;
+						    box-shadow: none !important;
+						    border: 1px solid black;
+						}
+					}
+					&.share-url-container {
+						padding-right: 0;
+						max-width: 390px;
+						width: 100%;
+
+						.share-url {
+							.button;
+
+							border-color: black;
+							position: relative;
+
+							height: 59px;
+							width: 100%;
+							padding: 0;
+
+							&:hover,
+							&:focus {
+								background: transparent !important;
+								animation: none !important;
+							}
+						}
+
+						.share-url-input {
+							appearance: none;
+							box-sizing: border-box;
+							display: block;
+							width: 100%;
+
+							padding: 18px 0 14px 15px;
+
+							font-family: @font--2;
+							font-size: inherit;
+							font-weight: bold;
+							color: black;
+
+							background: transparent;
+							border: none;
+
+						  	outline: none;
+							box-shadow: none !important;
+						}
+
+						.share-url-button {
+							height: 100%;
+							background-color: white;
+							color: black;
+							position: absolute;
+							right: 0;
+							top: 0;
+
+							width: 142px;
+
+							text-align: center;
+
+							border: none;
+							border-left: 1px solid currentColor;
+							border-radius: 0 5px 5px 0;
+							padding: 0;
+						}
+					}
+					.share-link {
+						border: 1px solid black;
+						background: black;
+						color: white;
+						padding: 11px 60px 9px;
+						display: inline-block;
+						border-radius: 3px;
+						vertical-align: middle;
+
+						&:hover {
+							.animation--blink;
+						}
+					}
+				}
+			}
+		}
 	}
-
-	&:hover,
-	&:focus {
-		background: transparent !important;
-		animation: none !important;
-	}
 }
-
-.share-url-input {
-	appearance: none;
-	box-sizing: border-box;
-	display: block;
-	width: 100%;
-
-	padding: 0.35rem 0 0.5rem 0.35rem;
-
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-	color: inherit;
-
-	background: transparent;
-	border: none;
-
-  	outline: none;
-	box-shadow: none !important;
-}
-
-.share-url-button {
-	.button;
-
-	position: absolute;
-	right: 0;
-	top: 0;
-
-	width: 4rem;
-
-	text-align: center;
-
-	border: none;
-	border-left: 1px solid currentColor;
-	border-radius: 0;
-}
-
-
-@media screen and ( max-width: 460px ) {
+@media screen and ( max-width: 656px ) {
 	.ui-toggle--share {
+		font-size: 12px;
+		margin-left: 20px;
+	}
+	.ui-modal--share .ui-modal-content {
+		.footer-bar {
 
-		&:hover,
-		&:focus {
+			ul {
 
-		}
+				li {
 
-		.visible--ui-controls & {
-			transform: translateY( -11rem );
+					&.share-name-input-container {
+						max-width: 140px;
+						
+						.share-name-input {
+							font-size: 12px;
+							padding: 16px 0 11px 15px;
+						}
+					}
+					&.share-url-container {
+						max-width: 303px;
+
+						.share-url {
+							height: 43px;
+						}
+
+						.share-url-input {
+							font-size: 12px;
+							padding: 16px 0 11px 15px;
+						}
+
+						.share-url-button {
+							font-size: 12px;
+							width: 100px;
+						}
+					}
+					.share-link {
+						font-size: 12px;
+					}
+				}
+			}
 		}
 	}
 }
+@media screen and ( max-width: 520px ) {
+	.ui-modal--share .ui-modal-content {
 
+		.footer-bar {
+			ul {
+				margin: 20px 0 10px;
 
-@media screen and ( max-height: 480px ) {
-	.ui-toggle--share {
+				li {
+					padding: 0px 20px 10px;
+					width: 100%;
+					
+					//font-size: 18px;
+					&.share-name-input-container { 
+						max-width: 100%;
+						padding-left: 20px;
+						padding-right: 20px;
+					}
 
-		&:hover,
-		&:focus {
+					&.share-url-container {
+						padding-right: 20px;
+						max-width: 100%;
 
-		}
-
-		.visible--ui-controls & {
-			transform: translateY( -9rem );
+						.share-url {
+							//height: 47px;
+	
+							.share-url-button {
+								//width: 100px;
+							}
+							.share-url-input {
+								//padding: 13px 15px 9px;
+							}
+						}
+					}
+					.share-link{
+						margin-bottom: 10px;
+						width: 100%;
+						//padding: 8px 35px 5px 36px;
+					}
+				}
+			}
 		}
 	}
 }

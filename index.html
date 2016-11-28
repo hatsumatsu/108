@@ -1,216 +1,287 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js visible--intro" lang="pt">
 	<head>
+		<!--
+			production date: 28 November 2016
+			url: http://emicida.com/beat-machine
+			developer: Ângelo Lucas <angelo.lrc@gmail.com>
+		-->
 		<meta charset="utf-8">
 
-		<title>108</title>
+		<title>Yasuke</title>
 
 		<script>
 			document.getElementsByTagName( 'html' )[0].className += ' js';
 			document.getElementsByTagName( 'html' )[0].className = document.getElementsByTagName( 'html' )[0].className.replace( 'no-js', '' );
 		</script>
 
-		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-		<meta name="description" content="A minimal beat machine played in the browser.">
+		<meta name="description" content="Aumente o volume e crie seu som no #YasukeBeatMachine. emicida.com/beat-machine">
 
 		<!-- CSS -->
-		<link type="text/css" rel="stylesheet" href="dist/fonts/lab-mono.css">
-		<link type="text/css" rel="stylesheet" href="dist/css/108.css">
+		<link type="text/css" rel="stylesheet" href="dist/css/style.css?">
 
 		<!-- FAVICON madness -->
-		<link rel="apple-touch-icon" sizes="57x57" href="dist/meta/apple-touch-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="dist/meta/apple-touch-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="dist/meta/apple-touch-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="dist/meta/apple-touch-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="dist/meta/apple-touch-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="dist/meta/apple-touch-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="dist/meta/apple-touch-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="dist/meta/apple-touch-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="dist/meta/apple-touch-icon-180x180.png">
-		<link rel="icon" type="image/png" href="dist/meta/favicon-32x32.png--blank" sizes="32x32">
-		<link rel="icon" type="image/png" href="dist/meta/android-chrome-192x192.png" sizes="192x192">
-		<link rel="icon" type="image/png" href="dist/meta/favicon-96x96--blank.png" sizes="96x96">
-		<link rel="icon" type="image/png" href="dist/meta/favicon-16x16--blank.png" sizes="16x16">
-		<link rel="manifest" href="dist/meta/manifest.json">
-		<link rel="mask-icon" href="dist/meta/safari-pinned-tab.svg" color="#252529">
-		<meta name="msapplication-TileColor" content="#252529">
-		<meta name="msapplication-TileImage" content="dist/meta/mstile-144x144.png">
-		<meta name="msapplication-config" content="dist/meta/browserconfig.xml">
-		<meta name="theme-color" content="#252529">
+		<meta name="msapplication-TileColor" content="#000000">
+		<meta name="theme-color" content="#000000">
 
 		<!-- FACEBOOK meta -->
-		<meta property="og:site_name" content="108">
-		<meta property="og:description" content="A minimal beat machine played in the browser.">
+		<meta property="og:title" content="Yasuke Beat Machine">
+		<meta property="og:url" content="http://emicida.com/beat-machine">
+		<meta property="og:description" content="Aumente o volume e crie seu som no #YasukeBeatMachine. emicida.com/beat-machine">
 		<meta property="og:type" content="website">
-		<meta property="og:image" content="dist/meta/facebook.png">
+		<meta property="og:image" content="http://www.emicida.com/beat-machine/dist/meta/banner1.jpg">
+		<meta property="og:image:type" content="image/jpeg">
+		<meta property="og:image:width" content="840">
+		<meta property="og:image:height" content="630">
 
 		<!-- TWITTER meta -->
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:url" content="http://martinwecke.de/108">
-		<meta name="twitter:title" content="108">
-		<meta name="twitter:description" content="A minimal beat machine played in the browser.">
-		<meta name="twitter:image" content="http://martinwecke.de/108/dist/meta/facebook.png">
-		<meta name="twitter:creator" content="@martinwecke">
+		<meta name="twitter:url" content="http://emicida.com/beat-machine">
+		<meta name="twitter:title" content="Yasuke Beat Machine">
+		<meta name="twitter:description" content="Aumente o volume e crie seu som no #YasukeBeatMachine. emicida.com/beat-machine">
+		<meta name="twitter:image" content="http://www.emicida.com/beat-machine/dist/meta/banner1.jpg">
 
-		<!-- JS -->
-		<script type="text/javascript" src="dist/js/dependencies.min.js"></script>
-
-		<script type="text/javascript" src="src/js/debug.js"></script>
-		<script type="text/javascript" src="src/js/viewport.js"></script>
-		<script type="text/javascript" src="src/js/sequencer.js"></script>
-		<script type="text/javascript" src="src/js/timeline.js"></script>
-		<script type="text/javascript" src="src/js/ui.js"></script>
-		<script type="text/javascript" src="src/js/url.js"></script>
-		<script type="text/javascript" src="src/js/intro.js"></script>
-		<script type="text/javascript" src="src/js/title.js"></script>
-		<script type="text/javascript" src="src/js/history.js"></script>
-
-		<!-- PIWIK -->
-		<script type="text/javascript">
-var _paq = _paq || [];
-_paq.push(['setDomains', ['*.martinwecke.de','*.2016.martinwecke.de']]);
-_paq.push(['trackPageView']);
-_paq.push(['enableLinkTracking']);
-( function() {
-	var u='//stats.hatsumatsu.de/';
-	_paq.push(['setTrackerUrl', u+'piwik.php']);
-	_paq.push(['setSiteId', 7]);
-	var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-	g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-} )();
-		</script>
-		<noscript>
-			<img src="//stats.hatsumatsu.de/piwik.php?idsite=7" style="border:0;" alt="">
-		</noscript>
-		<!-- / PIWIK -->
 	</head>
 	<body id="body">
+		<div class="general">
+
 		<!-- TITLE -->
-		<h1>
-			108
-		</h1>
+		<div class="title-container">
+			<h1>
+				<span class="emicida"><a href="http://emicida.com">EMICIDA</a> / YASUKE</span><span class="username"></span>
+			</h1>
+		</div>
 
 		<!-- TIMELINE -->
-		<div class="timeline-wrapper">
-
+		<div class="timeline">
+			<div class="timeline-wrapper"></div>
 		</div>
 
 		<!-- CONTROLS -->
 		<div class="ui--controls">
 			<div class="button-row">
-				<a href="#" class="ui-toggle ui-toggle--controls" title="Toggle controls">
+				<button type="button" class="ui-toggle ui-toggle--controls" title="Toggle controls">
 					ctrl
-				</a>
+				</button>
 
-				<a href="#" class="control-button" data-sample="0" data-key="c" title="Play sample">
-					C
-				</a>
-				<a href="#" class="control-button" data-sample="1" data-key="v" title="Play sample">
-					V
-				</a>
-				<a href="#" class="control-button" data-sample="2" data-key="b" title="Play sample">
-					B
-				</a>
-				<a href="#" class="control-button" data-sample="3" data-key="n" title="Play sample">
-					N
-				</a>
-				<a href="#" class="control-button" data-sample="4" data-key="m" title="Play sample">
-					M
-				</a>
+				<button type="button" class="control-button" data-sample="0" data-key="a" title="Play sample">
+					A
+				</button>
+				<button type="button" class="control-button" data-sample="1" data-key="s" title="Play sample">
+					S
+				</button>
+				<button type="button" class="control-button" data-sample="2" data-key="d" title="Play sample">
+					D
+				</button>
+				<button type="button" class="control-button" data-sample="3" data-key="f" title="Play sample">
+					F
+				</button>
+				<button type="button" class="control-button" data-sample="4" data-key="g" title="Play sample">
+					G
+				</button>
+				<button type="button" class="control-button" data-sample="5" data-key="h" title="Play sample">
+					H
+				</button>
 
-				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="z" data-action="undo" title="undo">
+				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="z" data-action="undo" title="undo">
 					Z
-				</a>
+				</button>
 
-				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="space" data-action="play" title="play / pause">
-					_
-				</a>
+				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="q" data-action="clear" title="Clear loop">
+					DEL
+				</button>
 
-				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="q" data-action="clear" title="Clear loop">
-					X
-				</a>
+				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="shift" data-action="metronome" title="Toggle metronome">
+					SHIFT
+				</button>
 
-				<a href="#" class="control-button control-button--narrow control-button--no-feedback" data-key="shift" data-action="metronome" title="Toggle metronome">
-					/
-				</a>
+				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="space" data-action="play" title="play / pause">
+					SPACE
+				</button>
 			</div>
 		</div>
 
 		<!-- UI SHARE -->
 		<div class="ui--share" data-modal="share">
-			<a href="#" class="ui-toggle ui-toggle--share" data-modal-action="toggle">
+			<button type="button" class="ui-toggle ui-toggle--share" data-modal-action="toggle" onclick="ga('send', 'event', 'link','click', 'Share Page');">
 				share
-			</a>
+			</button>
 
 			<div class="ui-modal ui-modal--share" id="share">
-				<a href="#" class="ui-modal-close ui-modal-close--share" data-modal-action="toggle">
-					x
-				</a>
+				
 				<div class="ui-modal-content">
-					<p>
-						Share your beat:
-					</p>
-
-					<p>
-						<a href="#" class="share-link" data-service="facebook">
-							@Facebook
-						</a>
-					</p>
-
-					<p>
-						<a href="#" class="share-link" data-service="twitter">
-							@Twitter
-						</a>
-					</p>
-
-					<div class="share-url">
-						<input type="text" class="share-url-input" id="share-url-input">
-						<a href="#" class="share-url-button" data-clipboard-target="#share-url-input">
-							copy
-						</a>
+					<div class="banner">
+						<span class="close-interface">X</span>
+						<button type="button" title="fechar" class="ui-modal-close ui-modal-close--share" data-modal-action="toggle">
+							fechar
+						</button>
+					</div>
+					<div class="footer-bar">
+						<ul>
+							<li class="share-name-input-container">
+								<input type="text" class="share-name-input" placeholder="Digite seu nome" maxlength="12">
+							</li>
+							<li class="share-url-container">
+								<div class="share-url">
+									<input type="text" class="share-url-input" id="share-url-input" onclick="ga('send', 'event', 'link','click', 'Type name click');" readonly>
+									<button type="button" class="share-url-button" data-clipboard-target="#share-url-input" onclick="ga('send', 'event', 'link','click', 'Copy URL');">
+										copy
+									</button>
+								</div>
+							</li>
+							<li>
+								<button type="button" class="share-link" data-service="facebook" onclick="ga('send', 'event', 'link','click', 'Share Facebook');">
+									@Facebook
+								</button>
+							
+								<button type="button" class="share-link" data-service="twitter" onclick="ga('send', 'event', 'link','click', 'Share Twitter');">
+									@Twitter
+								</button>
+							
+								<div class="share-whatsapp" style="display: none">
+									<a class="share-link" data-action="share/whatsapp/share">
+										@Whatsapp
+									</a>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 
 		<!-- UI INFO -->
 		<div class="ui--info" data-modal="info">
-			<a href="#" class="ui-toggle ui-toggle--info" data-modal-action="toggle">
+			<button type="button" class="ui-toggle ui-toggle--info" data-modal-action="toggle" onclick="ga('send', 'event', 'link','click', 'Intro Page');">
 				info
-			</a>
+			</button>
 
 			<div class="ui-modal ui-modal--info" id="info">
-				<a href="#" class="ui-modal-close ui-modal-close--info" data-modal-action="toggle">
-					x
-				</a>
+				<div class="intro-top">
+					<ul>
+						<li class="logo"><img src="dist/img/logo.svg" alt="Emicida / Yasuke Japan Tour 2016"></li>
+						<li class="yasuke"><div>EMICIDA /</div> YASUKE</li>
+						<li class="japan">JAPAN <div>TOUR 2<span>•</span>16</div></li>
+						<li class="show first-show">
+							<div>29/11</div> LIQUIDROOM<br>
+							<span>
+								Ebsu, Tokyo<br>
+								Door Open: 	<b>6:30PM</b><br>
+								Start		<b>7:00PM</b><br>
+							</span>
+						</li>
+						<li class="show second-show">
+							<div>30/11</div> CLUBE EX<br>
+							<span>
+								Shinagawa, Tokyo<br>
+								Door Open: 	<b>6:00PM</b><br>
+								Start		<b>7:00PM</b><br>
+							</span>
+						</li>
+					</ul>
+					<button type="button" class="ui-modal-close ui-modal-close--info" data-modal-action="toggle">x</button>
+				</div>
 				<div class="ui-modal-content">
-					<p>
-<a href="http://martinwecke.de/108">108</a> is a minimal beat machine in the browser.
-					</p>
-					<p>
-Use the <span class="key">C</span> <span class="key">V</span> <span class="key">B</span> <span class="key">N</span> <span class="key">M</span> keys on your keyboard to play samples. <span class="key">Z</span>&nbsp;removes the previously added note, <span class="key">x</span>&nbsp;clears the sequence and <span class="key">space</span>&nbsp;starts/stops playback. <span class="key">Shift</span>&nbsp;toggles a metronome in case you need one.
-					</p>
-
-					<p>
-						108 is built by <a href="http://martinwecke.de" target="_blank">Martin Wecke</a>. Find out <a href="https://github.com/hatsumatsu/108" target="_blank">how it works</a>.
-					</p>
-
-					<div class="modal-actions modal-actions--info">
-						<a href="#" class="button" data-modal-action="toggle">
-							Got it!
-						</a>
+					<p class="yasuke-title">BEAT MACHINE</p>
+					<p>As teclas utilizadas para criar a sua música, serão</p>
+					<div class="keys">
+						<span class="key">A</span>
+						<span class="key">S</span>
+						<span class="key">D</span>
+						<span class="key">F</span>
+						<span class="key">G</span>
+						<span class="key">H</span>
+					</div>
+					<p>Para voltar a ação, utilize a tecla <span class="key">Z</span>. <span class="key">DELETE</span>   Elimina a sequência inteira. Deixando a timeline vazia. <span class="key">SPACE BAR</span>   Começe / Pare a reprodução da música. <span class="key">SHIFT</span> Aciona o metrônomo caso você necessite. <span class="key">CONTROL</span>   Esconde os botões, deixando apenas a música na tela.</p>
+					<button type="button" class="button" data-modal-action="toggle" onclick="ga('send', 'event', 'link','click', 'Noiz Button');">
+						NOIZ!
+					</button>
+					<div class="credits-container">
+						<h3 class="title">Créditos</h3>
+						<ul>
+							<li>
+								<strong>
+									<a href="http://angelolucas.github.io" onclick="ga('send', 'event', 'link', 'click', 'Angelo link');" target="_blank">Ângelo Lucas</a>
+								</strong> Code
+							</li>
+							<li>
+								<strong>
+									<a href="http://blackmadre.com" onclick="ga('send', 'event', 'link', 'click', 'Maciel link');" target="_blank">André Maciel</a>
+								</strong> Ilustrador
+							</li>
+							<li>
+								<strong>
+									<a href="https://soundcloud.com/dj-duhproducer" onclick="ga('send', 'event', 'link', 'click', 'Dj Duh link');" target="_blank">Dj Duh</a>
+								</strong> Sound Designer
+							</li>
+						</ul>
 					</div>
 				</div>
+				<span class="intro-emicida-logo"></span>
+				<span class="intro-yasuke-logo"></span>
 			</div>
 		</div>
 
 		<!-- INTRO -->
 		<div class="intro">
+			<div class="intro-loading-bar"></div>
+			<div class="intro-top">
+				<ul>
+					<li class="logo"><img src="dist/img/logo-white.svg" alt="Emicida / Yasuke Japan Tour 2016"></li>
+					<li class="yasuke"><div>EMICIDA /</div> YASUKE</li>
+					<li class="japan">JAPAN <div>TOUR 2<span>•</span>16</div></li>
+					<li class="show first-show">
+						<div>29/11</div> LIQUIDROOM<br>
+						<span>
+							Ebsu, Tokyo<br>
+							Door Open: 	<b>6:30PM</b><br>
+							Start		<b>7:00PM</b><br>
+						</span>
+					</li>
+					<li class="show second-show">
+						<div>30/11</div> CLUBE EX<br>
+						<span>
+							Shinagawa, Tokyo<br>
+							Door Open: 	<b>6:00PM</b><br>
+							Start		<b>7:00PM</b><br>
+						</span>
+					</li>
+				</ul>
+			</div>
 			<span class="intro-title">
-				108
+				0
 			</span>
+			<span class="intro-emicida-logo"></span>
+			<span class="intro-yasuke-logo"></span>
 		</div>
+	</div>
+		<!-- JS -->
+		<script type="text/javascript" src="dist/js/dependencies.min.js"></script>
+		<script type="text/javascript" src="dist/js/main.min.js"></script>
+		
+		<!--<script type="text/javascript" src="src/js/debug.js?"></script>
+		<script type="text/javascript" src="src/js/viewport.js?"></script>
+		<script type="text/javascript" src="src/js/Ui.js?"></script>
+		<script type="text/javascript" src="src/js/sequencer.js?"></script>
+		<script type="text/javascript" src="src/js/history.js?"></script>
+		<script type="text/javascript" src="src/js/timeline.js?"></script>
+		<script type="text/javascript" src="src/js/url.js?"></script>
+		<script type="text/javascript" src="src/js/intro.js?"></script>
+		<script type="text/javascript" src="src/js/title.js?"></script>-->
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-88109540-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
 
 		<!-- NO JS MESSAGE -->
 		<noscript>
@@ -220,6 +291,5 @@ Use the <span class="key">C</span> <span class="key">V</span> <span class="key">
 				</div>
 			</div>
 		</noscript>
-
 	</body>
 </html>

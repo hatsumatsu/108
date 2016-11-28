@@ -1,6 +1,7 @@
 // controls
 .ui--controls {
-	position: fixed;
+	background: black;
+	position: absolute;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -21,29 +22,28 @@
 .ui-toggle--controls {
 	position: absolute;
 	right: 0;
-	top: 0;
+	bottom: 100%;
 
 	display: block;
-	margin: -2.25em 1rem 0 0;
+	margin: 5px 40px;
 
 	text-transform: uppercase;
 	color: inherit;
 
-	opacity: 0.5;
+	background: black;
+	font-size: 21px;
+	padding: 5px 10px;
+	line-height: inherit;
+	outline: none;
 
 	&::before {
-		content: ' ';
-
-		position: relative;
-		top: 0.1em;
-
-		display: inline-block;
-		width: ( 12 / 14 * 1em );
-		height: ( 12 / 14 * 1em );
-		margin: 0 0.25em 0 0;
-
-		border: 1px solid currentColor;
-		border-radius: 50%;
+		content: '';
+	    background: white;
+	    width: 7px;
+	    height: 7px;
+	    display: inline-block;
+	    vertical-align: super;
+	    border-radius: 50%;
 	}
 
 	&:hover {
@@ -52,10 +52,6 @@
 
 	.visible--ui-controls & {
 		opacity: 1;
-
-		&::before {
-			background: @color--text;
-		}
 	}
 }
 
@@ -63,10 +59,13 @@
 // control buttons
 .button-row {
 	display: flex;
+	justify-content: center;
 }
 
 .control-button {
 	.button;
+
+	border-color: #3d2e24;
 
 	flex-grow: 1;
 	height: 4rem;
@@ -81,7 +80,7 @@
 .control-button--narrow {
 	flex-grow: 0;
 	flex-shrink: 0;
-	width: 4rem;
+	min-width: 4rem;
 }
 
 .control-button--no-feedback {
@@ -96,10 +95,19 @@
 	}
 }
 
+@media screen and ( max-width: 720px ) {
+	.button-row {
+		flex-wrap: wrap;
+	}
+	.control-button--narrow {
+		min-width: 30vw;
+	}
+}
 
 @media screen and ( max-width: 656px ) {
-	.control-button {
-
+	.ui-toggle--controls {
+		margin-right: 20px;
+		font-size: 12px;
 	}
 
 	.control-button--narrow {
@@ -107,23 +115,10 @@
 		flex-shrink: 1;
 		width: auto;
 	}
-}
-
-
-@media screen and ( max-width: 460px ) {
-	.button-row {
-		flex-wrap: wrap;
-	}
-
-	.control-button {
-		min-width: ~'calc( 20vw - 2rem )';
-	}
-
 	.control-button--narrow {
-		min-width: ~'calc( 25vw - 2rem )';
+		min-width: 20vw;
 	}
 }
-
 
 @media screen and ( max-height: 480px ) {
 	.button-row {

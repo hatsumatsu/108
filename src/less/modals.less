@@ -1,16 +1,11 @@
 .ui-modal {
-	position: fixed;
+	position: absolute;
 	left: 0;
 	right: 0;
 	top: 0;
 	z-index: 1000;
 
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	height: 0;
-
-	background: fade( @color--bg, 90% );
 
 	overflow: hidden;
 
@@ -35,8 +30,7 @@
 .ui-modal-content {
 	display: block;
 
-	max-width: 48rem;
-	margin: 1rem;
+	margin: 0;
 
 	font-size: 0.875rem;
 	text-transform: uppercase;
@@ -46,20 +40,6 @@
 	& > h4 {
 		margin: 2rem 0;
 	}
-
-	& > p {
-		margin: 2rem 0;
-	}
-}
-
-.modal-actions {
-	margin: 2.5rem 0 2rem;
-
-	text-align: center;
-}
-
-.modal-actions > .button {
-
 }
 
 .ui-modal-close {

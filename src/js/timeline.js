@@ -4,342 +4,266 @@
  */
 var Timeline = ( function() {
 
-    var settings = {
-        selector: {
-            wrapper:        '.timeline-wrapper',
-            timeline:       '#timeline',
-            placeholder:    '#placeholder',
-            note:           '.timeline-note'
-        },
-        layer: {
-            track:          'timeline--track',
-            runner:         'timeline--runner'
-        },
-        layerNotes: {
-            0: 'timeline--note-0',
-            1: 'timeline--note-1',
-            2: 'timeline--note-2',
-            3: 'timeline--note-3',
-            4: 'timeline--note-4'
-        },
-        notes: [],
-        svg: {},
-        svgLoaded: 0,
-        isLoaded: false,
-        zIndex: 0,
-        zIndexStep: 100
-    }
+	var settings = {
+		selector: {
+			wrapper: '.timeline-wrapper'
+		},
+		notes: [],
+		svg: {},
+		svgLoaded: 0,
+		isLoaded: false,
+		zIndex: 0,
+		zIndexStep: 100
+	}
 
-    var init = function() {
-        Debug.log( 'Timeline.init()' );
+	var init = function() {
+		//Debug.log( 'Timeline.init()' );
 
-        bindEventHandlers();
+		bindEventHandlers();
 
-        build();
+		build();
 
-        $( document ).trigger( 'timeline/init' );
+		$( document ).trigger( 'timeline/init' );
 
-        $( 'html' )
-            .addClass( 'initiated--timeline' );
-    }
+		$( 'html' )
+			.addClass( 'initiated--timeline' );
 
-    var bindEventHandlers = function() {
-        $( document )
-            .on( 'viewport/loop', function() {
-                onLoop();
-            } )
-            .on( 'viewport/resize/finish', function() {
-                onResize();
-            } )
-            .on( 'timeline/loaded', function() {
-                settings.isLoaded = true;
-                resize();
-                run();
-            } )
-            .on( 'sequencer/addSequenceItem', function( event, data ) {
-                Debug.log( data );
-                // wait for all SVGs to load before adding notes
-                var waiter = setInterval( function() {
-                    if( settings.isLoaded ) {
-                        clearInterval( waiter );
-                        addNote( data.step, data.sample, data.division, data.id );
-                    }
-                }, 50 );
-            } )
-            .on( 'sequencer/playStep', function( event, data ) {
-                playNote( data.step );
-            } )
-            .on( 'sequencer/clearSequence', function( event, data ) {
-                clearTimeline();
-            } )
-            .on( 'history/undo', function( event, data ) {
-                if( data.id ) {
-                    removeNote( data.id );
-                }
-            } );
-    }
+		height();
+	}
 
-    var onResize = function() {
-        resize();
-    }
+	var bindEventHandlers = function() {
+		$( document )
+			.on( 'viewport/loop', function() {
+				onLoop();
+			} )
+			.on( 'timeline/loaded', function() {
+				settings.isLoaded = true;
+				run();
+			} )
+			.on( 'sequencer/addSequenceItem', function( event, data ) {
+				//Debug.log( data );
+				// wait for all SVGs to load before adding notes
+				var waiter = setInterval( function() {
+					if( settings.isLoaded ) {
+						clearInterval( waiter );
+						addNote( data.step, data.sample, data.division, data.id );
+					}
+				}, 50 );
+			} )
+			.on( 'mousedown touchstart', settings.selector.wrapper + ' .step' , function( event ) {
+				event.preventDefault();
 
-    var onLoop = function() {
-        run();
-    }
+				var sample = $( this );
+				// crete note in step click
+				// exclude if exist
+				if( sample.attr('data-id') >= 0) {
+					var id = parseInt($(this).attr('data-id'));
+					removeNote(id);
 
-    var build = function() {
-        // create blank SVG
-        settings.svg.timeline = Snap( 512,512 )
-            .attr( 'id', settings.selector.timeline.replace( '#', '' ) );
+					$( document ).trigger( 'timeline/clickRemove', [{
+						id : id
+					}] );
+				}
+				// add if don't exist
+				else {
+					var sample = parseInt( $( this ).attr( 'data-sample' ) );
+					var step = parseInt( $( this ).attr( 'data-step' ) );
 
-        // create placeholder SVG
-        settings.svg.placeholder = Snap( 512,512 )
-            .attr( 'id', settings.selector.placeholder.replace( '#', '' ) );
+					$( document ).trigger( 'timeline/clickAdd', [{
+						sample: sample,
+						step: step
+					}] );
+				}
+			} )
+			.on( 'sequencer/playStep', function( event, data ) {
+				playNote( data.sample, data.step );
+			} )
+			.on( 'sequencer/clearSequence', function( event, data ) {
+				clearTimeline();
+			} )
+			.on( 'history/undo', function( event, data ) {
+				if( data.id ) {
+					removeNote( data.id );
+				}
+			} );
+	}
 
-        // add layers
-        for( var key in settings.layer ) {
-            if( settings.layer.hasOwnProperty( key ) ) {
-                addLayer( settings.layer[key], 'timeline' );
-            }
-        }
+	var onLoop = function() {
+		run();
+	}
 
-        // add notes to placeholders
-        for( var key in settings.layerNotes ) {
-            if( settings.layerNotes.hasOwnProperty( key ) ) {
-                addLayer( settings.layerNotes[key], 'placeholder' );
-            }
-        }
-    }
+	var build = function() {
+		var sequencer = Sequencer.getDivision();
+		var samples = Object.keys(Sequencer.getSamples()).length;
 
-    var addLayer = function( filename, target ) {
-        settings.zIndex = settings.zIndex + settings.zIndexStep;
-        var index = settings.zIndex;
+		// create runner
+		$(settings.selector.wrapper).append('<div class="runner"></div>');
 
-        Snap.load( 'dist/img/' + filename + '.svg', function ( svg ) {
-            var group = svg.select( 'g' );
+		// create sample rows
+		for( var key = 0; key < samples; key++ ) {
+			var sample = '<div class="sample" data-sample="' + key + '">';
 
-            // check whether to prepend or append
-            var indexMax = 0;
-            var groups = settings.svg[target].selectAll( 'g' );
-            $.each( groups, function() {
-                var g = $( this );
-                var i = parseInt( g[0].attr( 'data-index' ) );
-                indexMax = ( i > indexMax ) ? i : indexMax;
-            } );
+			$(settings.selector.wrapper).append(sample);
 
-            // set index
-            group
-                .attr( {
-                    'data-index': index
-                } );
+			// create step columns
+			for ( var i = 0; i < sequencer; i++ ) {
+				var step = '<div class="step" data-sample="' + key + '" data-step="' + i + '"><div class="content">';
 
-            // append or prepend depending on index
-            if( index >= indexMax ) {
-                group
-                    .appendTo( settings.svg[target] );
-            } else {
-                group
-                    .prependTo( settings.svg[target] );
-            }
+				$('.sample[data-sample=' + key + ']').append(step);
+			}
+		}
 
-            // add svg to DOM, could be run only once...
-            $( settings.selector[target] )
-                .appendTo( $( settings.selector.wrapper ) );
+		// Loaded
+		$( document ).trigger( 'timeline/loaded' );
+	}
 
-            // fire event when all SVGs are loaded
-            settings.svgLoaded = settings.svgLoaded + 1;
-            if( settings.svgLoaded === Object.keys( settings.layer ).length + Object.keys( settings.layerNotes ).length ) {
-                $( document ).trigger( 'timeline/loaded' );
-            }
-        } );
-    }
+	var run = function() {
+		var runner = $( settings.selector.wrapper + ' .runner' );
+		var progress = Sequencer.getProgress() * 100;
 
-    var resize = function() {
-        Debug.log( 'Timeline.resize()' );
-        settings.size = $( settings.selector.wrapper ).width();
-        settings.scaleFactor = settings.size / 512;
+		TweenLite.to(
+			runner,
+			0,
+			{
+				x: progress * 10 + "%",
+				ease: Linear.easeNone
+			}
+		);
+	}
 
-        // set size
-        $( settings.selector.timeline + ', ' + settings.selector.placeholder )
-            .css( {
-                'transform': 'scale( ' + settings.scaleFactor + ', ' + settings.scaleFactor + ' )'
-            } );
+	var addNote = function( step, sample, division, id ) {
+		//Debug.log( 'Timeline.addNote()', step, sample, division, id );
 
-        // set stroke width
-        settings.svg.timeline
-            .selectAll( 'path' )
-            .attr( {
-                strokeWidth: 1 / settings.scaleFactor
-            } );
+		var layer = $('.timeline-wrapper .sample[data-sample="' + sample + '"] .step[data-step="' + step + '"]');
+		var layerContent = $(layer).find('.content');
 
-        settings.svg.placeholder
-            .selectAll( 'path' )
-            .attr( {
-                strokeWidth: 1 / settings.scaleFactor
-            } );
-    }
+		// feedback
+		//$(layerContent).prepend(sample + '/' + step);
 
-    var run = function() {
-        var runner = $( '#' + settings.layer.runner );
-        var progress = Sequencer.getProgress();
-        var angle = 360 * progress;
+		var note = {
+			step: step,
+			sample: sample,
+			layer: layer,
+			id: id
+		}
 
-        TweenLite.to(
-            runner,
-            0,
-            {
-                transformOrigin: '50% 50%',
-                rotation: angle,
-                ease: Linear.easeNone
-            }
-        );
-    }
+		settings.notes.push( note );
 
-    var addNote = function( step, sample, division, id ) {
-        Debug.log( 'Timeline.addNote()', step, sample, division, id );
+		layer.attr( 'data-id', id );
 
-        var layer = settings.svg.placeholder.select( '.' + settings.layerNotes[sample] );
-        if( layer ) {
-            layer = layer.clone();
+		$(layerContent).addClass('added');
 
-            var note = {
-                step: step,
-                sample: sample,
-                layer: layer,
-                id: id
-            }
+		setTimeout( function() {
+			$(layerContent).removeClass('added');
+		}, 138)
 
-            settings.notes.push( note );
+	}
 
-            var angle = step / division * 360;
+	var removeNote = function( id ) {
+		//Debug.log( 'Timeline.removeNote()', id );
 
-            layer
-                .attr( 'data-id', id )
-                .prependTo( settings.svg.timeline );
+		var layer = $('.timeline-wrapper .step[data-id="' + id + '"]');
 
-            TweenLite.to(
-                layer.node,
-                0,
-                {
-                    transformOrigin: '50% 50%',
-                    rotation: angle,
-                    ease: Linear.easeNone
-                }
-            );
+		// remove feedback
+		if( layer ) {
 
-            // note specific animations
-            switch( sample ) {
-                case 0:
-                    animateLine( layer.select( '.shape' ), 0.5, 1 );
-                break;
+			layer
+				.removeAttr('data-id')
+				.find('.content').empty();
+		}
 
-                case 1:
-                    animateLine( layer.select( '.shape' ), 0.5, -1 );
-                break;
+		// remove entry in settings.notes
+		for( var i = 0; i < settings.notes.length; i++ ) {
+			if( settings.notes[i].id == id ) {
+				settings.notes.splice( i, 1 );
+			}
+		}
+	}
 
-                case 2:
-                    animateLine( layer.select( '.shape' ), 0.25, -1 );
-                break;
+	var clearTimeline = function() {
+		//Debug.log( 'Timeline.clearTimeline()' );
 
-                case 3:
-                    animateLine( layer.select( '.shape' ), 0.5, -1 );
-                break;
+		settings.notes = [];
 
-                case 4:
+		$('.timeline-wrapper .step').removeAttr('data-id');
+		$('.timeline-wrapper .step .content').empty()
+	}
 
-                break;
-            }
-        }
-    }
+	var playNote = function( sample, step ) {
+		//Debug.log( 'Sequencer.playNote()', step );
 
-    var removeNote = function( id ) {
-        Debug.log( 'Timeline.removeNote()', id );
+		for( var i = 0; i < settings.notes.length; i++ ) {
+			if( settings.notes[i].step === step ) {
 
-        // remove layer
-        var layer = $( settings.selector.timeline ).find( '[data-id="' + id + '"]' );
-        if( layer ) {
-            layer.remove();
-        }
+				var selector = settings.selector.wrapper + ' .step[data-sample="' + sample + '"][data-step="' + step + '"] .content';
+				
+				$(selector).addClass('active');
 
-        // remove entry in settings.notes
-        for( var i = 0; i < settings.notes.length; i++ ) {
-            if( settings.notes[i].id == id ) {
-                settings.notes.splice( i, 1 );
-            }
-        }
-    }
+				setTimeout( function() {
+					$(selector).removeClass('active');
+				}, 138)
 
+				/*
+				if ( Viewport.getWidth() > 768) {
+				
+					new TimelineLite()
+	                    .fromTo(
+	                        selector,
+	                        0.5,
+	                        {
+	                            transformOrigin: '50% 50%',
+	                            scaleX: 1.5,
+	                            scaleY: 1.5,
+	                            strokeOpacity: 0.75,
+	                            ease: Elastic.easeOut.config( 1, 0.3 )
+	                        },
+	                        {
+	                            transformOrigin: '50% 50%',
+	                            scaleX: 1,
+	                            scaleY: 1,
+	                            strokeOpacity: 1,
+	                            ease: Elastic.easeOut.config( 1, 0.3 )
+	                        }
+	                    );
+                 }*/
+			}
+		}
+	}
 
-    var clearTimeline = function() {
-        Debug.log( 'Timeline.clearTimeline()' );
+	var height = function() {
 
-        settings.notes = [];
-        settings.svg.timeline
-            .selectAll( '.timeline--note' )
-            .remove();
-    }
+		var setHeight = function() {
+			if ( $('html').hasClass('visible--ui-controls') ) {
+				var height = $('.ui--controls').outerHeight();
 
-    var animateLine = function( path, duration, direction ) {
-        if( path ) {
-            var length = path.getTotalLength();
+				$('.timeline').attr('style', 'bottom:' + (height + 40) + 'px');
+				$('.ui-toggle--share').attr('style', 'bottom:' + height + 'px');
+			}
+		}
 
-            $( path.node ).css( {
-                'strokeDasharray': length,
-                'strokeDashoffset': ( length * direction )
-            } );
+		setTimeout ( function () {
+			setHeight();	
+		}, 50);
+		
 
-            TweenLite.to(
-                path.node,
-                duration,
-                {
-                    strokeDashoffset: 0,
-                    ease: Power4.easeInOut
-                }
-            );
-        }
-    }
+		$( window ).resize(function() {
+			setHeight();
+		});
 
-    var playNote = function( step ) {
-        Debug.log( 'Sequencer.playNote()', step );
+	}
 
-        for( var i = 0; i < settings.notes.length; i++ ) {
-            if( settings.notes[i].step === step ) {
+	// State
+	var isReady = function() {
+		return ( settings.isLoaded ) ? true : false;
+	}
 
-                new TimelineLite()
-                    .fromTo(
-                        settings.notes[i].layer.select( '.shape' ).node,
-                        0.5,
-                        {
-                            transformOrigin: '50% 50%',
-                            scaleX: 1.5,
-                            scaleY: 1.5,
-                            strokeOpacity: 0.75,
-                            ease: Elastic.easeOut.config( 1, 0.3 )
-                        },
-                        {
-                            transformOrigin: '50% 50%',
-                            scaleX: 1,
-                            scaleY: 1,
-                            strokeOpacity: 1,
-                            ease: Elastic.easeOut.config( 1, 0.3 )
-                        }
-                    );
-            }
-        }
-    }
-
-    // State
-    var isReady = function() {
-        return ( settings.isLoaded ) ? true : false;
-    }
-
-    return {
-        init:       function() { init(); },
-        isReady:    function() { return isReady(); }
-    }
+	return {
+		init:       function() { init(); },
+		isReady:    function() { return isReady(); }
+	}
 
 } )();
 
 $( document ).ready( function() {
-    Timeline.init();
+	Timeline.init();
 } );

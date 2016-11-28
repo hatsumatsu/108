@@ -4,93 +4,107 @@
  */
 var History = ( function() {
 
-    var settings = {
-        maxLength: 32
-    }
+	var settings = {
+		maxLength: 32
+	}
 
-    var state = {
-        keyDown: false
-    }
+	var state = {
+		keyDown: false
+	}
 
-    var history = {};
+	var history = {};
 
-    var init = function() {
-        Debug.log( 'History.init()' );
+	var init = function() {
+		//Debug.log( 'History.init()' );
 
-        bindEventHandlers();
+		bindEventHandlers();
 
-        $( document ).trigger( 'history/init' );
-    }
+		$( document ).trigger( 'history/init' );
+	}
 
-    var bindEventHandlers = function() {
-        $( document )
-            .on( 'sequencer/addSequenceItem', function( event, data ) {
-                addItem( data.step, data.sample, data.division, data.id );
-            } )
-            .on( 'ui/clickButton', function( event, data ) {
-                if( data.action === 'undo' ) {
-                    undo();
-                }
-            } )
-            .on( 'keydown', function( event ) {
-                if( !state.keyDown ) {
-                    state.keyDown = true;
-                    var key = event.which;
+	var bindEventHandlers = function() {
+		$( document )
+			.on( 'sequencer/addSequenceItem', function( event, data ) {
+				addItem( data.step, data.sample, data.division, data.id );
+			} )
+			.on( 'ui/clickButton', function( event, data ) {
+				if( data.action === 'undo' ) {
+					undo();
+				}
+			} )
+			.on( 'keydown', function( event ) {
+				if( !state.keyDown ) {
+					state.keyDown = true;
+					var key = event.which;
 
-                    // undo
-                    // Z
-                    if( key === 90 ) {
-                        event.preventDefault();
+					var checkOverlay = $('html').is('.visible--ui-share, .visible--intro, .visible--ui-info');
 
-                        undo();
-                    }
-                }
+					// undo
+					// DELETE
+					if( key === 8 && checkOverlay === false ) {	
+						event.preventDefault();
 
-            } )
-            .on( 'keyup', function( event ) {
-                state.keyDown = false;
-            } )
-    }
+						undo();
+					}
+				}
 
-    var addItem = function( step, sample, division, id ) {
-        Debug.log( 'History.init()', id );
+			} )
+			.on( 'timeline/clickRemove', function( event, data ) {
+				undo( data.id );
+			} )
+			.on( 'keyup', function( event ) {
+				state.keyDown = false;
+			} )
+	}
 
-        if( id ) {
-            if( history.length > 0 && Object.keys( history ).length > settings.maxLength - 1 ) {
-                history.shift();
-            }
+	var addItem = function( step, sample, division, id ) {
+		//Debug.log( 'History.init()', id );
 
-            history[id] = {
-                step: step,
-                sample: sample,
-                division: division
-            };
-        }
+		if( id ) {
+			if( history.length > 0 && Object.keys( history ).length > settings.maxLength - 1 ) {
+				history.shift();
+			}
 
-        Debug.log( history );
-    }
+			history[id] = {
+				step: step,
+				sample: sample,
+				division: division
+			};
+		}
 
-    var undo = function() {
-        Debug.log( 'History.undo()' );
+		//Debug.log( history );
+	}
 
-        if( Object.keys( history ).length > 0 ) {
-            var id = Object.keys( history )[ ( Object.keys( history ).length - 1 ) ];
-            var item = history[id];
+	var undo = function( specificId ) {
+		//Debug.log( 'History.undo()' );
 
-            $( document ).trigger( 'history/undo', [{ step: item.step, sample: item.sample, division: item.division, id: id }] );
 
-            delete history[id];
+		if ( specificId ) {
+			var item = history[specificId];
 
-            Debug.log( history );
-        }
-    }
+			$( document ).trigger( 'history/undo', [{ step: item.step, sample: item.sample, division: item.division, id: specificId }] );
 
-    return {
-        init: function() { init(); }
-    }
+			delete history[specificId];
+
+			//Debug.log( history );
+		} else if( Object.keys( history ).length > 0 ) {
+			var id = Object.keys( history )[ ( Object.keys( history ).length - 1 ) ];
+			var item = history[id];
+
+			$( document ).trigger( 'history/undo', [{ step: item.step, sample: item.sample, division: item.division, id: id }] );
+
+			delete history[id];
+
+			//Debug.log( history );
+		}
+	}
+
+	return {
+		init: function() { init(); }
+	}
 
 } )();
 
 $( document ).ready( function() {
-    History.init();
+	History.init();
 } );

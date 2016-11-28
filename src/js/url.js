@@ -4,65 +4,72 @@
  */
 var Url = ( function() {
 
-    var settings = {
-        hash: '',
-        isChanging: false
-    }
+	var settings = {
+		sequencerID: '',
+		name: ''
+	}
 
-    var init = function() {
-        Debug.log( 'url.init()' );
+	var init = function() {
+		//Debug.log( 'url.init()' );
 
-        onHashchange();
+		getParameters();
 
-        bindEventHandlers();
+		$( document ).trigger( 'url/init', [{ 
+			sequencerID: settings.sequencerID,
+			name: settings.name
+		}] );
+	}
 
-        $( document ).trigger( 'url/init', [{ hash: settings.hash }] );
-    }
+	var getParameters = function() {
+		var delimiter = '@';
+		var delimiterEncoded = encodeURIComponent( delimiter );
 
-    var bindEventHandlers = function() {
-        $( window )
-            .on( 'hashchange', function() {
-                if( !settings.isChanging ) {
-                    Debug.log( 'hashchange' );
-                    onHashchange();
-                }
-            } );
+		if ( location.search ) {
+			var parameters = location.search.substr( 1 );
+			var listParameters = [];
 
-        $( document )
-            .on( 'sequencer/clearSequence', function( event, data ) {
-                set( '' );
-            } );
-    }
+			// put parameters in array
+			if ( parameters.indexOf( delimiter ) > 0 ) {
 
-    var onHashchange = function() {
-        var hash = location.hash;
-        if( hash.substr( 0,1 ) === '#' ) {
-            settings.hash = hash.substr( 1, hash.length );
-        }
+				listParameters = parameters.split( delimiter );
 
-        if( settings.hash ) {
-            $( document ).trigger( 'url/change', [ {
-                hash: settings.hash
-            } ] );
-        }
-    }
+			} else if ( parameters.indexOf( delimiterEncoded ) > 0 ) {
 
-    var set = function( hash ) {
-        settings.isChanging = true;
+				listParameters = parameters.split( delimiterEncoded );
 
-        location.hash = hash;
+			} else {
 
-        setTimeout( function() {
-            settings.isChanging = false;
-        }, 500 );
-    }
+				listParameters.push( parameters );
+			}
 
-    return {
-        init: function() { init(); }
-    }
+			// set parameters
+			for ( i = 0; i < listParameters.length; i++ ) {
+				
+				if ( listParameters[i].substr( 0,1 ) == 'n' ) {
+
+					// decode
+					var decode = decodeURI(listParameters[i]);
+
+					// change + by space
+					var decode = decode.replace(/\-/g, ' ');
+
+					settings.name = decode.substr(1,13);
+
+				} else if ( listParameters[i].substr( 0,1 ) === 's' ) {
+
+					settings.sequencerID = listParameters[i].substr(1);
+
+				}
+			}
+		}
+	}
+
+	return {
+		init: function() { init(); }
+	}
 
 } )();
 
 $( document ).ready( function() {
-    Url.init();
+	Url.init();
 } );

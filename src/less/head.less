@@ -1,15 +1,68 @@
-h1 {
-	position: fixed;
+.title-container {
+	position: absolute;
 	left: 0;
+	margin: 5px 40px;
 	top: 0;
+	right: 110px;
 
-	display: block;
-	margin: 1rem 1.1rem;
+	h1 {
+		display: inline-block;
+		
+		margin: 0;
+		font-family: inherit;
+		font-weight: 400;
+		line-height: 1;
 
-	font-family: inherit;
-	font-size: 0.875rem;
-	font-weight: 400;
-	line-height: 1;
+		font-size: 21px;
+		text-align: left;
+		white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    max-width: 100%;
+	    width: auto;
 
-	opacity: 0.5;
+	    span {
+	    	background: black;
+		    padding: 5px 10px;
+		    line-height: 1.5;
+
+		    &.username {
+		    	display: none;
+		    }
+		    &.username.active {
+		    	padding-left: 0;
+		    	display: inline;
+
+		    	&:before {
+		    		content: "/ ";
+		    	}
+		    }
+	    }
+	}
+}
+
+@media screen and ( max-width: 656px ) {
+	.title-container {
+		margin-left: 20px;
+		right: 60px;
+
+		h1 {
+			display: inline;
+			font-size: 12px;
+			white-space: normal;
+
+			span {
+				padding: 2px 10px;
+
+				&.emicida {
+					display: inline-block;
+					margin-bottom: -8px;
+				}
+				&.username.active {
+					display: inline-block;
+					margin-top: -3px;
+				}
+			}
+		}
+	}
 }

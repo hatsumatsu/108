@@ -1,18 +1,21 @@
 // toggle
 .ui-toggle--info {
-	position: fixed;
+	position: absolute;
 	right: 0;
 	top: 0;
 
 	display: block;
-	margin: 1rem 1rem 0 0;
+	margin: 5px 40px;
 
-	font-size: 0.875rem;
+	font-size: 70px;
 	line-height: 1;
 	text-transform: uppercase;
 	color: inherit;
 
-	opacity: 0.5;
+	background: black;
+	font-size: 21px;
+	padding: 5px 10px;
+	outline: none;
 
 	&:hover {
 		.animation--blink;
@@ -20,9 +23,154 @@
 }
 
 // modal
+
 .ui-modal--info {
+	background: white;
+
+	.intro-top {
+		color: black;
+	}
+	.intro-emicida-logo {
+		background-image: url('../img/emicida-logo-black.png');
+		position: fixed;
+	}
+	.intro-yasuke-logo {
+		background-image: url('../img/yasuke-logo-black.png');
+		position: fixed;
+	}
+	
+	.ui-modal-content {
+		font-family: @font--2;
+		font-weight: 100;
+		display: block;
+	    margin: 20px 80px 40px;
+	    font-size: 48px;
+	    
+	    text-align: center;
+	    line-height: 1.05;
+	    max-width: none;
+	 	color: black;
+
+	 	p {
+	 		margin: 0;
+	 		text-transform: none;
+	 	}
+	    .yasuke-title {
+	    	font-family: @font--1;
+	    	font-size: 21px;
+	    	margin-bottom: 70px;
+	    }
+	    .key {
+	    	font-family: 'Eurostile', monospace;
+		    display: inline-block;
+		    font-size: 40%;
+		    border: 1px solid currentColor;
+		    border-radius: 4px;
+		    padding: 7px 9px 7px 9px;
+		    text-transform: uppercase;
+		    vertical-align: middle;
+		    margin: 0 5px;
+		    border-width: 2px;
+	    }
+	    button {
+	    	background: black;
+	    	color: white;
+	    	font-size: 21px;
+	    	margin-top: 70px;
+	    }
+	    .credits-container {
+	    	margin-top: 70px;
+	    	text-transform: none;
+
+	    	.title {
+	    		border-bottom: 1px solid #d8d8d8;
+			    display: inline-block;
+			    min-width: 200px;
+			    text-transform: none;
+	    	}
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+
+				li {
+					font-size: 14px;
+
+					a {
+						padding: 10px;
+						display: inline-block;
+					}
+					a:hover {
+						color: gray;
+					}
+					&:last-child {
+						a {
+							padding-bottom: 0;
+						}
+					}
+				}
+			}
+		}
+	}
 
 	.visible--ui-info & {
 		.ui-modal.visible;
+
+		overflow: auto;
+		
+	}
+	.ui-modal-close--info{
+		color: black;
+	}
+}
+@media screen and ( max-width: 656px ) {
+	.ui-toggle--info {
+		font-size: 12px;
+		margin-right: 20px;
+	}
+}
+@media screen and ( max-width: 480px ) {
+	
+	.ui-modal--info {
+		.ui-modal-content {
+			clear: both;
+			font-size: 30px;
+			margin: 20px 50px;
+			font-size: 20px;
+			line-height: 1.4;
+
+			.yasuke-title {
+				margin: 20px -40px 20px;
+			}
+			.keys {
+				.key {
+					margin: 0;
+				}
+			}
+			.key {
+				padding: 5px 5px 4px 6px;
+			}
+			button {
+			    margin-top: 20px;
+    			margin-bottom: 0;
+    			padding: 6px 15px 8px;
+			}
+			.credits-container {
+				margin-top: 30px;
+			}
+		}
+		.intro-emicida-logo {
+			background-size: 30px;
+			width: 30px;
+			height: 30px;
+		}
+		.intro-yasuke-logo {
+			background-size: 15px;
+			width: 15px;
+			height: 87px;
+		}
+		.visible--ui-info & {
+			padding-top: 20px;
+		}
 	}
 }
