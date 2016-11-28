@@ -132,6 +132,10 @@ var Ui = ( function() {
 				event.preventDefault();
 				var service = $( this ).attr( 'data-service' );
 				if( service ) {
+
+					//random banner
+					setUrl();
+
 					openShareWindow( service, settings.url.all );
 				}
 			} )
@@ -316,6 +320,10 @@ var Ui = ( function() {
 
 	var setUrl = function( hash ) {
 
+		// random banner
+		var random = 'b' + (Math.round(Math.random() * 5) + 1) + '/';
+		settings.url.pathname = location.pathname + random;
+
 		var url = settings.url.protocol + settings.url.hostname + settings.url.pathname;
 		var parameters = '';
 
@@ -336,7 +344,6 @@ var Ui = ( function() {
 
 		$( settings.selector.share.url ).val( settings.url.all );
 
-
 		/*if( /Android/i.test(navigator.userAgent) ) {
 			$('.share-whatsapp').attr('style', '');
 			$('.share-whatsapp a').attr('href', 'whatsapp://send?text=Aumente o volume e escute o meu som criado no #YasukeBeatMachine. Chega no site e faça o seu beat também. ' + settings.url.all + '' );
@@ -353,7 +360,6 @@ var Ui = ( function() {
 		//var urltest = 'http://alucas.com.br/emicida/b2/?nangelo@sA2B2C2D2E2F2G2H2I2J2K2L2M2N2O2P2';
 
 		if( settings.shareServices[service] ) {
-			
 			var url = settings.shareServices[service].url.replace( '{url}', url );
 			
 			window.open( url, '108Share', 'width=520,height=320,menubar=no,location=yes,resizable=no,scrollbars=yes,status=no' );

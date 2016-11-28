@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html class="no-js visible--intro" lang="pt">
 	<head>
-		<meta charset="utf-8">
-		<!-- 
-			Developer: Ângelo Lucas <angelo.lrc@gmail.com>
+		<!--
+			production date: 28 November 2016
+			url: http://emicida.com/beat-machine
+			developer: Ângelo Lucas <angelo.lrc@gmail.com>
 		-->
+		<meta charset="utf-8">
 
 		<title>Yasuke</title>
 
@@ -15,7 +17,7 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-		<meta name="description" content="Yasuke Beat Machine">
+		<meta name="description" content="Aumente o volume e crie seu som no #YasukeBeatMachine. emicida.com/beat-machine">
 
 		<!-- CSS -->
 		<link type="text/css" rel="stylesheet" href="dist/css/style.css?">
@@ -25,18 +27,18 @@
 		<meta name="theme-color" content="#000000">
 
 		<!-- FACEBOOK meta -->
-		<meta property="og:site_name" content="Yasuke Beat Machine">
-		<meta property="og:description" content="Aumente o volume e escute o meu som criado no #YasukeBeatMachine. Chega no site e faça o seu beat também. https://emicida.com.br/yasuke">
+		<meta property="og:title" content="Yasuke Beat Machine">
+		<meta property="og:url" content="http://emicida.com/beat-machine">
+		<meta property="og:description" content="Aumente o volume e crie seu som no #YasukeBeatMachine. emicida.com/beat-machine">
 		<meta property="og:type" content="website">
-		<meta property="og:image" content="http://www.alucas.com.br/emicida/dist/meta/facebook2.png">
+		<meta property="og:image" content="http://www.alucas.com.br/emicida/dist/meta/banner1.png">
 
 		<!-- TWITTER meta -->
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:url" content="http://emicida.com.br/yasuke">
+		<meta name="twitter:url" content="http://emicida.com/beat-machine">
 		<meta name="twitter:title" content="Yasuke Beat Machine">
-		<meta name="twitter:description" content="Aumente o volume e escute o meu som criado no #YasukeBeatMachine. Chega no site e faça o seu beat também. https://emicida.com.br/yasuke">
-		<meta name="twitter:image" content="http://www.alucas.com.br/emicida/dist/meta/facebook2.png">
-
+		<meta name="twitter:description" content="Aumente o volume e crie seu som no #YasukeBeatMachine. emicida.com/beat-machine">
+		<meta name="twitter:image" content="http://www.alucas.com.br/emicida/dist/meta/banner1.png">
 
 	</head>
 	<body id="body">
@@ -99,7 +101,7 @@
 
 		<!-- UI SHARE -->
 		<div class="ui--share" data-modal="share">
-			<button type="button" class="ui-toggle ui-toggle--share" data-modal-action="toggle">
+			<button type="button" class="ui-toggle ui-toggle--share" data-modal-action="toggle" onclick="ga('send', 'event', 'link','click', 'Share Page');">
 				share
 			</button>
 
@@ -119,8 +121,8 @@
 							</li>
 							<li class="share-url-container">
 								<div class="share-url">
-									<input type="text" class="share-url-input" id="share-url-input" readonly>
-									<button type="button" class="share-url-button" data-clipboard-target="#share-url-input">
+									<input type="text" class="share-url-input" id="share-url-input" onclick="ga('send', 'event', 'link','click', 'Type name click');" readonly>
+									<button type="button" class="share-url-button" data-clipboard-target="#share-url-input" onclick="ga('send', 'event', 'link','click', 'Copy URL');">
 										copy
 									</button>
 								</div>
@@ -149,7 +151,7 @@
 
 		<!-- UI INFO -->
 		<div class="ui--info" data-modal="info">
-			<button type="button" class="ui-toggle ui-toggle--info" data-modal-action="toggle">
+			<button type="button" class="ui-toggle ui-toggle--info" data-modal-action="toggle" onclick="ga('send', 'event', 'link','click', 'Intro Page');">
 				info
 			</button>
 
@@ -190,7 +192,7 @@
 						<span class="key">H</span>
 					</div>
 					<p>Para voltar a ação, utilize a tecla <span class="key">Z</span>. <span class="key">DELETE</span>   Elimina a sequência inteira. Deixando a timeline vazia. <span class="key">SPACE BAR</span>   Começe / Pare a reprodução da música. <span class="key">SHIFT</span> Aciona o metrônomo caso você necessite. <span class="key">CONTROL</span>   Esconde os botões, deixando apenas a música na tela.</p>
-					<button type="button" class="button" data-modal-action="toggle">
+					<button type="button" class="button" data-modal-action="toggle" onclick="ga('send', 'event', 'link','click', 'Noiz Button');">
 						NOIZ!
 					</button>
 					<div class="credits-container">
@@ -198,17 +200,17 @@
 						<ul>
 							<li>
 								<strong>
-									<a href="http://angelolucas.github.io" target="_blank">Ângelo Lucas</a>
+									<a href="http://angelolucas.github.io" onclick="ga('send', 'event', 'link', 'click', 'Angelo link');" target="_blank">Ângelo Lucas</a>
 								</strong> Code
 							</li>
 							<li>
 								<strong>
-									<a href="http://blackmadre.com" target="_blank">André Maciel</a>
+									<a href="http://blackmadre.com" onclick="ga('send', 'event', 'link', 'click', 'Maciel link');" target="_blank">André Maciel</a>
 								</strong> Ilustrador
 							</li>
 							<li>
 								<strong>
-									<a href="https://soundcloud.com/dj-duhproducer" target="_blank">Dj Duh</a>
+									<a href="https://soundcloud.com/dj-duhproducer" onclick="ga('send', 'event', 'link', 'click', 'Dj Duh link');" target="_blank">Dj Duh</a>
 								</strong> Sound Designer
 							</li>
 						</ul>
@@ -265,6 +267,17 @@
 		<script type="text/javascript" src="src/js/url.js?"></script>
 		<script type="text/javascript" src="src/js/intro.js?"></script>
 		<script type="text/javascript" src="src/js/title.js?"></script>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-88109540-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
 
 		<!-- NO JS MESSAGE -->
 		<noscript>
