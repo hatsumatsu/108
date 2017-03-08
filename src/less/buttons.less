@@ -9,7 +9,7 @@
 	border-radius: 3px;
 
 	&:hover {
-		// background: rgba( 255,255,255,0.1 ) !important;		
+		// background: rgba( 255,255,255,0.1 ) !important;
 		.animation--blink;
 	}
 }
@@ -24,5 +24,15 @@
 
 	background: rgba( 255,255,255,0.01 );
 	border: 1px solid currentColor;
-	border-radius: 3px;	
+	border-radius: 3px;
+}
+
+
+@media screen and ( orientation: portrait ) and ( max-width: 460px ) {
+	.button {
+
+		&:hover {
+			animation: none;
+		}
+	}
 }

@@ -134,6 +134,12 @@ h4 > span {
   border: 1px solid currentColor;
   border-radius: 3px;
 }
+@media screen and (orientation: portrait) and (max-width: 460px) {
+  .button:hover {
+    -webkit-animation: none;
+            animation: none;
+  }
+}
 h1 {
   position: fixed;
   left: 0;
