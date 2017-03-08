@@ -93,10 +93,10 @@ var Ui = ( function() {
             .on( 'click', settings.selector.button, function( event ) {
                 event.preventDefault();
             } )
-            .on( 'mousedown touchstart', settings.selector.button, function( event ) {
+            .on( 'mousedown', settings.selector.button, function( event ) {
                 event.preventDefault();
 
-                Debug.log( 'mousedown / touchstart' );
+                Debug.log( 'mousedown' );
 
                 var button = $( this );
 
