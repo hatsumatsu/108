@@ -25,12 +25,16 @@ var Ui = ( function() {
             modal: {
                 wrapper: '[data-modal]',
                 toggle:  '[data-modal-action="toggle"]'
+            },
+            recorder: {
+                indicator: '.ui-indicator-recorder'
             }
         },
         isVisible: {
             controls:   false,
             share:      false,
-            info:       false
+            info:       false,
+            recorder:   false
         },
         shareServices: {
             facebook: {
@@ -60,6 +64,13 @@ var Ui = ( function() {
         }
         Cookies.set( '108--visited', true, { expires: 30, path: '' } );
 
+        // setInterval( function() {
+        //     showRecorder( 'recording' );
+        //     setTimeout( function() {
+        //         showRecorder( 'processing' );
+        //     }, 3000 );
+        // }, 6000 );
+
         bindEventHandlers();
     }
 
@@ -82,10 +93,10 @@ var Ui = ( function() {
             .on( 'click', settings.selector.button, function( event ) {
                 event.preventDefault();
             } )
-            .on( 'mousedown touchstart', settings.selector.button, function( event ) {
+            .on( 'mousedown', settings.selector.button, function( event ) {
                 event.preventDefault();
 
-                Debug.log( 'mousedown / touchstart' );
+                Debug.log( 'mousedown' );
 
                 var button = $( this );
 
@@ -129,6 +140,19 @@ var Ui = ( function() {
             } )
             .on( 'focus', settings.selector.share.input, function( event ) {
                 $( this ).select();
+            } )
+            .on( 'recorder/start', function() {
+                showRecorder( 'recording' );
+
+                setButton( 'r', true );
+            } )
+            .on( 'recorder/stop', function() {
+                showRecorder( 'processing' );
+
+                setButton( 'r', false );
+            } )
+            .on( 'recorder/finish', function() {
+                hideRecorder();
             } );
 
             new Clipboard( settings.selector.share.button );
@@ -239,6 +263,43 @@ var Ui = ( function() {
             var url = settings.shareServices[service].url.replace( '{url}', url );
             window.open( url, '108Share', 'width=520,height=320,menubar=no,location=yes,resizable=no,scrollbars=yes,status=no' );
         }
+    }
+
+    var buildRecorder = function() {
+        Debug.log( 'Ui.buildRecorder()' );
+
+        var indicator = $( '<span></span>' );
+
+        indicator
+            .addClass( settings.selector.recorder.indicator.replace( '.', '' ) )
+            .appendTo( $( '.timeline-wrapper' ) );
+
+        return indicator;
+    }
+
+    var showRecorder = function( status ) {
+        Debug.log( 'Ui.showRecorder()', status );
+
+        var indicator = $( settings.selector.recorder.indicator );
+
+        if( indicator.length < 1 ) {
+            indicator = buildRecorder();
+        }
+
+        indicator
+            .removeClass( 'visible--recording' )
+            .removeClass( 'visible--processing' )
+            .addClass( 'visible' )
+            .addClass( 'visible--' + status );
+    }
+
+    var hideRecorder = function() {
+        Debug.log( 'Ui.hideRecorder()' );
+
+        $( settings.selector.recorder.indicator )
+            .removeClass( 'visible' )
+            .removeClass( 'visible--recording' )
+            .removeClass( 'visible--processing' );
     }
 
     return {

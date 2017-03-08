@@ -1,0 +1,119 @@
+.ui-indicator-recorder {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 800;
+
+	display: block;
+	width: 2rem;
+	height: 2rem;
+	margin: -1rem 0 0 -1rem;
+
+	opacity: 0;
+	transform: scale( 0 );
+
+	transition-property: opacity, transform;
+	transition-duration: 250ms;
+	transition-timing-function: ease-in-out;
+
+	&::before,
+	&::after {
+		content: ' ';
+
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 800;
+
+		display: block;
+		margin: 0;
+
+		border-radius: 50%;
+
+		transition-duration: 250ms;
+		transition-timing-function: ease-in-out;
+	}
+
+	&::before {
+		margin: -6px;
+
+		border-style: solid;
+		border-width: 1.5px;
+
+		transition-property: background, border;
+
+		animation: processing infinite 1800ms linear;
+	}
+
+	&::after {
+		background-color: @color--accent;
+
+		transition-property: opacity, transform;
+
+		opacity: 0;
+		transform: scale( 0 );
+	}
+
+	&.visible {
+		opacity: 1;
+
+		transform: scale( 1 );
+	}
+
+	&.visible--recording {
+
+		&::before {
+			border-color: @color--accent transparent transparent transparent;
+		}
+
+		&::after {
+			opacity: 1;
+			transform: scale( 1 );
+		}
+	}
+
+	&.visible--processing {
+
+		&::before {
+			border-color: @color--accent @color--text @color--text @color--text;
+		}
+
+		&::after {
+			opacity: 0;
+		}
+	}
+}
+
+
+@keyframes recording {
+	0% {
+		opacity: 1;
+
+		transform: scale( 1 );
+	}
+
+	50% {
+		opacity: 0.5;
+
+		transform: scale( 1.25 );
+	}
+
+	100% {
+		opacity: 1;
+
+		transform: scale( 1 );
+	}
+}
+
+
+@keyframes processing {
+	0% {
+		transform: rotate( 0deg );
+	}
+
+	100% {
+		transform: rotate( 360deg );
+	}
+}

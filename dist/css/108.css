@@ -134,6 +134,12 @@ h4 > span {
   border: 1px solid currentColor;
   border-radius: 3px;
 }
+@media screen and (orientation: portrait) and (max-width: 460px) {
+  .button:hover {
+    -webkit-animation: none;
+            animation: none;
+  }
+}
 h1 {
   position: fixed;
   left: 0;
@@ -278,16 +284,29 @@ h1 {
 .control-button--no-feedback.active {
   color: #252529;
 }
-@media screen and (max-width: 656px) {
+@media screen and (max-width: 764px) {
   .control-button--narrow {
+    width: auto;
+  }
+}
+@media screen and (max-width: 656px) {
+  .control-button {
+    -webkit-flex-shrink: 1;
+        -ms-flex-negative: 1;
+            flex-shrink: 1;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
         -ms-flex-positive: 1;
             flex-grow: 1;
+  }
+  .control-button--narrow {
     -webkit-flex-shrink: 1;
         -ms-flex-negative: 1;
             flex-shrink: 1;
-    width: auto;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
   }
 }
 @media screen and (max-width: 460px) {
@@ -297,10 +316,10 @@ h1 {
             flex-wrap: wrap;
   }
   .control-button {
-    min-width: calc( 20vw - 2rem );
+    min-width: calc( 20vw - 1.5rem );
   }
   .control-button--narrow {
-    min-width: calc( 25vw - 2rem );
+    min-width: calc( 20vw - 1.5rem );
   }
 }
 @media screen and (max-height: 480px) {
@@ -447,6 +466,132 @@ h1 {
           transition-duration: 250ms, 100ms;
   -webkit-transition-delay: 0ms, 0ms;
           transition-delay: 0ms, 0ms;
+}
+.ui-indicator-recorder {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 800;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  margin: -1rem 0 0 -1rem;
+  opacity: 0;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition-property: opacity, -webkit-transform;
+          transition-property: opacity, transform;
+  -webkit-transition-duration: 250ms;
+          transition-duration: 250ms;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+}
+.ui-indicator-recorder::before,
+.ui-indicator-recorder::after {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 800;
+  display: block;
+  margin: 0;
+  border-radius: 50%;
+  -webkit-transition-duration: 250ms;
+          transition-duration: 250ms;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+}
+.ui-indicator-recorder::before {
+  margin: -6px;
+  border-style: solid;
+  border-width: 1.5px;
+  -webkit-transition-property: background, border;
+          transition-property: background, border;
+  -webkit-animation: processing infinite 1800ms linear;
+          animation: processing infinite 1800ms linear;
+}
+.ui-indicator-recorder::after {
+  background-color: #ff0f36;
+  -webkit-transition-property: opacity, -webkit-transform;
+          transition-property: opacity, transform;
+  opacity: 0;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+.ui-indicator-recorder.visible {
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.ui-indicator-recorder.visible--recording::before {
+  border-color: #ff0f36 transparent transparent transparent;
+}
+.ui-indicator-recorder.visible--recording::after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.ui-indicator-recorder.visible--processing::before {
+  border-color: #ff0f36 #fff #fff #fff;
+}
+.ui-indicator-recorder.visible--processing::after {
+  opacity: 0;
+}
+@-webkit-keyframes recording {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes recording {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes processing {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes processing {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 .ui-modal {
   position: fixed;
