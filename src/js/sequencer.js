@@ -17,24 +17,24 @@ var Sequencer = ( function() {
         samples: {
             '808': {
                 0: {
-                    src:        'dist/samples/808/mp3/bass.mp3',
-                    velocity:   1
+                    src:    'dist/samples/808/mp3/bass.mp3',
+                    gain:   0.95
                 },
                 1: {
-                    src:        'dist/samples/808/mp3/clap.mp3',
-                    velocity:   1
+                    src:    'dist/samples/808/mp3/clap.mp3',
+                    gain:   0.95
                 },
                 2: {
-                    src:        'dist/samples/808/mp3/hi-hat--10.mp3',
-                    velocity:   0.75
+                    src:    'dist/samples/808/mp3/hi-hat--10.mp3',
+                    gain:   0.75
                 },
                 3:  {
-                    src:        'dist/samples/808/mp3/snare.mp3',
-                    velocity:   1
+                    src:    'dist/samples/808/mp3/snare.mp3',
+                    gain:   0.95
                 },
                 4: {
-                    src:        'dist/samples/808/mp3/tom--8.mp3',
-                    velocity:   1
+                    src:    'dist/samples/808/mp3/tom--8.mp3',
+                    gain:   0.95
                 }
             }
         },
@@ -54,14 +54,14 @@ var Sequencer = ( function() {
     var init = function() {
         Debug.log( 'Sequencer.init()' );
 
+        bindEventHandlers();
+
         initSampler();
         initSignal();
         initPlayback();
         initMetronome();
 
         startPlayback();
-
-        bindEventHandlers();
     }
 
     var bindEventHandlers = function() {
@@ -171,11 +171,6 @@ var Sequencer = ( function() {
                 }
             } );
 
-        // all samples are loaded
-        Tone.Buffer.on( 'load', function() {
-            $( document ).trigger( 'sequencer/loaded' );
-        } );
-
         // fix Safari's initially suspended audio context
         setInterval( function() {
             if( Tone.context.state !== 'running' ) {
@@ -194,16 +189,17 @@ var Sequencer = ( function() {
     var initSampler = function() {
         Debug.log( 'Sequencer.initSampler()' );
 
-        var samples = {
-            '808': {}
-        }
+        var samples = {}
 
         for( var i = 0; i < Object.keys( settings.samples['808'] ).length; i++ ) {
-            samples['808'][i] = settings.samples['808'][i].src;
+            samples[i] = settings.samples['808'][i].src;
         }
 
-        settings.sampler = new Tone.Sampler(
-            samples
+        settings.sampler = new Tone.MultiPlayer(
+            samples,
+            function() {
+                $( document ).trigger( 'sequencer/loaded' );
+            }
         );
     }
 
@@ -212,8 +208,7 @@ var Sequencer = ( function() {
         Debug.log( 'Sequencer.playSample()', i );
 
         if( settings.isLoaded ) {
-            var velocity = settings.samples['808'][i].velocity;
-            settings.sampler.triggerAttack( '808.' + i, time, velocity );
+            settings.sampler.start( i, time, 0.05, '1n', 0, settings.samples['808'][i].gain );
 
             $( document ).trigger( 'sequencer/playSample', [ {
                 sample: i
@@ -284,7 +279,7 @@ var Sequencer = ( function() {
 
         }, settings.events, settings.division + 'n' );
 
-        Tone.Transport.start();
+        Tone.Transport.start( '+0.05' );
     }
 
     var startPlayback = function() {
@@ -478,7 +473,7 @@ var Sequencer = ( function() {
     // Metronome
     var initMetronome = function() {
         Debug.log( 'Sequencer.initMetronome()' );
-            settings.metronome = new Tone.SimpleSynth().toMaster();
+            settings.metronome = new Tone.MonoSynth().toMaster();
     }
 
     var toggleMetronome = function() {
