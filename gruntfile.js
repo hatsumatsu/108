@@ -95,11 +95,17 @@ module.exports = function( grunt ) {
 		watch: {
 			css: {
 				files: ['**/*.less'],
-				tasks: ['buildcss']
+				tasks: ['buildcss'],
+                options: {
+                    livereload: true
+                }
 			},
 			js: {
 				files: ['src/js/**/*.js','!js/**/*.min.js'],
-				tasks: ['buildjs']
+				tasks: ['buildjs'],
+                options: {
+                    livereload: true
+                }
 			}
 		}
 
