@@ -17,7 +17,7 @@ var Sequencer = ( function() {
         samples: {
             '808': {
                 0: {
-                    src:    'dist/samples/808/mp3/bass.mp3',
+                    src:    'dist/samples/808/mp3/kick--19.mp3',
                     gain:   0.95
                 },
                 1: {
