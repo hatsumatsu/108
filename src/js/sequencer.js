@@ -51,11 +51,16 @@ var Sequencer = ( function() {
         analyserValue: 0
     }
 
+    var selector = {
+        buttonStart: '[data-sequencer-role="buttonStart"]'
+    }
+
     var init = function() {
         Debug.log( 'Sequencer.init()' );
 
         bindEventHandlers();
 
+        initContext();
         initSampler();
         initSignal();
         initPlayback();
@@ -177,6 +182,13 @@ var Sequencer = ( function() {
                 Tone.context.resume();
             }
         }, 1000 );
+    }
+
+    // Context
+    var initContext = function() {
+        StartAudioContext( Tone.context, $( selector.buttonStart ) ).then( function() {
+
+        } );
     }
 
     // Signal

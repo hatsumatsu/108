@@ -58,18 +58,10 @@ var Ui = ( function() {
             toggleControls();
         }
 
-        // show info UI on first visit
-        if( !Cookies.get( '108--visited' ) && location.href.indexOf( 'demo' ) < 0 ) {
+        // hide info in demo mode
+        if( location.href.indexOf( 'demo' ) < 0 ) {
             toggleModal( 'info' );
         }
-        Cookies.set( '108--visited', true, { expires: 30, path: '' } );
-
-        // setInterval( function() {
-        //     showRecorder( 'recording' );
-        //     setTimeout( function() {
-        //         showRecorder( 'processing' );
-        //     }, 3000 );
-        // }, 6000 );
 
         bindEventHandlers();
     }
