@@ -17,8 +17,8 @@ var Sequencer = ( function() {
         samples: {
             '808': {
                 0: {
-                    src:    'dist/samples/808/mp3/kick--19.mp3',
-                    gain:   0.95
+                    src:    'dist/samples/808/mp3/kick--21.mp3',
+                    gain:   0.9
                 },
                 1: {
                     src:    'dist/samples/808/mp3/clap.mp3',
@@ -220,7 +220,8 @@ var Sequencer = ( function() {
         Debug.log( 'Sequencer.playSample()', i );
 
         if( settings.isLoaded ) {
-            settings.sampler.start( i, time, 0.05, '1n', 0, settings.samples['808'][i].gain );
+            // bufferName, time, offset, duration, pitch, gain
+            settings.sampler.start( i, time, 0, '1n', 0, settings.samples['808'][i].gain );
 
             $( document ).trigger( 'sequencer/playSample', [ {
                 sample: i
@@ -291,7 +292,7 @@ var Sequencer = ( function() {
 
         }, settings.events, settings.division + 'n' );
 
-        Tone.Transport.start( '+0.05' );
+        Tone.Transport.start( '+0.1' );
     }
 
     var startPlayback = function() {
@@ -485,7 +486,7 @@ var Sequencer = ( function() {
     // Metronome
     var initMetronome = function() {
         Debug.log( 'Sequencer.initMetronome()' );
-            settings.metronome = new Tone.MonoSynth().toMaster();
+            settings.metronome = new Tone.Synth().toMaster();
     }
 
     var toggleMetronome = function() {
@@ -499,7 +500,7 @@ var Sequencer = ( function() {
     var playMetronome = function( high ) {
         var note = ( high ) ? 'C5' : 'C4';
 
-        settings.metronome.triggerAttackRelease( note, '16n', null, 0.5 );
+        settings.metronome.triggerAttackRelease( note, '16n', '+0.05', 0.8 );
     }
 
     // State
