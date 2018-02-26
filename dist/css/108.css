@@ -55,6 +55,7 @@ html {
   color: #fff;
   letter-spacing: 0.1em;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 body::after {
   content: ' ';
@@ -113,7 +114,7 @@ h4 > span {
   border-bottom: 1px solid currentColor;
 }
 .button {
-  padding: 0.35rem 0.7rem;
+  padding: 0.35rem 0.6rem 0.2em 0.7em;
   color: inherit;
   line-height: 1;
   background: rgba(255, 255, 255, 0.01);
@@ -126,10 +127,11 @@ h4 > span {
 }
 .key {
   display: inline-block;
-  padding: 0.25em 0.45em 0.25em 0.5em;
+  padding: 0.35em 0.5em 0.2em 0.5em;
   font-size: 0.875em;
   line-height: 1;
   color: inherit;
+  letter-spacing: 0;
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid currentColor;
   border-radius: 3px;
@@ -249,7 +251,7 @@ h1 {
   display: flex;
 }
 .control-button {
-  padding: 0.35rem 0.7rem;
+  padding: 0.35rem 0.6rem 0.2em 0.7em;
   color: inherit;
   line-height: 1;
   background: rgba(255, 255, 255, 0.01);
@@ -361,7 +363,7 @@ h1 {
   width: 32rem;
 }
 .share-url {
-  padding: 0.35rem 0.7rem;
+  padding: 0.35rem 0.6rem 0.2em 0.7em;
   color: inherit;
   line-height: 1;
   background: rgba(255, 255, 255, 0.01);
@@ -385,6 +387,7 @@ h1 {
   display: block;
   width: 2rem;
   margin-right: 4rem;
+  margin-bottom: 1px;
   background: -webkit-linear-gradient(0deg, rgba(37, 37, 41, 0) 0%, #252529 90%);
   background: linear-gradient(90deg, rgba(37, 37, 41, 0) 0%, #252529 90%);
 }
@@ -412,7 +415,7 @@ h1 {
   box-shadow: none !important;
 }
 .share-url-button {
-  padding: 0.35rem 0.7rem;
+  padding: 0.35rem 0.6rem 0.2em 0.7em;
   color: inherit;
   line-height: 1;
   background: rgba(255, 255, 255, 0.01);
@@ -422,6 +425,8 @@ h1 {
   right: 0;
   top: 0;
   width: 4rem;
+  padding-top: 0.45em;
+  padding-bottom: 0.35em;
   text-align: center;
   border: none;
   border-left: 1px solid currentColor;
