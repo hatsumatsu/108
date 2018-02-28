@@ -175,19 +175,14 @@ var Sequencer = ( function() {
                     removeSequenceItem( data.step, data.sample, data.division, data.id );
                 }
             } );
-
-        // fix Safari's initially suspended audio context
-        setInterval( function() {
-            if( Tone.context.state !== 'running' ) {
-                Tone.context.resume();
-            }
-        }, 1000 );
     }
 
     // Context
     var initContext = function() {
         StartAudioContext( Tone.context, $( selector.buttonStart ) ).then( function() {
-
+            setTimeout( function() {
+                Tone.Transport.start( '+0.1' );
+            }, 500 );
         } );
     }
 
